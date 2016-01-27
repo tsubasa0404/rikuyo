@@ -10,7 +10,7 @@
 
 
 			<div class="row">
-				<div class="col-lg-6 col-md-8 col-sm-12">
+				<div class="col-lg-8 col-md-12 col-sm-12">
 					<div class="main-box">
 						<div class="main-box-body clearfix">
 							<header class="main-box-header clearfix">
@@ -27,7 +27,8 @@
 										'label' => __('Association Name_Japanese'),
 										'type' => 'text',
 										'class' => 'form-control',
-										'placeholder' => __('Enter Association Name in Japanese')
+										'placeholder' => __('Enter Association Name in Japanese'),
+										'required' => true
 									)); ?>
 								</div>
 								<div class="form-group">
@@ -35,7 +36,8 @@
 										'label' => __('Association Name_English'),
 										'type' => 'text',
 										'class' => 'form-control',
-										'placeholder' => __('Enter Association Name in English')
+										'placeholder' => __('Enter Association Name in English'),
+										'required' => true
 									)); ?>
 								</div>
 								<div class="row">
@@ -44,7 +46,8 @@
 											'label' => __('Representative_Family Name'),
 											'type' => 'text',
 											'class' => 'form-control',
-											'placeholder' => __('Enter Representative Family Name in Japanese')
+											'placeholder' => __('Enter Representative Family Name in Japanese'),
+										'required' => true
 										)); ?>
 									</div>
 									<div class="form-group col-lg-6 col-md-6 col-sm-6">
@@ -52,7 +55,8 @@
 											'label' => __('Representative_Given Name'),
 											'type' => 'text',
 											'class' => 'form-control',
-											'placeholder' => __('Enter Representative Given Name in Japanese')
+											'placeholder' => __('Enter Representative Given Name in Japanese'),
+										'required' => true
 										)); ?>
 									</div>
 								</div>
@@ -77,6 +81,7 @@
 										'type' => 'text',
 										'class' => 'form-control',
 										'style' => array('width:100px'),
+										'required' => true
 									)); ?>
 								</div>
 								<div class="form-group">
@@ -84,6 +89,7 @@
 										'label' => __('Address_Japanese'),
 										'type' => 'text',
 										'class' => 'form-control',
+										'required' => true
 									)) ;?>
 								</div>
 								<div class="form-group">
@@ -91,6 +97,7 @@
 										'label' => __('Address_English'),
 										'type' => 'text',
 										'class' => 'form-control',
+										'required' => true
 									)); ?>
 								</div>
 								<div class="form-group form-group-select2">
@@ -144,7 +151,3 @@
 
 		});
 	<?php $this->Html->scriptEnd(); ?>
-
-
-
-

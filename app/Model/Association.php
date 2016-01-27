@@ -65,4 +65,31 @@ class Association extends AppModel {
 			));
 		return $this->find('all', $options);
 	}
+
+	public function optionAssociations($lang){
+			$options = array(
+				'conditions' => array(
+					'flag' => 0
+					),
+				'order' => array('id' => 'asc')
+			);
+
+		if($lang == 'ja'){
+			$fields = array(
+				'fields' => array(
+					'id',
+					'association_jp'
+				)
+			);
+		} else {
+			$fields = array(
+				'fields' =>array(
+					'id',
+					'association_en'
+					)
+				);
+		}
+		$options = array_merge($options, $fields);
+		return $this->find('list', $options);
+	}
 }

@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Dashboard | Rikuyo TC</title>
+
+	<!-- bootstrap -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css" />
+
+	<!--
+	If you need RTL support just include here RTL CSS file <link rel="stylesheet" type="text/css" href="css/libs/bootstrap-rtl.min.css" />
+	And add "rtl" class to <body> element - e.g. <body class="rtl">
+	-->
+
+	<!-- libraries -->
+	<link rel="stylesheet" type="text/css" href="css/libs/font-awesome.css" />
+	<link rel="stylesheet" type="text/css" href="css/libs/nanoscroller.css" />
+
+	<!-- global styles -->
+	<link rel="stylesheet" type="text/css" href="css/compiled/theme_styles.css" />
+	<link rel="stylesheet" type="text/css" href="css/libs/common.css" />
+
+	<!-- this page specific styles -->
+	<link rel="stylesheet" href="css/libs/footable.core.css" type="text/css" />
+	<link rel="stylesheet" href="css/libs/select2.css" type="text/css" />
+	<link rel="stylesheet" href="css/libs/datepicker.css" type="text/css" />
+
+
+	<!-- Favicon -->
+	<link type="image/x-icon" href="favicon.ico" rel="shortcut icon" />
+
+	<!-- google font libraries -->
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+
+	<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body class="theme-white fixed-header">
+	<div id="theme-wrapper">
+		<header class="navbar" id="header-navbar">
+			<div class="container">
+				<a href="index.html" id="logo" class="navbar-brand">
+					<img src="img/logo.png" alt="" class="normal-logo logo-white"/>
+					<!-- <img src="img/logo-black.png" alt="" class="normal-logo logo-black"/>
+					<img src="img/logo-small.png" alt="" class="small-logo hidden-xs hidden-sm hidden"/> -->
+				</a>
+
+				<div class="clearfix">
+				<button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="fa fa-bars"></span>
+				</button>
+
+				<div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
+					<ul class="nav navbar-nav pull-left">
+						<li>
+							<a class="btn" id="make-small-nav">
+								<i class="fa fa-bars"></i>
+							</a>
+						</li>
+						<li class="dropdown hidden-xs">
+							<a class="btn dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-bell"></i>
+								<span class="count">8</span>
+							</a>
+							<ul class="dropdown-menu notifications-list">
+								<li class="pointer">
+									<div class="pointer-inner">
+										<div class="arrow"></div>
+									</div>
+								</li>
+								<li class="item-header">You have 6 new notificationsここのロジック考える</li>
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-comment"></i>
+										<span class="content">New comment on ‘Awesome P...</span>
+										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-plus"></i>
+										<span class="content">New user registration</span>
+										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-envelope"></i>
+										<span class="content">New Message from George</span>
+										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-shopping-cart"></i>
+										<span class="content">New purchase</span>
+										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-eye"></i>
+										<span class="content">New order</span>
+										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+									</a>
+								</li>
+								<li class="item-footer">
+									<a href="#">
+										View all notifications
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="dropdown hidden-xs">
+							<a class="btn dropdown-toggle" data-toggle="dropdown">
+								Languages
+								<i class="fa fa-caret-down"></i>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="item">
+									<a href="#">
+										Japanese
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										English
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+				<div class="nav-no-collapse pull-right" id="header-nav">
+					<ul class="nav navbar-nav pull-right">
+						<li class="hidden-xxs">
+							<a class="btn">
+								ログアウト
+							</a>
+						</li>
+					</ul>
+				</div>
+				</div>
+			</div>
+		</header>
+		<div id="page-wrapper" class="container">
+			<div class="row">
+				<div id="nav-col">
+					<section id="col-left" class="col-left-nano">
+						<div id="col-left-inner" class="col-left-nano-content">
+							<div id="user-left-box" class="clearfix hidden-sm hidden-xs dropdown profile2-dropdown">
+								<div class="user-box">
+									<span class="name">
+											管理者 橋本
+									</span>
+								</div>
+							</div>
+							<div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
+								<ul class="nav nav-pills nav-stacked">
+									<li class="nav-header nav-header-first hidden-sm hidden-xs">
+										Menu
+									</li>
+									<li class="active">
+										<a href="index.html">
+											<i class="fa fa-home"></i>
+											<span>ホーム</span>
+										</a>
+									</li>
+									<li>
+										<a href="trainee-db.html">
+											<i class="fa fa-child"></i>
+											<span>実習生リスト</span>
+										</a>
+									</li>
+									<li>
+										<a href="association-db.html">
+											<i class="fa fa-institution"></i>
+											<span>組合リスト</span>
+										</a>
+									</li>
+									<li>
+										<a href="company-db.html">
+											<i class="fa fa-building"></i>
+											<span>企業リスト</span>
+										</a>
+									</li>
+									<li>
+										<a href="agent-db.html">
+											<i class="fa fa-building-o"></i>
+											<span>送り出し機関リスト</span>
+										</a>
+									</li>
+									<li>
+										<a href="document-db.html">
+											<i class="fa fa-file"></i>
+											<span>書類リスト</span>
+										</a>
+									</li>
+									<li>
+										<a href="job-db.html">
+											<i class="fa fa-wrench"></i>
+											<span>業種・職種リスト</span>
+										</a>
+									</li>
+									<li>
+										<a href="interview.html" class="">
+											<i class="fa fa-group"></i>
+											<span>面接</span>
+										</a>
+										<!-- <ul class="submenu">
+											<li>
+												<a href="email-inbox.html">
+													Inbox
+												</a>
+											</li>
+											<li>
+												<a href="email-detail.html">
+													Detail
+												</a>
+											</li>
+											<li>
+												<a href="email-compose.html">
+													Compose
+												</a>
+											</li>
+										</ul> -->
+								</ul>
+							</div>
+						</div>
+					</section>
+					<div id="nav-col-submenu"></div>
+				</div>
+				<div id="content-wrapper">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="row">
+								<div class="col-lg-12">
+									<div id="content-header">
+										<ol class="breadcrumb">
+											<li><a href="#">Home</a></li>
+											<li><a href="#">実習生リスト</a></li>
+											<li class="active"><span>実習生プロフィール</span></li>
+										</ol>
+										<h1>実習生プロフィール</h1>
+									</div>
+								</div>
+							</div>
+
+							<div class="row" id="user-profile">
+								<div class="col-lg-12 col-md-12 col-sm-12">
+									<div class="main-box clearfix">
+										<header class="main-box-header clearfix">
+											<h2>Yamamoto Takahiro</h2>
+											<!-- <div id="google_translate_element"></div>
+											<script type="text/javascript">
+												function googleTranslateElementInit() {
+												  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,ja,km', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+												}
+											</script>
+											<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+										</header>
+
+										<div class="main-box-body clearfix">
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-4">
+													<img src="img/samples/scarlet-159.png" alt="" class="profile-img img-responsive center-block" style="border-radius: initial" />
+
+													<div class="profile-label text-center" style="text-align: -webkit-center;">
+														<select name="class" class="form-control text-center" style="width:200px; margin-bottom: 10px">
+															<option value="">日曜学校</option>
+														</select>
+													</div>
+
+													<!-- <div class="profile-stars">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o"></i>
+														<span>日本語能力</span>
+													</div> -->
+													<div class="profile-since">
+														<span>登録日 : 12/05/2015</span>
+													</div>
+												</div>
+												<div class="col-lg-8 col-md-8 col-sm-8">
+													<ul class="fa-ul">
+														<li><i class="fa-li fa "></i>面接日時: 2015年12月07日12時</li>
+														<li><i class="fa-li fa "></i>面接実施機関: <a href="company-profile.html">山本株式会社</a></li>
+														<li><i class="fa-li fa "></i>組合: <a href="association-profile.html">山本組合</a></li>
+														<li><i class="fa-li fa "></i>面接結果: 未了</li>
+														<li><i class="fa-li fa "></i>決まった職種: 縫製業</li>
+														<li><i class="fa-li fa fa-plane"></i>出発予定日: 2016-01-01</li>
+														<li><i class="fa-li fa fa-plane"></i>帰国予定日: 2017-01-01</li>
+														<li><i class="fa-li fa fa-user "></i>Medical Checkup: OK</li>
+														<li><i class="fa-li fa fa-user "></i>ID Card: OK</li>
+														<li><i class="fa-li fa fa-user "></i>Passport: OK</li>
+														<li><i class="fa-li fa fa-user "></i>ID COE: 2015-12-16</li>
+														<li><i class="fa-li fa fa-file-image-o "></i>Document Status: <a href="#">未提出有</a></li>
+													</ul>
+												</div>
+											</div>
+
+											<div class="profile-details">
+												<div class="table-responsive">
+													<table class="table table-bordered table-striped table-hover">
+														<thead>
+															<tr>
+																<th style="width:100px;"><span></span></th>
+																<th class="text-center"><span>日本語</span></th>
+																<th class="text-center"><span>English</span></th>
+																<th class="text-center"><span>Khmer</span></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>
+																	trainee ID
+																</td>
+																<td>
+																	T1408052
+																</td>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Name
+																</td>
+																<td>
+																	山本貴宏(ヤマモト タカヒロ)
+																</td>
+																<td>
+																	Takahiro Yamamoto
+																</td>
+																<td>
+																	យ៉ាម៉ាម៉ោតុ
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Sex
+																</td>
+																<td>
+																	男
+																</td>
+																<td>
+																	Man
+																</td>
+																<td>
+																	បុរស
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Date of birth
+																</td>
+																<td>
+																	1987年5月22日(28歳)
+																</td>
+																<td>
+																	22/05/1987(29)
+																</td>
+																<td>
+																	22/05/1987(29)
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Height
+																</td>
+																<td>
+																	200cm
+																</td>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Weight
+																</td>
+																<td>
+																	50kg
+																</td>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Face Features
+																</td>
+																<td>
+																	つぶらな瞳
+																</td>
+																<td>
+																	small eyes, big voice
+																</td>
+																<td>
+																	ភ្នែកតូច
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Shoe Size
+																</td>
+																<td>
+																	25cm
+																</td>
+																<td>
+																	25cm
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Married
+																</td>
+																<td>
+																	既婚
+																</td>
+																<td>
+																	Married
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Family
+																</td>
+																<td>
+																	妻(20歳) 息子(2歳)
+																</td>
+																<td>
+																	Wife(20) Son(2)
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Birthplace
+																</td>
+																<td>
+																	大阪府大阪市平野区
+																</td>
+																<td>
+																	Hirano-ku, Osaka-shi, Osaka-fu
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Current Address
+																</td>
+																<td>
+																	Marine 9999, BKK1, Phnom Penh
+																</td>
+																<td>
+
+																</td>
+																<td>
+																	ភ្នែកតូច
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Phone
+																</td>
+																<td>
+																	0120-22-2525 <br>015-666-6666 <br>021-265-2262(Mother)
+																</td>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Handedness
+																</td>
+																<td>
+																	右手
+																</td>
+																<td>
+																	Right
+																</td>
+																<td>
+																	ស្ដាំ
+																</td>
+															</tr>
+															<tr>
+																<td rowspan="4">
+																	Academic history
+																</td>
+																<td>
+																	2006年4月 ~ 2010年3月 <br>中央大学法学部
+																</td>
+																<td>
+																	04/2006 ~ 03~2010 <br>Chuo University
+																</td>
+																<td>
+
+																</td>
+
+															</tr>
+															<tr>
+																<td>
+																	2003年4月 ~ 2006年3月 <br>大阪高校
+																</td>
+																<td>
+																	04/2004 TO 03/2006 <br>Osaka Hight School
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	2002年4月 ~ 2004年3月 <br>大阪中学校
+																</td>
+																<td>
+																	04/2002 TO 03/2004 <br>Osaka Junior Hight School
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td rowspan="5">
+																	Employment history
+																</td>
+																<td>
+																	2008年8月 ~ <br>Rikuyo Japan Traning Center
+																</td>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td rowspan="2">
+																	Positions held
+																</td>
+																<td>
+																	縫製 職 1年
+																</td>
+																<td>
+																	Position Sewing For 1 Year(s)
+
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Foreign Language(s)
+																</td>
+																<td>
+																	日本語、英語
+																</td>
+																<td>
+																	Japanese,English
+																</td>
+																<td>
+
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Previous Visits to Japan
+																</td>
+																<td>
+																	Yes From 04/04/2015 to 06/06/2015
+																</td>
+																<td>
+																</td>
+																<td>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	Facebook
+																</td>
+																<td>
+																	<a href="http://www.facebook.com/takahiro.j.yamamoto" target="_blank" title="">山本貴宏(ジュニア)</a>
+																</td>
+																<td>
+																</td>
+																<td>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+
+											<div class="profile-message-btn center-block text-right">
+												<a href="trainee-profile-edit.html" class="btn btn-default">
+													<i class="fa fa-pencil"></i>
+													Edit Profile
+												</a>
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+								<div class="col-lg-12 col-md-12 col-sm-12">
+									<div class="main-box clearfix">
+										<div class="tabs-wrapper profile-tabs">
+											<ul class="nav nav-tabs">
+												<li class="active"><a href="#tab-documents" data-toggle="tab">Documents</a></li>
+												<li><a href="#tab-interview" data-toggle="tab">面接記録</a></li>
+												<li><a href="#tab-chat" data-toggle="tab">生徒の声</a></li>
+											</ul>
+
+											<div class="tab-content">
+												<div class="tab-pane fade in active" id="tab-documents">
+													<div id="documents">
+														<div class="story">
+															<div class="story-content">
+																<div class="story-inner-content">
+																	<div class="story-images clearfix">
+																		<a href="img/samples/CV_JP.jpg" class="story-image-link">
+																			<img src="img/samples/CV_JP.jpg" alt="" width="25%" height="25%" class=""/>
+																		</a>
+																		<a href="img/samples/CV_EN.jpg" class="story-image-link story-image-link-small">
+																			<img src="img/samples/CV_EN.jpg" alt="" width="25%" height="25%"  class=""/>
+																		</a>
+																		<a href="img/samples/passport.jpg" class="story-image-link story-image-link-small">
+																			<img src="img/samples/passport.jpg" alt="" width="25%" height="25%"  class=""/>
+																		</a>
+																		<a href="img/samples/id_kh.jpg" class="story-image-link story-image-link-small">
+																			<img src="img/samples/id_kh.jpg" alt="" width="25%" height="25%"  class=""/>
+																		</a>
+																		<a href="img/samples/visa_jp.png" class="story-image-link story-image-link-small">
+																			<img src="img/samples/visa_jp.png" alt="" width="25%" height="25%"  class=""/>
+																		</a>
+																	</div>
+																	<div id="dropzone">
+																		<form id="demo-upload" class="dropzone dz-clickable" action="#">
+																			<div class="dz-default dz-message">
+																				<span>Drop files here to upload</span>
+																			</div>
+																		</form>
+																	</div>
+																</div>
+																<footer class="story-footer">
+																	<!-- <a href="#" class="story-comments-link">
+																		<i class="fa fa-comment fa-lg"></i> 46 Comments
+																	</a>
+																	<a href="#" class="story-likes-link">
+																		<i class="fa fa-heart fa-lg"></i> 823 Likes
+																	</a> -->
+																</footer>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="tab-pane fade" id="tab-interview">
+													<div class="">
+														<div class="table-responsive">
+															<table class="table table-bordered">
+																<thead>
+																	<tr>
+																		<th class="text-center" style="width: 150px"><span>面接日時</span></th>
+																		<th class="text-center"><span>企業</span></th>
+																		<th class="text-center"><span>組合</span></th>
+																		<th class="text-center" style="width: 60px"><span>結果</span></th>
+																		<th class="text-center" style="width:50px;"><span></span></th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr>
+																		<td>
+																			2015/12/16 10:00
+																		</td>
+																		<td>
+																			<a href="company-profile.html" title="">山本株式会社</a>
+																		</td>
+																		<td class="text-center">
+																			<a href="association-profile.html">山本組合</a>
+																		</td>
+																		<td class="text-center">
+																			未了
+																		</td>
+																		<td class="text-center">
+																			<a href="#" class="table-link">
+																				<i class="fa fa-pencil"></i>
+																			</a>
+																			<a href="#" class="table-link">
+																				<i class="fa fa-trash-o"></i>
+																			</a>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			2015/12/05 10:00
+																		</td>
+																		<td>
+																			<a href="company-profile.html" title="">山本株式会社</a>
+																		</td>
+																		<td class="text-center">
+																			<a href="association-profile.html">山本組合</a>
+																		</td>
+																		<td class="text-center">
+																			合格
+																		</td>
+																		<td class="text-center">
+																			<a href="#" class="table-link">
+																				<i class="fa fa-pencil"></i>
+																			</a>
+																			<a href="#" class="table-link">
+																				<i class="fa fa-trash-o"></i>
+																			</a>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			2015/11/16 10:00
+																		</td>
+																		<td>
+																			<a href="company-profile.html" title="">山本株式会社</a>
+																		</td>
+																		<td class="text-center">
+																			<a href="association-profile.html">山本組合</a>
+																		</td>
+																		<td class="text-center">
+																			不合格
+																		</td>
+																		<td class="text-center">
+																			<a href="#" class="table-link">
+																				<i class="fa fa-pencil"></i>
+																			</a>
+																			<a href="#" class="table-link">
+																				<i class="fa fa-trash-o"></i>
+																			</a>
+																		</td>
+																	</tr>
+
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+												<div class="tab-pane fade" id="tab-chat">
+													<div class="conversation-wrapper">
+														<div class="conversation-content">
+															<div class="conversation-inner">
+																<div class="conversation-item item-right clearfix">
+																	<!-- <div class="conversation-user">
+																		<img src="img/samples/kunis.png" alt=""/>
+																	</div> -->
+																	<div class="conversation-body">
+																		<div class="name">
+																			期待していること
+																		</div>
+																		<div class="time hidden-xs">
+																			12/07/2015
+																		</div>
+																		<div class="text">
+																			にほんにいったら、おいしいごはんをたくさんたべて、かわいいおんなひとをたくさんたべて、しごとをがんばりたいです。
+																		</div>
+																	</div>
+																</div>
+																<div class="conversation-item item-right clearfix">
+																	<!-- <div class="conversation-user">
+																		<img src="img/samples/kunis.png" alt=""/>
+																	</div> -->
+																	<div class="conversation-body">
+																		<div class="name">
+																			不安なこと
+																		</div>
+																		<div class="time hidden-xs">
+																			12/07/2015
+																		</div>
+																		<div class="text">
+																			日本人はわたしをやさしいかわからないですから不安です。また、わたしは日本語を話せないですので、もしわたしがこまったとき、たすけてくれる友だちがいないかもしれません。またかわいいおんなひとにお金をとられるかも知れないですので困ります。
+																		</div>
+																	</div>
+																</div>
+																<!-- <div class="conversation-item item-left clearfix">
+																	<div class="conversation-user">
+																		<img src="img/samples/ryan.png" alt=""/>
+																	</div>
+																	<div class="conversation-body">
+																		<div class="name">
+																			Ryan Gossling
+																		</div>
+																		<div class="time hidden-xs">
+																			September 21, 2013 18:28
+																		</div>
+																		<div class="text">
+																			I don't think they tried to market it to the billionaire, spelunking,
+																			base-jumping crowd.
+																		</div>
+																	</div>
+																</div> -->
+																<div class="conversation-item item-right clearfix">
+																	<!-- <div class="conversation-user">
+																		<img src="img/samples/kunis.png" alt=""/>
+																	</div> -->
+																	<div class="conversation-body">
+																		<div class="name">
+																			日本に行ってよかったこと
+																		</div>
+																		<div class="time hidden-xs">
+																			12/05/2016
+																		</div>
+																		<div class="text">
+																			私は日本へ技能実習生として採用頂き、縫製に関わる技術は元より、日本国民固有の改善への飽くなき探究心に触れ、また人と人との調和を大切にする心とそれに基づく独特な言動に深く感銘を受けました。祖国カンボジアを出国するときに抱えていた数多くの不安がありましたが、現地の受入企業で働く方々、街の警察官、道行く知らない人たち一人一人が優しく手助けをしてくださったので、安心安全に日々を過ごすことができました。
+																		</div>
+																	</div>
+																</div>
+																<div class="conversation-item item-right clearfix">
+																	<!-- <div class="conversation-user">
+																		<img src="img/samples/kunis.png" alt=""/>
+																	</div> -->
+																	<div class="conversation-body">
+																		<div class="name">
+																			日本に行って困ったこと
+																		</div>
+																		<div class="time hidden-xs">
+																			12/05/2016
+																		</div>
+																		<div class="text">
+																			上記には日本国最高バンザイという旨書きましたけどぶっちゃけ日本最悪でした。マジ給料未払いのときとかあったし、職場の人は明らか差別的な目で見てくるし、全然日本語教えてくれないし、てか「家の上にバナナがあります」とか使うとこなかったんですけどｗｗまあ冗談は置いておいて、一番困ったのが冬がむちゃくちゃ寒いのに洋服が高すぎて買えなかったことと、本当に言葉が通じなくて上司や先輩にたくさん迷惑をかけたので、次に日本へ行く人は、マジでホントちゃんと日本語勉強しといた方がいいよ。日本行ってから欝気味の連れとか結構いてマジ半端なかったからね。
+																		</div>
+																	</div>
+																</div>
+
+															</div>
+														</div>
+														<div class="conversation-new-message">
+															<form>
+																<div class="form-group">
+																	<textarea class="form-control" rows="2" placeholder="Enter your message..."></textarea>
+																</div>
+
+																<div class="clearfix">
+																	<button type="submit" class="btn btn-success pull-right">Send message</button>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+
+
+						</div>
+					</div>
+
+					<footer id="footer-bar" class="row">
+						<p id="footer-copyright" class="col-xs-12">
+							Powered by Mangetsu Ltd.
+						</p>
+					</footer>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="config-tool" class="closed">
+		<a id="config-tool-cog">
+			<i class="fa fa-cog"></i>
+		</a>
+
+		<div id="config-tool-options">
+			<h4>Layout Options</h4>
+			<ul>
+				<li>
+					<div class="checkbox-nice">
+						<input type="checkbox" id="config-fixed-header" />
+						<label for="config-fixed-header">
+							Fixed Header
+						</label>
+					</div>
+				</li>
+				<li>
+					<div class="checkbox-nice">
+						<input type="checkbox" id="config-fixed-sidebar" />
+						<label for="config-fixed-sidebar">
+							Fixed Left Menu
+						</label>
+					</div>
+				</li>
+				<li>
+					<div class="checkbox-nice">
+						<input type="checkbox" id="config-fixed-footer" />
+						<label for="config-fixed-footer">
+							Fixed Footer
+						</label>
+					</div>
+				</li>
+				<li>
+					<div class="checkbox-nice">
+						<input type="checkbox" id="config-boxed-layout" />
+						<label for="config-boxed-layout">
+							Boxed Layout
+						</label>
+					</div>
+				</li>
+				<li>
+					<div class="checkbox-nice">
+						<input type="checkbox" id="config-rtl-layout" />
+						<label for="config-rtl-layout">
+							Right-to-Left
+						</label>
+					</div>
+				</li>
+			</ul>
+			<br/>
+			<h4>Skin Color</h4>
+			<ul id="skin-colors" class="clearfix">
+				<li>
+					<a class="skin-changer" data-skin="" data-toggle="tooltip" title="Default" style="background-color: #34495e;">
+					</a>
+				</li>
+				<li>
+					<a class="skin-changer" data-skin="theme-white" data-toggle="tooltip" title="White/Green" style="background-color: #2ecc71;">
+					</a>
+				</li>
+				<li>
+					<a class="skin-changer blue-gradient" data-skin="theme-blue-gradient" data-toggle="tooltip" title="Gradient">
+					</a>
+				</li>
+				<li>
+					<a class="skin-changer" data-skin="theme-turquoise" data-toggle="tooltip" title="Green Sea" style="background-color: #1abc9c;">
+					</a>
+				</li>
+				<li>
+					<a class="skin-changer" data-skin="theme-amethyst" data-toggle="tooltip" title="Amethyst" style="background-color: #9b59b6;">
+					</a>
+				</li>
+				<li>
+					<a class="skin-changer" data-skin="theme-blue" data-toggle="tooltip" title="Blue" style="background-color: #2980b9;">
+					</a>
+				</li>
+				<li>
+					<a class="skin-changer" data-skin="theme-red" data-toggle="tooltip" title="Red" style="background-color: #e74c3c;">
+					</a>
+				</li>
+				<li>
+					<a class="skin-changer" data-skin="theme-whbl" data-toggle="tooltip" title="White/Blue" style="background-color: #3498db;">
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- global scripts -->
+
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/jquery.nanoscroller.min.js"></script>
+
+
+
+	<!-- this page specific scripts -->
+	<script src="js/jquery.slimscroll.min.js"></script>
+	<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script> -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/dropzone.min.js"></script>
+
+	<!-- theme scripts -->
+	<script src="js/scripts.js"></script>
+	<script src="js/pace.min.js"></script>
+
+	<!-- this page specific inline scripts -->
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+			$('.conversation-inner').slimScroll({
+		        height: '340px'
+		    });
+		});
+
+		$(function() {
+			$(document).ready(function() {
+				$('#documents .story-images').magnificPopup({
+					type: 'image',
+					delegate: 'a',
+					gallery: {
+						enabled: true
+				    }
+				});
+			});
+		});
+
+	</script>
+
+</body>
+</html>

@@ -15,6 +15,11 @@ class CompaniesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator', 'Session');
+	public $uses = array(
+		'Association',
+		'Company',
+		'Job'
+		);
 
 /**
  * index method
@@ -22,8 +27,8 @@ class CompaniesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Company->recursive = 0;
-		$this->set('companies', $this->Paginator->paginate());
+		$companies = $this->Company->companyList();
+		$this->set(compact('companies'));
 	}
 
 /**
@@ -47,6 +52,12 @@ class CompaniesController extends AppController {
  * @return void
  */
 	public function add() {
+
+		$lang = $this->__setLang();
+		$option_associations = $this->Association->optionAssociations($lang);
+		$option_jobs = $this->Job->optionJobs($lang);
+		$this->set(compact('option_associations', 'option_jobs'));
+
 		if ($this->request->is('post')) {
 			$this->Company->create();
 			if ($this->Company->save($this->request->data)) {
@@ -58,6 +69,33 @@ class CompaniesController extends AppController {
 		}
 		$associations = $this->Company->Association->find('list');
 		$this->set(compact('associations'));
+	}
+
+	public function profile($id = null) {
+		$lang = $this->__setLang();
+		$option_associations = $this->Association->optionAssociations($lang);
+		$option_jobs = $this->Job->optionJobs($lang);
+		$this->set(compact('option_associations', 'option_jobs'));
+
+		if (!$this->Company->exists($id)) {
+			throw new NotFoundException(__('Invalid Company'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->Company->save($this->request->data)) {
+				$this->Session->setFlash(__('The Company has been saved.'));
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('The Company could not be saved. Please, try again.'));
+			}
+		} else {
+			$lang = $this->__setLang();
+			$option_jobs = $this->Job->optionJobs($lang);
+			$options = array('conditions' => array('Company.' . $this->Company->primaryKey => $id));
+			$this->request->data = $this->Company->find('first', $options);
+
+
+			$this->set(compact('option_jos'));
+		}
 	}
 
 /**

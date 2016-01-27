@@ -14,7 +14,10 @@ class AgentsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
-
+	public $uses = array(
+		'Agent',
+		'Sector'
+		);
 /**
  * index method
  *
@@ -46,6 +49,11 @@ class AgentsController extends AppController {
  * @return void
  */
 	public function add() {
+
+		$lang = $this->__setLang();
+		$option_sectors = $this->Sector->optionSectors($lang);
+		$this->set(compact('option_sectors'));
+
 		if ($this->request->is('post')) {
 			$this->Agent->create();
 			if ($this->Agent->save($this->request->data)) {

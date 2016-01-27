@@ -20,7 +20,7 @@
 											<div class="company-profile-details">
 												<div class="table-responsive">
 													<?php echo $this->Form->create('Association', array(
-														'class' => 'form_company_edit',
+														'class' => 'form_association_edit',
 														'inputDefaults' => array(
 															'div' => false,
 															)
@@ -107,7 +107,9 @@
 																			<div class="col-lg-4 col-md-4 col-sm-4">
 																				<?php echo $this->Form->input('postcode',array(
 																					'label' => __('Postcode'),
-																					'class' => 'form-control'
+																					'class' => 'form-control',
+																					'id' => 'postcode',
+																					'type' => 'text'
 																				)) ?>
 																			</div>
 																		</div>
@@ -121,7 +123,8 @@
 																			<div class="col-lg-4 col-md-4 col-sm-4">
 																				<?php echo $this->Form->input('province',array(
 																					'label' => __('Province'),
-																					'class' => 'form-control'
+																					'class' => 'form-control',
+																					'id' => 'province'
 																				)) ?>
 																			</div>
 																		</div>
@@ -131,7 +134,8 @@
 																	<td class="td_first_block">
 																		<?php echo $this->Form->input('address_jp',array(
 																			'label' => __('Address_Japanese(Not include Province)'),
-																			'class' => 'form-control'
+																			'class' => 'form-control',
+																			'id' => 'address1'
 																		)) ?><br>
 																		<?php echo $this->Form->input('address_en',array(
 																			'label' => __('Address_English(Enter Full Address including Province)'),
@@ -514,13 +518,13 @@
 
 
 			//住所自動入力
-			$('#AssociationPostcode').jpostal({
+			$('#postcode').jpostal({
 				postcode : [
-					'#AssociationPostcode'
+					'#postcode'
 				],
 				address : {
-					'#AssociationProvince'  : '%3',
-					'#AssociationAddressJp'  : '%4%5'
+					'#province'  : '%3',
+					'#address1'  : '%4%5'
 				}
 			});
 		});

@@ -246,94 +246,71 @@
 								<div class="col-lg-12">
 									<ol class="breadcrumb">
 										<li><a href="#">Home</a></li>
-										<li class="active"><span>送り出し機関リスト</span></li>
+										<li class="active"><span>新規視察登録</span></li>
 									</ol>
 
-									<h1>送り出し機関リスト</h1>
+									<h1>視察 <small>新規登録</small></h1>
 								</div>
 							</div>
-
 							<div class="row">
-								<div class="col-lg-12">
-									<div class="main-box clearfix">
-										<header class="main-box-header clearfix">
-											<h2 class="pull-left">送り出し機関一覧</h2>
-
-											<div class="filter-block pull-right">
-												<div class="form-group pull-left">
-													<input type="text" id="filter" class="form-control" placeholder="Search...">
-													<i class="fa fa-search search-icon"></i>
-												</div>
-												<a href="agent-register.html" class="btn btn-primary pull-right"><i class="fa fa-plus-circle fa-lg"></i> 新規送り出し機関登録</a>
-											</div>
-										</header>
-
+								<div class="col-lg-6 col-md-12 col-sm-12">
+									<div class="main-box">
 										<div class="main-box-body clearfix">
-											<table class="table footable toggle-circle-filled" data-page-size="50" data-filter="#filter" data-filter-text-only="true">
-												<thead>
-													<tr>
-														<th>機関名</th>
-														<th data-hide="" class="">電話番号</th>
-														<th data-hide="" class="">業種</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>
-															<a href="agent-profile.html">Human Power Co.,Ltd</a>
-														</td>
-														<td>
-															0291-36-5114
-														</td>
-														<td>
-															食品加工業
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<a href="agent-profile.html">Human Power Co.,Ltd</a>
-														</td>
-														<td>
-															0291-36-5114
-														</td>
-														<td>
-															食品加工業
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<a href="agent-profile.html">Human Power Co.,Ltd</a>
-														</td>
-														<td>
-															0291-36-5114
-														</td>
-														<td>
-															食品加工業
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<a href="agent-profile.html">Human Power Co.,Ltd</a>
-														</td>
-														<td>
-															0291-36-5114
-														</td>
-														<td>
-															食品加工業
-														</td>
-													</tr>
-												</tbody>
-											</table>
-											<ul class="pagination pull-right hide-if-no-paging"></ul>
+											<header class="main-box-header clearfix">
+												<h2>視察要項 <small>入力シート</small></h2>
+											</header>
+											<form role="form">
+												<div class="form-group form-group-select2">
+													<label for="company">視察企業</label>
+													<select class="form-control" style="width:300px;display: inline" id="sel_company">
+														<option value=""></option>
+														<option value="1">山本建設株式会社(山本組合)</option>
+														<option value="2">橋本水産株式会社(山本組合)</option>
+														<option value="3">引地工業株式会社(山本組合)</option>
+														<option value="4">山本建設株式会社(引地組合)</option>
+														<option value="5">橋本水産株式会社(引地組合)</option>
+														<option value="6">引地工業株式会社(引地組合)</option>
+													</select>
+												</div>
+												<div class="row">
+													<div class="form-group col-lg-6 col-md-6 col-sm-6">
+														<label for="inspectionDate">視察開始予定日</label>
+														<div class="input-group">
+															<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+															<input type="date" class="form-control" id="inspectionDate" style="width:200px">
+														</div>
+													</div>
+													<div class="form-group col-lg-6 col-md-6 col-sm-6">
+														<label for="inspectionDateTo">視察終了予定日</label>
+														<div class="input-group">
+															<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+															<input type="date" class="form-control" id="inspectionDateTo" style="width:200px">
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="smb">視察訪問者</label>
+													<input type="text" class="form-control" id="smb" placeholder="訪問者名を入力してください">
+												</div>
+												<div class="form-group">
+													<label for="staff">視察同伴スタッフ</label>
+													<input type="text" class="form-control" id="staff" placeholder="視察に同行するスタッフ名を入力してください。">
+												</div>
+												<div class="form-group">
+													<label for="note">備考</label>
+													<input type="text" class="form-control" id="note" placeholder="">
+												</div>
+
+												<a href="index.html" class="btn btn-default pull-right">
+													<i class="fa fa-plus-circle fa-lg"></i> 新規視察登録</a>
+											</form>
 										</div>
 									</div>
 								</div>
 							</div>
-
-
-
 						</div>
 					</div>
+
 
 					<footer id="footer-bar" class="row">
 						<p id="footer-copyright" class="col-xs-12">
@@ -344,7 +321,7 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="md-overlay"></div><!-- the overlay element -->
 
 	<!-- global scripts -->
 
@@ -353,21 +330,26 @@
 	<script src="js/jquery.nanoscroller.min.js"></script>
 
 	<!-- this page specific scripts -->
-	<script src="js/footable.js"></script>
-	<script src="js/footable.sort.js"></script>
-	<script src="js/footable.paginate.js"></script>
-	<script src="js/footable.filter.js"></script>
+	<script src="js/select2.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/bootstrap-timepicker.min.js"></script>
+	<script src="js/modernizr.custom.js"></script>
+	<script src="js/classie.js"></script>
+	<script src="js/modalEffects.js"></script>
 
 	<!-- theme scripts -->
 	<script src="js/scripts.js"></script>
 	<script src="js/pace.min.js"></script>
 
 	<!-- this page specific inline scripts -->
-	<script type="text/javascript">
-	$(document).ready(function() {
-		$('.footable').footable();
+	<script>
+	$(function($) {
+		//nice select boxes
+		$('#sel_company').select2({
+			placeholder: '企業名を選択してください',
+			allowClear: false
+		});
 	});
 	</script>
-
 </body>
 </html>

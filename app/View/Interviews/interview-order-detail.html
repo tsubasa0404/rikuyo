@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Cube - Bootstrap Admin Template</title>
+
+	<!-- bootstrap -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css" />
+
+	<!-- RTL support - for demo only -->
+	<script src="js/demo-rtl.js"></script>
+	<!--
+	If you need RTL support just include here RTL CSS file <link rel="stylesheet" type="text/css" href="css/libs/bootstrap-rtl.min.css" />
+	And add "rtl" class to <body> element - e.g. <body class="rtl">
+	-->
+
+	<!-- libraries -->
+	<link rel="stylesheet" type="text/css" href="css/libs/font-awesome.css" />
+	<link rel="stylesheet" type="text/css" href="css/libs/nanoscroller.css" />
+
+	<!-- global styles -->
+	<link rel="stylesheet" type="text/css" href="css/compiled/theme_styles.css" />
+	<link rel="stylesheet" type="text/css" href="css/libs/common.css" />
+
+	<!-- this page specific styles -->
+	<!-- <link rel="stylesheet" href="css/libs/daterangepicker.css" type="text/css" /> -->
+	<link rel="stylesheet" type="text/css" href="css/libs/nifty-component.css"/>
+	<link rel="stylesheet" type="text/css" href="css/libs/select2.css"/>
+
+	<!-- Favicon -->
+	<link type="image/x-icon" href="favicon.png" rel="shortcut icon"/>
+
+	<!-- google font libraries -->
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400' rel='stylesheet' type='text/css'>
+
+	<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body class="theme-white fixed-header">
+	<!-- <div class="md-modal md-effect-4" id="">
+		<div class="md-content">
+			<div class="modal-header">
+				<button class="md-close close">&times;</button>
+				<h4 class="modal-title">面接結果確定</h4>
+			</div>
+			<div class="modal-body">
+				<form role="form">
+					<div class="form-group">
+						<label for="exampleInputEmail1">合格者にチェックを入れてください</label>
+						<div class="checkbox-nice">
+							<input type="checkbox" id="checkbox-1"  checked />
+							<label for="checkbox-1">
+								Yamamoto Takahiro(1987/05/22)
+							</label>
+						</div>
+						<div class="checkbox-nice">
+							<input type="checkbox" id="checkbox-2" checked />
+							<label for="checkbox-2">
+								Hikichi Tsubasa(1989/04/04)
+							</label>
+						</div>
+						<div class="checkbox-nice">
+							<input type="checkbox" id="checkbox-3" />
+							<label for="checkbox-3">
+								Yoshida Maya(1999/11/11)
+							</label>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div> -->
+	<div id="theme-wrapper">
+		<header class="navbar" id="header-navbar">
+			<div class="container">
+				<a href="index.html" id="logo" class="navbar-brand">
+					Rikuyo Training Center
+					<!-- <img src="img/logo.png" alt="" class="normal-logo logo-white"/>
+					<img src="img/logo-black.png" alt="" class="normal-logo logo-black"/>
+					<img src="img/logo-small.png" alt="" class="small-logo hidden-xs hidden-sm hidden"/> -->
+				</a>
+
+				<div class="clearfix">
+				<button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="fa fa-bars"></span>
+				</button>
+
+				<div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
+					<ul class="nav navbar-nav pull-left">
+						<li>
+							<a class="btn" id="make-small-nav">
+								<i class="fa fa-bars"></i>
+							</a>
+						</li>
+						<!-- <li class="dropdown hidden-xs">
+							<a class="btn dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-bell"></i>
+								<span class="count">8</span>
+							</a>
+							<ul class="dropdown-menu notifications-list">
+								<li class="pointer">
+									<div class="pointer-inner">
+										<div class="arrow"></div>
+									</div>
+								</li>
+								<li class="item-header">You have 6 new notifications</li>
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-comment"></i>
+										<span class="content">New comment on ‘Awesome P...</span>
+										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-plus"></i>
+										<span class="content">New user registration</span>
+										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-envelope"></i>
+										<span class="content">New Message from George</span>
+										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-shopping-cart"></i>
+										<span class="content">New purchase</span>
+										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-eye"></i>
+										<span class="content">New order</span>
+										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+									</a>
+								</li>
+								<li class="item-footer">
+									<a href="#">
+										View all notifications
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown hidden-xs">
+							<a class="btn dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-envelope-o"></i>
+								<span class="count">16</span>
+							</a>
+							<ul class="dropdown-menu notifications-list messages-list">
+								<li class="pointer">
+									<div class="pointer-inner">
+										<div class="arrow"></div>
+									</div>
+								</li>
+								<li class="item first-item">
+									<a href="#">
+										<img src="img/samples/messages-photo-1.png" alt=""/>
+										<span class="content">
+											<span class="content-headline">
+												George Clooney
+											</span>
+											<span class="content-text">
+												Look, just because I don't be givin' no man a foot massage don't make it
+												right for Marsellus to throw...
+											</span>
+										</span>
+										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<img src="img/samples/messages-photo-2.png" alt=""/>
+										<span class="content">
+											<span class="content-headline">
+												Emma Watson
+											</span>
+											<span class="content-text">
+												Look, just because I don't be givin' no man a foot massage don't make it
+												right for Marsellus to throw...
+											</span>
+										</span>
+										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<img src="img/samples/messages-photo-3.png" alt=""/>
+										<span class="content">
+											<span class="content-headline">
+												Robert Downey Jr.
+											</span>
+											<span class="content-text">
+												Look, just because I don't be givin' no man a foot massage don't make it
+												right for Marsellus to throw...
+											</span>
+										</span>
+										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+									</a>
+								</li>
+								<li class="item-footer">
+									<a href="#">
+										View all messages
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="dropdown hidden-xs">
+							<a class="btn dropdown-toggle" data-toggle="dropdown">
+								New Item
+								<i class="fa fa-caret-down"></i>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-archive"></i>
+										New Product
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-shopping-cart"></i>
+										New Order
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-sitemap"></i>
+										New Category
+									</a>
+								</li>
+								<li class="item">
+									<a href="#">
+										<i class="fa fa-file-text"></i>
+										New Page
+									</a>
+								</li>
+							</ul>
+						</li> -->
+						<li class="dropdown hidden-xs">
+							<a class="btn dropdown-toggle" data-toggle="dropdown">
+								English
+								<i class="fa fa-caret-down"></i>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="item">
+									<a href="#">
+										日本語
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+				<div class="nav-no-collapse pull-right" id="header-nav">
+					<ul class="nav navbar-nav pull-right">
+						<!-- <li class="mobile-search">
+							<a class="btn">
+								<i class="fa fa-search"></i>
+							</a>
+
+							<div class="drowdown-search">
+								<form role="search">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Search...">
+										<i class="fa fa-search nav-search-icon"></i>
+									</div>
+								</form>
+							</div>
+						</li> -->
+						<li class="dropdown profile-dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<!-- <img src="img/samples/scarlet-159.png" alt=""/> -->
+								<span class="hidden-xs">管理者 橋本</span> <b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-right">
+								<!-- <li><a href="user-profile.html"><i class="fa fa-user"></i>Profile</a></li> -->
+								<li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
+								<!-- <li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li> -->
+								<li><a href="#">ログアウトLogout</a></li>
+							</ul>
+						</li>
+						<li class="hidden-xxs">
+							<a class="btn">
+								ログアウト
+							</a>
+						</li>
+					</ul>
+				</div>
+				</div>
+			</div>
+		</header>
+		<div id="page-wrapper" class="container">
+			<div class="row">
+				<div id="nav-col">
+					<section id="col-left" class="col-left-nano">
+						<div id="col-left-inner" class="col-left-nano-content">
+							<div id="user-left-box" class="clearfix hidden-sm hidden-xs dropdown profile2-dropdown">
+								<div class="user-box">
+									<span class="name">
+											管理者 橋本
+									</span>
+								</div>
+							</div>
+							<div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
+								<ul class="nav nav-pills nav-stacked">
+									<li class="nav-header nav-header-first hidden-sm hidden-xs">
+										Menu
+									</li>
+									<li class="active">
+										<a href="index.html">
+											<i class="fa fa-home"></i>
+											<span>ホーム</span>
+										</a>
+									</li>
+									<li>
+										<a href="trainee-db.html">
+											<i class="fa fa-child"></i>
+											<span>実習生リスト</span>
+										</a>
+									</li>
+									<li>
+										<a href="association-db.html">
+											<i class="fa fa-institution"></i>
+											<span>組合リスト</span>
+										</a>
+									</li>
+									<li>
+										<a href="company-db.html">
+											<i class="fa fa-building"></i>
+											<span>企業リスト</span>
+										</a>
+									</li>
+									<li>
+										<a href="agent-db.html">
+											<i class="fa fa-building-o"></i>
+											<span>送り出し機関リスト</span>
+										</a>
+									</li>
+									<li>
+										<a href="document-db.html">
+											<i class="fa fa-file"></i>
+											<span>書類リスト</span>
+										</a>
+									</li>
+									<li>
+										<a href="job-db.html">
+											<i class="fa fa-wrench"></i>
+											<span>業種・職種リスト</span>
+										</a>
+									</li>
+									<li>
+										<a href="interview.html" class="">
+											<i class="fa fa-group"></i>
+											<span>面接</span>
+										</a>
+										<!-- <ul class="submenu">
+											<li>
+												<a href="email-inbox.html">
+													Inbox
+												</a>
+											</li>
+											<li>
+												<a href="email-detail.html">
+													Detail
+												</a>
+											</li>
+											<li>
+												<a href="email-compose.html">
+													Compose
+												</a>
+											</li>
+										</ul> -->
+								</ul>
+							</div>
+						</div>
+					</section>
+					<div id="nav-col-submenu"></div>
+				</div>
+				<div id="content-wrapper">
+					<div class="row">
+						<div class="col-lg-12">
+
+							<div class="row">
+								<div class="col-lg-12">
+									<ol class="breadcrumb">
+										<li><a href="#">Home</a></li>
+										<li><a href="#">面接一覧</a></li>
+										<li class="active"><span>面接詳細</span></li>
+									</ol>
+
+									<h1>面接詳細 <small></small></h1>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6 col-md-7 col-sm-12">
+									<div class="main-box clearfix">
+										<header class="main-box-header clearfix">
+											<h2>実習生募集要項 <small>No.0001</small></h2>
+										</header>
+
+										<div class="main-box-body clearfix">
+											<div class="table-responsive" id="interview-order-table">
+												<form action="interview-detail/edit" method="post" class="form_interview_edit">
+													<table class="table table-bordered">
+															<tr class="warning">
+																<th colspan="2" ><span>組合情報</span></th>
+															</tr>
+														<tbody>
+															<tr>
+																<td>
+																	組合名
+																</td>
+																<td>
+																	山本組合(Yamamoto Association)
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	英語名称
+																</td>
+																<td>
+																	Yamamoto Association
+																</td>
+															</tr>
+															<tr>
+																<td>所在地</td>
+																<td>大阪府大阪市中央区</td>
+															</tr>
+															<tr class="warning">
+																<th colspan="2"><span>企業情報</span></th>
+															</tr>
+															<tr>
+																<td>
+																	企業名
+																</td>
+																<td>
+																	<select name="sel_company" id="sel_company" style="width: 100%">
+																		<option value="yamamoto">山本株式会社(山本組合)</option>
+																		<option value="">引地株式会社(山本組合)</option>
+																		<option value="">橋本株式会社(橋本組合)</option>
+																		<option value="">漁協株式会社(下川組合)</option>
+
+																	</select>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	英語名称
+																</td>
+																<td>
+																	YamamotoKensetsu Co.,Ltd
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	職種
+																</td>
+																<td>
+																	型枠,縫製
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	勤務地
+																</td>
+																<td>
+																	<input type="text" class="form-control" name="" value="会社加工場、各現場">
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	企業情報
+																</td>
+																<td>
+																	<input type="text" class="form-control" name="" value="大阪に所在する会社です。">
+																</td>
+															</tr>
+															<tr class="warning">
+																<th colspan="2"><span>募集内容</span></th>
+															</tr>
+															<tr>
+																<td>
+																	募集職種
+																</td>
+																<td>
+																	<select class="form-control" multiple style="display: inline;" id="sel_job">
+																		<option value=""></option>
+																		<option value="1" selected>型枠</option>
+																		<option value="2">縫製</option>
+																		<option value="3" selected>建設</option>
+																		<option value="4">寝具製作</option>
+																	</select>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	主な業務内容
+																</td>
+																<td>
+																	<input type="text" class="form-control" name="" value="型枠">
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	勤務スケジュール
+																</td>
+																<td>
+																	<input type="text" class="form-control" name="" value="会社年間カレンダーによる">
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	採用人数
+																</td>
+																<td>
+																	<div class="row">
+																		<div class="col-lg-4 col-md-4 col-sm-4">
+																			<input type="number" class="form-control" name="" min="0" value="" style="width: 80%;display:inline" > <span>名</span>
+																		</div>
+																		<div class=" col-lg-6 col-md-6 col-sm-6">
+																			<select class="form-control" style="display: inline;" id="sel_job">
+																			<option value="0">男</option>
+																			<option value="1" >女</option>
+																			<option value="2">どちらでも</option>
+																		</select>
+																		</div>
+																	</div>
+																</td>
+															</tr>
+															<tr>
+																<td>
+																	年齢
+																</td>
+																<td>
+																	<input type="text" class="form-control" name="" value="不問">
+																</td>
+															</tr>
+															<tr>
+																<td rowspan="8">給与</td>
+																<td>
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6">
+																			<span style="float:left" class="mT10">時給</span>
+																			<input type="number" min="0" class="form-control mL5 mR5" name="" value="" style="display:inline;width: 60%">  円
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6">
+																			<span style="float:left;" class="mT10">(基本給</span>
+																			<input type="number" min="0" class="form-control mL5 mR5" name="" value="" style="display:inline;width: 60%">円)</span>
+																		</div>
+																	</div>
+																</td>
+															</tr>
+															<tr>
+																<td class="td_first_block">
+																	<div class="row">
+																		<div class="col-lg-12 col-md-12 col-sm-12">
+																			<span style="float:left" class="mT10">控除額(固定費等含む) 約</span>
+																			<input type="number" min="0" class="form-control mR5" name="" value="" style="display:inline;width: 50%">円
+																		</div>
+																	</div>
+																</td>
+															</tr>
+															<tr>
+																<td class="td_first_block">
+																<div class="row">
+
+																	<div class="col-lg-12 col-md-12 col-sm-12">
+																		<span style="float:left" class="mT10">(内訳) ※総支給額</span>
+																		<input type="number" min="0" class="form-control mL5 mR5" name="" value="" style="display:inline;width:40%">円での計算の場合
+																	</div>
+																</div>
+																</td>
+															</tr>
+															<tr>
+																<td class="td_first_block">
+																<div class="row">
+
+																	<div class="col-lg-12 col-md-12 col-sm-12">
+																		<span style="float:left" class="mT10">・雇用保険 約</span>
+																		<input type="number" min="0" class="form-control mL5 mR5" name="" value="" style="display:inline;width:50%">円
+																	</div>
+																</div>
+																</td>
+															</tr>
+															<tr>
+																<td class="td_first_block">
+																<div class="row">
+
+																	<div class="col-lg-12 col-md-12 col-sm-12">
+																		<span style="float:left" class="mT10">・社会保険 約</span>
+																		<input type="number" min="0" class="form-control mL5 mR5" name="" value="" style="display:inline;width:50%">円
+																	</div>
+																</div>
+																</td>
+															</tr>
+															<tr>
+																<td class="td_first_block">
+																<div class="row">
+
+																	<div class="col-lg-12 col-md-12 col-sm-12">
+																		<span style="float:left" class="mT10">・寮費 約</span>
+																		<input type="number" min="0" class="form-control mL5 mR5" name="" value="" style="display:inline;width:50%">円
+																	</div>
+																</div>
+																</td>
+															</tr>
+															<tr>
+																<td class="td_first_block">
+																<div class="row">
+
+																	<div class="col-lg-12 col-md-12 col-sm-12">
+																		<span style="float:left" class="mT10">・光熱費 約</span>
+																		<input type="number" min="0" class="form-control mL5 mR5" name="" value="" style="display:inline;width:50%">円
+																	</div>
+																</div>
+																</td>
+															</tr>
+															<tr>
+																<td class="td_first_block">
+																<div class="row">
+
+																	<div class="col-lg-12 col-md-12 col-sm-12">
+																		<span style="float:left" class="mT10">手取給与額(概算) 約</span>
+																		<input type="number" min="0" class="form-control mL5 mR5" name="" value="" style="display:inline;width:50%">円
+																	</div>
+																</div>
+																</td>
+															</tr>
+															<tr>
+																<td>その他ご要望</td>
+																<td>
+																	<textarea name="" class="form-control" rows="3" value="">・性格重視 ・真面目であること ・建設業に従事した経験を持つもの(年数不問)</textarea>
+																</td>
+															</tr>
+															<tr class="warning">
+																<th colspan="2">採用スケジュール</th>
+															</tr>
+															<tr>
+																<td>入国時期</td>
+																<td><input type="text" name="" value="2015年9月初旬" class="form-control"></td>
+															</tr>
+															<tr>
+																<td>勤務開始時期</td>
+																<td><input type="text" name="" value="2015年10月初旬" class="form-control"></td>
+															</tr>
+															<tr>
+																<td>面接予定日</td>
+																<td><input type="date" name="" value="2015-01-31" class="form-control"></td>
+															</tr>
+															<tr>
+																<td>面接時刻</td>
+																<td><input type="time" name="" value="" class="form-control mR5" style="width: 40%;display:inline">(カンボジア時間)</td>
+															</tr>
+															<tr>
+																<td>面接場所</td>
+																<td><input type="text" name="" value="貴機関にて" class="form-control" ></td>
+															</tr>
+															<tr>
+																<td>面接内容</td>
+																<td><input type="text" name="" value="面談による。" class="form-control"></td>
+															</tr>
+															<tr>
+																<td>面接同伴スタッフ</td>
+																<td><input type="text" name="" value="橋本,Saly" class="form-control"></td>
+															</tr>
+														</tbody>
+													</table>
+												</form>
+											</div>
+											<div class="profile-message-btn center-block text-right">
+												<a href="#" class="btn btn-default">
+													<i class="fa fa-pencil"></i>
+													変更を保存
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 col-md-5 col-sm-12">
+									<div class="main-box clearfix">
+										<header class="main-box-header clearfix">
+											<h2>面接者一覧
+												<a href="interview-trainee-select.html" class="btn btn-primary pull-right">
+													<i class="fa fa-plus-circle fa-lg"></i>
+													面接者を選択
+												</a>
+											</h2>
+										</header>
+
+										<div class="main-box-body clearfix">
+											<div class="table-responsive">
+												<div class="hidden">
+													<form action="trainee-result/edit" method="post" accept-charset="utf-8" class="interview_result_form">
+														<input type="hidden" name="trainee_candidate_id" value="" placeholder="">
+														<input type="hidden" name="result_id" value="" placeholder="">
+													</form>
+												</div>
+												<table class="table table-products table-bordered">
+													<tbody>
+														<tr>
+															<td>
+																<img src="img/samples/scarlet-159.png" width="60px" height="68px" alt=""/>
+															</td>
+															<td>
+																<span class="name">
+																	<a href="trainee-profile.html" target="_blank">Yamamoto Takahiro</a>
+																</span>
+																<select class="form-control interview_result_btn" name="" data-interview-candidate-id="1">
+																	<option value="0">未了</option>
+																	<option value="1">合格</option>
+																	<option value="2">不合格</option>
+																	<option value="3">通知待ち</option>
+																</select>
+															</td>
+
+														</tr>
+														<tr>
+															<td>
+																<img src="img/samples/robert-300.jpg" width="60px" height="68px" alt=""/>
+															</td>
+															<td>
+																<span class="name">
+																	<a href="trainee-profile.html" target="_blank">Hikichi Tsubasa</a>
+																</span>
+																<select class="form-control interview_result_btn" name="" data-interview-candidate-id="2">
+																	<option value="0">未了</option>
+																	<option value="1">合格</option>
+																	<option value="2">不合格</option>
+																	<option value="3">通知待ち</option>
+																</select>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<img src="img/samples/robert-300.jpg" width="60px" height="68px" alt=""/>
+															</td>
+															<td>
+																<span class="name">
+																	<a href="trainee-profile.html" target="_blank">Hikichi Tsubasa</a>
+																</span>
+																<select class="form-control interview_result_btn" name="" data-interview-candidate-id="3">
+																	<option value="0">未了</option>
+																	<option value="1">合格</option>
+																	<option value="2">不合格</option>
+																	<option value="3">通知待ち</option>
+																</select>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<!-- <button class="md-trigger btn mrg-b-lg btn-success pull-left" data-modal="modal-result">
+												<span class="fa fa-heart"></span> 面接結果確定
+											</button> -->
+												<a href="interview-successful-candidate.html" class="btn btn-success pull-right"><i class="fa fa-child"></i> 合格者リスト</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12">
+									<div class="main-box">
+										<header class="main-box-header clearfix">
+											<h2 class="pull-left">書類提出状況一覧</h2>
+											<!-- <a href="document-select.html" class="btn btn-primary pull-right"><i class="fa fa-lg fa-plus-circle"></i> 提出書類を選択</a> -->
+										</header>
+										<div class="main-box-body clearfix">
+											<div class="table-responsive ">
+												<table class="table table-bordered table-hover widget-todo">
+													<thead>
+														<tr>
+															<th><span>書類名</span></th>
+															<th><span>言語</span></th>
+															<th><span>備考</span></th>
+															<th><span></span></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="warning">
+															<th colspan="4"><span>送り出し機関</span></th>
+														</tr>
+														<tr>
+															<td>
+																<div class="checkbox-nice">
+																	<input type="checkbox" id="chk_doc_1" name="doc" value=""  data-id="doc_1" class="doc-chk doc_1">
+																<label for="chk_doc_1">
+																Human Power(送り出し機関)概要書
+																</label>
+																</div>
+															</td>
+															<td>日本語,英語</td>
+															<td>1セット<br>手書きサイン必要</td>
+															<td class="text-center">
+																<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
+
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div class="checkbox-nice">
+																	<input type="checkbox" class="doc-chk doc_2" id="chk_doc_2" name="doc" value=""  data-id="doc_2">
+																<label for="chk_doc_2">
+																Human Power(送り出し機関)概要書
+																</label>
+																</div>
+															</td>
+															<td>日本語,英語</td>
+															<td>1セット</td>
+															<td class="text-center">
+																<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div class="checkbox-nice">
+																	<input type="checkbox" class="doc-chk doc_3" id="chk_doc_3" name="doc" value=""  data-id="doc_3">
+																<label for="chk_doc_3">
+																Human Power(送り出し機関)概要書
+																</label>
+																</div>
+															</td>
+															<td>日本語,英語</td>
+															<td>1セット</td>
+															<td class="text-center">
+																<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
+															</td>
+														</tr>
+														<tr class="warning">
+															<th colspan="4"><span>所属機関</span></th>
+														</tr>
+														<tr>
+															<td>
+																<div class="checkbox-nice">
+																	<input type="checkbox" class="doc-chk doc_4" id="chk_doc_4" name="doc" value=""  data-id="doc_4">
+																<label for="chk_doc_4">
+																Human Power(送り出し機関)概要書
+																</label>
+																</div>
+															</td>
+															<td>日本語,英語</td>
+															<td>1セット</td>
+															<td class="text-center">
+																<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
+															</td>
+														</tr>
+														<tr class="warning">
+															<th colspan="4"><span>Rikuyo Japan Training Center</span></th>
+														</tr>
+														<tr>
+															<td>
+																<div class="checkbox-nice">
+																	<input type="checkbox" class="doc-chk doc_5" id="chk_doc_5" name="doc" value="" data-id="doc_5">
+																<label for="chk_doc_5">
+																Human Power(送り出し機関)概要書
+																</label>
+																</div>
+															</td>
+															<td>日本語,英語</td>
+															<td>1セット</td>
+															<td class="text-center">
+																<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<div class="checkbox-nice">
+																	<input type="checkbox" class="doc-chk doc_6" id="chk_doc_6" name="doc" value="" data-id="doc_6">
+																<label for="chk_doc_6">
+																Human Power(送り出し機関)概要書
+																</label>
+																</div>
+															</td>
+															<td>日本語,英語</td>
+															<td>1セット</td>
+															<td class="text-center">
+																<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
+															</td>
+														</tr>
+														<tr class="warning">
+															<th colspan="4"><span>カンボジア労働省</span></th>
+														</tr>
+														<tr>
+															<td>
+																<div class="checkbox-nice">
+																	<input type="checkbox" class="doc-chk doc_7" id="chk_doc_7" name="doc" value="" data-id="doc_7">
+																<label for="chk_doc_7">
+																Human Power(送り出し機関)概要書
+																</label>
+																</div>
+															</td>
+															<td>日本語,英語</td>
+															<td>1セット</td>
+															<td class="text-center">
+																<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
+															</td>
+														</tr>
+														<tr class="warning">
+															<th colspan="4"><span>実習生関係</span></th>
+														</tr>
+														<tr>
+															<td>
+																<div class="checkbox-nice">
+																	<input type="checkbox" class="doc-chk doc_8" id="chk_doc_8" name="doc" value="" data-id="doc_8">
+																<label for="chk_doc_8">
+																Human Power(送り出し機関)概要書
+																</label>
+																</div>
+															</td>
+															<td>日本語,英語</td>
+															<td>1セット</td>
+															<td class="text-center">
+																<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
+															</td>
+														</tr>
+														<tr class="warning">
+															<th colspan="4"><span>返還待ち書類</span></th>
+														</tr>
+														<tr>
+															<td>
+																<div class="checkbox-nice">
+																	<input type="checkbox" class="doc-chk doc_9" id="chk_doc_9" name="doc" value="" data-id="doc_9">
+																<label for="chk_doc_9">
+																雇用条件書
+																</label>
+																</div>
+															</td>
+															<td>日本語,クメール語</td>
+															<td>1セット</td>
+															<td class="text-center">
+															</td>
+														</div>
+														<tr>
+															<td>
+																<div class="checkbox-nice">
+																	<input type="checkbox" class="doc-chk doc_10" id="chk_doc_10" name="doc" value="" data-id="doc_10">
+																	<label for="chk_doc_10">
+																	雇用契約書
+																	</label>
+																</div>
+															</td>
+															<td>日本語、クメール語</td>
+															<td>1セット</td>
+															<td class="text-center">
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+
+
+<!--
+下のテーブルには、
+interview_idが同じで、
+selected = 1の場合、
+association_document_idを取得
+ -->
+											<table class="hide check-doc-list">
+												<thead>
+													<tr>
+														<th>id</th>
+														<th>interview_id</th>
+														<th>association_doc_id</th>
+														<th>doc_name_id</th>
+														<th>status</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>1</td>
+														<td>1</td>
+														<td>1</td>
+														<td data-doc-id="doc_1" class="checked_doc_id">doc_1</td>
+													</tr>
+													<tr>
+														<td>2</td>
+														<td>1</td>
+														<td>2</td>
+														<td data-doc-id="doc_2" class="checked_doc_id">doc_2</td>
+														<td data-selected="0">0</td>
+													</tr>
+													<tr>
+														<td>3</td>
+														<td>1</td>
+														<td>3</td>
+														<td data-doc-id="doc_3" class="checked_doc_id">doc_3</td>
+													</tr>
+													<tr>
+														<td>3</td>
+														<td>1</td>
+														<td>3</td>
+														<td data-doc-id="doc_4" class="checked_doc_id">doc_3</td>
+													</tr>
+													<tr>
+														<td>3</td>
+														<td>1</td>
+														<td>3</td>
+														<td data-doc-id="doc_5" class="checked_doc_id">doc_3</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<footer id="footer-bar" class="row">
+						<p id="footer-copyright" class="col-xs-12">
+							Powered by Mangetsu Ltd.
+						</p>
+					</footer>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="md-overlay"></div><!-- the overlay element -->
+
+	<!-- global scripts -->
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/jquery.nanoscroller.min.js"></script>
+
+	<!-- this page specific scripts -->
+	<!-- <script src="js/moment.min.js"></script> -->
+	<!-- <script src="js/daterangepicker.js"></script> -->
+	<script src="js/modernizr.custom.js"></script>
+	<script src="js/classie.js"></script>
+	<script src="js/modalEffects.js"></script>
+	<script src="js/select2.min.js"></script>
+
+	<!-- theme scripts -->
+	<script src="js/scripts.js"></script>
+	<script src="js/pace.min.js"></script>
+
+	<!-- this page specific inline scripts -->
+	<script>
+		//実習生募集要項フォーム
+		$(function(){
+			$('#sel_association').select2({
+				allowClear:false
+			});
+			$('#sel_company').select2({
+				allowClear:false
+			});
+			$('#sel_job').select2();
+		});
+
+		$(function(){
+			$('.interview_result_btn').on('change', function(){
+				var result_id = $(this).val();
+				var candidate_id = $(this).data('interview-candidate-id');
+				$('.interview_result_form').on('submit', function(){
+					$.post('', {
+
+					}, function(res){
+
+					});
+				});
+					console.log(candidate_id + "/" +result_id);
+			});
+			return false; //画面遷移をさせない。
+		});
+	</script>
+
+
+	<script>
+		//提出書類チェッカー
+		$(function(){
+			var asc_doc_id;
+			var checked_doc_list = [];
+			$('table.check-doc-list td.checked_doc_id').each(function(){
+				checked_doc_list.push($(this).data('doc-id'));
+			});
+
+			$('.doc-chk').each(function(){
+				asc_doc_id = $(this).data('id');
+				console.log(asc_doc_id);
+				console.log(checked_doc_list);
+				compare_doc_id(asc_doc_id, checked_doc_list);
+			});
+
+
+			function compare_doc_id(asc_doc_id, checked_doc_list){
+				if($.inArray(asc_doc_id, checked_doc_list)>=0){
+					console.log('have');
+					$('.' +asc_doc_id).prop('checked', true);
+				}else{
+					console.log('not have');
+				};
+			}
+			function set_checked(){
+				$('.doc-chk');
+			}
+
+		});
+	</script>
+</body>
+</html>
