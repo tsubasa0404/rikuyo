@@ -1,0 +1,225 @@
+.doc-image {
+  position: relative;
+  background-size: 100% auto;
+  background-image: url(<IMAGE_URL>);
+  width: 720px;
+  height: 1026px; }
+  .doc-image .text-block {
+    position: absolute;
+    word-wrap: break-word;
+    transform-origin: 0 0; }
+  .doc-image .familyname {
+    left: 155px;
+    top: 160px;
+    width: 135px;
+    height: 40px;
+    font-size: 17px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .givenname {
+    left: 290px;
+    top: 160px;
+    width: 170px;
+    height: 40px;
+    font-size: 17px;
+    transform: scale(1);
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .gendar {
+    left: 545px;
+    top: 180px;
+    width: 110px;
+    height: 20px;
+    font-size: 15px;
+    text-align: center; }
+  .doc-image .text-20 {
+    left: 559px;
+    top: 231px;
+    width: 75px;
+    height: 29px;
+    font-size: 12px; }
+  .doc-image .birthday {
+    left: 153px;
+    top: 272px;
+    width: 500px;
+    height: 42px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .current-address {
+    left: 153px;
+    top: 315px;
+    width: 503px;
+    height: 40px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center; }
+  .doc-image .academic-history-date_1 {
+    left: 153px;
+    top: 397px;
+    width: 258px;
+    height: 37px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .academic-history-shool_1 {
+    left: 413px;
+    top: 397px;
+    width: 243px;
+    height: 37px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .academic-history-date_2 {
+    left: 153px;
+    top: 437px;
+    width: 258px;
+    height: 37px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .academic-history-shool_2 {
+    left: 413px;
+    top: 437px;
+    width: 243px;
+    height: 37px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .academic-history-date_3 {
+    left: 153px;
+    top: 476px;
+    width: 258px;
+    height: 36px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .academic-history-shool_3 {
+    left: 413px;
+    top: 476px;
+    width: 243px;
+    height: 36px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .academic-history-date_4 {
+    left: 153px;
+    top: 514px;
+    width: 258px;
+    height: 37px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .academic-history-shool_4 {
+    left: 413px;
+    top: 514px;
+    width: 243px;
+    height: 37px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .employment-history-date_1 {
+    left: 153px;
+    top: 554px;
+    width: 258px;
+    height: 37px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .employment-history-place_1 {
+    left: 413px;
+    top: 554px;
+    width: 243px;
+    height: 37px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .employment-history-date_2 {
+    left: 153px;
+    top: 593px;
+    width: 258px;
+    height: 37px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .employment-history-place_2 {
+    left: 413px;
+    top: 593px;
+    width: 243px;
+    height: 37px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .employment-history-date_3 {
+    left: 153px;
+    top: 632px;
+    width: 258px;
+    height: 37px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .employment-history-place_3 {
+    left: 413px;
+    top: 633px;
+    width: 243px;
+    height: 37px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .employment-history-date_4 {
+    left: 153px;
+    top: 672px;
+    width: 258px;
+    height: 36px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .employment-history-place_4 {
+    left: 413px;
+    top: 672px;
+    width: 243px;
+    height: 36px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .employment-history-place_5 {
+    left: 413px;
+    top: 710px;
+    width: 243px;
+    height: 37px;
+    font-size: 12px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .position_1 {
+    left: 200px;
+    top: 750px;
+    width: 100px;
+    height: 37px;
+    font-size: 17px;
+    line-height: 35px;
+    text-align: center; }
+  .doc-image .familyname_jp {
+    left: 155px;
+    top: 217px;
+    width: 135px;
+    height: 40px;
+    font-size: 17px;
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .givenname_jp {
+    left: 290px;
+    top: 217px;
+    width: 170px;
+    height: 40px;
+    font-size: 17px;
+    transform: scale(1);
+    line-height: 40px;
+    text-align: center; }
+  .doc-image .position-term_1 {
+    left: 285px;
+    top: 750px;
+    width: 100px;
+    height: 37px;
+    font-size: 17px;
+    line-height: 35px;
+    text-align: center; }

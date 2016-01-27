@@ -1,0 +1,154 @@
+ /* Common Parts */
+
+body {
+	font-size: 12px;
+}
+#header-navbar a#logo img{
+	background: white;
+}
+
+#sidebar-nav .nav >li > a> i{
+	font-size:18px;
+}
+
+/*end Common Parts */
+
+/* Form */
+
+	/* trainee */
+form.form_trainee_register,
+.profile-details{
+	font-size: 14px;
+}
+form.form_trainee_register div.form_language{
+	display: inline-block;
+	margin-left: 10px
+}
+form.form_trainee_register input#visitJpFrom,
+form.form_trainee_register input#visitJpTo{
+	display: inline-block;
+	margin-right: 10px;
+}
+form.form_trainee_register div.btn_register{
+	border-top:1px solid #e7ebee;
+	padding-top: 15px;
+}
+	/* profile_edit */
+form.form_trainee_edit .form-group-select2{
+	margin-bottom: 5px;
+}
+#user-profile form.form_trainee_edit tbody tr td{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+#user-profile .table tbody tr td{
+	padding-bottom: 10px !important;
+	padding-top: 10px !important;
+}
+ul.trainee_document li:nth-child(even){
+	margin: 5px 0;
+	border-bottom: 1px solid #e7ebee;
+	padding-bottom: 5px;
+}
+
+
+
+form.form_trainee_edit input,
+form.form_trainee_edit textarea{
+	width: 100%;
+}
+form.form_trainee_edit input.date,
+form.form_agent_edit input.date,
+table.tuition input.date{
+	width: 55%;
+	line-height: normal;
+}
+form.form_trainee_edit input.number{
+	width: 30px;
+	line-height: normal;
+}
+form.form_trainee_edit span.date_to{
+	margin-left: 16px;
+}
+form.form_trainee_edit div.date_to{
+	margin: 5px 0 -10px 0;
+}
+form.form_trainee_edit div.select_visit input{
+	width:70%;
+}
+#tab-profile-career .form-group{
+	margin-bottom:5px !important;
+}
+
+	/* end trainee */
+
+	/* company */
+#company-profile td.td_first_block:first-child,
+#table-job-db td.td_first_block:first-child,
+.profile-details td.td_first_block:first-child,
+#interview-order-table td.td_first_block:first-child,
+td.td_first_block:first-child{
+	font-size:0.875em !important;
+	font-weight: normal !important;
+}
+
+/*end Form */
+
+/* table */
+
+
+/* end table */
+
+/* module */
+.uploadbtn{
+	position: relative;
+    display: inline-block;
+    width: 300px;
+    padding: 7px;
+    border-radius: 5px;
+    margin: 10px auto 20px;
+    color: #fff;
+    box-shadow: 0 4px #0088cc;
+    background: #00aaff;
+}
+.uploadbtn input[type=file] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+  }
+.uploadbtn:hover{
+	opacity:0.8;
+}
+
+.mT10{
+	margin-top: 10px !important;
+}
+.mT15{
+	margin-top: 15px !important;
+}
+.mB5{
+	margin-bottom:5px !important;
+}
+.mR5{
+	margin-right: 5px !important;
+}
+.mL5{
+	margin-left:5px !important;
+}
+/* end module*/
+
+/* interview */
+.widget-todo > tbody > tr > td > div> input:checked + label {
+  text-decoration: line-through;
+}
+/* end interview*/
+
+/* document */
+#accordion_sub .panel-heading{
+	background-color: #ffc107;
+}
+/* end document*/
