@@ -31,6 +31,7 @@
 										<th data-hide="all" class=""><?= __('Address') ?></th>
 										<th data-hide="" class=""><?= __('Phone') ?></th>
 										<th data-hide="" class=""><?= __('Sector') ?></th>
+										<th data-hide="" class=""></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -43,7 +44,11 @@
 												array('escape' => false, 'class' => '')
 											);
 											echo "<br>";
-											echo $association['Association']['association_en'];
+											echo $this->Html->link(
+												$association['Association']['association_en'],
+													array('action' => 'profile', $association['Association']['id']),
+													array('escape' => false, 'class' => '')
+												);
 											echo "</td><td>";
 											echo $association['Association']['province'];
 											echo "</td><td>";
@@ -55,6 +60,13 @@
 											echo "</td><td>";
 											echo $association['Association']['sector'];
 											echo "</td>";
+											echo '<td><div class="actions">';
+											echo $this->Form->postlink(
+												'<i class="fa fa-trash-o"></i>',
+												array('controller' => 'associations', 'action' => 'update_delete_flag',$association['Association']['id']),
+												array('confirm' => __('Are you sure you want to delete # %s?', $association['Association']['id']),'escape' => false, 'class' => 'table-link' )
+											);
+											echo '</div></td>';
 											echo "</tr>"
 										 ?>
 									<?php endforeach; ?>

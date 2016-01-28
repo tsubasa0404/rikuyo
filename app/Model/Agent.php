@@ -40,4 +40,11 @@ class Agent extends AppModel {
 			'order' => ''
 		)
 	);
+
+	public function validAgents(){
+		$options = array('conditions' => array(
+			'flag' => 0
+			));
+		return $this->find('all', $options);
+	}
 }

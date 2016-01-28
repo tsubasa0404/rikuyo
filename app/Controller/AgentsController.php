@@ -24,8 +24,25 @@ class AgentsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Agent->recursive = 0;
-		$this->set('agents', $this->Paginator->paginate());
+		$agents = $this->Agent->validAgents();
+		$this->set(compact('agents'));
+	}
+
+	public function update_delete_flag($id = null){
+		if(!$this->Agent->exists($id)){
+			throw new NotFoundException(__('You cannot delete this'));
+		}
+		if($this->request->is(array('post', 'put'))){
+			$this->request->data = array(
+				'id' => $id,
+				'flag' => '1'
+				);
+			if($this->Agent->save($this->request->data)){
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('You cannot delete this.'));
+			}
+		}
 	}
 
 /**
@@ -67,6 +84,31 @@ class AgentsController extends AppController {
 		$districts = $this->Agent->District->find('list');
 		$communes = $this->Agent->Commune->find('list');
 		$this->set(compact('provinces', 'districts', 'communes'));
+	}
+
+/**
+ * [profile description]
+ * @param  [type] $id [description]
+ * @return [type]     [description]
+ */
+	public function profile($id = null) {
+		if (!$this->Agent->exists($id)) {
+			throw new NotFoundException(__('Invalid Agent'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->Agent->save($this->request->data)) {
+				$this->Session->setFlash(__('The Agent has been saved.'));
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('The Agent could not be saved. Please, try again.'));
+			}
+		} else {
+			$lang = $this->__setLang();
+			$option_sectors = $this->Sector->optionSectors($lang);
+			$options = array('conditions' => array('Agent.' . $this->Agent->primaryKey => $id));
+			$this->request->data = $this->Agent->find('first', $options);
+			$this->set(compact('option_sectors'));
+		}
 	}
 
 /**

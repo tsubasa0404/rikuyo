@@ -31,6 +31,23 @@ class CompaniesController extends AppController {
 		$this->set(compact('companies'));
 	}
 
+	public function update_delete_flag($id = null){
+		if(!$this->Company->exists($id)){
+			throw new NotFoundException(__('You cannot delete this'));
+		}
+		if($this->request->is(array('post', 'put'))){
+			$this->request->data = array(
+				'id' => $id,
+				'flag' => '1'
+				);
+			if($this->Company->save($this->request->data)){
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('You cannot delete this.'));
+			}
+		}
+	}
+
 /**
  * view method
  *

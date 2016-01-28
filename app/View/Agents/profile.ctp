@@ -1,584 +1,456 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-	<title>Dashboard | Rikuyo TC</title>
-
-	<!-- bootstrap -->
-	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css" />
-
-	<!--
-	If you need RTL support just include here RTL CSS file <link rel="stylesheet" type="text/css" href="css/libs/bootstrap-rtl.min.css" />
-	And add "rtl" class to <body> element - e.g. <body class="rtl">
-	-->
-
-	<!-- libraries -->
-	<link rel="stylesheet" type="text/css" href="css/libs/font-awesome.css" />
-	<link rel="stylesheet" type="text/css" href="css/libs/nanoscroller.css" />
-
-	<!-- global styles -->
-	<link rel="stylesheet" type="text/css" href="css/compiled/theme_styles.css" />
-	<link rel="stylesheet" type="text/css" href="css/libs/common.css" />
-
-	<!-- this page specific styles -->
-	<link rel="stylesheet" href="css/libs/footable.core.css" type="text/css" />
-	<link rel="stylesheet" href="css/libs/select2.css" type="text/css" />
-	<link rel="stylesheet" href="css/libs/datepicker.css" type="text/css" />
-	<link rel="stylesheet" href="css/libs/dropzone.css" type="text/css" />
-
-
-	<!-- Favicon -->
-	<link type="image/x-icon" href="favicon.ico" rel="shortcut icon" />
-
-	<!-- google font libraries -->
-	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
-
-	<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
-	<![endif]-->
-</head>
-<body class="theme-white fixed-header">
-	<div id="theme-wrapper">
-		<header class="navbar" id="header-navbar">
-			<div class="container">
-				<a href="index.html" id="logo" class="navbar-brand">
-					<img src="img/logo.png" alt="" class="normal-logo logo-white"/>
-					<!-- <img src="img/logo-black.png" alt="" class="normal-logo logo-black"/>
-					<img src="img/logo-small.png" alt="" class="small-logo hidden-xs hidden-sm hidden"/> -->
-				</a>
-
-				<div class="clearfix">
-				<button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="fa fa-bars"></span>
-				</button>
-
-				<div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
-					<ul class="nav navbar-nav pull-left">
-						<li>
-							<a class="btn" id="make-small-nav">
-								<i class="fa fa-bars"></i>
-							</a>
-						</li>
-						<li class="dropdown hidden-xs">
-							<a class="btn dropdown-toggle" data-toggle="dropdown">
-								<i class="fa fa-bell"></i>
-								<span class="count">8</span>
-							</a>
-							<ul class="dropdown-menu notifications-list">
-								<li class="pointer">
-									<div class="pointer-inner">
-										<div class="arrow"></div>
-									</div>
-								</li>
-								<li class="item-header">You have 6 new notificationsここのロジック考える</li>
-								<li class="item">
-									<a href="#">
-										<i class="fa fa-comment"></i>
-										<span class="content">New comment on ‘Awesome P...</span>
-										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-									</a>
-								</li>
-								<li class="item">
-									<a href="#">
-										<i class="fa fa-plus"></i>
-										<span class="content">New user registration</span>
-										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-									</a>
-								</li>
-								<li class="item">
-									<a href="#">
-										<i class="fa fa-envelope"></i>
-										<span class="content">New Message from George</span>
-										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-									</a>
-								</li>
-								<li class="item">
-									<a href="#">
-										<i class="fa fa-shopping-cart"></i>
-										<span class="content">New purchase</span>
-										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-									</a>
-								</li>
-								<li class="item">
-									<a href="#">
-										<i class="fa fa-eye"></i>
-										<span class="content">New order</span>
-										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-									</a>
-								</li>
-								<li class="item-footer">
-									<a href="#">
-										View all notifications
-									</a>
-								</li>
-							</ul>
-						</li>
-
-						<li class="dropdown hidden-xs">
-							<a class="btn dropdown-toggle" data-toggle="dropdown">
-								Languages
-								<i class="fa fa-caret-down"></i>
-							</a>
-							<ul class="dropdown-menu">
-								<li class="item">
-									<a href="#">
-										Japanese
-									</a>
-								</li>
-								<li class="item">
-									<a href="#">
-										English
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-
-				<div class="nav-no-collapse pull-right" id="header-nav">
-					<ul class="nav navbar-nav pull-right">
-						<li class="hidden-xxs">
-							<a class="btn">
-								ログアウト
-							</a>
-						</li>
-					</ul>
-				</div>
+<?php $this->set('title_for_layout', 'Agent Profile'); ?>
+<?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->addCrumb(__('Agent List'), '/agents'); ?>
+<?php $this->Html->addCrumb(__('Agent Profile'), ''); ?>
+					<h1><?= __('Agent Profile') ?></h1>
+					</div>
 				</div>
 			</div>
-		</header>
-		<div id="page-wrapper" class="container">
-			<div class="row">
-				<div id="nav-col">
-					<section id="col-left" class="col-left-nano">
-						<div id="col-left-inner" class="col-left-nano-content">
-							<div id="user-left-box" class="clearfix hidden-sm hidden-xs dropdown profile2-dropdown">
-								<div class="user-box">
-									<span class="name">
-											管理者 橋本
-									</span>
-								</div>
-							</div>
-							<div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
-								<ul class="nav nav-pills nav-stacked">
-									<li class="nav-header nav-header-first hidden-sm hidden-xs">
-										Menu
-									</li>
-									<li class="active">
-										<a href="index.html">
-											<i class="fa fa-home"></i>
-											<span>ホーム</span>
-										</a>
-									</li>
-									<li>
-										<a href="trainee-db.html">
-											<i class="fa fa-child"></i>
-											<span>実習生リスト</span>
-										</a>
-									</li>
-									<li>
-										<a href="association-db.html">
-											<i class="fa fa-institution"></i>
-											<span>組合リスト</span>
-										</a>
-									</li>
-									<li>
-										<a href="company-db.html">
-											<i class="fa fa-building"></i>
-											<span>企業リスト</span>
-										</a>
-									</li>
-									<li>
-										<a href="agent-db.html">
-											<i class="fa fa-building-o"></i>
-											<span>送り出し機関リスト</span>
-										</a>
-									</li>
-									<li>
-										<a href="document-db.html">
-											<i class="fa fa-file"></i>
-											<span>書類リスト</span>
-										</a>
-									</li>
-									<li>
-										<a href="job-db.html">
-											<i class="fa fa-wrench"></i>
-											<span>業種・職種リスト</span>
-										</a>
-									</li>
-									<li>
-										<a href="interview.html" class="">
-											<i class="fa fa-group"></i>
-											<span>面接</span>
-										</a>
-										<!-- <ul class="submenu">
-											<li>
-												<a href="email-inbox.html">
-													Inbox
-												</a>
-											</li>
-											<li>
-												<a href="email-detail.html">
-													Detail
-												</a>
-											</li>
-											<li>
-												<a href="email-compose.html">
-													Compose
-												</a>
-											</li>
-										</ul> -->
-								</ul>
-							</div>
-						</div>
-					</section>
-					<div id="nav-col-submenu"></div>
-				</div>
-				<div id="content-wrapper">
-					<div class="row">
-						<div class="col-lg-12">
 
-							<div class="row">
-								<div class="col-lg-12">
-									<ol class="breadcrumb">
-										<li><a href="#">Home</a></li>
-										<li><a href="agent-db.html">送り出し機関リスト</a></li>
-										<li class="active"><span>送り出し機関プロフィール</span></li>
-									</ol>
-									<h1>送り出し機関プロフィール</h1>
-								</div>
-							</div>
+			<div class="row" id="agent-profile">
+				<div class="col-lg-8 col-md-8 col-sm-12">
+					<div class="main-box clearfix">
+						<header class="main-box-header clearfix">
+							<h2><?php echo $this->request->data['Agent']['agent_jp'] ?></h2>
+								<a href="docs/html/organization_outline_en.html" class="btn btn-info pull-right" target="_blank"><i class="fa fa-print"></i> Outline_En</a>
+						</header>
+						<div class="main-box-body clearfix">
+							<div class="agent-profile-details">
+								<div class="table-responsive">
+									<?php echo $this->Form->create('Agent', array(
+										'class' => 'form_agent_edit',
+										'inputDefaults' => array(
+											'div' => false,
+											)
+									)); ?>
+									<?php echo $this->Form->hidden('id'); ?>
+										<table class="table table-bordered table-hover">
+											<thead>
+												<tr>
+													<th><span></span></th>
+													<th class="text-center"><span></span></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														<?= __('Agent Name') ?>
+													</td>
+													<td>
+														<?php echo $this->Form->input('agent_en', array(
+															'label' => __('Agent Name_English'),
+															'type' => 'text',
+															'class' => 'form-control',
+															'placeholder' => __('Enter Agent Name in English'),
+															'required' => true
+														)); ?><br>
+														<?php echo $this->Form->input('agent_jp', array(
+															'label' => __('Agent Name_Japanese'),
+															'type' => 'text',
+															'class' => 'form-control',
+															'placeholder' => __('Enter Agent Name in Japanese'),
+															'required' => true
+														)); ?>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<?= __('Representative') ?>
+													</td>
+													<td>
+														<div class="row">
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="form-group">
+																	<?php echo $this->Form->input('rep_family_name_en', array(
+																			'label' => __('Family Name_English'),
+																			'type' => 'text',
+																			'class' => 'form-control',
+																			'placeholder' => __('Enter Representative Family Name in English'),
+																		'required' => true
+																		)); ?>
+																</div>
+															</div>
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="form-group">
+																	<?php echo $this->Form->input('rep_given_name_en', array(
+																			'label' => __('Given Name_English'),
+																			'type' => 'text',
+																			'class' => 'form-control',
+																			'placeholder' => __('Enter Representative Given Name in English'),
+																		'required' => true
+																		)); ?>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="form-group">
+																	<?php echo $this->Form->input('rep_position_en', array(
+																		'label' => __('Position_English'),
+																		'type' => 'text',
+																		'class' => 'form-control',
+																		'placeholder' => __('Enter Position in English'),
+																		'required' => true
+																	)); ?>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="form-group col-lg-3 col-md-3 col-sm-3">
+																<label>Sex</label>
+																<?php echo $this->Form->input('rep_sex', array(
+																		'legend' => false,
+																		'before' => '<div class="radio">',
+																		'separator' => '</div><div class="radio">',
+																		'after' => '</div>',
+																		'type' => 'radio',
+																		'options' => array('male' =>__('Male'),'female' =>__('Female'))
+																	)) ?>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<?= __('Establish Date') ?>
+													</td>
+													<td>
+														<div class="row">
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<?php echo $this->Form->date('establish_date', array(
+																	'label' => false,
+																	'class' => 'form-control',
+																)) ?>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<?= __('Capitals') ?>
+													</td>
+													<td>
+														<div class="row">
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="form-group">
+																	<?php echo $this->Form->input('capital_riel', array(
+																		'label' => __('KHR'),
+																		'type' => 'number',
+																		'class' => 'form-control',
+																		'id' => 'capitalKh'
+																	)); ?>
+																	(<span class="" name="capitalKhOut"></span>)
+																</div>
+															</div>
 
-							<div class="row" id="company-profile">
-								<div class="col-lg-6 col-md-8 col-sm-12">
-									<div class="main-box clearfix">
-										<header class="main-box-header clearfix">
-											<h2>Human Power Co.,Ltd.</h2>
-												<a href="docs/html/organization_outline_en.html" class="btn btn-info pull-right" target="_blank"><i class="fa fa-print"></i> Outline_En</a>
-										</header>
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="form-group">
+																	<?php echo $this->Form->input('capital_jpy', array(
+																		'label' => __('JPY'),
+																		'type' => 'number',
+																		'class' => 'form-control',
+																		'id' => 'capitalJp'
+																	)); ?>
+																	(<span class="" name="capitalJpOut"></span>)
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<?= __('Sales') ?>
+														<br>(直近年度)
+													</td>
+													<td>
+														<div class="row">
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="form-group">
+																	<?php echo $this->Form->input('sales_riel', array(
+																		'label' => __('KHR'),
+																		'type' => 'number',
+																		'class' => 'form-control',
+																		'id' => 'salesKh'
+																	)); ?>
+																	(<span class="" name="salesKhOut"></span>)
+																</div>
+															</div>
 
-										<div class="main-box-body clearfix">
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="form-group">
+																	<?php echo $this->Form->input('sales_jpy', array(
+																		'label' => __('JPY'),
+																		'type' => 'number',
+																		'class' => 'form-control',
+																		'id' => 'salesJp'
+																	)); ?>
+																	(<span class="" name="salesJpOut"></span>)
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<?= __('Employees Count') ?>
+													</td>
+													<td>
+														<div class="row">
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<?php echo $this->Form->input('employee_num', array(
+																	'label' => __('Employees Count'),
+																	'type' => 'number',
+																	'class' => 'form-control',
+																)) ?>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<?= __('Trading Partners') ?>
+														<br>主要貿易(取引)相手国
+													</td>
+													<td>
+														<?php echo $this->Form->input('export_en', array(
+															'label' => __('Export To_English'),
+															'type' => 'text',
+															'class' => 'form-control',
+														)) ?><br>
+														<?php echo $this->Form->input('import_en', array(
+															'label' => __('Import From_English'),
+															'type' => 'text',
+															'class' => 'form-control',
+														)) ?>
+													</td>
+												</tr>
 
-											<div class="company-profile-details">
-												<div class="table-responsive">
-													<form action="agent-profile/edit" class="form_agent_edit" method="post" accept-charset="utf-8">
-														<table class="table table-bordered table-hover">
-															<thead>
-																<tr>
-																	<th style="width:100px;"><span></span></th>
-																	<th class="text-center"><span></span></th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<td>
-																		機関名
-																	</td>
-																	<td>
-																		<input type="text" name="" value="Human Power Co.,Ltd" placeholder="機関名をアルファベットで入力してください" style="width: 100%;margin-bottom: 5px;"><br>
-																		<input type="text" name="" value="ヒューマンパワー株式会社" placeholder="機関名を日本語で入力してください" style="width: 100%">
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		管理者
-																	</td>
-																	<td>
-																		<input type="text" value="Leng" id="agentRepresentativeFamily" placeholder="Enter Family Name" style="width: 45%;">
-																		<input type="text" value="Vichheka" id="associationRepresentativeGiven" placeholder="Enter Given Name" style="width: 45%;margin-bottom: 5px;"><br>
-																		役職： <input type="text" name="" value="Executive Director" placeholder="Enter Position" style="width: 45%; margin-bottom:5px;"><br>
-																		性別： <select name="" id="">
-																			<option value="male">Male</option>
-																			<option value="female">Female</option>
-																		</select>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		設立年月日
-																	</td>
-																	<td>
-																		<input type="date" name="" value="1987-05-05" class="date">
-																		<span class="help-block">Year/Month/Day</span>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		資本金
-																	</td>
-																	<td>
-																		リエル: <input type="number" name="capitalKh" id="capitalKh" value="" class="" style="margin-bottom:5px;"> (<span class="" name="capitalKhOut"></span>)<br>
-																		日本円: <input type="number" name="capitalJp" id="capitalJp" value="" class=""> (<span class="" name="capitalJpOut"></span>)
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		売上げ<br>(直近年度)
-																	</td>
-																	<td>
-																		リエル: <input type="number" name="salesKh" id="salesKh" value="" class="" style="margin-bottom:5px;"> (<span class="" name="salesKhOut"></span>)<br>
-																		日本円: <input type="number" name="salesJp" id="salesJp" value="" class=""> (<span class="" name="salesJpOut"></span>)
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		常勤職員数
-																	</td>
-																	<td>
-																		<input type="number" name="" value="11" class="">
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		主要貿易(取引)相手国
-																	</td>
-																	<td>
-																		輸出先： <input type="text" name="" value="日本、タイ、マレーシア" class="" style="margin-bottom: 5px;width:80%;"><br>
-																		輸入先： <input type="text" name="" value="特に無し" class="" style="width:80%;">
-																	</td>
-																</tr>
+												<tr>
+													<td>
+														<?= __('Address') ?>
+													</td>
+													<td>
+														<div class="row">
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="form-group form-group-select2">
+																	<label for="AgentProvinceId"><?= __('Province') ?></label>
+																	<select  id="AgentProvinceId" name="data[Agent][province_id]" class="form-control">
+																		<option value=""></option>
+																		<option value="1">Banteay Meanchey</option>
+																		<option value="2">Battambang</option>
+																		<option value="3">Kampong Cham</option>
+																		<option value="4">Kampong Chhnang</option>
+																		<option value="5">Kampong Speu</option>
+																		<option value="6">Kampong Thom</option>
+																		<option value="7">Kampot</option>
+																		<option value="8">Kandal</option>
+																		<option value="9">Kep</option>
+																		<option value="10">Koh Kong</option>
+																		<option value="11">Kratie</option>
+																		<option value="12">Mondol Kiri</option>
+																		<option value="13">Otdar Meanchey</option>
+																		<option value="14">Pailin</option>
+																		<option value="15">Phnom Penh</option>
+																		<option value="16">Preah Sihanouk</option>
+																		<option value="17">Preah Vihear</option>
+																		<option value="18">Prey Veng</option>
+																		<option value="19">Pursat</option>
+																		<option value="20">Ratanak Kiri</option>
+																		<option value="21">Siem Reap</option>
+																		<option value="22">Stung Treng</option>
+																		<option value="23">Svay Rieng</option>
+																		<option value="24">Takeo</option>
+																		<option value="25">Tbong Khmum</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="form-group form-group-select2">
+																	<label for="AgentDistrictId"><?= __('District') ?></label>
+																	<select id="AgentDistrictId" name="data[Agent][district_id]" class="form-control" >
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="form-group form-group-select2">
+																	<label for="AgentCommuneId">Commune</label>
+																	<select id="AgentCommuneId" name="data[Agent][commune_id]" class="form-control" >
+																	</select>
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															<?php echo $this->Form->input('address_en', array(
+																'label' => __('Address(No, Street, Village, in English)'),
+																'type' => 'text',
+																'class' => 'form-control'
+															)) ;?>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td rowspan="4">
+														<?= __('Contact') ?>
+													</td>
+													<td>
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-6 col-md-6 col-sm-6">
+																	<?php echo $this->Form->input('phone1',array(
+																		'label' => __('Phone1'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+																<div class="col-lg-6 col-md-6 col-sm-6">
+																	<?php echo $this->Form->input('phone1_smb',array(
+																		'label' => __('Contact Name'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="td_first_block">
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-6 col-md-6 col-sm-6">
+																	<?php echo $this->Form->input('phone2',array(
+																		'label' => __('Phone2'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+																<div class="col-lg-6 col-md-6 col-sm-6">
+																	<?php echo $this->Form->input('phone2_smb',array(
+																		'label' => __('Contact Name'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="td_first_block">
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-6 col-md-6 col-sm-6">
+																	<?php echo $this->Form->input('mail1',array(
+																		'label' => __('Mail1'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+																<div class="col-lg-6 col-md-6 col-sm-6">
+																	<?php echo $this->Form->input('mail1_smb',array(
+																		'label' => __('Contact Name'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="td_first_block">
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-6 col-md-6 col-sm-6">
+																	<?php echo $this->Form->input('mail2',array(
+																		'label' => __('Mail2'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+																<div class="col-lg-6 col-md-6 col-sm-6">
+																	<?php echo $this->Form->input('mail2_smb',array(
+																		'label' => __('Contact Name'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<?= __('Sector') ?>
+													</td>
+													<td>
+														<?php echo $this->Form->input('sector',array(
+															'label' => false,
+															'type' => 'select',
+															'options' => $option_sectors,
+															'class' => "form-control sel_sector",
+															'multiple' => true,
+															'style' => array("width:200px"),
+															'div' => false
+														)); ?>
+													<button type="button" id="" class="md-trigger btn btn-primary" data-modal="modal-sector"><i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Sector') ?></button><button type="button" class="test">test</button>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<?= __('Note') ?>
+													</td>
+													<td>
+														<?php echo $this->Form->textarea('note',array(
+															'rows' => '4',
+															'class' => 'form-control',
+															'label' => false
+														)) ?>
+													</td>
+												</tr>
 
-																<tr>
-																	<td>
-																		住所
-																	</td>
-																	<td>
-																		<div class="form-group form-group-select2">
-																			<label for="addressProvinceEn">Province</label>
-																			<select  id="addressProvinceEn" name="addressProvinceEn" class="form-control">
-																				<option value=""></option>
-																				<option value="1">Banteay Meanchey</option>
-																				<option value="2">Battambang</option>
-																				<option value="3">Kampong Cham</option>
-																				<option value="4">Kampong Chhnang</option>
-																				<option value="5">Kampong Speu</option>
-																				<option value="6">Kampong Thom</option>
-																				<option value="7">Kampot</option>
-																				<option value="8">Kandal</option>
-																				<option value="9">Kep</option>
-																				<option value="10">Koh Kong</option>
-																				<option value="11">Kratie</option>
-																				<option value="12">Mondol Kiri</option>
-																				<option value="13">Otdar Meanchey</option>
-																				<option value="14">Pailin</option>
-																				<option value="15">Phnom Penh</option>
-																				<option value="16">Preah Sihanouk</option>
-																				<option value="17">Preah Vihear</option>
-																				<option value="18">Prey Veng</option>
-																				<option value="19">Pursat</option>
-																				<option value="20">Ratanak Kiri</option>
-																				<option value="21">Siem Reap</option>
-																				<option value="22">Stung Treng</option>
-																				<option value="23">Svay Rieng</option>
-																				<option value="24">Takeo</option>
-																				<option value="25">Tbong Khmum</option>
-																			</select>
-																		</div>
-																		<div class="form-group form-group-select2">
-																			<label for="addressDistrictEn">District</label>
-																			<select id="addressDistrictEn" name="addressDistrictEn" class="form-control" >
-																			</select>
-																		</div>
-																		<div class="form-group form-group-select2">
-																			<label for="addressCommuneEn">Commune</label>
-																			<select id="addressCommuneEn" name="addressCommuneEn" class="form-control" >
-																			</select>
-																		</div>
-																		<div class="form-group">
-																			<label for="addressKh">Address(No, Street, Village, Khmer)</label>
-																			<input type="text" class="form-control" id="addressKh" placeholder="">
-																		</div>
-																		<div class="form-group">
-																			<label for="addressEn">Address(No, Street, Village, English)</label>
-																			<input type="text" class="form-control" id="addressEn" placeholder="">
-																		</div>
-																	</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td rowspan="2">
-																		連絡先
-																	</td>
-																	<td>
-																		<div style="margin-bottom: 5px;">
-																			電話番号1: <input type="text" id="phone1" value="092123456" minlength="10" maxlength="11" size="11" style="width:90px"> 担当者: <input type="text" id="name_phone1" value="Leng Vichheka" placeholder="" style="width:100px">
-																		</div>
-																		<div style="margin-bottom: 5px;">
-																			電話番号2: <input type="text" id="phone2" placeholder="" minlength="10" maxlength="11" size="11" style="width:90px"> 担当者: <input type="text" id="name_phone2" placeholder="" style="width:100px">
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td class="td_first_block">
-																		<div style="margin-bottom: 5px;border-bottom: 1px solid #e7ebee;padding-bottom: 5px;">
-																			メール1: <input type="text" id="email1" value="yamamotokougyou@humanpower.com" style="margin-bottom: 5px;width:100%"> 担当者: <input type="text" id="name_email1" placeholder="" style="width:100px">
-																		</div>
-																		<div style="margin-bottom: 5px;border-bottom: 1px solid #e7ebee;padding-bottom: 5px;">
-																			メール2: <input type="text" id="email2" placeholder="" style="margin-bottom: 5px;width:100%"> 担当者: <input type="text" id="name_email2" placeholder="" style="width:100px">
-																		</div>
-
-																	</td>
-
-																</tr>
-																<tr>
-																	<td>
-																		業種
-																	</td>
-																	<td>
-																		<select class="form-control" multiple style="display: inline;" id="sel_job">
-																			<option value=""></option>
-																			<option value="1" selected>型枠</option>
-																			<option value="2">縫製</option>
-																			<option value="3" selected>建設</option>
-																			<option value="4">寝具製作</option>
-																		</select>
-																		<a href="job-add.html" class="btn btn-primary pull-right" style="margin-top: 5px;">
-																			<i class="fa fa-plus-circle fa-lg"></i>
-																			業種を追加
-																		</a>
-																	</td>
-																</tr>
-																<tr>
-																	<td>
-																		備考
-																	</td>
-																	<td>
-																		<textarea name="" rows="4" style="width: 100%;"></textarea>
-																	</td>
-																</tr>
-
-															</tbody>
-														</table>
-
-													</form>
-
-												</div>
-											</div>
-											<!-- <div class="center-block pull-left">
-                          <a href="interview-order-detail.html" class="btn btn-default">
-                            <i class="fa fa-long-arrow-left fa-lg"></i>
-                            前のページに戻る
-                          </a>
-                      </div> -->
-
-											<div class="profile-message-btn center-block text-right">
-												<a href="#" class="btn btn-default">
-													<i class="fa fa-pencil"></i>
-													変更を保存
-												</a>
-											</div>
+											</tbody>
+										</table>
+										<div class="profile-message-btn center-block text-right">
+											<button type="submit" class="btn btn-default pull-right">
+												<i class="fa fa-pencil"></i>
+												<?= __('Save') ?>
+											</button>
 										</div>
-									</div>
+										<?php echo $this->Form->end(); ?>
 								</div>
-
 							</div>
-
-
-
+							<!-- <div class="center-block pull-left">
+                  <a href="agent-db.html" class="btn btn-default">
+                    <i class="fa fa-long-arrow-left fa-lg"></i>
+                    前のページに戻る
+                  </a>
+              </div> -->
 						</div>
 					</div>
-
-					<footer id="footer-bar" class="row">
-						<p id="footer-copyright" class="col-xs-12">
-							Powered by Mangetsu Ltd.
-						</p>
-					</footer>
 				</div>
-			</div>
-		</div>
-	</div>
 
 
+	<?php
+		echo $this->Html->script('modernizr.custom', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('classie', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('modalEffects', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('rikuyo_js/myModal', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('select2.min', array('inline' => false, 'block' => 'page-js'));
+	 ?>
 
-	<!-- global scripts -->
-
-
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/jquery.nanoscroller.min.js"></script>
-
-	<!-- this page specific scripts -->
-  <script src="js/select2.min.js"></script>
-	<script src="js/jquery.slimscroll.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/dropzone.min.js"></script>
-	<script src="js/jquery.jpostal.js"></script>
-
-
-	<!-- theme scripts -->
-	<script src="js/scripts.js"></script>
-	<script src="js/pace.min.js"></script>
-
-	<!-- this page specific inline scripts -->
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$('#capitalKh').on('click blur keydown keyup keypress change', function(){
-				var inputPrice = $('#capitalKh').val();
-				var	fmtPrice = Number(inputPrice).toLocaleString();
-				var	jpPrice = Math.floor(inputPrice * 0.03);
-				var	fmtJpPrice = jpPrice.toLocaleString();
-						$('span[name="capitalKhOut"]').text(fmtPrice);
-						$('#capitalJp').val(jpPrice);
-						$('span[name="capitalJpOut"]').text(fmtJpPrice);
-			});
-			$('#capitalJp').on('click blur keydown keyup keypress change', function(){
-				var inputPrice = $('#capitalJp').val();
-				var	fmtPrice = Number(inputPrice).toLocaleString();
-						$('span[name="capitalJpOut"]').text(fmtPrice);
-			});
-
-			$('#salesKh').on('click blur keydown keyup keypress change', function(){
-				var inputPrice = $('#salesKh').val();
-				var	fmtPrice = Number(inputPrice).toLocaleString();
-				var	jpPrice = Math.floor(inputPrice * 0.03);
-				var	fmtJpPrice = jpPrice.toLocaleString();
-						$('span[name="salesKhOut"]').text(fmtPrice);
-						$('#salesJp').val(jpPrice);
-						$('span[name="salesJpOut"]').text(fmtJpPrice);
-			});
-			$('#salesJp').on('click blur keydown keyup keypress change', function(){
-				var inputPrice = $('#salesJp').val();
-				var	fmtPrice = Number(inputPrice).toLocaleString();
-						$('span[name="salesJpOut"]').text(fmtPrice);
-			});
-
-
-
-		});
-
-		$(document).ready(function() {
-			$('.conversation-inner').slimScroll({
-		        height: '340px'
-		    });
-
-			$('#sel_association').select2({
-            placeholder: '所属組合を選択してください',
-            allowClear: false
-        });
-
-			$('#sel_company').select2({
-				placeholder: '加盟している企業を選択してください',
-				allowClear: false
-			});
-
-			$('#sel_job').select2({
-				placeholder: '業種を選択してください',
+	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
+	$(document).ready(function() {
+			$('.sel_sector').select2({
+				placeholder: "<?= __('Select Sectors') ?>",
 				allowClear: false
 			});
 
 			//nice select boxes( address Province)
-		$('#addressProvinceEn').select2();
+		$('#AgentProvinceId').select2();
 
 		//nice select boxes( address District)
-		$('#addressDistrictEn').select2();
+		$('#AgentDistrictId').select2();
 
 		//nice select boxes( address District)
-		$('#addressCommuneEn').select2();
+		$('#AgentCommuneId').select2();
 
 		//Select box - address Province will be changed, district will also be changed.
 			var district = [
@@ -768,15 +640,15 @@
 				{province:'25', district_code:'183', district:'Ponhea Kraek'},
 				{province:'25', district_code:'184', district:'Tboung Khmum'}
 			];
-			$('#addressProvinceEn').change(function(){
+			$('#AgentProvinceId').change(function(){
 				setDistrictSelect($(this).val());
 			});
 
 			function setDistrictSelect(s){
-				$('#addressDistrictEn').find('option').remove();
+				$('#AgentDistrictId').find('option').remove();
 				$(district).each(function(i){
 					if(district[i].province == s){
-						$('#addressDistrictEn').append($('<option></option>')
+						$('#AgentDistrictId').append($('<option></option>')
 							.attr('province', district[i].province)
 							.val(district[i].district_code)
 							.text(district[i].district));
@@ -2408,15 +2280,15 @@
 				{province_code:'25', district_code:'184', commune_code:'1420', commune:'Tonle Bet'},
 				{province_code:'25', district_code:'184', commune_code:'677', commune:'Vihear Luong'}
 			];
-			$('#addressDistrictEn').change(function(){
+			$('#AgentDistrictId').change(function(){
 				setCommuneSelect($(this).val());
 			});
 
 			function setCommuneSelect(s){
-				$('#addressCommuneEn').find('option').remove();
+				$('#AgentCommuneId').find('option').remove();
 				$(commune).each(function(i){
 					if(commune[i].district_code == s){
-						$('#addressCommuneEn').append($('<option></option>')
+						$('#AgentCommuneId').append($('<option></option>')
 							.attr('district_code', commune[i].district_code)
 							.val(commune[i].commune_code)
 							.text(commune[i].commune));
@@ -2425,33 +2297,5 @@
 				);
 			}
 			setCommuneSelect('');
-		});
-
-		$(function() {
-			$(document).ready(function() {
-				$('#documents .story-images').magnificPopup({
-					type: 'image',
-					delegate: 'a',
-					gallery: {
-						enabled: true
-				    }
-				});
-			});
-		});
-
-		$(function() {
-			$(document).ready(function() {
-				$('#documents .story-images').magnificPopup({
-					type: 'image',
-					delegate: 'a',
-					gallery: {
-						enabled: true
-				    }
-				});
-			});
-		});
-
-	</script>
-
-</body>
-</html>
+	});
+	<?php $this->Html->scriptEnd(); ?>

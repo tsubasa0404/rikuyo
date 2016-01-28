@@ -8,8 +8,6 @@
 				</div>
 			</div>
 
-
-
 			<div class="row" id="company-profile">
 				<div class="col-lg-8 col-md-12 col-sm-12">
 					<div class="main-box clearfix">
@@ -293,7 +291,6 @@
 																'class' => 'form-control'
 															)) ;?>
 														</div>
-													</div>
 													</td>
 												</tr>
 												<tr>
@@ -394,7 +391,6 @@
 															'div' => false
 														)); ?>
 													<button type="button" id="" class="md-trigger btn btn-primary" data-modal="modal-sector"><i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Sector') ?></button><button type="button" class="test">test</button>
-														</div>
 													</td>
 												</tr>
 												<tr>

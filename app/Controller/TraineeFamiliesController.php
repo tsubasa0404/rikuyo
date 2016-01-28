@@ -50,7 +50,7 @@ class TraineeFamiliesController extends AppController {
 			$this->TraineeFamily->create();
 			if ($this->TraineeFamily->save($this->request->data)) {
 				$this->Session->setFlash(__('The trainee family has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The trainee family could not be saved. Please, try again.'));
 			}

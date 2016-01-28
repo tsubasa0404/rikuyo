@@ -33,7 +33,34 @@ App::uses('AppModel', 'Model');
 class Trainee extends AppModel {
 
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+	public function traineeList(){
+		$options = array('conditions' => array(
+			'Trainee.flag' => 0
+			),
+			'fields' => array(
+				'Trainee.id',
+				'Trainee.control_no',
+				'Trainee.family_name_en',
+				'Trainee.given_name_en',
+				'Trainee.sex',
+				'Trainee.birthday',
+				'Trainee.phone',
+				'Trainee.medicalchk_status_id',
+				'Trainee.idcard_status_id',
+				'Trainee.passport_status_id',
+				'Trainee.coe_status_id',
+				'Trainee.immigration_status_id',
+				'Trainee.labor_ministry_status_id',
+				'Trainee.departure_status_id',
+				'Trainee.departure_note',
+				'Trainee.departure_date',
+				'Trainee.return_status_id',
+				'Trainee.return_note',
+				'Trainee.return_date'
+				)
+		);
+		return $this->find('all', $options);
+	}
 
 /**
  * belongsTo associations
@@ -62,93 +89,37 @@ class Trainee extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'BirthplaceProvince' => array(
+		'Province' => array(
 			'className' => 'Province',
 			'foreignKey' => 'birthplace_province_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'BirthplaceDistrict' => array(
+		'District' => array(
 			'className' => 'District',
 			'foreignKey' => 'birthplace_district_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'BirthplaceCommune' => array(
+		'Commune' => array(
 			'className' => 'Commune',
 			'foreignKey' => 'birthplace_commune_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'Job1' => array(
+		'Job' => array(
 			'className' => 'Job',
 			'foreignKey' => 'job1_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'Job2' => array(
+		'Job' => array(
 			'className' => 'Job',
 			'foreignKey' => 'job2_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'MedicalchkStatus' => array(
-			'className' => 'StatusList',
-			'foreignKey' => 'medicalchk_status_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'IdcardStatus' => array(
-			'className' => 'StatusList',
-			'foreignKey' => 'idcard_status_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'PassportStatus' => array(
-			'className' => 'StatusList',
-			'foreignKey' => 'passport_status_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'CoeStatus' => array(
-			'className' => 'StatusList',
-			'foreignKey' => 'coe_status_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'ImmigrationStatus' => array(
-			'className' => 'StatusList',
-			'foreignKey' => 'immigration_status_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'LaborMinistryStatus' => array(
-			'className' => 'StatusList',
-			'foreignKey' => 'labor_ministry_status_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'DepartureStatus' => array(
-			'className' => 'StatusList',
-			'foreignKey' => 'departure_status_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'ReturnStatus' => array(
-			'className' => 'StatusList',
-			'foreignKey' => 'return_status_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

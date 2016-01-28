@@ -10,7 +10,31 @@ App::uses('AppModel', 'Model');
 class Company extends AppModel {
 
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+	public function companyList(){
+		$options = array(
+			'conditions' => array(
+				'Company.flag' => 0
+				),
+			'fields' => array(
+				'Company.id',
+				'Company.company_jp',
+				'Company.company_en',
+				'Company.province',
+				'Company.address_jp',
+				'Company.address_en',
+				'Company.phone1',
+				'Company.job',
+				'Company.company_jp',
+				'Company.company_jp',
+				'Association.id',
+				'Association.association_jp',
+				'Association.association_en'
+				),
+			'order' => array('Company.id' => 'asc'),
+			);
+
+		return $this->find('all', $options);
+	}
 
 /**
  * belongsTo associations
@@ -61,29 +85,5 @@ class Company extends AppModel {
 		)
 	);
 
-	public function companyList(){
-		$options = array(
-			'conditions' => array(
-				'Company.flag' => 0
-				),
-			'fields' => array(
-				'Company.id',
-				'Company.company_jp',
-				'Company.company_en',
-				'Company.province',
-				'Company.address_jp',
-				'Company.address_en',
-				'Company.phone1',
-				'Company.job',
-				'Company.company_jp',
-				'Company.company_jp',
-				'Association.id',
-				'Association.association_jp',
-				'Association.association_en'
-				),
-			'order' => array('Company.id' => 'asc'),
-			);
 
-		return $this->find('all', $options);
-	}
 }

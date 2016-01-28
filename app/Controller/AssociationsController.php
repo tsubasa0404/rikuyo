@@ -28,6 +28,23 @@ class AssociationsController extends AppController {
 		$this->set(compact('associations'));
 	}
 
+	public function update_delete_flag($id = null){
+		if(!$this->Association->exists($id)){
+			throw new NotFoundException(__('You cannot delete this'));
+		}
+		if($this->request->is(array('post', 'put'))){
+			$this->request->data = array(
+				'id' => $id,
+				'flag' => '1'
+				);
+			if($this->Association->save($this->request->data)){
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('You cannot delete this.'));
+			}
+		}
+	}
+
 /**
  * view method
  *

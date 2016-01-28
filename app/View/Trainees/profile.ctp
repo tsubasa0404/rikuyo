@@ -1,2359 +1,2313 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-	<title>Dashboard | Rikuyo TC</title>
-
-	<!-- bootstrap -->
-	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css" />
-
-	<!--
-	If you need RTL support just include here RTL CSS file <link rel="stylesheet" type="text/css" href="css/libs/bootstrap-rtl.min.css" />
-	And add "rtl" class to <body> element - e.g. <body class="rtl">
-	-->
-
-	<!-- libraries -->
-	<link rel="stylesheet" type="text/css" href="css/libs/font-awesome.css" />
-	<link rel="stylesheet" type="text/css" href="css/libs/nanoscroller.css" />
-
-	<!-- global styles -->
-	<link rel="stylesheet" type="text/css" href="css/compiled/theme_styles.css" />
-	<link rel="stylesheet" type="text/css" href="css/libs/common.css" />
-
-	<!-- this page specific styles -->
-	<link rel="stylesheet" href="css/libs/footable.core.css" type="text/css" />
-	<link rel="stylesheet" href="css/libs/select2.css" type="text/css" />
-	<link rel="stylesheet" href="css/libs/datepicker.css" type="text/css" />
-	<link rel="stylesheet" href="css/libs/dropzone.css" type="text/css" />
-	<link rel="stylesheet" href="css/libs/magnific-popup.css" type="text/css" />
-	<link rel="stylesheet" type="text/css" href="css/libs/bootstrap-editable.css">
-	<link rel="stylesheet" type="text/css" href="css/libs/nifty-component.css"/>
-
-
-
-	<!-- Favicon -->
-	<link type="image/x-icon" href="favicon.ico" rel="shortcut icon" />
-
-	<!-- google font libraries -->
-	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
-
-	<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
-	<![endif]-->
-</head>
-<body class="theme-white fixed-header fixed-header">
-	<div class="md-modal md-effect-8" id="modal-job">
-		<div class="md-content">
-			<div class="modal-header">
-				<button class="md-close close">&times;</button>
-				<h4 class="modal-title">職種を追加</h4>
+<?php $this->set('title_for_layout', 'Trainee Profile'); ?>
+<?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/dropzone', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->addCrumb(__('Trainee List'), '/trainees'); ?>
+<?php $this->Html->addCrumb(__('Trainee Profile'), ''); ?>
+					<h1><?= __('Trainee Profile') ?></h1>
+					</div>
+				</div>
 			</div>
-			<div class="modal-body">
-					<div class="form-group">
-						<label for="jobJp">職種(日本語)</label>
-						<input type="text" class="form-control" id="jobJp" placeholder="職種を日本語で入力してください">
-					</div>
-					<div class="form-group">
-						<label for="jobEn">職種(English)</label>
-						<input type="text" class="form-control" id="jobEn" placeholder="職種を英語で入力してください">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default btn_close" data-dismiss="modal">閉じる</button>
-						<button type="button" class="btn btn-primary job_form_btn">登録</button>
-					</div>
-					<div class="hide">
-						<form action="" id="" method="post" accept-charset="utf-8">
-							<input type="hidden" name="jobJp" value="" >
-							<input type="hidden" name="jobEn" value="" >
-						</form>
-					</div>
-			</div>
-		</div>
-	</div>
-	<div id="theme-wrapper">
-		<header class="navbar" id="header-navbar">
-			<div class="container">
-				<a href="index.html" id="logo" class="navbar-brand">
-					<img src="img/logo.png" alt="" class="normal-logo logo-white"/>
-					<!-- <img src="img/logo-black.png" alt="" class="normal-logo logo-black"/>
-					<img src="img/logo-small.png" alt="" class="small-logo hidden-xs hidden-sm hidden"/> -->
-				</a>
 
-				<div class="clearfix">
-				<button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="fa fa-bars"></span>
-				</button>
+			<div class="row" id="user-profile">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="main-box clearfix">
+						<header class="main-box-header clearfix">
+							<h2><?php echo $this->request->data['Trainee']['family_name_en'] ." ". $this->request->data['Trainee']['given_name_en']  ?></h2>
+						</header>
 
-				<div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
-					<ul class="nav navbar-nav pull-left">
-						<li>
-							<a class="btn" id="make-small-nav">
-								<i class="fa fa-bars"></i>
-							</a>
-						</li>
-						<li class="dropdown hidden-xs">
-							<a class="btn dropdown-toggle" data-toggle="dropdown">
-								<i class="fa fa-bell"></i>
-								<span class="count">8</span>
-							</a>
-							<ul class="dropdown-menu notifications-list">
-								<li class="pointer">
-									<div class="pointer-inner">
-										<div class="arrow"></div>
+						<div class="main-box-body clearfix">
+							<div class="row">
+								<div class="col-lg-4 col-md-5 col-sm-5">
+						<!-- 学生の顔写真はここでアップ。フォルダではなく、データベースに格納して、使い回しやすくする。 -->
+									<img src="img/samples/scarlet-159.png" alt="" class="profile-img img-responsive center-block" style="border-radius: initial" />
+
+									<div class="main-box-body clearfix" >
+										<form action="traineeImage/add" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+											<div class="form-group">
+												<input type="file" name="" value="" placeholder="">
+											</div>
+											<a href="#upload" type="submit" class="btn btn-success"><i class="fa fa-cloud-upload"></i>プロフィール画像をアップロード</a>
+										</form>
 									</div>
-								</li>
-								<li class="item-header">You have 6 new notificationsここのロジック考える</li>
-								<li class="item">
-									<a href="#">
-										<i class="fa fa-comment"></i>
-										<span class="content">New comment on ‘Awesome P...</span>
-										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-									</a>
-								</li>
-								<li class="item">
-									<a href="#">
-										<i class="fa fa-plus"></i>
-										<span class="content">New user registration</span>
-										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-									</a>
-								</li>
-								<li class="item">
-									<a href="#">
-										<i class="fa fa-envelope"></i>
-										<span class="content">New Message from George</span>
-										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-									</a>
-								</li>
-								<li class="item">
-									<a href="#">
-										<i class="fa fa-shopping-cart"></i>
-										<span class="content">New purchase</span>
-										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-									</a>
-								</li>
-								<li class="item">
-									<a href="#">
-										<i class="fa fa-eye"></i>
-										<span class="content">New order</span>
-										<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-									</a>
-								</li>
-								<li class="item-footer">
-									<a href="#">
-										View all notifications
-									</a>
-								</li>
-							</ul>
-						</li>
 
-						<li class="dropdown hidden-xs">
-							<a class="btn dropdown-toggle" data-toggle="dropdown">
-								Languages
-								<i class="fa fa-caret-down"></i>
-							</a>
-							<ul class="dropdown-menu">
-								<li class="item">
-									<a href="#">
-										Japanese
-									</a>
-								</li>
-								<li class="item">
-									<a href="#">
-										English
-									</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
 
-				<div class="nav-no-collapse pull-right" id="header-nav">
-					<ul class="nav navbar-nav pull-right">
-						<li class="hidden-xxs">
-							<a class="btn">
-								ログアウト
-							</a>
-						</li>
-					</ul>
-				</div>
-				</div>
-			</div>
-		</header>
-		<div id="page-wrapper" class="container">
-			<div class="row">
-				<div id="nav-col">
-					<section id="col-left" class="col-left-nano">
-						<div id="col-left-inner" class="col-left-nano-content">
-							<div id="user-left-box" class="clearfix hidden-sm hidden-xs dropdown profile2-dropdown">
-								<div class="user-box">
-									<span class="name">
-											管理者 橋本
-									</span>
+
+									<div class="main-box-body clearfix">
+										<div class="table-responsive flight-schedule">
+											<?php echo $this->Form->create('Trainee', array(
+												'class' => 'form_trainee_edit',
+												'inputDefaults' => array(
+													'div' => false,
+													)
+											)); ?>
+											<?php echo $this->Form->hidden('id'); ?>
+											<table class="table table-bordered table-hover">
+												<tbody>
+													<tr>
+														<td><?= __('Departure Date') ?></td>
+														<td>
+															<?php echo $this->Form->date('departure_date',array(
+																'label' => false,
+																'class' => 'form-control'
+															)) ?>
+														</td>
+													</tr>
+													<tr>
+														<td><?= __('Departure Status') ?></td>
+														<td>
+															<?php echo $this->Form->input('departure_status_id',array(
+															'label' => false,
+															'type' => 'select',
+															'options' => array('0'=> __('Not Yet'),'1'=> __('Already')),
+															'class' => "form-control",
+															'div' => false
+														)); ?>
+														</td>
+
+													</tr>
+													<tr>
+														<td><?= __('Return Date') ?></td>
+														<td><?php echo $this->Form->date('return_date',array(
+															'label' => false,
+															'class' => 'form-control'
+														)) ?></td>
+													</tr>
+													<tr>
+														<td><?= __('Return Status') ?></td>
+														<td>
+															<?php echo $this->Form->input('return_status_id',array(
+																'label' => false,
+																'type' => 'select',
+																'options' => array('0'=> __('Not Yet'),'1'=> __('Already')),
+																'class' => "form-control",
+																'div' => false
+															)); ?>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<button type="submit" class="btn btn-default pull-right" style="margin-top:-15px;"><span class=" fa fa-plane"></span> <?= __('Save') ?></button>
+											<?php echo $this->Form->end(); ?>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
-								<ul class="nav nav-pills nav-stacked">
-									<li class="nav-header nav-header-first hidden-sm hidden-xs">
-										Menu
-									</li>
-									<li class="active">
-										<a href="index.html">
-											<i class="fa fa-home"></i>
-											<span>ホーム</span>
-										</a>
-									</li>
-									<li>
-										<a href="trainee-db.html">
-											<i class="fa fa-child"></i>
-											<span>実習生リスト</span>
-										</a>
-									</li>
-									<li>
-										<a href="association-db.html">
-											<i class="fa fa-institution"></i>
-											<span>組合リスト</span>
-										</a>
-									</li>
-									<li>
-										<a href="company-db.html">
-											<i class="fa fa-building"></i>
-											<span>企業リスト</span>
-										</a>
-									</li>
-									<li>
-										<a href="agent-db.html">
-											<i class="fa fa-building-o"></i>
-											<span>送り出し機関リスト</span>
-										</a>
-									</li>
-									<li>
-										<a href="document-db.html">
-											<i class="fa fa-file"></i>
-											<span>書類リスト</span>
-										</a>
-									</li>
-									<li>
-										<a href="job-db.html">
-											<i class="fa fa-wrench"></i>
-											<span>業種・職種リスト</span>
-										</a>
-									</li>
-									<li>
-										<a href="interview.html" class="">
-											<i class="fa fa-group"></i>
-											<span>面接</span>
-										</a>
-										<!-- <ul class="submenu">
-											<li>
-												<a href="email-inbox.html">
-													Inbox
-												</a>
-											</li>
-											<li>
-												<a href="email-detail.html">
-													Detail
-												</a>
-											</li>
-											<li>
-												<a href="email-compose.html">
-													Compose
-												</a>
-											</li>
-										</ul> -->
-								</ul>
+
+								<div class="col-lg-8 col-md-7 col-sm-7">
+									<div class="table-responsive">
+										<?php echo $this->Form->create('Trainee', array(
+											'class' => 'form_trainee_edit',
+											'inputDefaults' => array(
+												'div' => false,
+												)
+										)); ?>
+										<?php echo $this->Form->hidden('id'); ?>
+										<table class="table table-bordered table-hover">
+											<tbody>
+												<tr>
+													<td><?= __('Medical Checkup') ?></td>
+													<td>
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-4 col-md-4 col-sm-4">
+																	<?php echo $this->Form->input('medicalchk_status_id',array(
+																		'label' => __('Status'),
+																		'type' => 'select',
+																		'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																		'class' => "form-control",
+																		'div' => false
+																	)); ?>
+																</div>
+																<div class="col-lg-8 col-md-8 col-sm-8">
+																	<?php echo $this->Form->input('medicalchk_note',array(
+																		'label' => __('Note'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td rowspan="2"><?= __('ID Card') ?></td>
+													<td>
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-4 col-md-4 col-sm-4">
+																	<?php echo $this->Form->input('idcard_status_id',array(
+																		'label' => __('Status'),
+																		'type' => 'select',
+																		'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																		'class' => "form-control",
+																		'div' => false
+																	)); ?>
+																</div>
+																<div class="col-lg-8 col-md-8 col-sm-8">
+																	<?php echo $this->Form->input('idcard_note',array(
+																		'label' => __('Note'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="td_first_block">
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-4 col-md-4 col-sm-4">
+																	<?php echo $this->Form->input('FB_status_id',array(
+																		'label' => __('Status'),
+																		'type' => 'select',
+																		'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																		'class' => "form-control",
+																		'div' => false
+																	)); ?>
+																</div>
+																<div class="col-lg-4 col-md-4 col-sm-4">
+																	<?php echo $this->Form->input('RB',array(
+																		'label' => __('Status'),
+																		'type' => 'select',
+																		'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																		'class' => "form-control",
+																		'div' => false
+																	)); ?>
+																</div>
+																<div class="col-lg-4 col-md-4 col-sm-4">
+																	<?php echo $this->Form->input('CB_status_id',array(
+																		'label' => __('Status'),
+																		'type' => 'select',
+																		'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																		'class' => "form-control",
+																		'div' => false
+																	)); ?>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td><?= __('Passport') ?></td>
+													<td>
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-4 col-md-4 col-sm-4">
+																	<?php echo $this->Form->input('passport_status_id',array(
+																			'label' => __('Status'),
+																			'type' => 'select',
+																			'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																			'class' => "form-control",
+																			'div' => false
+																		)); ?>
+																</div>
+																<div class="col-lg-8 col-md-8 col-sm-8">
+																	<?php echo $this->Form->input('passport_note',array(
+																		'label' => __('Note'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td><?= __('COE') ?></td>
+													<td>
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-4 col-md-4 col-sm-4">
+																	<?php echo $this->Form->input('coe_status_id',array(
+																			'label' => __('Status'),
+																			'type' => 'select',
+																			'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																			'class' => "form-control",
+																			'div' => false
+																		)); ?>
+																</div>
+																<div class="col-lg-8 col-md-8 col-sm-8">
+																	<?php echo $this->Form->input('coe_note',array(
+																		'label' => __('Note'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td><?= __('Immigration') ?></td>
+													<td>
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-4 col-md-4 col-sm-4">
+																	<?php echo $this->Form->input('immigration_status_id',array(
+																			'label' => __('Status'),
+																			'type' => 'select',
+																			'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																			'class' => "form-control",
+																			'div' => false
+																		)); ?>
+																</div>
+																<div class="col-lg-8 col-md-8 col-sm-8">
+																	<?php echo $this->Form->input('immigration_note',array(
+																		'label' => __('Note'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td><?= __('Labor Ministry') ?></td>
+													<td>
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-4 col-md-4 col-sm-4">
+																	<?php echo $this->Form->input('labor_ministry_status_id',array(
+																			'label' => __('Status'),
+																			'type' => 'select',
+																			'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																			'class' => "form-control",
+																			'div' => false
+																		)); ?>
+																</div>
+																<div class="col-lg-8 col-md-8 col-sm-8">
+																	<?php echo $this->Form->input('labor_ministry_note',array(
+																		'label' => __('Note'),
+																		'class' => 'form-control'
+																	)) ?>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<button type="submit" class="btn btn-default pull-right" style="margin-top:-15px;"><span class=" fa fa-file"></span> <?= __('Save') ?></button>
+										<?php echo $this->Form->end(); ?>
+									</div>
+								</div>
 							</div>
 						</div>
-					</section>
-					<div id="nav-col-submenu"></div>
+					</div>
 				</div>
-				<div id="content-wrapper">
-					<div class="row">
-						<div class="col-lg-12">
 
-							<div class="row">
-								<div class="col-lg-12">
-									<ol class="breadcrumb">
-										<li><a href="#">Home</a></li>
-										<li><a href="#">実習生リスト</a></li>
-										<li class="active"><span>実習生プロフィール</span></li>
-									</ol>
-									<h1>実習生プロフィール</h1>
-								</div>
-							</div>
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="main-box clearfix">
+						<div class="tabs-wrapper profile-tabs">
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#tab-profile" data-toggle="tab"><?= __('CV') ?></a></li>
+								<li><a href="#tab-documents" data-toggle="tab"><?= __('Document') ?></a></li>
+								<li><a href="#tab-interview" data-toggle="tab"><?= __('Interview') ?></a></li>
+								<li><a href="#tab-finance" data-toggle="tab"><?= __('Finance') ?></a></li>
+								<li><a href="#tab-chat" data-toggle="tab"><?= __('Voice') ?></a></li>
+							</ul>
 
-							<div class="row" id="user-profile">
-								<div class="col-lg-12 col-md-12 col-sm-12">
+							<div class="tab-content">
+								<div class="tab-pane fade in active" id="tab-profile">
 									<div class="main-box clearfix">
-										<header class="main-box-header clearfix">
-											<h2>Yamamoto Takahiro</h2>
-											<!-- <div id="google_translate_element"></div>
-											<script type="text/javascript">
-												function googleTranslateElementInit() {
-												  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'en,ja,km', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
-												}
-											</script>
-											<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
-										</header>
+										<div class="tabs-wrapper profile-tabs">
+											<ul class="nav nav-tabs">
+												<li class="active"><a href="#tab-profile-basic" data-toggle="tab"><?= __('Basic') ?></a></li>
+												<li><a href="#tab-profile-personality" data-toggle="tab"><?= __('Personality') ?></a></li>
+												<li><a href="#tab-profile-family" data-toggle="tab"><?= __('Family') ?></a></li>
+												<li><a href="#tab-profile-career" data-toggle="tab"><?= __('Career') ?></a></li>
+												<li><a href="#tab-profile-others" data-toggle="tab"><?= __('Others') ?></a></li>
+											</ul>
 
-										<div class="main-box-body clearfix">
-											<div class="row">
-												<div class="col-lg-4 col-md-5 col-sm-5">
-<!-- 学生の顔写真はここでアップ。フォルダではなく、データベースに格納して、使い回しやすくする。 -->
-													<img src="img/samples/scarlet-159.png" alt="" class="profile-img img-responsive center-block" style="border-radius: initial" />
-
-													<div class="main-box-body clearfix" >
-														<form action="traineeImage/add" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-															<div class="form-group">
-																<input type="file" name="" value="" placeholder="">
-															</div>
-															<a href="#upload" type="submit" class="btn btn-success"><i class="fa fa-cloud-upload"></i>プロフィール画像をアップロード</a>
-														</form>
-													</div>
-													<div class="main-box-body clearfix">
-														<div class="table-responsive flight-schedule">
+											<div class="tab-content">
+												<div class="tab-pane fade in active" id="tab-profile-basic">
+													<div class="table-responsive">
+														<?php echo $this->Form->create('Trainee', array(
+															'class' => 'form_trainee_edit',
+															'inputDefaults' => array(
+																'div' => false,
+																)
+														)); ?>
+														<?php echo $this->Form->hidden('id'); ?>
 															<table class="table table-bordered table-hover">
 																<thead>
 																	<tr>
-																		<th></th>
-																		<th></th>
+																		<th><span></span></th>
+																		<th class="text-center" style="width:30%;"><span>日本語</span></th>
+																		<th class="text-center" style="width:35%;"><span>English</span></th>
+																		<th class="text-center" style="width:30%;"><span>Khmer</span></th>
 																	</tr>
 																</thead>
 																<tbody>
 																	<tr>
-																		<td>出発予定日</td>
-																		<td><input class="form-control" type="date" name="" value="2016-01-01" placeholder=""></td>
+																		<td>
+																			<?= __('Trainee ID') ?>
+																		</td>
+																		<td>
+																			<?php echo $this->request->data['Trainee']['control_no'];?>
+																		</td>
+																		<td>
+
+																		</td>
+																		<td>
+
+																		</td>
 																	</tr>
 																	<tr>
-																		<td>出国状況</td>
-																		<td><select class="form-control" name="trainee_deperture_status">
-																	<option value="1">-</option>
-																	<option value="2">出国済み</option>
-																</select></td>
+																		<td>
+																			<?= __('ID Number') ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('id_number',array(
+																				'label' => false,
+																				'class' => 'form-control'
+																			)) ?>
+																		</td>
+																		<td>
+
+																		</td>
+																		<td>
+
+																		</td>
 																	</tr>
 																	<tr>
-																		<td>帰国予定日</td>
-																		<td><input class="form-control" type="date" name="" value="" ></td>
+																		<td>
+																			<?= __('Name') ?>
+																		</td>
+																		<td>
+																			<div class="row">
+																				<div class="form-group">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="family_name_jp">名字</label>
+																						<?php echo $this->Form->input('family_name_jp',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="given_name_jp">名前</label>
+																						<?php echo $this->Form->input('given_name_jp',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																					</div>
+																				</div>
+																			</div>
+																		</td>
+																		<td>
+																			<div class="row">
+																				<div class="form-group">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="family_name_en">Family Name</label>
+																						<?php echo $this->Form->input('family_name_en',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="given_name_en">Given Name</label>
+																						<?php echo $this->Form->input('given_name_en',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																					</div>
+																				</div>
+																			</div>
+																		</td>
+																		<td>
+																			<div class="row">
+																				<div class="form-group">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="family_name_kh">Family Name(Khmer)</label>
+																						<?php echo $this->Form->input('family_name_kh',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="given_name_kh">Given Name(Khmer)</label>
+																						<?php echo $this->Form->input('given_name_kh',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																					</div>
+																				</div>
+																			</div>
+																		</td>
 																	</tr>
 																	<tr>
-																		<td>帰国状況</td>
-																		<td><select class="form-control" name="trainee_return_status">
-																	<option value="1">-</option>
-																	<option value="2">帰国済み</option>
-																</select></td>
+																		<td><?= __('Introduced From') ?></td>
+																		<td></td>
+																		<td>
+																			<?php echo $this->Form->input('introduce_from',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<?= __('Sex') ?>
+																		</td>
+																		<td>
+																			<?php if($this->request->data['Trainee']['sex']=='male'){echo "男";}
+																				elseif($this->request->data['Trainee']['sex']=='female'){echo "女";};
+																			?>
+																		</td>
+																		<td>
+																			<div class="row">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<select class="form-control" name="" id="">
+																						<option value="male">Male</option>
+																						<option value="female">Female</option>
+																					</select>
+																				</div>
+																			</div>
+																		</td>
+																		<td>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<?= __('Birthday') ?>
+																		</td>
+																		<td>
+																			1987年5月22日(28歳)
+																		</td>
+																		<td>
+																			<div class="row">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<?php echo $this->Form->date('birthday',array(
+																						'label' => false,
+																						'class' => 'form-control'
+																					)) ?>
+																				</div>
+																			</div>
+																		</td>
+																		<td>
+																			22/05/1987(29)
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<?= __('Marriage') ?>
+																		</td>
+																		<td>
+																			<?php if($this->request->data['Trainee']['married']=='0'){echo "未婚";}
+																				elseif($this->request->data['Trainee']['married']=='1'){echo "既婚";};
+																			?>
+																		</td>
+																		<td>
+																			<div class="row">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<select class="form-control" name="">
+																						<option value="married" selected>Married</option>
+																						<option value="single">Single</option>
+																					</select>
+																				</div>
+																			</div>
+																		</td>
+																		<td>
+
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<?= __('Brothers') ?>
+																		</td>
+																		<td>
+
+																		</td>
+																		<td>
+																			<div class="row">
+																				<div class="form-group">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label class="" for="brother_cnt"><?= __('How many brothers?')?></label>
+																						<?php echo $this->Form->input('brother_cnt',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label  class="" for="brother_index"><?= __('How manieth brother?')?></label>
+																						<?php echo $this->Form->input('brother_index',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																					</div>
+																				</div>
+																			</div>
+																		</td>
+																		<td>
+
+																		</td>
+																	</tr>
+
+																	<tr>
+																		<td>
+																			<?= __('Birthplace') ?>
+																		</td>
+																		<td>
+
+																		</td>
+																		<td>
+																			<div class="row">
+																				<div class="form-group form-group-select2">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+
+																				<label for="addressProvinceEn">Province</label>
+																				<select  id="birthPlaceProvinceEn" name="birthPlaceProvinceEn" class="form-control">
+																					<option value="15">Phnom Penh</option>
+																					<option value="1">Banteay Meanchey</option>
+																					<option value="2">Battambang</option>
+																					<option value="3">Kampong Cham</option>
+																					<option value="4">Kampong Chhnang</option>
+																					<option value="5">Kampong Speu</option>
+																					<option value="6">Kampong Thom</option>
+																					<option value="7">Kampot</option>
+																					<option value="8">Kandal</option>
+																					<option value="9">Kep</option>
+																					<option value="10">Koh Kong</option>
+																					<option value="11">Kratie</option>
+																					<option value="12">Mondol Kiri</option>
+																					<option value="13">Otdar Meanchey</option>
+																					<option value="14">Pailin</option>
+																					<option value="15">Phnom Penh</option>
+																					<option value="16">Preah Sihanouk</option>
+																					<option value="17">Preah Vihear</option>
+																					<option value="18">Prey Veng</option>
+																					<option value="19">Pursat</option>
+																					<option value="20">Ratanak Kiri</option>
+																					<option value="21">Siem Reap</option>
+																					<option value="22">Stung Treng</option>
+																					<option value="23">Svay Rieng</option>
+																					<option value="24">Takeo</option>
+																					<option value="25">Tbong Khmum</option>
+																				</select>
+																			</div>
+																			</div>
+																			</div>
+																		</td>
+																		<td>
+
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<?= __('Current Address') ?>
+																		</td>
+																		<td>
+																			<div class="row">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<div class="form-group">
+																						<?php echo $this->Form->input('',array(
+																							'label' => '州・県',
+																							'class' => 'form-control'
+																						)) ?>
+																					</div>
+																				</div>
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<div class="form-group">
+																						<?php echo $this->Form->input('',array(
+																							'label' => '地方',
+																							'class' => 'form-control',
+																							'placeholder' => '北部、中部、南部など'
+																						)) ?>
+																					</div>
+																				</div>
+																			</div>
+																			<div class="row">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<div class="form-group">
+																						<?php echo $this->Form->input('',array(
+																									'label' => '市',
+																									'class' => 'form-control'
+																								)) ?>
+																					</div>
+																				</div>
+																			</div>
+																			<div class="row">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<div class="form-group">
+																						<?php echo $this->Form->input('',array(
+																									'label' => '地区',
+																									'class' => 'form-control'
+																								)) ?>
+																					</div>
+																				</div>
+																			</div>
+																			<div class="row">
+																				<div class="col-lg-12 col-md-12 col-sm-12">
+																					<div class="form-group">
+																						<?php echo $this->Form->input('',array(
+																									'label' => '住所(地区以下、通り、番号、建物)',
+																									'class' => 'form-control'
+																								)) ?>
+																					</div>
+																				</div>
+																			</div>
+																		</td>
+																		<td>
+																			<div class="row">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<div class="form-group ">
+																						<label for="addressProvinceEn">Province</label>
+																						<select  id="addressProvinceEn" name="addressProvinceEn" class="form-control" style="width:100%">
+																							<option value="15">Phnom Penh</option>
+																							<option value="1">Banteay Meanchey</option>
+																							<option value="2">Battambang</option>
+																							<option value="3">Kampong Cham</option>
+																							<option value="4">Kampong Chhnang</option>
+																							<option value="5">Kampong Speu</option>
+																							<option value="6">Kampong Thom</option>
+																							<option value="7">Kampot</option>
+																							<option value="8">Kandal</option>
+																							<option value="9">Kep</option>
+																							<option value="10">Koh Kong</option>
+																							<option value="11">Kratie</option>
+																							<option value="12">Mondol Kiri</option>
+																							<option value="13">Otdar Meanchey</option>
+																							<option value="14">Pailin</option>
+																							<option value="15">Phnom Penh</option>
+																							<option value="16">Preah Sihanouk</option>
+																							<option value="17">Preah Vihear</option>
+																							<option value="18">Prey Veng</option>
+																							<option value="19">Pursat</option>
+																							<option value="20">Ratanak Kiri</option>
+																							<option value="21">Siem Reap</option>
+																							<option value="22">Stung Treng</option>
+																							<option value="23">Svay Rieng</option>
+																							<option value="24">Takeo</option>
+																							<option value="25">Tbong Khmum</option>
+																						</select>
+																					</div>
+																				</div>
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<div class="form-group">
+																						<label for="district_part">District Area</label>
+																						<?php echo $this->Form->input('',array(
+																									'label' => false,
+																									'class' => 'form-control'
+																								)) ?>
+																					</div>
+																				</div>
+																			</div>
+																			<div class="row">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<div class="form-group ">
+																						<label for="addressDistrictEn">District</label>
+																						<select id="addressDistrictEn" name="addressDistrictEn" class="form-control" style="width:100%" >
+																							<option province="15" value="108">Tuol Kouk</option>
+																						</select>
+																					</div>
+																				</div>
+																			</div>
+
+																			<div class="row">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<div class="form-group ">
+																						<label for="addressCommuneEn">Commune</label>
+																						<select id="addressCommuneEn" name="addressCommuneEn" class="form-control" style="width:100%" >
+																							<option district_code="108" value="876">Boeng Kak Pir</option>
+																						</select>
+																					</div>
+																				</div>
+																			</div>
+
+																			<div class="row">
+																				<div class="col-lg-12 col-md-12 col-sm-12">
+																					<div class="form-group">
+																						<label for="addressEn">Address(No, Street, Village, English)</label>
+																						<?php echo $this->Form->input('',array(
+																									'label' => false,
+																									'class' => 'form-control'
+																								)) ?>
+																					</div>
+																				</div>
+																			</div>
+																		</td>
+																		<td>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<?= __('Phone') ?>
+																		</td>
+																		<td>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('phone',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																		<td>
+
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<?= __('Languages') ?>
+																		</td>
+																		<td>
+																			<p style="margin-bottom: 24px;">日本語 <?php if($this->request->data['Trainee']['english']==1){echo "、英語";} ?></p>
+																			<?php echo $this->Form->input('lang_others_jp',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																			<label for="lang_others_jp"> その他</label>
+																		</td>
+
+																		<td>
+																			<label>English
+																				<?php echo $this->Form->checkbox('english', array(
+																					'label' => false,
+																					'value' => 1,
+																					'selected' => $this->request->data['Trainee']['english']
+																				)) ?>
+																			</label>
+
+
+																			<?php echo $this->Form->input('lang_others_en',array(
+																				'label' => false,
+																				'class' => 'form-control'
+																			)) ?>
+																			<label for="lang_others_en"> others</label>
+
+																		</td>
+																		<td>
+
+																		</td>
+																	</tr>
+
+																	<tr>
+																		<td>
+																			<?= __('Facebook') ?>
+																		</td>
+																		<td>
+																			<a href="http://facebook.com/<?php echo $this->request->data['Trainee']['facebook'] ?>" target="_blank" ><?php echo $this->request->data['Trainee']['facebook'] ?></a>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('facebook',array(
+																				'label' => false,
+																				'class' => 'form-control',
+																				'style' => 'font-size:10px',
+																				'placeholder' => 'Enter Facebook User ID'
+																			)) ?>
+																		</td>
+																		<td>
+																		</td>
 																	</tr>
 																</tbody>
 															</table>
-															<a type="button" class="btn btn-default pull-right" style="margin-top:-15px;"><span class=" fa fa-plane"></span> 保存</a>
-														</div>
+															<div class="profile-message-btn center-block text-right">
+																<button type="submit" class="btn btn-default">
+																	<i class="fa fa-pencil"></i>
+																	<?= __('Save') ?>
+																</button>
+															</div>
+														<?php echo $this->Form->end(); ?>
+													</div>
+
+												</div>
+												<div class="tab-pane fade" id="tab-profile-personality">
+													<div class="table-responsive">
+														<?php echo $this->Form->create('Trainee', array(
+															'class' => 'form_trainee_edit',
+															'inputDefaults' => array(
+																'div' => false,
+																)
+														)); ?>
+														<?php echo $this->Form->hidden('id'); ?>
+															<table class="table table-bordered table-hover">
+																<thead>
+																	<tr>
+																		<th style="width:90px"></th>
+																		<th style="width:90px"></th>
+																		<th style="width:90px"></th>
+																		<th style="width:100px"></th>
+																		<th style="width:200px"></th>
+																		<th style="width:200px"></th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr>
+																		<td class="td_first_block">
+																			<?php echo $this->Form->input('height',array(
+																				'label' => __('Height(cm)'),
+																				'class' => 'form-control'
+																			)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('weight',array(
+																				'label' => __('Weight(kg)'),
+																				'class' => 'form-control'
+																			)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('shoe_size',array(
+																				'label' => __('Shoe Size(cm)'),
+																				'class' => 'form-control'
+																			)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('handed',array(
+																				'label' => __('Handedness'),
+																				'class' => 'form-control',
+																				'type' => 'select',
+																				'options' => array('right' => __('Right'), 'left' => __('Left'))
+																			)) ?>
+																		</td>
+																		<td style="width:100px">
+																			<div class="row">
+																				<div class="form-group">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<?php echo $this->Form->input('eyesight_left',array(
+																							'label' => __('Eyesight Left'),
+																							'class' => 'form-control',
+																						)) ?>
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<?php echo $this->Form->input('eyesight_right',array(
+																							'label' => __('Eyesight right'),
+																							'class' => 'form-control',
+																						)) ?>
+																					</div>
+																				</div>
+																			</div>
+																		</td>
+																		<td style="width:150px">
+																			<?php echo $this->Form->input('color_blindness',array(
+																				'label' => __('Color Blindness'),
+																				'class' => 'form-control',
+																				'type' => 'select',
+																				'options' => array('0' => __('Nothing'), '1' => __('Have'))
+																			)) ?>
+																		</td>
+																	</tr>
+																	<tr colspan="6">
+																		<td class="td_first_block">
+																			<?php echo $this->Form->input('blood_type',array(
+																				'label' => __('Blood Type'),
+																				'class' => 'form-control',
+																				'type' => 'select',
+																				'options' => array('a' => __('A'), 'b' => __('B'), 'o' => __('O'), 'ab' => __('AB'))
+																			)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('tatoo',array(
+																				'label' => __('Tatoo'),
+																				'class' => 'form-control',
+																				'type' => 'select',
+																				'options' => array('0' => __('Nothing'), '1' => __('Have'))
+																			)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('tabacco',array(
+																				'label' => __('Tabacco'),
+																				'class' => 'form-control',
+																				'type' => 'select',
+																				'options' => array('0' => __('Nothing'), '1' => __('Have'))
+																			)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('drink',array(
+																				'label' => __('Alchole'),
+																				'class' => 'form-control',
+																				'type' => 'select',
+																				'options' => array('0' => __('Nothing'), '1' => __('Have'))
+																			)) ?>
+																		</td>
+
+																		<td>
+																			<?php echo $this->Form->input('experience_group_life',array(
+																				'label' => __('Experience Group Life'),
+																				'class' => 'form-control',
+																				'type' => 'select',
+																				'options' => array('0' => __('Nothing'), '1' => __('Have'))
+																			)) ?>
+																		</td>
+																		<td>
+																			<div class="profile-message-btn center-block text-center">
+																				<button type="submit" class="btn btn-default">
+																					<i class="fa fa-pencil"></i>
+																					<?= __('Save') ?>
+																				</button>
+																			</div>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														<?php echo $this->Form->end(); ?>
+													</div>
+													<div class="table-responsive">
+														<?php echo $this->Form->create('Trainee', array(
+															'class' => 'form_trainee_edit',
+															'inputDefaults' => array(
+																'div' => false,
+																)
+														)); ?>
+														<?php echo $this->Form->hidden('id'); ?>
+															<table class="table table-bordered table-hover">
+																<thead>
+																	<tr>
+																		<th><span></span></th>
+																		<th><span>日本語</span></th>
+																		<th><span>English</span></th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr>
+																		<td>
+																			<?= __('Face Features') ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('face_feature_jp',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('face_feature_en',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+
+																	</tr>
+
+
+																	<tr>
+																		<td>
+																			<?= __('Health (Hepatitis B,AIDS)') ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('health_jp',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('health_en',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																	</tr>
+
+
+																	<tr>
+																		<td>
+																			<?= __('Good Point') ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('good_point_jp',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('good_point_en',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<?= __('Bad Point') ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('bad_point_jp',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('bad_point_en',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<?= __('Hobby') ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('hobby_jp',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('hobby_en',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<?= __('Character') ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('character_jp',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('character_en',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<?= __('Specialty') ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('specialty_jp',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('specialty_en',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			<?= __('Religious') ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('religious_jp',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																		<td>
+																			<?php echo $this->Form->input('religious_en',array(
+																							'label' => false,
+																							'class' => 'form-control'
+																						)) ?>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+															<div class="profile-message-btn center-block text-right">
+																<button type="submit" class="btn btn-default">
+																	<i class="fa fa-pencil"></i>
+																	<?= __('Save') ?>
+																</button>
+															</div>
+														<?php echo $this->Form->end(); ?>
 													</div>
 												</div>
+												<div class="tab-pane fade" id="tab-profile-family">
+													<div class="main-box">
+														<header class="main-box-header clearfix">
+															<h2><?= __('Add Family') ?></h2>
+														</header>
+														<div class="main-box-body clearfix">
+															<?php echo $this->Form->create('TraineeFamily', array(
+																'action' => 'add',
+																'inputDefaults' => array(
+																	'div' => false,
+																	)
+															)); ?>
+															<?php echo $this->Form->hidden('trainee_id', array('value' => $this->request->data['Trainee']['id'])); ?>
+																<div class="row">
+																	<div class="form-group col-lg-3 col-md-3 col-sm-3" style="">
 
-												<div class="col-lg-8 col-md-7 col-sm-7">
+																		<label for="family_name_full" class=""><?= __('Full Name') ?></label>
+
+
+																		<?php echo $this->Form->input('name',array(
+																			'label' => false,
+																			'class' => 'form-control'
+																		)) ?>
+																	</div>
+
+																<!-- //新しいタスクを追加の処理
+																	$('#new_todo_form').on('submit', function(){
+																	//taskを取得
+																	var task_var = $('#new_todo').val();
+																	//ajax処理
+																	$.post('_ajax.php', {
+																		task: task_var,
+																		mode: 'create',
+																		token: $('#token').val()
+																	}, function(res){ //自動発行されたid(lastInsertId())を取得してきてresに格納して持ってくる。
+																	//liを一番上に追加する
+																		var $li = $('#todo_template').clone();
+																		//$liにすることで、オブジェクトとしてあとでattrなどメソッドチェーンが利用できる。
+																		//.clone()によって、templateを引っ張ってこれる。
+																		$li
+																			.attr('id', 'todo_' + res.id) //liにid="todo_{lastInsertId()}"をattributeする。
+																			.data('id', res.id) //data-id="{lastInsertId()}"にする。
+																			.find('.todo_title').text(title); //li内の.todo_titleの中身(span)にtitleを挿入する。
+																		$('#todos').prepend($li.fadeIn()); ul#todosの直下に$liをprepend(挿入)する。
+																		$('#new_todo').val('').focus(); //入力した内容が削除されて、フォーカスが当たるようにする。
+																	});
+																	return false; //画面遷移させないようにするため。
+																	</div>-->
+
+																	<div class="form-group col-lg-2 col-md-2 col-sm-2">
+																		<label for="" class=""><?= __('Relationship') ?></label>
+																		<?php echo $this->Form->input('relationship',array(
+																			'label' => false,
+																			'type' => 'select',
+																			'options' => array(
+																				'father'				=>	__('Father'),
+																				'mother'				=>	__('Mother'),
+																				'child'					=>	__('Child'),
+																				'brother'				=>	__('Brother'),
+																				'sister'				=>	__('Sister'),
+																				'young brother'	=>	__('Young Brother'),
+																				'young sister'	=>	__('Young Sister'),
+																				'grandfather'		=>	__('Grandfather'),
+																				'grandmather'		=>	__('Grandmather'),
+																				'grandchild'		=>	__('Grandchild'),
+																				'father in law'	=>	__('Father in law'),
+																				'mother in law'	=>	__('Mother in law'),
+																				'uncle'					=>	__('Uncle'),
+																				'aunt'					=>	__('Aunt'),
+																				'nephew'				=>	__('Nephew'),
+																				'niece'					=>	__('Niece')
+																				 ),
+																			'class' => "form-control",
+																		)); ?>
+																	</div>
+																	<div class="form-group col-lg-3 col-md-3 col-sm-3">
+																		<label for="" class=""><?= __('Birthday') ?></label>
+																		<div class="input-group">
+																			<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+																			<?php echo $this->Form->date('birthday', array(
+																				'label' => false,
+																				'div' => false,
+																				'class' => 'form-control'
+																			)) ?>
+																		</div>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="form-group col-lg-4 col-md-4 col-sm-4">
+																		<label for="" class=""><?= __('Phone') ?></label>
+																		<?php echo $this->Form->input('phone', array(
+																			'label' => false,
+																			'class' => 'form-control',
+																		)) ?>
+																	</div>
+																	<div class="col-lg-6 col-md-6 col-sm-6">
+																		<div class="form-group form-group-select2">
+																			<?php echo $this->Form->input('job',array(
+																				'label' => __('Job'),
+																				'type' => 'select',
+																				'options' => $option_jobs,
+																				'class' => "form-control sel_job",
+																				'div' => false,
+																				'style' => 'width:200px'
+																			)); ?>
+																			<button type="button" id="" class="md-trigger btn btn-primary" data-modal="modal-job"><i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Job') ?></button><button type="button" class="test">test</button>
+																		</div>
+																	</div>
+																</div>
+																	<button type="submit" class="btn btn-primary family_register_btn"><?= __('Add') ?></button>
+															<?php echo $this->Form->end(); ?>
+														</div>
+													</div>
+
 													<div class="table-responsive">
-														<table class="table table-bordered table-hover">
+														<?php echo $this->Form->create('Trainee', array(
+															'class' => 'form_trainee_edit',
+															'inputDefaults' => array(
+																'div' => false,
+																)
+														)); ?>
+														<?php echo $this->Form->hidden('id'); ?>
+															<table class="table table-bordered table-hover">
+																<thead>
+																	<tr>
+																		<th>姓名<span></span></th>
+																		<th class="text-center"><span>本人関係</span></th>
+																		<th class="text-center"><span>誕生日(年齢)</span></th>
+																		<th class="text-center"><span>職業</span></th>
+																		<th class="text-center"><span>電話番号</span></th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr data-family-id="1">
+																		<td class="editable_td">
+																			otousan
+																		</td>
+																		<td>
+																			father
+																		</td>
+																		<td>
+																			1989年04月04 (26)
+																		</td>
+																		<td>
+																			jobjobjobjob
+																		</td>
+																		<td>
+																			015676792
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														<?php echo $this->Form->end(); ?>
+													</div>
+												</div>
+												<div class="tab-pane fade" id="tab-profile-career">
+													<div class="table-responsive">
+														<?php echo $this->Form->create('Trainee', array(
+															'class' => 'form_trainee_edit',
+															'inputDefaults' => array(
+																'div' => false,
+																)
+														)); ?>
+														<?php echo $this->Form->hidden('id'); ?>
+															<table class="table table-bordered table-hover">
+																<thead>
+																	<tr>
+																		<th ><span></span></th>
+																		<th class="text-center" style="width:45%"><span>日本語</span></th>
+																		<th class="text-center" style="width:45%"><span>English</span></th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr>
+																		<td rowspan="4">
+																			学歴
+																		</td>
+																		<td class="td_first_block">
+																			<label for="">学校名</label>
+																			<input class="form-control" type="text" name="" value="中央大学法学部">
+																		</td>
+																		<td>
+																			<div class="form-group">
+																				<div class="row">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">From</label>
+																						<input class="form-control" type="month" name="" value="2006-04">
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">To</label>
+																						<input class="form-control" type="month" name="" value="2007-04" >
+																					</div>
+																				</div>
+																			</div>
+																			<label for="">Shool</label>
+																			<input class="form-control" type="text" name="" value="Chuo University">
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="td_first_block">
+																			<label for="">学校名</label>
+																			<input class="form-control" type="text" name="" value="オオサカ高校">
+																		</td>
+																		<td>
+																			<div class="form-group">
+																				<div class="row">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">From</label>
+																						<input class="form-control" type="month" name="" value="2006-04">
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">To</label>
+																						<input class="form-control" type="month" name="" value="2007-04" >
+																					</div>
+																				</div>
+																			</div>
+																			<label for="">Shool</label>
+																			<input class="form-control" type="text" name="" value="Chuo University">
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="td_first_block">
+																			<label for="">学校名</label>
+																			<input class="form-control" type="text" name="" value="オオサカ中学校">
+																		</td>
+																		<td>
+																			<div class="form-group">
+																				<div class="row">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">From</label>
+																						<input class="form-control" type="month" name="" value="2006-04">
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">To</label>
+																						<input class="form-control" type="month" name="" value="2007-04" >
+																					</div>
+																				</div>
+																			</div>
+																			<label for="">Shool</label>
+																			<input class="form-control" type="text" name="" value="Chuo University">
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="td_first_block">
+																			<label for="">学校名</label>
+																			<input class="form-control" type="text" name="" value="オオサカ小学校">
+																		</td>
+																		<td>
+																			<div class="form-group">
+																				<div class="row">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">From</label>
+																						<input class="form-control" type="month" name="" value="2006-04">
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">To</label>
+																						<input class="form-control" type="month" name="" value="2007-04" >
+																					</div>
+																				</div>
+																			</div>
+																			<label for="">Shool</label>
+																			<input class="form-control" type="text" name="" value="Chuo University">
+																		</td>
+																	</tr>
+																	<tr>
+																		<td rowspan="5">
+																			職歴
+																		</td>
+																		<td class="td_first_block">
+																			<div class="form-group">
+																				<label for="">会社名</label>
+																				<input class="form-control" type="text" name="" value="Rikuyo Japan Traning Center">
+																			</div>
+																			<div class="row">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">職業</label>
+																						<input class="form-control" type="text" name="" value="">
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">基本給</label>
+																						<input class="form-control" type="text" name="" value="">
+																					</div>
+																			</div>
+																		</td>
+																		<td>
+																			<div class="form-group">
+																				<div class="row">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">From</label>
+																						<input class="form-control" type="month" name="" value="2006-04">
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">To</label>
+																						<input class="form-control" type="month" name="" value="2007-04" >
+																					</div>
+																				</div>
+																			</div>
+																			<label for="">Company</label>
+																			<input class="form-control" type="text" name="" value="Chuo University">
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="td_first_block">
+																			<div class="form-group">
+																				<label for="">会社名</label>
+																				<input class="form-control" type="text" name="" value="Rikuyo Japan Traning Center">
+																			</div>
+																			<div class="row">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">職業</label>
+																						<input class="form-control" type="text" name="" value="">
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">基本給</label>
+																						<input class="form-control" type="text" name="" value="">
+																					</div>
+																			</div>
+																		</td>
+																		<td>
+																			<div class="form-group">
+																				<div class="row">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">From</label>
+																						<input class="form-control" type="month" name="" value="2006-04">
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">To</label>
+																						<input class="form-control" type="month" name="" value="2007-04" >
+																					</div>
+																				</div>
+																			</div>
+																			<label for="">Company</label>
+																			<input class="form-control" type="text" name="" value="Chuo University">
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="td_first_block">
+																			<div class="form-group">
+																				<label for="">会社名</label>
+																				<input class="form-control" type="text" name="" value="Rikuyo Japan Traning Center">
+																			</div>
+																			<div class="row">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">職業</label>
+																						<input class="form-control" type="text" name="" value="">
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">基本給</label>
+																						<input class="form-control" type="text" name="" value="">
+																					</div>
+																			</div>
+																		</td>
+																		<td>
+																			<div class="form-group">
+																				<div class="row">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">From</label>
+																						<input class="form-control" type="month" name="" value="2006-04">
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">To</label>
+																						<input class="form-control" type="month" name="" value="2007-04" >
+																					</div>
+																				</div>
+																			</div>
+																			<label for="">Company</label>
+																			<input class="form-control" type="text" name="" value="Chuo University">
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="td_first_block">
+																			<div class="form-group">
+																				<label for="">会社名</label>
+																				<input class="form-control" type="text" name="" value="Rikuyo Japan Traning Center">
+																			</div>
+																			<div class="row">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<label for="">職業</label>
+																					<input class="form-control" type="text" name="" value="">
+																				</div>
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<label for="">基本給</label>
+																					<input class="form-control" type="text" name="" value="">
+																				</div>
+																			</div>
+																		</td>
+																		<td>
+																			<div class="form-group">
+																				<div class="row">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">From</label>
+																						<input class="form-control" type="month" name="" value="2006-04">
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">To</label>
+																						<input class="form-control" type="month" name="" value="2007-04" >
+																					</div>
+																				</div>
+																			</div>
+																			<label for="">Company</label>
+																			<input class="form-control" type="text" name="" value="Chuo University">
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="td_first_block">
+																			<div class="form-group">
+																				<label for="">会社名</label>
+																				<input class="form-control" type="text" name="" value="Rikuyo Japan Traning Center">
+																			</div>
+																			<div class="row">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">職業</label>
+																						<input class="form-control" type="text" name="" value="">
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">基本給</label>
+																						<input class="form-control" type="text" name="" value="">
+																					</div>
+																			</div>
+																		</td>
+																		<td>
+																			<div class="form-group">
+																				<div class="row">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">From</label>
+																						<input class="form-control" type="month" name="" value="2006-04">
+																					</div>
+																					<div class="col-lg-6 col-md-6 col-sm-6">
+																						<label for="">To</label>
+																						<input class="form-control" type="month" name="" value="2007-04" >
+																					</div>
+																				</div>
+																			</div>
+																			<label for="">Company</label>
+																			<input class="form-control" type="text" name="" value="Chuo University">
+																		</td>
+
+																	</tr>
+																	<tr>
+																		<td rowspan="2">
+																			経歴 職歴
+																		</td>
+																		<td>
+																			縫製 職 1年
+																		</td>
+																		<td>
+																			<div class="form-group">
+																				<div class="col-lg-4 col-md-4 col-sm-4">
+																					<label for="">Position</label>
+																					<select name="" class="sel_job form-control">
+																						<option value="sewing">Sewing</option>
+																					</select>
+																				</div>
+																				<div class="col-lg-3 col-md-3 col-sm-3">
+																					<label for="">For</label>
+																					<input type="text" name="" value="" class="form-control"> Year(s)
+																				</div>
+																				<button type="button" id="" class="md-trigger btn btn-primary mrg-b-lg pull-right mT15" data-modal="modal-job"><i class="fa fa-plus-circle fa-lg"></i> 職種を追加</button>
+																			</div>
+																		</td>
+
+																	</tr>
+																	<tr>
+																		<td class="td_first_block">
+																			縫製 職 1年
+																		</td>
+																		<td>
+																			<div class="form-group">
+																				<div class="col-lg-4 col-md-4 col-sm-4">
+																					<label for="">Position</label>
+																					<select name="" class="sel_job form-control">
+																						<option value="sewing">Sewing</option>
+																					</select>
+																				</div>
+																				<div class="col-lg-3 col-md-3 col-sm-3">
+																					<label for="">For</label>
+																					<input type="text" name="" value="" class="form-control"> Year(s)
+																				</div>
+																				<button type="button" id="" class="md-trigger btn btn-primary mrg-b-lg pull-right mT15" data-modal="modal-job"><i class="fa fa-plus-circle fa-lg"></i> 職種を追加</button>
+																			</div>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			訪日経験
+																		</td>
+																		<td>
+																			有 2015/04/04 ～ 2015/06/06
+																		</td>
+																		<td>
+																			<div class="form-group">
+																				<div class="row">
+																					<div class="col-lg-4 col-md-4 col-sm-4">
+																						<label for="">Visited Japan?</label>
+																						<select class="form-control" name="" id="">
+																							<option value="yes" selected>Yes</option>
+																							<option value="no">No</option>
+																						</select>
+																					</div>
+																				</div>
+																			</div>
+																			<div class="row">
+																				<div class="form-group">
+																						<div class="col-lg-6 col-md-6 col-sm-6">
+																							<label for="">From</label>
+																							<input class="form-control" type="date" name="" value="2006-04">
+																						</div>
+																						<div class="col-lg-6 col-md-6 col-sm-6">
+																							<label for="">To</label>
+																							<input class="form-control" type="date" name="" value="2007-04" >
+																						</div>
+																				</div>
+																			</div>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+															<div class="profile-message-btn center-block text-right">
+																<button type="submit" class="btn btn-default">
+																	<i class="fa fa-pencil"></i>
+																	<?= __('Save') ?>
+																</button>
+															</div>
+														<?php echo $this->Form->end(); ?>
+													</div>
+												</div>
+												<div class="tab-pane fade" id="tab-profile-others">
+													<div class="table-responsive">
+														<?php echo $this->Form->create('Trainee', array(
+															'class' => 'form_trainee_edit',
+															'inputDefaults' => array(
+																'div' => false,
+																)
+														)); ?>
+														<?php echo $this->Form->hidden('id'); ?>
+															<table class="table table-bordered table-hover">
+																<thead>
+																	<tr>
+																		<th ><span></span></th>
+																		<th class="text-center"><span>日本語</span></th>
+																		<th class="text-center"><span>English</span></th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr>
+																		<td>
+																			来日の目的
+																		</td>
+																		<td>
+																			<textarea class="form-control" rows="2" name=""></textarea>
+																		</td>
+																		<td>
+																			<textarea class="form-control" rows="2" name=""></textarea>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>
+																			日本にいる親戚、兄弟、友達
+																		</td>
+																		<td>
+																			<div class="col-lg-6 col-md-6 col-sm-6">無</div>
+																			<div class="col-lg-6 col-md-6 col-sm-6">
+																				<label for="">関係</label>
+																				<input class="form-control" type="text" name="" value="" placeholder="">
+																			</div>
+																		</td>
+																		<td>
+																			<div class="row">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																				<label for=""></label>
+																					<select class="form-control" name="">
+																						<option value="0">Nothing</option>
+																						<option value="1">Have</option>
+																					</select>
+																				</div>
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<label>Relationship</label>
+																					<input class="form-control" type="text" name="" value="" placeholder="">
+																				</div>
+																			</div>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>帰国後の予定</td>
+																		<td>
+																			<textarea class="form-control" rows="2" name=""></textarea>
+																		</td>
+																		<td>
+																			<textarea class="form-control" rows="2" name=""></textarea>
+																		</td>
+																	</tr>
+																	<tr>
+																		<td>3年後希望の金額</td>
+																		<td>
+																			<input class="form-control" type="text" name="" value="" placeholder="">
+																		</td>
+																		<td></td>
+																	</tr>
+																	<tr>
+																		<td>帰国後の状況</td>
+																		<td><textarea class="form-control" name="" rows="3"></textarea></td>
+																		<td><textarea class="form-control" name="" rows="3"></textarea></td>
+																	</tr>
+																</tbody>
+															</table>
+															<div class="profile-message-btn center-block text-right">
+															<button type="submit" class="btn btn-default">
+																<i class="fa fa-pencil"></i>
+																<?= __('Save') ?>
+															</button>
+														</div>
+
+														<?php echo $this->Form->end(); ?>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+
+								<div class="tab-pane fade" id="tab-documents">
+									<div id="documents">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="main-box clearfix">
+												<header class="main-box-header clearfix">
+													<h2>アップロードファイル一覧</h2>
+												</header>
+
+												<div class="main-box-body clearfix">
+													<div id="" class="main-box-body">
+															<form action="traineeDocument/add" method="post" accept-charset="utf-8" enctype="multipart/form-data" class="form-inline">
+																<div class="form-group">
+																	<input type="file" name="" value="" placeholder="">
+																</div>
+																<div class="form-group">
+																	<input type="text" class="form-control" name="" value="" placeholder="ファイル名(日本語)を入力">
+																</div>
+																<div class="form-group">
+																	<input type="text" class="form-control" name="" value="" placeholder="ファイル名(英語)を入力">
+																</div>
+																<a href="#upload" type="submit" class="btn btn-success"><i class="fa fa-cloud-upload"></i> ファイルをアップロード</a>
+															</form>
+													</div>
+													<div class="table-responsive story-images">
+														<table class="table table-striped table-hover">
 															<thead>
 																<tr>
-																	<th></th>
-																	<th></th>
+																	<th><span>ファイル名</span></th>
+																	<th><span></span></th>
 																</tr>
 															</thead>
 															<tbody>
 																<tr>
-																	<td>Medical Checkup</td>
 																	<td>
-																		<div class="form-group">
-																			<div class="col-lg-4 col-md-4 col-sm-4">
-																				<label for="medical_chk">状況</label>
-																				<select id="medical_chk" class="form-control" name="trainee_document_medical">
-																					<option value="">-</option>
-																					<option value="2">OK</option>
-																				</select>
-																			</div>
-																			<div class="col-lg-8 col-md-8 col-sm-8">
-																				<label for="medical_chk_note">備考</label>
-																				<input id="medical_chk_note" class="form-control" type="text" name="trainee_document_medical" value="" placeholder="">
-																			</div>
-																		</div>
+																		<a href="img/samples/CV_JP.jpg" class="story-image-link">Jack Nicholson</a>
 																	</td>
-																</tr>
-																<tr>
-																	<td rowspan="2">ID Card</td>
-																	<td>
-																		<div class="row">
-																			<div class="form-group">
-																				<div class="col-lg-4 col-md-4 col-sm-4">
-																					<label for="medical_chk">状況</label>
-																					<select class="form-control"  name="trainee_document_id">
-																						<option value="">-</option>
-																						<option value="1">機関待ち</option>
-																						<option value="2">OK</option>
-																					</select>
-																				</div>
-																				<div class="col-lg-8 col-md-8 col-sm-8">
-																					<label for="medical_chk_note">備考</label>
-																					<input class="form-control"  type="text" name="" value="" placeholder="">
-																				</div>
-																			</div>
-																		</div>
+																	<td class="text-center">
+																		<a href="#" class="table-link">
+																			<i class="fa fa-pencil"></i>
+																		</a>
+																		<a href="#" class="table-link red">
+																			<i class="fa fa-trash-o"></i>
+																		</a>
 																	</td>
 																</tr>
 																<tr>
 																	<td>
-																		<div class="row">
-																			<div class="form-group">
-																				<div class="col-lg-4 col-md-4 col-sm-4">
-																					<label for="">FB</label>
-																					<select class="form-control"  name="trainee_document_id">
-																						<option value="">-</option>
-																						<option value="1">機関待ち</option>
-																						<option value="2">OK</option>
-																					</select>
-																				</div>
-																				<div class="col-lg-4 col-md-4 col-sm-4">
-																					<label for="">RB</label>
-																					<select class="form-control"  name="trainee_document_id">
-																						<option value="">-</option>
-																						<option value="1">機関待ち</option>
-																						<option value="2">OK</option>
-																					</select>
-																				</div>
-																				<div class="col-lg-4 col-md-4 col-sm-4">
-																					<label for="">CB</label>
-																					<select class="form-control"  name="trainee_document_id">
-																						<option value="">-</option>
-																						<option value="1">機関待ち</option>
-																						<option value="2">OK</option>
-																					</select>
-																				</div>
-																			</div>
-																		</div>
+																		<a href="img/samples/CV_EN.jpg" class="story-image-link story-image-link-small">Humphrey Bogart</a>
 																	</td>
-																</tr>
-																<tr>
-																	<td>Passport</td>
-																	<td>
-																		<div class="form-group">
-																			<div class="col-lg-4 col-md-4 col-sm-4">
-																				<label for="medical_chk">状況</label>
-																				<select class="form-control"  name="trainee_document_id">
-																					<option value="">-</option>
-																					<option value="1">機関待ち</option>
-																					<option value="2">OK</option>
-																				</select>
-																			</div>
-																			<div class="col-lg-8 col-md-8 col-sm-8">
-																				<label for="medical_chk_note">備考</label>
-																				<input class="form-control"  type="text" name="" value="" placeholder="">
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>COE</td>
-																	<td>
-																		<div class="form-group">
-																			<div class="col-lg-4 col-md-4 col-sm-4">
-																				<label for="medical_chk">状況</label>
-																				<select  class="form-control" name="trainee_document_id">
-																					<option value="">-</option>
-																					<option value="1">機関待ち</option>
-																					<option value="2">OK</option>
-																				</select>
-																			</div>
-																			<div class="col-lg-8 col-md-8 col-sm-8">
-																				<label for="medical_chk_note">備考</label>
-																				<input class="form-control"  type="text" name="" value="" placeholder="">
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>入管提出書類</td>
-																	<td>
-																		<div class="form-group">
-																			<div class="col-lg-4 col-md-4 col-sm-4">
-																				<label for="medical_chk">状況</label>
-																				<select class="form-control" name="trainee_document_id">
-																					<option value="">-</option>
-																					<option value="1">機関待ち</option>
-																					<option value="2">OK</option>
-																				</select>
-																			</div>
-																			<div class="col-lg-8 col-md-8 col-sm-8">
-																				<label for="medical_chk_note">備考</label>
-																				<input class="form-control" type="text" name="" value="" placeholder="">
-																			</div>
-																		</div>
-																	</td>
-																</tr>
-																<tr>
-																	<td>労働省提出書類</td>
-																	<td>
-																		<div class="form-group">
-																			<div class="col-lg-4 col-md-4 col-sm-4">
-																				<label for="medical_chk">状況</label>
-																				<select class="form-control" name="trainee_document_id">
-																					<option value="">-</option>
-																					<option value="1">機関待ち</option>
-																					<option value="2">OK</option>
-																				</select>
-																			</div>
-																			<div class="col-lg-8 col-md-8 col-sm-8">
-																				<label for="medical_chk_note">備考</label>
-																				<input class="form-control" type="text" name="" value="" placeholder="">
-																			</div>
-																		</div>
+																	<td class="text-center">
+																		<a href="#" class="table-link">
+																			<i class="fa fa-pencil"></i>
+																		</a>
+																		<a href="#" class="table-link red">
+																			<i class="fa fa-trash-o"></i>
+																		</a>
 																	</td>
 																</tr>
 															</tbody>
 														</table>
-														<a type="button" class="btn btn-default pull-right" style="margin-top:-15px;"><span class=" fa fa-file"></span> 保存</a>
 													</div>
-
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
+				<!--
+				//getImages()というメソッドを使い、$images[]に画像を格納して
+				予め準備しておいた
+				//<ul>内にforeachで回していく。
+				//<li> <a href="<?php //echo basename(IMAGES_DIR).'/'.basename($image);;?>"> //basename(IMAGE_DIR) =>
+				 -->
+				<!-- 画像アップロード処理
+				//画像を入れるフォルダ img/trainee/
+				//サムネイルを入れるフォルダ img/trainee/thumbs/
+				//パーミッションは755に
+				<form action="" enctype="multipart/form-data" id="upload_form"> <=jquery用にidをセット
+				<input type="hidden" name="MAX_FILE_SIZE" value="<?php //echo h(MAX_FILESIZE);?>" defineでMAX_FILE_SIZEを作成し、ファイルの最大容量(10*1024*1024=10MB)を設定
+				<input type="file" name="image" id="upload_file"> //jquery用にidをセット
+				<script>
+				$(function(){ //input#upload_fileの中身がchangeしたら、#upload_formをsubmit
+					$('#upload_file').on('change', function(){$('#upload_form').submit();});
+				})
+				</script>
+				 -->
 
-								<div class="col-lg-12 col-md-12 col-sm-12">
+								<div class="tab-pane fade" id="tab-interview">
+									<div class="">
+										<div class="table-responsive">
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th class="text-center" ><span>面接日時</span></th>
+														<th class="text-center" ><span>面接番号</span></th>
+														<th class="text-center"><span>企業</span></th>
+														<th class="text-center"><span>組合</span></th>
+														<th class="text-center" ><span>結果</span></th>
+														<th class="text-center" ><span></span></th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															2015/12/16 10:00
+														</td>
+														<td><a href="interview-order-detail.html" title="">0001</a></td>
+														<td>
+															<a href="company-profile.html" title="">山本株式会社</a>
+														</td>
+														<td class="text-center">
+															<a href="association-profile.html">山本組合</a>
+														</td>
+														<td class="text-center">
+															未了
+														</td>
+														<td class="text-center">
+															<a href="#" class="table-link">
+																<i class="fa fa-pencil"></i>
+															</a>
+															<a href="#" class="table-link red">
+																<i class="fa fa-trash-o"></i>
+															</a>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															2015/12/05 10:00
+														</td>
+														<td><a href="interview-order-detail.html" title="">0002</a></td>
+														<td>
+															<a href="company-profile.html" title="">山本株式会社</a>
+														</td>
+														<td class="text-center">
+															<a href="association-profile.html">山本組合</a>
+														</td>
+														<td class="text-center">
+															合格
+														</td>
+														<td class="text-center">
+															<a href="#" class="table-link">
+																<i class="fa fa-pencil"></i>
+															</a>
+															<a href="#" class="table-link red">
+																<i class="fa fa-trash-o"></i>
+															</a>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															2015/11/16 10:00
+														</td>
+														<td><a href="interview-order-detail.html" title="">0003</a></td>
+														<td>
+															<a href="company-profile.html" title="">山本株式会社</a>
+														</td>
+														<td class="text-center">
+															<a href="association-profile.html">山本組合</a>
+														</td>
+														<td class="text-center">
+															不合格
+														</td>
+														<td class="text-center">
+															<a href="#" class="table-link">
+																<i class="fa fa-pencil"></i>
+															</a>
+															<a href="#" class="table-link red">
+																<i class="fa fa-trash-o"></i>
+															</a>
+														</td>
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="tab-finance">
 									<div class="main-box clearfix">
 										<div class="tabs-wrapper profile-tabs">
 											<ul class="nav nav-tabs">
-												<li class="active"><a href="#tab-profile" data-toggle="tab">履歴書</a></li>
-												<li><a href="#tab-documents" data-toggle="tab">書類</a></li>
-												<li><a href="#tab-interview" data-toggle="tab">面接記録</a></li>
-												<li><a href="#tab-tuition" data-toggle="tab">入金記録</a></li>
-												<li><a href="#tab-chat" data-toggle="tab">生徒の声</a></li>
+												<li class="active"><a href="#tab-school" data-toggle="tab">学費</a></li>
+												<li><a href="#tab-microfinance" data-toggle="tab">マイクロファイナンス</a></li>
 											</ul>
-
 											<div class="tab-content">
-												<div class="tab-pane fade in active" id="tab-profile">
-													<div class="main-box clearfix">
-														<div class="tabs-wrapper profile-tabs">
-															<ul class="nav nav-tabs">
-																<li class="active"><a href="#tab-profile-basic" data-toggle="tab">基本情報</a></li>
-																<li><a href="#tab-profile-character" data-toggle="tab">個性</a></li>
-																<li><a href="#tab-profile-family" data-toggle="tab">家族</a></li>
-																<li><a href="#tab-profile-career" data-toggle="tab">経歴</a></li>
-																<li><a href="#tab-profile-others" data-toggle="tab">その他</a></li>
-															</ul>
-
-															<div class="tab-content">
-																<div class="tab-pane fade in active" id="tab-profile-basic">
-																	<div class="table-responsive">
-																		<form action="trainee-profile/edit" class="form_trainee_edit" method="post" accept-charset="utf-8">
-																			<table class="table table-bordered table-hover">
-																				<thead>
-																					<tr>
-																						<th style="width:100px;"><span></span></th>
-																						<th class="text-center" style="width:30%;"><span>日本語</span></th>
-																						<th class="text-center" style="width:35%;"><span>English</span></th>
-																						<th class="text-center" style="width:30%;"><span>Khmer</span></th>
-																					</tr>
-																				</thead>
-																				<tbody>
-																					<tr>
-																						<td>
-																							実習生ID
-																						</td>
-																						<td>
-																							T1408052
-																						</td>
-																						<td>
-
-																						</td>
-																						<td>
-
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							身分証明書番号
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="" placeholder="">
-																						</td>
-																						<td>
-
-																						</td>
-																						<td>
-
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							名前
-																						</td>
-																						<td>
-																							<div class="row">
-																								<div class="form-group">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="family_name_jp">名字</label>
-																										<input class="form-control" id="family_name_jp" type="text" name="" value="ヤマモト" placeholder="">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="given_name_jp">名前</label>
-																										<input class="form-control" id="given_name_jp" type="text" name="" value="タカヒロ" placeholder="">
-																									</div>
-																								</div>
-																							</div>
-																						</td>
-																						<td>
-																							<div class="row">
-																								<div class="form-group">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="given_name_en">Given Name</label>
-																										<input class="form-control" id="given_name_en" type="text" name="" value="Takahiro" placeholder="">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="family_name_en">Family Name</label>
-																										<input class="form-control" id="family_name_en" type="text" name="" value="Yamamoto" placeholder="">
-																									</div>
-																								</div>
-																							</div>
-																						</td>
-																						<td>
-																							<div class="row">
-																								<div class="form-group">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="given_name_kh">Given Name(Khmer)</label>
-																										<input class="form-control" id="given_name_kh" type="text" name="" value="តាកាហិរោ" placeholder="">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="family_name_kh">Family Name(Khmer)</label>
-																										<input class="form-control" id="family_name_kh" type="text" name="" value="យាមាមោតោ" placeholder="">
-																									</div>
-																								</div>
-																							</div>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>紹介元</td>
-																						<td></td>
-																						<td><input class="form-control" type="text" name="" value="" placeholder=""></td>
-																					</tr>
-																					<tr>
-																						<td>
-																							性別
-																						</td>
-																						<td>
-																							男
-																						</td>
-																						<td>
-																							<select class="form-control" name="" id="">
-																								<option value="male">Male</option>
-																								<option value="female">Female</option>
-																							</select>
-																						</td>
-																						<td>
-																							បុរស
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							誕生日
-																						</td>
-																						<td>
-																							1987年5月22日(28歳)
-																						</td>
-																						<td>
-																							<input class="form-control" type="date" name="" value="1987-05-05">
-																						</td>
-																						<td>
-																							22/05/1987(29)
-																						</td>
-																					</tr>
-
-																					<tr>
-																						<td>
-																							結婚
-																						</td>
-																						<td>
-																							既婚
-																						</td>
-																						<td>
-																							<select class="form-control" name="">
-																								<option value="married" selected>Married</option>
-																								<option value="single">Single</option>
-																							</select>
-																						</td>
-																						<td>
-
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							兄弟
-																						</td>
-																						<td>
-
-																						</td>
-																						<td>
-																							<div class="row">
-																								<div class="form-group">
-																									<div class="col-lg-4 col-md-4 col-sm-4">
-																										<input class="form-control" id="brother_cnt" type="number" name="" value="5" min="0">
-																										<label class="pull-right" for="brother_cnt">人</label>
-																									</div>
-																									<div class="col-lg-4 col-md-4 col-sm-4">
-																										<input class="form-control" id="brother_index" type="number" name="" value="3" min="0">
-																										<label  class="pull-right" for="brother_index">番目</label>
-																									</div>
-																								</div>
-																							</div>
-																						</td>
-																						<td>
-
-																						</td>
-																					</tr>
-
-																					<tr>
-																						<td>
-																							出生地
-																						</td>
-																						<td>
-
-																						</td>
-																						<td>
-																							<div class="form-group form-group-select2">
-																								<label for="addressProvinceEn">Province</label>
-																								<select  id="birthPlaceProvinceEn" name="birthPlaceProvinceEn" class="form-control">
-																									<option value="15">Phnom Penh</option>
-																									<option value="1">Banteay Meanchey</option>
-																									<option value="2">Battambang</option>
-																									<option value="3">Kampong Cham</option>
-																									<option value="4">Kampong Chhnang</option>
-																									<option value="5">Kampong Speu</option>
-																									<option value="6">Kampong Thom</option>
-																									<option value="7">Kampot</option>
-																									<option value="8">Kandal</option>
-																									<option value="9">Kep</option>
-																									<option value="10">Koh Kong</option>
-																									<option value="11">Kratie</option>
-																									<option value="12">Mondol Kiri</option>
-																									<option value="13">Otdar Meanchey</option>
-																									<option value="14">Pailin</option>
-																									<option value="15">Phnom Penh</option>
-																									<option value="16">Preah Sihanouk</option>
-																									<option value="17">Preah Vihear</option>
-																									<option value="18">Prey Veng</option>
-																									<option value="19">Pursat</option>
-																									<option value="20">Ratanak Kiri</option>
-																									<option value="21">Siem Reap</option>
-																									<option value="22">Stung Treng</option>
-																									<option value="23">Svay Rieng</option>
-																									<option value="24">Takeo</option>
-																									<option value="25">Tbong Khmum</option>
-																								</select>
-																							</div>
-																						</td>
-																						<td>
-
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							現住所
-																						</td>
-																						<td>
-
-																							<div class="form-group mB5">
-																								<label for="addressProvinceJp">州・県</label>
-																								<input class="form-control" type="text" name="" value="プノンペン" placeholder="">
-																							</div>
-																							<div class="form-group mB5">
-																								<label for="addressDistrictJp">市</label>
-																								<input class="form-control" type="text" name="" value="トゥールコーク" placeholder="">
-																							</div>
-																							<div class="form-group mB5">
-																								<label for="addressCommuneJp">地区</label>
-																								<input class="form-control" type="text" name="" value="ボエンカクピー" placeholder="">
-																							</div>
-																							<div class="form-group mB5">
-																								<label for="addressJp">住所(地区以下、通り、番号、建物)</label>
-																								<input class="form-control" type="text" name="" value="バンケンコン1 マリン9999" placeholder="">
-																							</div>
-																							<div class="form-group mB5">
-																								<label for="district_part">地方</label>
-																								<input class="form-control" type="text" name="" value="中部" placeholder="" >
-																							</div>
-																						</td>
-																						<td>
-																							<div class="form-group form-group-select2">
-																								<label for="addressProvinceEn">Province</label>
-																								<select  id="addressProvinceEn" name="addressProvinceEn" class="form-control" style="width:100%">
-																									<option value="15">Phnom Penh</option>
-																									<option value="1">Banteay Meanchey</option>
-																									<option value="2">Battambang</option>
-																									<option value="3">Kampong Cham</option>
-																									<option value="4">Kampong Chhnang</option>
-																									<option value="5">Kampong Speu</option>
-																									<option value="6">Kampong Thom</option>
-																									<option value="7">Kampot</option>
-																									<option value="8">Kandal</option>
-																									<option value="9">Kep</option>
-																									<option value="10">Koh Kong</option>
-																									<option value="11">Kratie</option>
-																									<option value="12">Mondol Kiri</option>
-																									<option value="13">Otdar Meanchey</option>
-																									<option value="14">Pailin</option>
-																									<option value="15">Phnom Penh</option>
-																									<option value="16">Preah Sihanouk</option>
-																									<option value="17">Preah Vihear</option>
-																									<option value="18">Prey Veng</option>
-																									<option value="19">Pursat</option>
-																									<option value="20">Ratanak Kiri</option>
-																									<option value="21">Siem Reap</option>
-																									<option value="22">Stung Treng</option>
-																									<option value="23">Svay Rieng</option>
-																									<option value="24">Takeo</option>
-																									<option value="25">Tbong Khmum</option>
-																								</select>
-																							</div>
-																							<div class="form-group form-group-select2">
-																								<label for="addressDistrictEn">District</label>
-																								<select id="addressDistrictEn" name="addressDistrictEn" class="form-control" style="width:100%" >
-																									<option province="15" value="108">Tuol Kouk</option>
-																								</select>
-																							</div>
-																							<div class="form-group form-group-select2">
-																								<label for="addressCommuneEn">Commune</label>
-																								<select id="addressCommuneEn" name="addressCommuneEn" class="form-control" style="width:100%" >
-																									<option district_code="108" value="876">Boeng Kak Pir</option>
-																								</select>
-																							</div>
-																							<div class="form-group mB5">
-																								<label for="addressEn">Address(No, Street, Village, English)</label>
-																								<input type="text" class="form-control" id="addressEn" placeholder="">
-																							</div>
-																							<div class="form-group mB5">
-																								<label for="district_part">District Area</label>
-																								<input class="form-control mB5" type="text" name="" value="Center" placeholder="" >
-																							</div>
-																						</div>
-
-																						</td>
-																						<td>
-																							ភ្នែកតូច
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							電話番号
-																						</td>
-																						<td>
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="0120-22-2525">
-
-																						</td>
-																						<td>
-
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							外国語
-																						</td>
-																						<td>
-																							日本語、英語
-																							<input class="form-control mT10" type="text" name="language_other_jp" value="">
-																							<label for="language_other_jp"> その他</label>
-																						</td>
-																						<td>
-																							<label for="language1">
-																							<input class="" type="checkbox" name="language1" value="japanese" checked> Japanese</label>
-																							<label for="language2">
-																							<input class="" type="checkbox" name="language2" value="english" checked> English</label>
-
-																							<input class="form-control" type="text" name="language_other_en" value=""><label for="language_other_en"> others</label>
-
-																						</td>
-																						<td>
-
-																						</td>
-																					</tr>
-
-																					<tr>
-																						<td>
-																							Facebook
-																						</td>
-																						<td>
-																							<a href="http://www.facebook.com/takahiro.j.yamamoto" target="_blank" title="">takahiro.j.yamamoto</a>
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="http://www.facebook.com/takahiro.j.yamamoto" style="font-size:10px;">
-																						</td>
-																						<td>
-																						</td>
-																					</tr>
-
-
-																				</tbody>
-																			</table>
-																			<div class="profile-message-btn center-block text-right">
-																				<a href="#" class="btn btn-default">
-																					<i class="fa fa-pencil"></i>
-																					変更を保存
-																				</a>
-																			</div>
-																		</form>
-																	</div>
-
-																</div>
-																<div class="tab-pane fade" id="tab-profile-character">
-																	<div class="table-responsive">
-																		<form action="trainee-profile/edit" class="form_trainee_edit" method="post" accept-charset="utf-8">
-																			<table class="table table-bordered table-hover">
-																				<thead>
-																					<tr>
-																						<th><span></span></th>
-																						<th class="text-center"><span>日本語</span></th>
-																						<th class="text-center"><span>English</span></th>
-																					</tr>
-																				</thead>
-																				<tbody>
-																					<tr>
-																						<td>
-																							身長
-																						</td>
-																						<td>
-																							<input class="form-control" type="number" name="" value="200" class="number" style="width:100px">cm
-																						</td>
-																						<td>
-
-																						</td>
-
-																					<tr>
-																						<td>
-																							体重
-																						</td>
-																						<td>
-																							<input class="form-control" type="number" name="" value="50" class="number" style="width:100px">kg
-																						</td>
-																						<td>
-
-																						</td>
-
-																					<tr>
-																						<td>
-																							靴のサイズ
-																						</td>
-																						<td>
-																							<input class="form-control" type="number" name="" value="25" class="number" style="width:100px">cm
-																						</td>
-																						<td>
-
-																						</td>
-
-																					<tr>
-																						<td>
-																							顔の特徴
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="つぶらな瞳">
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="small eyes, big voice">
-																						</td>
-
-																					</tr>
-																					<tr>
-																						<td>
-																							利き手
-																						</td>
-																						<td>
-																							右手
-																						</td>
-																						<td>
-																							<select class="form-control" name="">
-																								<option value="right" selected>Right</option>
-																								<option value="left">Left</option>
-																							</select>
-																						</td>
-
-																					</tr>
-																					<tr>
-																						<td>
-																							視力
-																						</td>
-																						<td>
-
-																						</td>
-																						<td>
-																							<div class="form-group">
-																								<div class="col-lg-6 col-md-6 col-sm-6">
-																									<label for="eyesightLeft">左</label>
-																									<input id="eyesightLeft" class="form-control"  type="number" name="" value="" class="number" step="0.01" style="width:100px">
-																								</div>
-																								<div class="col-lg-6 col-md-6 col-sm-6">
-																									<label for="eyesightRight">右</label>
-																									<input id="eyesightRight" class="form-control" type="number" name="" class="number" step="0.01" style="width:100px">
-																								</div>
-																							</div>
-																						</td>
-																					</tr>
-
-																					<tr>
-																						<td>
-																							色盲
-																						</td>
-																						<td>
-
-																						</td>
-																						<td>
-																							<select class="form-control" name="">
-																								<option value="yes" >有</option>
-																								<option value="no">無</option>
-																							</select>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							健康<br>(肝炎B,エイズ)
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="陰性">
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="negative">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							血液型
-																						</td>
-																						<td>
-
-																						</td>
-																						<td>
-																							<select class="form-control" name="">
-																								<option value="A" >A</option>
-																								<option value="B">B</option>
-																								<option value="O">O</option>
-																								<option value="AB">AB</option>
-																								<option value="unkown">不明</option>
-																							</select>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							入れ墨
-																						</td>
-																						<td>
-																						</td>
-																						<td>
-																							<select class="form-control" name="">
-																								<option value="yes" >有</option>
-																								<option value="no">無</option>
-																							</select>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							タバコ
-																						</td>
-																						<td>
-																						</td>
-																						<td>
-																							<select class="form-control" name="">
-																								<option value="yes" >有</option>
-																								<option value="no">無</option>
-																							</select>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							お酒
-																						</td>
-																						<td>
-																						</td>
-																						<td>
-																							<select class="form-control" name="">
-																								<option value="yes" >有</option>
-																								<option value="no">無</option>
-																							</select>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							団体ぐらしの経験
-																						</td>
-																						<td>
-																						</td>
-																						<td>
-																							<select class="form-control" name="">
-																								<option value="yes" >有</option>
-																								<option value="no">無</option>
-																							</select>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							長所
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="他人への気配りができる">
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="to pay careful attention to somebody">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							短所
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="内気">
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="shy">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							趣味
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="">
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							性格判断
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="">
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							専門
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="" placeholder="">
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="" placeholder="">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							宗教
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="仏教">
-																						</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="Buddhism">
-																						</td>
-																					</tr>
-																				</tbody>
-																			</table>
-																			<div class="profile-message-btn center-block text-right">
-																				<a href="#" class="btn btn-default">
-																					<i class="fa fa-pencil"></i>
-																					変更を保存
-																				</a>
-																			</div>
-																		</form>
-																	</div>
-																</div>
-																<div class="tab-pane fade" id="tab-profile-family">
-																	<div class="main-box">
-																		<header class="main-box-header clearfix">
-																			<h2>家族登録</h2>
-																		</header>
-																		<div class="main-box-body clearfix">
-																			<form action="/task/addAjax" class="form-group" id="" method="post" accept-charset="utf-8">
-																				<div style="display:none;">
-																					<input type="hidden" name="_method" value="POST">
+												<div class="tab-pane fade in active" id="tab-school">
+													<div class="main-box-body clearfix">
+														<div class="col-lg-12 col-md-12 col-sm-12">
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="main-box">
+																	<header class="main-box-header clearfix">
+																		<h2>入金予定登録</h2>
+																	</header>
+																	<div class="main-box-body clearfix">
+																		<form class="form" role="form">
+																			<div class="form-group">
+																				<label for="payScheduleDate">入金予定日</label>
+																				<div class="input-group">
+																					<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+																					<input type="date" class="form-control" id="payScheduleDate" placeholder="入金予定日" style="width: 200px;">
 																				</div>
-																				<div class="row">
-																					<div class="form-group col-lg-3 col-md-3 col-sm-3" style="">
+																			</div>
+																			<div class="form-group">
+																				<label for="paySheduleAmount">入金予定金額</label>
+																				<div class="input-group">
+																					<span class="input-group-addon">$</span>
+																					<input type="number" class="form-control" id="paySheduleAmount" placeholder="" size="5" style="width:100px">
+																				</div>
+																			</div>
+																			<button type="submit" class="btn btn-success">登録</button>
+																		</form>
+																	</div>
+																</div>
+															</div>
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="main-box">
+																	<header class="main-box-header clearfix">
+																		<h2>入金実績</h2>
+																	</header>
+																	<div class="main-box-body clearfix">
+																		<div class="form-group">
+																			<p>必要支払い金額: $5000</p>
+																			<p>支払い済み金額: $500</p>
+																			<p>残額: <span class="red">$4500</span></p>
+																		</div>
+																	</div>
+																</div>
+															</div>
 
-																						<label for="family_name_full" class="">姓名</label>
-
-																																								<!-- //新しいタスクを追加の処理
-																																								$('#new_todo_form').on('submit', function(){
-																					//taskを取得
-																					var task_var = $('#new_todo').val();
-																					//ajax処理
-																					$.post('_ajax.php', {
-																						task: task_var,
-																						mode: 'create',
-																						token: $('#token').val()
-																					}, function(res){ //自動発行されたid(lastInsertId())を取得してきてresに格納して持ってくる。
-																					//liを一番上に追加する
-																						var $li = $('#todo_template').clone();
-																						//$liにすることで、オブジェクトとしてあとでattrなどメソッドチェーンが利用できる。
-																						//.clone()によって、templateを引っ張ってこれる。
-																						$li
-																							.attr('id', 'todo_' + res.id) //liにid="todo_{lastInsertId()}"をattributeする。
-																							.data('id', res.id) //data-id="{lastInsertId()}"にする。
-																							.find('.todo_title').text(title); //li内の.todo_titleの中身(span)にtitleを挿入する。
-																						$('#todos').prepend($li.fadeIn()); ul#todosの直下に$liをprepend(挿入)する。
-																						$('#new_todo').val('').focus(); //入力した内容が削除されて、フォーカスが当たるようにする。
-																					});
-																					return false; //画面遷移させないようにするため。
-																																								});
-
-																																								 -->
-																						<input name="" id="new_family" class="form-control family_name_full" placeholder="" required="required">
+															<div class="table-responsive col-lg-12 col-md-12 col-sm-12">
+																<form action="" class="table form_finance">
+																	<table class="table table-bordered finance">
+																		<thead>
+																			<tr>
+																				<th class="text-center"><span>予定日</span></th>
+																				<th class="text-center"><span>予定金額</span></th>
+																				<th class="text-center"><span>入金記録</span></th>
+																				<th class="text-center"><span></span></th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td class="text-center td_first_block">
+																					2015/12/16
+																				</td>
+																				<td class="text-center">
+																					$ 500
+																				</td>
+																				<td>
+																					<div class="row">
+																						<div class="col-lg-4 col-md-4 col-sm-4">
+																							入金日 <input type="date" name="" value="2015-12-15" class="form-control">
+																						</div>
+																						<div class="col-lg-2 col-md-2 col-sm-2">
+																							入金金額: $ <input type="number" class="form-control" id="paySheduleAmount" value="500" size="5" >
+																						</div>
+																						<div class="col-lg-6 col-md-6 col-sm-6">
+																							備考 <input type="text" class="form-control" id="" value=""  >
+																						</div>
 																					</div>
-																					<div class="form-group col-lg-2 col-md-2 col-sm-2">
-																						<label for="" class="">本人関係</label>
-																						<select class="form-control" name="">
-																							<option value="father">父</option>
-																							<option value="mother">母</option>
-																							<option value="sister">姉</option>
-																							<option value="young_sister">妹</option>
-																							<option value="brother">兄</option>
-																							<option value="young_brother">弟</option>
-																							<option value="grandfather">祖父</option>
-																							<option value="grandmather">祖母</option>
+																					<button class="btn btn-default pull-right mT10">保存</button>
+																				</td>
+																				<td class="text-center">
+																					<a href="#" class="table-link">
+																						<i class="fa fa-pencil"></i>
+																					</a>
+																					<a href="#" class="table-link red">
+																						<i class="fa fa-trash-o"></i>
+																					</a>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="text-center td_first_block">
+																					2016/01/16
+																				</td>
+																				<td class="text-center">
+																					$ 500
+																				</td>
+																				<td>
+																					<div class="row">
+																						<div class="col-lg-4 col-md-4 col-sm-4">
+																							入金日 <input type="date" name="" value="2015-12-15" class="form-control">
+																						</div>
+																						<div class="col-lg-2 col-md-2 col-sm-2">
+																							入金金額: $ <input type="number" class="form-control" id="paySheduleAmount" value="500" size="5" >
+																						</div>
+																						<div class="col-lg-6 col-md-6 col-sm-6">
+																							備考 <input type="text" class="form-control" id="" value=""  >
+																						</div>
+																						<button class="btn btn-default pull-right mT10">保存</button>
+																					</div>
+																				</td>
+																				<td class="text-center td_first_block">
+																					<a href="#" class="table-link">
+																						<i class="fa fa-pencil"></i>
+																					</a>
+																					<a href="#" class="table-link red">
+																						<i class="fa fa-trash-o"></i>
+																					</a>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</form>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="tab-pane fade" id="tab-microfinance">
+													<div class="main-box-body clearfix">
+														<div class="col-lg-12 col-md-12 col-sm-12">
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="main-box">
+																	<header class="main-box-header clearfix">
+																		<h2>返済記録登録</h2>
+																	</header>
+																	<div class="main-box-body clearfix">
+																		<form class="form" role="form">
+																			<div class="row">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<div class="form-group">
+																						<label for="">返済月</label>
+																						<input type="month" class="form-control" name="" value="" placeholder="">
+																					</div>
+																				</div>
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<div class="form-group">
+																						<label for="">返済状況</label>
+																						<select class="form-control">
+																							<option value="0">未了</option>
+																							<option value="1">返済済み</option>
+																							<option value="2">請求中</option>
 																						</select>
 																					</div>
-																					<div class="form-group col-lg-3 col-md-3 col-sm-3">
-																						<label for="" class="">誕生日</label>
-																						<div class="input-group">
-																							<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-																							<input type="date" name="" class="form-control" placeholder="" style="" id="">
-																						</div>
-																					</div>
 																				</div>
-																				<div class="row">
-																					<div class="form-group col-lg-4 col-md-4 col-sm-4">
-																						<label for="" class="">職業</label>
-																						<input type="text" name="" class="form-control" placeholder="" style="" id="">
-																					</div>
-																					<div class="form-group col-lg-4 col-md-4 col-sm-4">
-																						<label for="" class="">電話番号</label>
-																						<input type="text" name="" class="form-control" placeholder="" style="" id="">
-																					</div>
-																				</div>
-																					<button type="button" class="btn btn-primary family_register_btn">登録</button>
-																			</form>
-																		</div>
-																	</div>
-
-																	<div class="table-responsive">
-																		<form action="trainee-profile/edit" class="form_trainee_edit" method="post" accept-charset="utf-8">
-																			<table class="table table-bordered table-hover">
-																				<thead>
-																					<tr>
-																						<th>姓名<span></span></th>
-																						<th class="text-center"><span>本人関係</span></th>
-																						<th class="text-center"><span>誕生日(年齢)</span></th>
-																						<th class="text-center"><span>職業</span></th>
-																						<th class="text-center"><span>電話番号</span></th>
-																					</tr>
-																				</thead>
-																				<tbody>
-																					<tr data-family-id="1">
-																						<td class="editable_td">
-																							otousan
-																						</td>
-																						<td>
-																							father
-																						</td>
-																						<td>
-																							1989年04月04 (26)
-																						</td>
-																						<td>
-																							jobjobjobjob
-																						</td>
-																						<td>
-																							015676792
-																						</td>
-																					</tr>
-																				</tbody>
-																			</table>
+																			</div>
+																			<div class="form-group">
+																				<label for="">備考</label>
+																				<input type="text" class="form-control" name="" value="" placeholder="">
+																			</div>
+																			<button type="submit" class="btn btn-success">登録</button>
 																		</form>
 																	</div>
 																</div>
-																<div class="tab-pane fade" id="tab-profile-career">
-																	<div class="table-responsive">
-																		<form action="trainee-profile/edit" class="form_trainee_edit" method="post" accept-charset="utf-8">
-																			<table class="table table-bordered table-hover">
-																				<thead>
-																					<tr>
-																						<th ><span></span></th>
-																						<th class="text-center" style="width:45%"><span>日本語</span></th>
-																						<th class="text-center" style="width:45%"><span>English</span></th>
-																					</tr>
-																				</thead>
-																				<tbody>
-																					<tr>
-																						<td rowspan="4">
-																							学歴
-																						</td>
-																						<td class="td_first_block">
-																							<label for="">学校名</label>
-																							<input class="form-control" type="text" name="" value="中央大学法学部">
-																						</td>
-																						<td>
-																							<div class="form-group">
-																								<div class="row">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">From</label>
-																										<input class="form-control" type="month" name="" value="2006-04">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">To</label>
-																										<input class="form-control" type="month" name="" value="2007-04" >
-																									</div>
-																								</div>
-																							</div>
-																							<label for="">Shool</label>
-																							<input class="form-control" type="text" name="" value="Chuo University">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td class="td_first_block">
-																							<label for="">学校名</label>
-																							<input class="form-control" type="text" name="" value="オオサカ高校">
-																						</td>
-																						<td>
-																							<div class="form-group">
-																								<div class="row">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">From</label>
-																										<input class="form-control" type="month" name="" value="2006-04">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">To</label>
-																										<input class="form-control" type="month" name="" value="2007-04" >
-																									</div>
-																								</div>
-																							</div>
-																							<label for="">Shool</label>
-																							<input class="form-control" type="text" name="" value="Chuo University">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td class="td_first_block">
-																							<label for="">学校名</label>
-																							<input class="form-control" type="text" name="" value="オオサカ中学校">
-																						</td>
-																						<td>
-																							<div class="form-group">
-																								<div class="row">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">From</label>
-																										<input class="form-control" type="month" name="" value="2006-04">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">To</label>
-																										<input class="form-control" type="month" name="" value="2007-04" >
-																									</div>
-																								</div>
-																							</div>
-																							<label for="">Shool</label>
-																							<input class="form-control" type="text" name="" value="Chuo University">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td class="td_first_block">
-																							<label for="">学校名</label>
-																							<input class="form-control" type="text" name="" value="オオサカ小学校">
-																						</td>
-																						<td>
-																							<div class="form-group">
-																								<div class="row">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">From</label>
-																										<input class="form-control" type="month" name="" value="2006-04">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">To</label>
-																										<input class="form-control" type="month" name="" value="2007-04" >
-																									</div>
-																								</div>
-																							</div>
-																							<label for="">Shool</label>
-																							<input class="form-control" type="text" name="" value="Chuo University">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td rowspan="5">
-																							職歴
-																						</td>
-																						<td class="td_first_block">
-																							<div class="form-group">
-																								<label for="">会社名</label>
-																								<input class="form-control" type="text" name="" value="Rikuyo Japan Traning Center">
-																							</div>
-																							<div class="row">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">職業</label>
-																										<input class="form-control" type="text" name="" value="">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">基本給</label>
-																										<input class="form-control" type="text" name="" value="">
-																									</div>
-																							</div>
-																						</td>
-																						<td>
-																							<div class="form-group">
-																								<div class="row">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">From</label>
-																										<input class="form-control" type="month" name="" value="2006-04">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">To</label>
-																										<input class="form-control" type="month" name="" value="2007-04" >
-																									</div>
-																								</div>
-																							</div>
-																							<label for="">Company</label>
-																							<input class="form-control" type="text" name="" value="Chuo University">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td class="td_first_block">
-																							<div class="form-group">
-																								<label for="">会社名</label>
-																								<input class="form-control" type="text" name="" value="Rikuyo Japan Traning Center">
-																							</div>
-																							<div class="row">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">職業</label>
-																										<input class="form-control" type="text" name="" value="">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">基本給</label>
-																										<input class="form-control" type="text" name="" value="">
-																									</div>
-																							</div>
-																						</td>
-																						<td>
-																							<div class="form-group">
-																								<div class="row">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">From</label>
-																										<input class="form-control" type="month" name="" value="2006-04">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">To</label>
-																										<input class="form-control" type="month" name="" value="2007-04" >
-																									</div>
-																								</div>
-																							</div>
-																							<label for="">Company</label>
-																							<input class="form-control" type="text" name="" value="Chuo University">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td class="td_first_block">
-																							<div class="form-group">
-																								<label for="">会社名</label>
-																								<input class="form-control" type="text" name="" value="Rikuyo Japan Traning Center">
-																							</div>
-																							<div class="row">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">職業</label>
-																										<input class="form-control" type="text" name="" value="">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">基本給</label>
-																										<input class="form-control" type="text" name="" value="">
-																									</div>
-																							</div>
-																						</td>
-																						<td>
-																							<div class="form-group">
-																								<div class="row">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">From</label>
-																										<input class="form-control" type="month" name="" value="2006-04">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">To</label>
-																										<input class="form-control" type="month" name="" value="2007-04" >
-																									</div>
-																								</div>
-																							</div>
-																							<label for="">Company</label>
-																							<input class="form-control" type="text" name="" value="Chuo University">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td class="td_first_block">
-																							<div class="form-group">
-																								<label for="">会社名</label>
-																								<input class="form-control" type="text" name="" value="Rikuyo Japan Traning Center">
-																							</div>
-																							<div class="row">
-																								<div class="col-lg-6 col-md-6 col-sm-6">
-																									<label for="">職業</label>
-																									<input class="form-control" type="text" name="" value="">
-																								</div>
-																								<div class="col-lg-6 col-md-6 col-sm-6">
-																									<label for="">基本給</label>
-																									<input class="form-control" type="text" name="" value="">
-																								</div>
-																							</div>
-																						</td>
-																						<td>
-																							<div class="form-group">
-																								<div class="row">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">From</label>
-																										<input class="form-control" type="month" name="" value="2006-04">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">To</label>
-																										<input class="form-control" type="month" name="" value="2007-04" >
-																									</div>
-																								</div>
-																							</div>
-																							<label for="">Company</label>
-																							<input class="form-control" type="text" name="" value="Chuo University">
-																						</td>
-																					</tr>
-																					<tr>
-																						<td class="td_first_block">
-																							<div class="form-group">
-																								<label for="">会社名</label>
-																								<input class="form-control" type="text" name="" value="Rikuyo Japan Traning Center">
-																							</div>
-																							<div class="row">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">職業</label>
-																										<input class="form-control" type="text" name="" value="">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">基本給</label>
-																										<input class="form-control" type="text" name="" value="">
-																									</div>
-																							</div>
-																						</td>
-																						<td>
-																							<div class="form-group">
-																								<div class="row">
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">From</label>
-																										<input class="form-control" type="month" name="" value="2006-04">
-																									</div>
-																									<div class="col-lg-6 col-md-6 col-sm-6">
-																										<label for="">To</label>
-																										<input class="form-control" type="month" name="" value="2007-04" >
-																									</div>
-																								</div>
-																							</div>
-																							<label for="">Company</label>
-																							<input class="form-control" type="text" name="" value="Chuo University">
-																						</td>
+															</div>
 
-																					</tr>
-																					<tr>
-																						<td rowspan="2">
-																							経歴 職歴
-																						</td>
-																						<td>
-																							縫製 職 1年
-																						</td>
-																						<td>
-																							<div class="form-group">
-																								<div class="col-lg-4 col-md-4 col-sm-4">
-																									<label for="">Position</label>
-																									<select name="" class="sel_job form-control">
-																										<option value="sewing">Sewing</option>
-																									</select>
-																								</div>
-																								<div class="col-lg-3 col-md-3 col-sm-3">
-																									<label for="">For</label>
-																									<input type="text" name="" value="" class="form-control"> Year(s)
-																								</div>
-																								<button type="button" id="" class="md-trigger btn btn-primary mrg-b-lg pull-right mT15" data-modal="modal-job"><i class="fa fa-plus-circle fa-lg"></i> 職種を追加</button>
-																							</div>
-																						</td>
-
-																					</tr>
-																					<tr>
-																						<td class="td_first_block">
-																							縫製 職 1年
-																						</td>
-																						<td>
-																							<div class="form-group">
-																								<div class="col-lg-4 col-md-4 col-sm-4">
-																									<label for="">Position</label>
-																									<select name="" class="sel_job form-control">
-																										<option value="sewing">Sewing</option>
-																									</select>
-																								</div>
-																								<div class="col-lg-3 col-md-3 col-sm-3">
-																									<label for="">For</label>
-																									<input type="text" name="" value="" class="form-control"> Year(s)
-																								</div>
-																								<button type="button" id="" class="md-trigger btn btn-primary mrg-b-lg pull-right mT15" data-modal="modal-job"><i class="fa fa-plus-circle fa-lg"></i> 職種を追加</button>
-																							</div>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							訪日経験
-																						</td>
-																						<td>
-																							有 2015/04/04 ～ 2015/06/06
-																						</td>
-																						<td>
-																							<div class="form-group">
-																								<div class="row">
-																									<div class="col-lg-4 col-md-4 col-sm-4">
-																										<label for="">Visited Japan?</label>
-																										<select class="form-control" name="" id="">
-																											<option value="yes" selected>Yes</option>
-																											<option value="no">No</option>
-																										</select>
-																									</div>
-																								</div>
-																							</div>
-																							<div class="row">
-																								<div class="form-group">
-																										<div class="col-lg-6 col-md-6 col-sm-6">
-																											<label for="">From</label>
-																											<input class="form-control" type="date" name="" value="2006-04">
-																										</div>
-																										<div class="col-lg-6 col-md-6 col-sm-6">
-																											<label for="">To</label>
-																											<input class="form-control" type="date" name="" value="2007-04" >
-																										</div>
-																								</div>
-																							</div>
-																						</td>
-																					</tr>
-																				</tbody>
-																			</table>
-																			<div class="profile-message-btn center-block text-right">
-																				<a href="#" class="btn btn-default">
-																					<i class="fa fa-pencil"></i>
-																					変更を保存
+															<div class="col-lg-6 col-md-6 col-sm-6">
+																<div class="main-box">
+																	<header class="main-box-header clearfix">
+																		<h2>返済計画表</h2>
+																	</header>
+																	<div class="main-box-body clearfix">
+																		<div class="uploadbtn" style="width:200px">
+																			<p class="text-center"><i class="fa fa-cloud-upload"></i> ファイルをアップロード</p>
+																			<form id="financeDocumentForm" class="form form-inline" action="#" enctype="multipart/form-data">
+																				<input type="file" name="image" id="financeDocument" value="" placeholder="">
+																			</form>
+																		</div>
+																		<div id="microfinance">
+																			<div id="" class="story-images clearfix">
+																				<a href="img/samples/CV_JP.jpg" class="story-image-link mR5">
+																					返済計画表1
+																				</a>
+																				<a href="#" class="table-link r reded mL5">
+																						<i class="fa fa-trash-o"></i>
+																				</a><br>
+																				<a href="img/samples/CV_EN.jpg" class="story-image-link">
+																					返済計画表2
 																				</a>
 																			</div>
-																		</form>
-																	</div>
-																</div>
-																<div class="tab-pane fade" id="tab-profile-others">
-																	<div class="table-responsive">
-																		<form action="trainee-profile/edit" class="form_trainee_edit" method="post" accept-charset="utf-8">
-																			<table class="table table-bordered table-hover">
-																				<thead>
-																					<tr>
-																						<th ><span></span></th>
-																						<th class="text-center"><span>日本語</span></th>
-																						<th class="text-center"><span>English</span></th>
-																					</tr>
-																				</thead>
-																				<tbody>
-																					<tr>
-																						<td>
-																							来日の目的
-																						</td>
-																						<td>
-																							<textarea class="form-control" rows="2" name=""></textarea>
-																						</td>
-																						<td>
-																							<textarea class="form-control" rows="2" name=""></textarea>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>
-																							日本にいる親戚、兄弟、友達
-																						</td>
-																						<td>
-																							<div class="col-lg-6 col-md-6 col-sm-6">無</div>
-																							<div class="col-lg-6 col-md-6 col-sm-6">
-																								<label for="">関係</label>
-																								<input class="form-control" type="text" name="" value="" placeholder="">
-																							</div>
-																						</td>
-																						<td>
-																							<div class="row">
-																								<div class="col-lg-6 col-md-6 col-sm-6">
-																								<label for=""></label>
-																									<select class="form-control" name="">
-																										<option value="0">Nothing</option>
-																										<option value="1">Have</option>
-																									</select>
-																								</div>
-																								<div class="col-lg-6 col-md-6 col-sm-6">
-																									<label>Relationship</label>
-																									<input class="form-control" type="text" name="" value="" placeholder="">
-																								</div>
-																							</div>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>帰国後の予定</td>
-																						<td>
-																							<textarea class="form-control" rows="2" name=""></textarea>
-																						</td>
-																						<td>
-																							<textarea class="form-control" rows="2" name=""></textarea>
-																						</td>
-																					</tr>
-																					<tr>
-																						<td>3年後希望の金額</td>
-																						<td>
-																							<input class="form-control" type="text" name="" value="" placeholder="">
-																						</td>
-																						<td></td>
-																					</tr>
-																					<tr>
-																						<td>帰国後の状況</td>
-																						<td><textarea class="form-control" name="" rows="3"></textarea></td>
-																						<td><textarea class="form-control" name="" rows="3"></textarea></td>
-																					</tr>
-																				</tbody>
-																			</table>
-																			<div class="profile-message-btn center-block text-right">
-																			<a href="#" class="btn btn-default">
-																				<i class="fa fa-pencil"></i>
-																				変更を保存
-																			</a>
 																		</div>
-
-																		</form>
 																	</div>
 																</div>
 															</div>
-														</div>
-													</div>
 
-
-												</div>
-
-												<div class="tab-pane fade" id="tab-documents">
-													<div id="documents">
-														<div class="col-lg-12 col-md-12 col-sm-12">
-															<div class="main-box clearfix">
-																<header class="main-box-header clearfix">
-																	<h2>アップロードファイル一覧</h2>
-																</header>
-
-																<div class="main-box-body clearfix">
-																	<div id="" class="main-box-body">
-																			<form action="traineeDocument/add" method="post" accept-charset="utf-8" enctype="multipart/form-data" class="form-inline">
-																				<div class="form-group">
-																					<input type="file" name="" value="" placeholder="">
-																				</div>
-																				<div class="form-group">
-																					<input type="text" class="form-control" name="" value="" placeholder="ファイル名(日本語)を入力">
-																				</div>
-																				<div class="form-group">
-																					<input type="text" class="form-control" name="" value="" placeholder="ファイル名(英語)を入力">
-																				</div>
-																				<a href="#upload" type="submit" class="btn btn-success"><i class="fa fa-cloud-upload"></i> ファイルをアップロード</a>
-																			</form>
-																	</div>
-																	<div class="table-responsive story-images">
-																		<table class="table table-striped table-hover">
-																			<thead>
-																				<tr>
-																					<th><span>ファイル名</span></th>
-																					<th><span></span></th>
-																				</tr>
-																			</thead>
-																			<tbody>
-																				<tr>
-																					<td>
-																						<a href="img/samples/CV_JP.jpg" class="story-image-link">Jack Nicholson</a>
-																					</td>
-																					<td class="text-center">
-																						<a href="#" class="table-link">
-																							<i class="fa fa-pencil"></i>
-																						</a>
-																						<a href="#" class="table-link red">
-																							<i class="fa fa-trash-o"></i>
-																						</a>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td>
-																						<a href="img/samples/CV_EN.jpg" class="story-image-link story-image-link-small">Humphrey Bogart</a>
-																					</td>
-																					<td class="text-center">
-																						<a href="#" class="table-link">
-																							<i class="fa fa-pencil"></i>
-																						</a>
-																						<a href="#" class="table-link red">
-																							<i class="fa fa-trash-o"></i>
-																						</a>
-																					</td>
-																				</tr>
-																			</tbody>
-																		</table>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-<!--
-//getImages()というメソッドを使い、$images[]に画像を格納して
-予め準備しておいた
-//<ul>内にforeachで回していく。
-//<li> <a href="<?php //echo basename(IMAGES_DIR).'/'.basename($image);;?>"> //basename(IMAGE_DIR) =>
- -->
-<!-- 画像アップロード処理
-//画像を入れるフォルダ img/trainee/
-//サムネイルを入れるフォルダ img/trainee/thumbs/
-//パーミッションは755に
-<form action="" enctype="multipart/form-data" id="upload_form"> <=jquery用にidをセット
-<input type="hidden" name="MAX_FILE_SIZE" value="<?php //echo h(MAX_FILESIZE);?>" defineでMAX_FILE_SIZEを作成し、ファイルの最大容量(10*1024*1024=10MB)を設定
-<input type="file" name="image" id="upload_file"> //jquery用にidをセット
-<script>
-$(function(){ //input#upload_fileの中身がchangeしたら、#upload_formをsubmit
-	$('#upload_file').on('change', function(){$('#upload_form').submit();});
-})
-</script>
- -->
-
-												<div class="tab-pane fade" id="tab-interview">
-													<div class="">
-														<div class="table-responsive">
-															<table class="table table-bordered">
-																<thead>
-																	<tr>
-																		<th class="text-center" ><span>面接日時</span></th>
-																		<th class="text-center" ><span>面接番号</span></th>
-																		<th class="text-center"><span>企業</span></th>
-																		<th class="text-center"><span>組合</span></th>
-																		<th class="text-center" ><span>結果</span></th>
-																		<th class="text-center" ><span></span></th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr>
-																		<td>
-																			2015/12/16 10:00
-																		</td>
-																		<td><a href="interview-order-detail.html" title="">0001</a></td>
-																		<td>
-																			<a href="company-profile.html" title="">山本株式会社</a>
-																		</td>
-																		<td class="text-center">
-																			<a href="association-profile.html">山本組合</a>
-																		</td>
-																		<td class="text-center">
-																			未了
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<i class="fa fa-pencil"></i>
-																			</a>
-																			<a href="#" class="table-link red">
-																				<i class="fa fa-trash-o"></i>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			2015/12/05 10:00
-																		</td>
-																		<td><a href="interview-order-detail.html" title="">0002</a></td>
-																		<td>
-																			<a href="company-profile.html" title="">山本株式会社</a>
-																		</td>
-																		<td class="text-center">
-																			<a href="association-profile.html">山本組合</a>
-																		</td>
-																		<td class="text-center">
-																			合格
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<i class="fa fa-pencil"></i>
-																			</a>
-																			<a href="#" class="table-link red">
-																				<i class="fa fa-trash-o"></i>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			2015/11/16 10:00
-																		</td>
-																		<td><a href="interview-order-detail.html" title="">0003</a></td>
-																		<td>
-																			<a href="company-profile.html" title="">山本株式会社</a>
-																		</td>
-																		<td class="text-center">
-																			<a href="association-profile.html">山本組合</a>
-																		</td>
-																		<td class="text-center">
-																			不合格
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<i class="fa fa-pencil"></i>
-																			</a>
-																			<a href="#" class="table-link red">
-																				<i class="fa fa-trash-o"></i>
-																			</a>
-																		</td>
-																	</tr>
-
-																</tbody>
-															</table>
-														</div>
-													</div>
-												</div>
-												<div class="tab-pane fade" id="tab-tuition">
-													<div class="main-box clearfix">
-														<div class="tabs-wrapper profile-tabs">
-															<ul class="nav nav-tabs">
-																<li class="active"><a href="#tab-school" data-toggle="tab">学費</a></li>
-																<li><a href="#tab-microfinance" data-toggle="tab">マイクロファイナンス</a></li>
-															</ul>
-															<div class="tab-content">
-																<div class="tab-pane fade in active" id="tab-school">
-																	<div class="main-box-body clearfix">
-																		<div class="col-lg-12 col-md-12 col-sm-12">
-																			<div class="col-lg-6 col-md-6 col-sm-6">
-																				<div class="main-box">
-																					<header class="main-box-header clearfix">
-																						<h2>入金予定登録</h2>
-																					</header>
-																					<div class="main-box-body clearfix">
-																						<form class="form" role="form">
-																							<div class="form-group">
-																								<label for="payScheduleDate">入金予定日</label>
-																								<div class="input-group">
-																									<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-																									<input type="date" class="form-control" id="payScheduleDate" placeholder="入金予定日" style="width: 200px;">
-																								</div>
-																							</div>
-																							<div class="form-group">
-																								<label for="paySheduleAmount">入金予定金額</label>
-																								<div class="input-group">
-																									<span class="input-group-addon">$</span>
-																									<input type="number" class="form-control" id="paySheduleAmount" placeholder="" size="5" style="width:100px">
-																								</div>
-																							</div>
-																							<button type="submit" class="btn btn-success">登録</button>
-																						</form>
-																					</div>
-																				</div>
-																			</div>
-																			<div class="col-lg-6 col-md-6 col-sm-6">
-																				<div class="main-box">
-																					<header class="main-box-header clearfix">
-																						<h2>入金実績</h2>
-																					</header>
-																					<div class="main-box-body clearfix">
-																						<div class="form-group">
-																							<p>必要支払い金額: $5000</p>
-																							<p>支払い済み金額: $500</p>
-																							<p>残額: <span class="red">$4500</span></p>
+															<div class="table-responsive col-lg-12 col-md-12 col-sm-12">
+																<form action="" class="table form_finance">
+																	<table class="table table-bordered finance">
+																		<thead>
+																			<tr>
+																				<th class="text-center"><span>返済月</span></th>
+																				<th class="text-center"><span></span></th>
+																				<th class="text-center"><span></span></th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td class="text-center td_first_block">
+																					<input type="month" class="form-control" name="" value="" placeholder="">
+																				</td>
+																				<td>
+																					<div class="row">
+																						<div class="col-lg-4 col-md-4 col-sm-4">
+																							<select name="" class="form-control">
+																								<option value="0">未了</option>
+																								<option value="1">返済済み</option>
+																								<option value="2">請求中</option>
+																							</select>
 																						</div>
-																					</div>
-																				</div>
-																			</div>
-
-																			<div class="table-responsive col-lg-12 col-md-12 col-sm-12">
-																				<form action="" class="table form_tuition">
-																					<table class="table table-bordered tuition">
-																						<thead>
-																							<tr>
-																								<th class="text-center"><span>予定日</span></th>
-																								<th class="text-center"><span>予定金額</span></th>
-																								<th class="text-center"><span>入金記録</span></th>
-																								<th class="text-center"><span></span></th>
-																							</tr>
-																						</thead>
-																						<tbody>
-																							<tr>
-																								<td class="text-center td_first_block">
-																									2015/12/16
-																								</td>
-																								<td class="text-center">
-																									$ 500
-																								</td>
-																								<td>
-																									<div class="row">
-																										<div class="col-lg-4 col-md-4 col-sm-4">
-																											入金日 <input type="date" name="" value="2015-12-15" class="form-control">
-																										</div>
-																										<div class="col-lg-2 col-md-2 col-sm-2">
-																											入金金額: $ <input type="number" class="form-control" id="paySheduleAmount" value="500" size="5" >
-																										</div>
-																										<div class="col-lg-6 col-md-6 col-sm-6">
-																											備考 <input type="text" class="form-control" id="" value=""  >
-																										</div>
-																									</div>
-																									<button class="btn btn-default pull-right mT10">保存</button>
-																								</td>
-																								<td class="text-center">
-																									<a href="#" class="table-link">
-																										<i class="fa fa-pencil"></i>
-																									</a>
-																									<a href="#" class="table-link red">
-																										<i class="fa fa-trash-o"></i>
-																									</a>
-																								</td>
-																							</tr>
-																							<tr>
-																								<td class="text-center td_first_block">
-																									2016/01/16
-																								</td>
-																								<td class="text-center">
-																									$ 500
-																								</td>
-																								<td>
-																									<div class="row">
-																										<div class="col-lg-4 col-md-4 col-sm-4">
-																											入金日 <input type="date" name="" value="2015-12-15" class="form-control">
-																										</div>
-																										<div class="col-lg-2 col-md-2 col-sm-2">
-																											入金金額: $ <input type="number" class="form-control" id="paySheduleAmount" value="500" size="5" >
-																										</div>
-																										<div class="col-lg-6 col-md-6 col-sm-6">
-																											備考 <input type="text" class="form-control" id="" value=""  >
-																										</div>
-																										<button class="btn btn-default pull-right mT10">保存</button>
-																									</div>
-																								</td>
-																								<td class="text-center td_first_block">
-																									<a href="#" class="table-link">
-																										<i class="fa fa-pencil"></i>
-																									</a>
-																									<a href="#" class="table-link red">
-																										<i class="fa fa-trash-o"></i>
-																									</a>
-																								</td>
-																							</tr>
-																						</tbody>
-																					</table>
-																				</form>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<div class="tab-pane fade" id="tab-microfinance">
-																	<div class="main-box-body clearfix">
-																		<div class="col-lg-12 col-md-12 col-sm-12">
-																			<div class="col-lg-6 col-md-6 col-sm-6">
-																				<div class="main-box">
-																					<header class="main-box-header clearfix">
-																						<h2>返済記録登録</h2>
-																					</header>
-																					<div class="main-box-body clearfix">
-																						<form class="form" role="form">
-																							<div class="row">
-																								<div class="col-lg-6 col-md-6 col-sm-6">
-																									<div class="form-group">
-																										<label for="">返済月</label>
-																										<input type="month" class="form-control" name="" value="" placeholder="">
-																									</div>
-																								</div>
-																								<div class="col-lg-6 col-md-6 col-sm-6">
-																									<div class="form-group">
-																										<label for="">返済状況</label>
-																										<select class="form-control">
-																											<option value="0">未了</option>
-																											<option value="1">返済済み</option>
-																											<option value="2">請求中</option>
-																										</select>
-																									</div>
-																								</div>
-																							</div>
-																							<div class="form-group">
-																								<label for="">備考</label>
-																								<input type="text" class="form-control" name="" value="" placeholder="">
-																							</div>
-																							<button type="submit" class="btn btn-success">登録</button>
-																						</form>
-																					</div>
-																				</div>
-																			</div>
-
-																			<div class="col-lg-6 col-md-6 col-sm-6">
-																				<div class="main-box">
-																					<header class="main-box-header clearfix">
-																						<h2>返済計画表</h2>
-																					</header>
-																					<div class="main-box-body clearfix">
-																						<div class="uploadbtn" style="width:200px">
-																							<p class="text-center"><i class="fa fa-cloud-upload"></i> ファイルをアップロード</p>
-																							<form id="financeDocumentForm" class="form form-inline" action="#" enctype="multipart/form-data">
-																								<input type="file" name="image" id="financeDocument" value="" placeholder="">
-																							</form>
+																						<div class="col-lg-6 col-md-6 col-sm-6">
+																							<input type="text" class="form-control" id="" value="" placeholder="備考" >
 																						</div>
-																						<div id="microfinance">
-																							<div id="" class="story-images clearfix">
-																								<a href="img/samples/CV_JP.jpg" class="story-image-link mR5">
-																									返済計画表1
-																								</a>
-																								<a href="#" class="table-link r reded mL5">
-																										<i class="fa fa-trash-o"></i>
-																								</a><br>
-																								<a href="img/samples/CV_EN.jpg" class="story-image-link">
-																									返済計画表2
-																								</a>
+																							<div class="col-lg-2 col-md-2 col-sm-2">
+																								<button class="btn btn-default pull-right">保存</button>
 																							</div>
-																						</div>
 																					</div>
-																				</div>
-																			</div>
-
-																			<div class="table-responsive col-lg-12 col-md-12 col-sm-12">
-																				<form action="" class="table form_tuition">
-																					<table class="table table-bordered tuition">
-																						<thead>
-																							<tr>
-																								<th class="text-center"><span>返済月</span></th>
-																								<th class="text-center"><span></span></th>
-																								<th class="text-center"><span></span></th>
-																							</tr>
-																						</thead>
-																						<tbody>
-																							<tr>
-																								<td class="text-center td_first_block">
-																									<input type="month" class="form-control" name="" value="" placeholder="">
-																								</td>
-																								<td>
-																									<div class="row">
-																										<div class="col-lg-4 col-md-4 col-sm-4">
-																											<select name="" class="form-control">
-																												<option value="0">未了</option>
-																												<option value="1">返済済み</option>
-																												<option value="2">請求中</option>
-																											</select>
-																										</div>
-																										<div class="col-lg-6 col-md-6 col-sm-6">
-																											<input type="text" class="form-control" id="" value="" placeholder="備考" >
-																										</div>
-																											<div class="col-lg-2 col-md-2 col-sm-2">
-																												<button class="btn btn-default pull-right">保存</button>
-																											</div>
-																									</div>
-																								</td>
-																								<td class="text-center">
-																									<a href="#" class="table-link">
-																										<i class="fa fa-pencil"></i>
-																									</a>
-																									<a href="#" class="table-link red">
-																										<i class="fa fa-trash-o"></i>
-																									</a>
-																								</td>
-																							</tr>
-																							<tr>
-																								<td class="text-center td_first_block">
-																									<input type="month" class="form-control" name="" value="" placeholder="">
-																								</td>
-																								<td>
-																									<div class="row">
-																										<div class="col-lg-4 col-md-4 col-sm-4">
-																											<select name="" class="form-control">
-																												<option value="0">未了</option>
-																												<option value="1">返済済み</option>
-																												<option value="2">請求中</option>
-																											</select>
-																										</div>
-																										<div class="col-lg-6 col-md-6 col-sm-6">
-																											<input type="text" class="form-control" id="" value="" placeholder="備考" >
-																										</div>
-																											<div class="col-lg-2 col-md-2 col-sm-2">
-																												<button class="btn btn-default pull-right">保存</button>
-																											</div>
-																									</div>
-																								</td>
-																								<td class="text-center td_first_block">
-																									<a href="#" class="table-link">
-																										<i class="fa fa-pencil"></i>
-																									</a>
-																									<a href="#" class="table-link red">
-																										<i class="fa fa-trash-o"></i>
-																									</a>
-																								</td>
-																							</tr>
-																						</tbody>
-																					</table>
-																				</form>
-																			</div>
-																		</div>
-																	</div>
-																</div>
+																				</td>
+																				<td class="text-center">
+																					<a href="#" class="table-link">
+																						<i class="fa fa-pencil"></i>
+																					</a>
+																					<a href="#" class="table-link red">
+																						<i class="fa fa-trash-o"></i>
+																					</a>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td class="text-center td_first_block">
+																					<input type="month" class="form-control" name="" value="" placeholder="">
+																				</td>
+																				<td>
+																					<div class="row">
+																						<div class="col-lg-4 col-md-4 col-sm-4">
+																							<select name="" class="form-control">
+																								<option value="0">未了</option>
+																								<option value="1">返済済み</option>
+																								<option value="2">請求中</option>
+																							</select>
+																						</div>
+																						<div class="col-lg-6 col-md-6 col-sm-6">
+																							<input type="text" class="form-control" id="" value="" placeholder="備考" >
+																						</div>
+																							<div class="col-lg-2 col-md-2 col-sm-2">
+																								<button class="btn btn-default pull-right">保存</button>
+																							</div>
+																					</div>
+																				</td>
+																				<td class="text-center td_first_block">
+																					<a href="#" class="table-link">
+																						<i class="fa fa-pencil"></i>
+																					</a>
+																					<a href="#" class="table-link red">
+																						<i class="fa fa-trash-o"></i>
+																					</a>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</form>
 															</div>
-														</div>
-													</div>
-												</div>
-												<div class="tab-pane fade" id="tab-chat">
-													<div class="conversation-wrapper">
-														<div class="conversation-content">
-															<div class="conversation-inner">
-																<div class="conversation-item item-right clearfix">
-																	<!-- <div class="conversation-user">
-																		<img src="img/samples/kunis.png" alt=""/>
-																	</div> -->
-																	<div class="conversation-body">
-																		<div class="name">
-																			期待していること
-																		</div>
-																		<div class="time hidden-xs">
-																			12/07/2015
-																		</div>
-																		<div class="text">
-																			にほんにいったら、おいしいごはんをたくさんたべて、かわいいおんなひとをたくさんたべて、しごとをがんばりたいです。
-																		</div>
-																	</div>
-																</div>
-																<div class="conversation-item item-right clearfix">
-																	<!-- <div class="conversation-user">
-																		<img src="img/samples/kunis.png" alt=""/>
-																	</div> -->
-																	<div class="conversation-body">
-																		<div class="name">
-																			不安なこと
-																		</div>
-																		<div class="time hidden-xs">
-																			12/07/2015
-																		</div>
-																		<div class="text">
-																			日本人はわたしをやさしいかわからないですから不安です。また、わたしは日本語を話せないですので、もしわたしがこまったとき、たすけてくれる友だちがいないかもしれません。またかわいいおんなひとにお金をとられるかも知れないですので困ります。
-																		</div>
-																	</div>
-																</div>
-																<!-- <div class="conversation-item item-left clearfix">
-																	<div class="conversation-user">
-																		<img src="img/samples/ryan.png" alt=""/>
-																	</div>
-																	<div class="conversation-body">
-																		<div class="name">
-																			Ryan Gossling
-																		</div>
-																		<div class="time hidden-xs">
-																			September 21, 2013 18:28
-																		</div>
-																		<div class="text">
-																			I don't think they tried to market it to the billionaire, spelunking,
-																			base-jumping crowd.
-																		</div>
-																	</div>
-																</div> -->
-																<div class="conversation-item item-right clearfix">
-																	<!-- <div class="conversation-user">
-																		<img src="img/samples/kunis.png" alt=""/>
-																	</div> -->
-																	<div class="conversation-body">
-																		<div class="name">
-																			日本に行ってよかったこと
-																		</div>
-																		<div class="time hidden-xs">
-																			12/05/2016
-																		</div>
-																		<div class="text">
-																			私は日本へ技能実習生として採用頂き、縫製に関わる技術は元より、日本国民固有の改善への飽くなき探究心に触れ、また人と人との調和を大切にする心とそれに基づく独特な言動に深く感銘を受けました。祖国カンボジアを出国するときに抱えていた数多くの不安がありましたが、現地の受入企業で働く方々、街の警察官、道行く知らない人たち一人一人が優しく手助けをしてくださったので、安心安全に日々を過ごすことができました。
-																		</div>
-																	</div>
-																</div>
-																<div class="conversation-item item-right clearfix">
-																	<!-- <div class="conversation-user">
-																		<img src="img/samples/kunis.png" alt=""/>
-																	</div> -->
-																	<div class="conversation-body">
-																		<div class="name">
-																			日本に行って困ったこと
-																		</div>
-																		<div class="time hidden-xs">
-																			12/05/2016
-																		</div>
-																		<div class="text">
-																			上記には日本国最高バンザイという旨書きましたけどぶっちゃけ日本最悪でした。マジ給料未払いのときとかあったし、職場の人は明らか差別的な目で見てくるし、全然日本語教えてくれないし、てか「家の上にバナナがあります」とか使うとこなかったんですけどｗｗまあ冗談は置いておいて、一番困ったのが冬がむちゃくちゃ寒いのに洋服が高すぎて買えなかったことと、本当に言葉が通じなくて上司や先輩にたくさん迷惑をかけたので、次に日本へ行く人は、マジでホントちゃんと日本語勉強しといた方がいいよ。日本行ってから欝気味の連れとか結構いてマジ半端なかったからね。
-																		</div>
-																	</div>
-																</div>
-
-															</div>
-														</div>
-														<div class="conversation-new-message">
-															<form>
-																<div class="form-group">
-																	<textarea class="form-control" rows="2" placeholder="Enter your message..."></textarea>
-																</div>
-
-																<div class="clearfix">
-																	<button type="submit" class="btn btn-success pull-right">Send message</button>
-																</div>
-															</form>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="tab-chat">
+									<div class="conversation-wrapper">
+										<div class="conversation-content">
+											<div class="conversation-inner">
+												<div class="conversation-item item-right clearfix">
+													<!-- <div class="conversation-user">
+														<img src="img/samples/kunis.png" alt=""/>
+													</div> -->
+													<div class="conversation-body">
+														<div class="name">
+															期待していること
+														</div>
+														<div class="time hidden-xs">
+															12/07/2015
+														</div>
+														<div class="text">
+															にほんにいったら、おいしいごはんをたくさんたべて、かわいいおんなひとをたくさんたべて、しごとをがんばりたいです。
+														</div>
+													</div>
+												</div>
+												<div class="conversation-item item-right clearfix">
+													<!-- <div class="conversation-user">
+														<img src="img/samples/kunis.png" alt=""/>
+													</div> -->
+													<div class="conversation-body">
+														<div class="name">
+															不安なこと
+														</div>
+														<div class="time hidden-xs">
+															12/07/2015
+														</div>
+														<div class="text">
+															日本人はわたしをやさしいかわからないですから不安です。また、わたしは日本語を話せないですので、もしわたしがこまったとき、たすけてくれる友だちがいないかもしれません。またかわいいおんなひとにお金をとられるかも知れないですので困ります。
+														</div>
+													</div>
+												</div>
+												<!-- <div class="conversation-item item-left clearfix">
+													<div class="conversation-user">
+														<img src="img/samples/ryan.png" alt=""/>
+													</div>
+													<div class="conversation-body">
+														<div class="name">
+															Ryan Gossling
+														</div>
+														<div class="time hidden-xs">
+															September 21, 2013 18:28
+														</div>
+														<div class="text">
+															I don't think they tried to market it to the billionaire, spelunking,
+															base-jumping crowd.
+														</div>
+													</div>
+												</div> -->
+												<div class="conversation-item item-right clearfix">
+													<!-- <div class="conversation-user">
+														<img src="img/samples/kunis.png" alt=""/>
+													</div> -->
+													<div class="conversation-body">
+														<div class="name">
+															日本に行ってよかったこと
+														</div>
+														<div class="time hidden-xs">
+															12/05/2016
+														</div>
+														<div class="text">
+															私は日本へ技能実習生として採用頂き、縫製に関わる技術は元より、日本国民固有の改善への飽くなき探究心に触れ、また人と人との調和を大切にする心とそれに基づく独特な言動に深く感銘を受けました。祖国カンボジアを出国するときに抱えていた数多くの不安がありましたが、現地の受入企業で働く方々、街の警察官、道行く知らない人たち一人一人が優しく手助けをしてくださったので、安心安全に日々を過ごすことができました。
+														</div>
+													</div>
+												</div>
+												<div class="conversation-item item-right clearfix">
+													<!-- <div class="conversation-user">
+														<img src="img/samples/kunis.png" alt=""/>
+													</div> -->
+													<div class="conversation-body">
+														<div class="name">
+															日本に行って困ったこと
+														</div>
+														<div class="time hidden-xs">
+															12/05/2016
+														</div>
+														<div class="text">
+															上記には日本国最高バンザイという旨書きましたけどぶっちゃけ日本最悪でした。マジ給料未払いのときとかあったし、職場の人は明らか差別的な目で見てくるし、全然日本語教えてくれないし、てか「家の上にバナナがあります」とか使うとこなかったんですけどｗｗまあ冗談は置いておいて、一番困ったのが冬がむちゃくちゃ寒いのに洋服が高すぎて買えなかったことと、本当に言葉が通じなくて上司や先輩にたくさん迷惑をかけたので、次に日本へ行く人は、マジでホントちゃんと日本語勉強しといた方がいいよ。日本行ってから欝気味の連れとか結構いてマジ半端なかったからね。
+														</div>
+													</div>
+												</div>
 
+											</div>
+										</div>
+										<div class="conversation-new-message">
+											<form>
+												<div class="form-group">
+													<textarea class="form-control" rows="2" placeholder="Enter your message..."></textarea>
+												</div>
+
+												<div class="clearfix">
+													<button type="submit" class="btn btn-success pull-right">Send message</button>
+												</div>
+											</form>
+										</div>
 									</div>
 								</div>
 							</div>
-
-
-
 						</div>
+
 					</div>
-
-					<footer id="footer-bar" class="row">
-						<p id="footer-copyright" class="col-xs-12">
-							Powered by Mangetsu Ltd.
-						</p>
-					</footer>
 				</div>
-			</div>
-		</div>
-	</div>
 
 
+	<?php
+		echo $this->Html->script('jquery.slimscroll.min', array('inline' => false, 'block' => 'page-js'));
+		echo $this->Html->script('jquery.magnific-popup.min', array('inline' => false, 'block' => 'page-js'));
+		echo $this->Html->script('dropzone.min', array('inline' => false, 'block' => 'page-js'));
+		echo $this->Html->script('moment.min', array('inline' => false, 'block' => 'page-js'));
+		echo $this->Html->script('modernizr.custom', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('classie', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('modalEffects', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('rikuyo_js/myModal', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('select2.min', array('inline' => false, 'block' => 'page-js'));
+	 ?>
 
-	<div class="md-overlay"></div>
-	<!-- global scripts -->
+	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 
-
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/jquery.nanoscroller.min.js"></script>
-
-	<!-- this page specific scripts -->
-	<script src="js/jquery.slimscroll.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/dropzone.min.js"></script>
-	<script src="js/select2.min.js"></script>
-	<script src="js/moment.min.js"></script>
-	<script src="js/bootstrap-editable.min.js"></script>
-	<script src="js/modernizr.custom.js"></script>
-	<script src="js/classie.js"></script>
-	<script src="js/modalEffects.js"></script>
-
-
-	<!-- theme scripts -->
-	<script src="js/scripts.js"></script>
-	<script src="js/pace.min.js"></script>
-
-	<!-- this page specific inline scripts -->
-	<script type="text/javascript">
 	$(function(){
-		$.fn.editable.defaults.mode = 'popup';
-		$('.trainee_family_name').editable();
-		$('.trainee_family_relationship').editable();
-		$('.trainee_family_birthday').editable();
-		$('.trainee_family_job').editable();
-		$('.trainee_family_phone').editable();
-
 		$('#birthPlaceProvinceEn').select2();
 		$('#addressProvinceEn').select2();
 		$('#addressDistrictEn').select2();
@@ -4280,9 +4234,4 @@ $(function(){ //input#upload_fileの中身がchangeしたら、#upload_formをsu
 			setCommuneSelect('');
 	});
 
-
-
-	</script>
-
-</body>
-</html>
+	<?php $this->Html->scriptEnd(); ?>

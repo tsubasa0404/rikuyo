@@ -14,6 +14,11 @@ class TraineesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
+	public $uses = array(
+		'Trainee',
+		'TraineeFamily',
+		'Job'
+		);
 
 /**
  * index method
@@ -21,8 +26,25 @@ class TraineesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Trainee->recursive = 0;
-		$this->set('trainees', $this->Paginator->paginate());
+		$trainees = $this->Trainee->traineeList();
+		$this->set(compact('trainees'));
+	}
+
+	public function update_delete_flag($id = null){
+		if(!$this->Trainee->exists($id)){
+			throw new NotFoundException(__('You cannot delete this'));
+		}
+		if($this->request->is(array('post', 'put'))){
+			$this->request->data = array(
+				'id' => $id,
+				'flag' => '1'
+				);
+			if($this->Trainee->save($this->request->data)){
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('You cannot delete this.'));
+			}
+		}
 	}
 
 /**
@@ -55,25 +77,47 @@ class TraineesController extends AppController {
 				$this->Session->setFlash(__('The trainee could not be saved. Please, try again.'));
 			}
 		}
-		$provinces = $this->Trainee->Province->find('list');
-		$districts = $this->Trainee->District->find('list');
-		$communes = $this->Trainee->Commune->find('list');
-		$birthplaceProvinces = $this->Trainee->BirthplaceProvince->find('list');
-		$birthplaceDistricts = $this->Trainee->BirthplaceDistrict->find('list');
-		$birthplaceCommunes = $this->Trainee->BirthplaceCommune->find('list');
-		$job1s = $this->Trainee->Job1->find('list');
-		$job2s = $this->Trainee->Job2->find('list');
-		$medicalchkStatuses = $this->Trainee->MedicalchkStatus->find('list');
-		$idcardStatuses = $this->Trainee->IdcardStatus->find('list');
-		$passportStatuses = $this->Trainee->PassportStatus->find('list');
-		$coeStatuses = $this->Trainee->CoeStatus->find('list');
-		$immigrationStatuses = $this->Trainee->ImmigrationStatus->find('list');
-		$laborMinistryStatuses = $this->Trainee->LaborMinistryStatus->find('list');
-		$departureStatuses = $this->Trainee->DepartureStatus->find('list');
-		$returnStatuses = $this->Trainee->ReturnStatus->find('list');
-		$classes = $this->Trainee->TraineeClass->find('list');
+    $provinces              = $this->Trainee->Province->find('list');
+    $districts              = $this->Trainee->District->find('list');
+    $communes               = $this->Trainee->Commune->find('list');
+    $birthplaceProvinces    = $this->Trainee->BirthplaceProvince->find('list');
+    $birthplaceDistricts    = $this->Trainee->BirthplaceDistrict->find('list');
+    $birthplaceCommunes     = $this->Trainee->BirthplaceCommune->find('list');
+    $job1s                  = $this->Trainee->Job1->find('list');
+    $job2s                  = $this->Trainee->Job2->find('list');
+    $medicalchkStatuses     = $this->Trainee->MedicalchkStatus->find('list');
+    $idcardStatuses         = $this->Trainee->IdcardStatus->find('list');
+    $passportStatuses       = $this->Trainee->PassportStatus->find('list');
+    $coeStatuses            = $this->Trainee->CoeStatus->find('list');
+    $immigrationStatuses    = $this->Trainee->ImmigrationStatus->find('list');
+    $laborMinistryStatuses  = $this->Trainee->LaborMinistryStatus->find('list');
+    $departureStatuses      = $this->Trainee->DepartureStatus->find('list');
+    $returnStatuses         = $this->Trainee->ReturnStatus->find('list');
+    $classes                = $this->Trainee->TraineeClass->find('list');
 		$this->set(compact('provinces', 'districts', 'communes', 'birthplaceProvinces', 'birthplaceDistricts', 'birthplaceCommunes', 'job1s', 'job2s', 'medicalchkStatuses', 'idcardStatuses', 'passportStatuses', 'coeStatuses', 'immigrationStatuses', 'laborMinistryStatuses', 'departureStatuses', 'returnStatuses', 'classes'));
 	}
+
+
+	public function profile($id = null) {
+		if (!$this->Trainee->exists($id)) {
+			throw new NotFoundException(__('Invalid Trainee'));
+		}
+		if ($this->request->is(array('post', 'put'))) {
+			if ($this->Trainee->save($this->request->data)) {
+				$this->Session->setFlash(__('The Trainee has been saved.'));
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('The Trainee could not be saved. Please, try again.'));
+			}
+		} else {
+			$lang = $this->__setLang();
+			$option_jobs = $this->Job->optionJobs($lang);
+			$options = array('conditions' => array('Trainee.' . $this->Trainee->primaryKey => $id));
+			$this->request->data = $this->Trainee->find('first', $options);
+			$this->set(compact('option_jobs'));
+		}
+	}
+
 
 /**
  * edit method
