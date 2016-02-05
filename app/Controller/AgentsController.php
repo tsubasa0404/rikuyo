@@ -16,7 +16,10 @@ class AgentsController extends AppController {
 	public $components = array('Paginator');
 	public $uses = array(
 		'Agent',
-		'Sector'
+		'Sector',
+		'Province',
+		'District',
+		'Commune'
 		);
 /**
  * index method
@@ -24,8 +27,10 @@ class AgentsController extends AppController {
  * @return void
  */
 	public function index() {
+
+		$lang = $this->__setLang();
 		$agents = $this->Agent->validAgents();
-		$this->set(compact('agents'));
+		$this->set(compact('agents', 'lang'));
 	}
 
 	public function update_delete_flag($id = null){
@@ -69,10 +74,21 @@ class AgentsController extends AppController {
 
 		$lang = $this->__setLang();
 		$option_sectors = $this->Sector->optionSectors($lang);
-		$this->set(compact('option_sectors'));
+
+
+		$districts = $this->Commune->formatPlacesToJson('district');
+		$communes = $this->Commune->formatPlacesToJson('commune');
+
+		$this->set('_serialize', 'districts');
+		$this->set('_serialize', 'communes');
+		$this->set(compact('option_sectors','districts', 'communes'));
 
 		if ($this->request->is('post')) {
+
+			$sector_array = implode(',', $this->request->data['Agent']['sector']);
+			$this->request->data['Agent']['sector'] = $sector_array;
 			$this->Agent->create();
+
 			if ($this->Agent->save($this->request->data)) {
 				$this->Session->setFlash(__('The agent has been saved.'));
 				return $this->redirect(array('action' => 'index'));
@@ -80,10 +96,23 @@ class AgentsController extends AppController {
 				$this->Session->setFlash(__('The agent could not be saved. Please, try again.'));
 			}
 		}
-		$provinces = $this->Agent->Province->find('list');
-		$districts = $this->Agent->District->find('list');
-		$communes = $this->Agent->Commune->find('list');
-		$this->set(compact('provinces', 'districts', 'communes'));
+	}
+
+	public function update() {
+
+		if ($this->request->is('post')) {
+
+			$sector_array = implode(',', $this->request->data['Agent']['sector']);
+			$this->request->data['Agent']['sector'] = $sector_array;
+			$this->Agent->create();
+
+			if ($this->Agent->save($this->request->data)) {
+				$this->Session->setFlash(__('The agent has been saved.'));
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('The agent could not be saved. Please, try again.'));
+			}
+		}
 	}
 
 /**
@@ -103,11 +132,25 @@ class AgentsController extends AppController {
 				$this->Session->setFlash(__('The Agent could not be saved. Please, try again.'));
 			}
 		} else {
+			$this->Province->recursive = -1;
+			$this->District->recursive = -1;
+			$this->Commune->recursive = -1;
+
 			$lang = $this->__setLang();
 			$option_sectors = $this->Sector->optionSectors($lang);
 			$options = array('conditions' => array('Agent.' . $this->Agent->primaryKey => $id));
+			$option_provinces = $this->Province->optionProvince();
+      $option_districts = $this->District->optionDistrict();
+      $option_communes  = $this->Commune->optionCommune();
 			$this->request->data = $this->Agent->find('first', $options);
-			$this->set(compact('option_sectors'));
+			$this->set(compact('option_sectors', 'option_provinces', 'option_districts', 'option_communes'));
+
+			//Select2用住所リスト
+			$districts = $this->Commune->formatPlacesToJson('district');
+			$communes = $this->Commune->formatPlacesToJson('commune');
+			$this->set('_serialize', 'districts');
+			$this->set('_serialize', 'communes');
+			$this->set(compact('districts', 'communes'));
 		}
 	}
 

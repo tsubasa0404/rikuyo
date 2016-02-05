@@ -8,6 +8,18 @@ App::uses('AppModel', 'Model');
  */
 class DocTemplate extends AppModel {
 
+	public $actsAs = array(
+		'UploadPack.Upload' => array(
+			'img' => array(
+				'path' => ':webroot/doc/:model/:basename.:extension'
+					),
+				'maxSize' => array(
+					'rule' => array('attachmentMaxSize', 20971520),
+					'message' => 'The Maximum File Upload Size is under 20MB. Please upload again.'
+					),
+				)
+		);
+
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

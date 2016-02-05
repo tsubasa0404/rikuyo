@@ -9,10 +9,10 @@
 			</div>
 
 			<div class="row" id="company-profile">
-				<div class="col-lg-8 col-md-8 col-sm-12">
+				<div class="col-lg-8 col-md-8 col-sm-12 maxW600">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
-							<h2><?php echo $this->request->data['Company']['company_jp'] ?></h2>
+							<h2><?php echo $this->request->data['Company']['company_jp']."(".$this->request->data['Company']['company_en'].")" ?></h2>
 						</header>
 
 						<div class="main-box-body clearfix">
@@ -58,11 +58,11 @@
 												<td>
 													<?php echo $this->Form->input('company_jp',array(
 														'label' => false,
-														'class' => 'form-control'
+														'class' => 'form-control  maxW200'
 													)) ?><br>
 													<?php echo $this->Form->input('company_en',array(
 														'label' => false,
-														'class' => 'form-control'
+														'class' => 'form-control maxW200'
 													)) ?>
 												</td>
 											</tr>
@@ -76,13 +76,13 @@
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('rep_family_name_jp',array(
 																	'label' =>  __('Family Name_Japanese'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('rep_given_name_jp',array(
 																	'label' => __('Given Name_Japanese'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 														</div>
@@ -91,13 +91,13 @@
 														<div class="col-lg-6 col-md-6 col-sm-6">
 															<?php echo $this->Form->input('rep_family_name_en',array(
 																'label' => __('Family Name_English'),
-																'class' => 'form-control'
+																'class' => 'form-control maxW200'
 															)) ?>
 														</div>
 														<div class="col-lg-6 col-md-6 col-sm-6">
 															<?php echo $this->Form->input('rep_given_name_en',array(
 																'label' => __('Given Name_English'),
-																'class' => 'form-control'
+																'class' => 'form-control maxW200'
 															)) ?>
 														</div>
 													</div>
@@ -112,7 +112,7 @@
 														<div class="col-lg-4 col-md-4 col-sm-4">
 															<?php echo $this->Form->input('postcode',array(
 																'label' => __('Postcode'),
-																'class' => 'form-control',
+																'class' => 'form-control maxW200',
 																'id' => 'postcode',
 																'type' => 'text'
 															)) ?>
@@ -128,7 +128,7 @@
 														<div class="col-lg-4 col-md-4 col-sm-4">
 															<?php echo $this->Form->input('province',array(
 																'label' => __('Province'),
-																'class' => 'form-control',
+																'class' => 'form-control maxW200',
 																'id' => 'province'
 															)) ?>
 														</div>
@@ -158,13 +158,13 @@
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('phone1',array(
 																	'label' => __('Phone1'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('phone1_smb',array(
 																	'label' => __('Contact Name'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 														</div>
@@ -175,13 +175,13 @@
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('phone2',array(
 																	'label' => __('Phone2'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('phone2_smb',array(
 																	'label' => __('Contact Name'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 														</div>
@@ -192,13 +192,13 @@
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('phone3',array(
 																	'label' => __('Phone3'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('phone3_smb',array(
 																	'label' => __('Contact Name'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 														</div>
@@ -209,13 +209,13 @@
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('phone4',array(
 																	'label' => __('Phone4'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('phone4_smb',array(
 																	'label' => __('Contact Name'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 														</div>
@@ -235,7 +235,7 @@
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('mail1_smb',array(
 																	'label' => __('Contact Name'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 														</div>
@@ -251,7 +251,7 @@
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('mail2_smb',array(
 																	'label' => __('Contact Name'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 														</div>
@@ -267,7 +267,7 @@
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('mail3_smb',array(
 																	'label' => __('Contact Name'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 														</div>
@@ -283,7 +283,7 @@
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<?php echo $this->Form->input('mail4_smb',array(
 																	'label' => __('Contact Name'),
-																	'class' => 'form-control'
+																	'class' => 'form-control maxW200'
 																)) ?>
 															</div>
 														</div>
@@ -300,12 +300,13 @@
 														'label' => false,
 														'type' => 'select',
 														'options' => $option_jobs,
+														'selected' => explode(',', $this->request->data['Company']['job']),
 														'class' => "form-control sel_job",
 														'multiple' => true,
 														'style' => array("width:200px"),
 														'div' => false
 													)); ?>
-													<button type="button" id="" class="md-trigger btn btn-primary" data-modal="modal-job"><i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Job') ?></button><button type="button" class="test">test</button>
+
 												</td>
 											</tr>
 											<tr>

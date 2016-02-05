@@ -8,7 +8,29 @@ App::uses('AppModel', 'Model');
 class InterviewResult extends AppModel {
 
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+	public function optionResults($lang){
+			$options = array(
+				'order' => array('id' => 'asc')
+			);
+
+		if($lang == 'ja'){
+			$fields = array(
+				'fields' => array(
+					'id',
+					'result_jp',
+				)
+			);
+		} else {
+			$fields = array(
+				'fields' =>array(
+					'id',
+					'result_en'
+					)
+				);
+		}
+		$options = array_merge($options, $fields);
+		return $this->find('list', $options);
+	}
 
 /**
  * hasMany associations

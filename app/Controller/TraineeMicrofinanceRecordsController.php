@@ -50,7 +50,7 @@ class TraineeMicrofinanceRecordsController extends AppController {
 			$this->TraineeMicrofinanceRecord->create();
 			if ($this->TraineeMicrofinanceRecord->save($this->request->data)) {
 				$this->Session->setFlash(__('The trainee microfinance record has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The trainee microfinance record could not be saved. Please, try again.'));
 			}
@@ -74,7 +74,7 @@ class TraineeMicrofinanceRecordsController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->TraineeMicrofinanceRecord->save($this->request->data)) {
 				$this->Session->setFlash(__('The trainee microfinance record has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The trainee microfinance record could not be saved. Please, try again.'));
 			}
@@ -105,6 +105,6 @@ class TraineeMicrofinanceRecordsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The trainee microfinance record could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer());
 	}
 }

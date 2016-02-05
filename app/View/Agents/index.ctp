@@ -1,5 +1,5 @@
 <?php $this->set('title_for_layout', 'Agents'); ?>
-<?php $this->Html->addCrumb(__('Agent List'), 'agents'); ?>
+<?php $this->Html->addCrumb(__('Agent List')); ?>
 					<h1><?= __('Agent List') ?></h1>
 					</div>
 				</div>
@@ -7,7 +7,7 @@
 
 
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-12 maxW900">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2 class="pull-left"><?= __('Agent List') ?></h2>
@@ -28,7 +28,7 @@
 										<th><?= __('Agent') ?></th>
 										<th data-hide="" class=""><?= __('Address') ?></th>
 										<th data-hide="" class=""><?= __('Phone') ?></th>
-										<th data-hide="" class=""><?= __('Sector') ?></th>
+
 										<th data-hide="" class=""></th>
 									</tr>
 								</thead>
@@ -51,14 +51,12 @@
 											echo $agent['Agent']['address_en'];
 											echo "</td><td>";
 											echo $agent['Agent']['phone1'];
-											echo "</td><td>";
-											echo $agent['Agent']['sector'];
 											echo "</td>";
 											echo '<td><div class="actions">';
 											echo $this->Form->postlink(
 												'<i class="fa fa-trash-o"></i>',
 												array('controller' => 'agents', 'action' => 'update_delete_flag',$agent['Agent']['id']),
-												array('confirm' => __('Are you sure you want to delete # %s?', $agent['Agent']['id']),'escape' => false, 'class' => 'table-link' )
+												array('confirm' => __('Are you sure you want to delete # %s?', $agent['Agent']['id']),'escape' => false, 'class' => 'table-link red' )
 											);
 											echo '</div></td>';
 											echo "</tr>"

@@ -12,14 +12,14 @@
 			<span class="fa fa-bars"></span>
 		</button>
 
-		<div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
+		<div class="nav-no-collapse navbar-left pull-left">
 			<ul class="nav navbar-nav pull-left">
-				<li>
+				<li class="hidden-sm hidden-xs">
 					<a class="btn" id="make-small-nav">
 						<i class="fa fa-bars"></i>
 					</a>
 				</li>
-				<li class="dropdown hidden-xs">
+				<li class="dropdown">
 					<a class="btn dropdown-toggle" data-toggle="dropdown">
 						<i class="fa fa-bell"></i>
 						<span class="count">8</span>
@@ -74,7 +74,7 @@
 					</ul>
 				</li>
 
-				<li class="dropdown hidden-xs">
+				<li class="dropdown">
 					<a class="btn dropdown-toggle" data-toggle="dropdown">
 						Languages
 						<i class="fa fa-caret-down"></i>

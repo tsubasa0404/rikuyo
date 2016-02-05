@@ -35,7 +35,9 @@ class PagesController extends AppController {
  *
  * @var array
  */
-	public $uses = array();
+	public $uses = array(
+		'Interview',
+		);
 
 /**
  * Displays a view
@@ -63,6 +65,13 @@ class PagesController extends AppController {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
+
+		//Home インタビュースケジュール
+		$lang = $this->__setLang();
+		$this->Interview->recursive = -1;
+		$interviews = $this->Interview->interviewList();
+		$this->set(compact('lang', 'interviews'));
+
 
 		try {
 			$this->render(implode('/', $path));

@@ -10,9 +10,20 @@ App::uses('AppModel', 'Model');
 class Association extends AppModel {
 
 	public function validAssociations(){
-		$options = array('conditions' => array(
+		$options = array();
+		$options['conditions'] = array(
 			'flag' => 0
-			));
+			);
+		$options['fields'] = array(
+			'id',
+			'association_jp',
+			'association_en',
+			'province',
+			'address_jp',
+			'address_en',
+			'phone1',
+			'sector',
+			);
 		return $this->find('all', $options);
 	}
 
@@ -21,26 +32,27 @@ class Association extends AppModel {
 				'conditions' => array(
 					'flag' => 0
 					),
-				'order' => array('id' => 'asc')
+				'order' => array('association_en' => 'asc')
 			);
 
-		if($lang == 'ja'){
-			$fields = array(
-				'fields' => array(
-					'id',
-					'association_jp'
-				)
-			);
-		} else {
-			$fields = array(
-				'fields' =>array(
-					'id',
-					'association_en'
+			if($lang == 'ja'){
+				$fields = array(
+					'fields' => array(
+						'id',
+						'association_jp'
 					)
 				);
-		}
-		$options = array_merge($options, $fields);
-		return $this->find('list', $options);
+			} else {
+				$fields = array(
+					'fields' =>array(
+						'id',
+						'association_en'
+						)
+					);
+			}
+			$options = array_merge($options, $fields);
+
+			return $this->find('list', $options);
 	}
 
 /**

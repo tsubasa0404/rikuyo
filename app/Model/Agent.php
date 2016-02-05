@@ -10,7 +10,25 @@ App::uses('AppModel', 'Model');
 class Agent extends AppModel {
 
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+	public function validAgents(){
+		$options = array();
+		$options['conditions'] = array(
+			'Agent.flag' => 0
+			);
+
+		$options['group'] = array('Agent.id');
+		$options['order'] = array('Agent.agent_en' => 'asc');
+		$options['fields'] = array(
+			'Agent.id',
+			'Agent.agent_jp',
+			'Agent.agent_en',
+			'Agent.address_en',
+			'Agent.phone1',
+			);
+
+
+		return $this->find('all', $options);
+	}
 
 /**
  * belongsTo associations
@@ -41,10 +59,5 @@ class Agent extends AppModel {
 		)
 	);
 
-	public function validAgents(){
-		$options = array('conditions' => array(
-			'flag' => 0
-			));
-		return $this->find('all', $options);
-	}
+
 }

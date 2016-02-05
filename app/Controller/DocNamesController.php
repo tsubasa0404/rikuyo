@@ -7,13 +7,18 @@ App::uses('AppController', 'Controller');
  * @property PaginatorComponent $Paginator
  */
 class DocNamesController extends AppController {
-
+	public $uses = array(
+		'DocName',
+		'DocFolder',
+		'DocTemplate',
+		'SubFolder'
+		);
 /**
  * Components
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'RequestHandler');
 
 /**
  * index method
@@ -21,8 +26,69 @@ class DocNamesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->DocName->recursive = 0;
-		$this->set('docNames', $this->Paginator->paginate());
+		$lang = $this->__setLang();
+		$option_folders = $this->DocFolder->optionFolders($lang);
+		$option_sub_folders = $this->SubFolder->optionSubFolders();
+		$option_documents = $this->DocName->optionDocuments();
+		$folders = $this->DocFolder->folders();
+		$subfolders = $this->SubFolder->subfolders();
+		$this->set(compact('option_folders', 'option_sub_folders', 'option_documents', 'folders', 'subfolders'));
+
+	}
+
+	public function update_delete_flag($id = null){
+		if(!$this->DocName->exists($id)){
+			throw new NotFoundException(__('You cannot delete this'));
+		}
+		if($this->request->is(array('post', 'put'))){
+			$this->request->data = array(
+				'id' => $id,
+				'flag' => '1'
+				);
+			if($this->DocName->save($this->request->data)){
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('You cannot delete this.'));
+			}
+		}
+	}
+
+	public function ajaxGetDocOption(){
+		$this->autoRender = false;
+
+		if($this->RequestHandler->isAjax()){
+			$folder_id = $_POST['folder_id'];
+			$sub_folder_id = $_POST['sub_folder_id'];
+			var_dump($folder_id);
+			var_dump($sub_folder_id);
+
+			$option_documents = $this->DocName->find('list', array(
+				'conditions' => array(
+					'DocName.folder_id' => $folder_id,
+					'DocName.sub_folder_id' => $sub_folder_id,
+					'DocName.flag' => 0,
+					),
+				'fields' => array(
+					'DocName.id',
+					'DocName.folder_id',
+					'DocName.sub_folder_id',
+					'DocName.name_jp',
+					'DocName.name_en',
+					),
+				'order' => array('DocName.id' => 'asc')
+				));
+			//$this->RequestHandler->setContent('json');
+			//$this->RequestHandler->respondAs('application/json;charset=UTF-8');
+
+			return "ajax";
+		}
+	}
+
+	//組合提出書類選択ページ
+	public function select() {
+		$lang = $this->__setLang();
+		$options = array('conditions' => array('DocName.' . $this->DocName->primaryKey => $id));
+		$this->set('docName', $this->DocName->find('first', $options));
 	}
 
 /**
@@ -55,9 +121,9 @@ class DocNamesController extends AppController {
 				$this->Session->setFlash(__('The doc name could not be saved. Please, try again.'));
 			}
 		}
-		$folders = $this->DocName->Folder->find('list');
-		$subFolders = $this->DocName->SubFolder->find('list');
-		$this->set(compact('folders', 'subFolders'));
+		//$folders = $this->DocName->Folder->find('list');
+		//$subFolders = $this->DocName->SubFolder->find('list');
+		//$this->set(compact('folders', 'subFolders'));
 	}
 
 /**

@@ -1,7 +1,7 @@
 <?php $this->set('title_for_layout', 'Trainees'); ?>
 <?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
-<?php $this->Html->addCrumb(__('Trainee List'), '/trainees'); ?>
+<?php $this->Html->addCrumb(__('Trainee List')); ?>
 					<h1><?= __('Trainee List') ?></h1>
 					</div>
 				</div>
@@ -29,7 +29,7 @@
 								<thead>
 									<tr>
 										<th><?= __('Trainee ID') ?></th>
-										<th><?= __('Name') ?></th>
+										<th><?= __('') ?></th>
 										<th><?= __('Interview Date') ?></th>
 										<th data-hide="all" class=""><?= __('Birthday') ?></th>
 										<th data-hide="all" class=""><?= __('Phone') ?></th>
@@ -55,7 +55,13 @@
 												array('escape' => false, 'class' => '')
 											);
 											echo "</td><td>";
-
+											if($trainee['TraineeProfileImage'])
+												{
+													echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage'][0]['img_file_name']);
+												} else {
+													echo $this->Html->image('trainee_profile_images/thumb/default.png');
+												};
+											echo "<br>";
 											echo $trainee['Trainee']['given_name_en']." ".$trainee['Trainee']['family_name_en'];
 											echo "</td><td>";
 											echo "interview date";

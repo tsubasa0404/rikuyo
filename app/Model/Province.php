@@ -9,8 +9,16 @@ App::uses('AppModel', 'Model');
  */
 class Province extends AppModel {
 
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+	public function optionProvince(){
+		$options = array(
+			'fields' => array(
+				'Province.id',
+				'Province.province_en',
+			),
+			'order' => array('Province.province_en' => 'asc'),
+		);
+		return $this->find('list', $options);
+	}
 
 /**
  * hasMany associations

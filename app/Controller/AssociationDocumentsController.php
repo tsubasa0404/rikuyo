@@ -25,6 +25,8 @@ class AssociationDocumentsController extends AppController {
 		$this->set('associationDocuments', $this->Paginator->paginate());
 	}
 
+
+
 /**
  * view method
  *

@@ -11,7 +11,18 @@ App::uses('AppModel', 'Model');
 class District extends AppModel {
 
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+	public function optionDistrict(){
+		$options = array(
+			'fields' => array(
+				'District.id',
+				'District.District_en',
+			),
+			'order' => array('District.District_en' => 'asc'),
+			'group' => array('District.district_en')
+		);
+		return $this->find('list', $options);
+	}
+
 
 /**
  * belongsTo associations

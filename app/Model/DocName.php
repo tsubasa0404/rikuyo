@@ -10,7 +10,24 @@ App::uses('AppModel', 'Model');
 class DocName extends AppModel {
 
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+	public function optionDocuments(){
+		$options = array();
+		$options['conditions'] = array(
+			'DocName.flag'=> '0'
+			);
+		$options['fields'] = array(
+			'DocName.id',
+			'DocName.name_jp'
+			);
+		$options['recursive'] = -1;
+		return $this->find('list', $options);
+	}
+
+	public function documents(){
+		return $this->find('all');
+	}
+
 
 /**
  * belongsTo associations

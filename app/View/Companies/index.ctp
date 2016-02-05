@@ -1,13 +1,13 @@
 <?php $this->set('title_for_layout', 'Companies'); ?>
 <?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
-<?php $this->Html->addCrumb(__('Company List'), 'companies'); ?>
+<?php $this->Html->addCrumb(__('Company List')); ?>
 					<h1><?= __('Company List') ?></h1>
 					</div>
 				</div>
 			</div>
 
 							<div class="row">
-								<div class="col-lg-12">
+								<div class="col-lg-12 maxW1200">
 									<div class="main-box clearfix">
 										<header class="main-box-header clearfix">
 											<h2 class="pull-left"><?= __('Company List') ?></h2>
@@ -25,13 +25,12 @@
 											<table id="table-company-db" class="table footable toggle-circle-filled" >
 												<thead>
 													<tr>
-														<th><?= __('Company') ?></th>
-														<th data-hide="phone,tablet" class=""><?= __('Prefecture') ?></th>
-														<th data-hide="all" class=""><?= __('Address') ?></th>
-														<th data-hide="" class=""><?= __('Phone') ?></th>
-														<th data-hide="" class=""><?= __('Job') ?></th>
-														<th data-hide="all" class=""><?= __('Affiliated Association') ?></th>
-														<th></th>
+														<th class="maxW300"><?= __('Company') ?></th>
+														<th class="maxW100" data-hide="phone,tablet" ><?= __('Province') ?></th>
+														<th  data-hide="all" ><?= __('Address') ?></th>
+														<th class="maxW100" data-hide="" ><?= __('Phone') ?></th>
+														<th class="maxW300" data-hide="all" ><?= __('Affiliated Association') ?></th>
+														<th class="maxW50"></th>
 													</tr>
 												</thead>
 												<tbody>
@@ -58,8 +57,6 @@
 															echo "</td><td>";
 															echo $company['Company']['phone1'];
 															echo "</td><td>";
-															echo $company['Company']['job'];
-															echo "</td><td>";
 															echo $this->Html->link(
 																$company['Association']['association_jp'],
 																array('controller' => 'associations','action' => 'profile', $company['Association']['id']),
@@ -76,7 +73,7 @@
 															echo $this->Form->postlink(
 																'<i class="fa fa-trash-o"></i>',
 																array('controller' => 'companies', 'action' => 'update_delete_flag',$company['Company']['id']),
-																array('confirm' => __('Are you sure you want to delete # %s?', $company['Company']['id']),'escape' => false, 'class' => 'table-link' )
+																array('confirm' => __('Are you sure you want to delete # %s?', $company['Company']['id']),'escape' => false, 'class' => 'table-link red' )
 															);
 															echo '</div></td>';
 															echo "</tr>"

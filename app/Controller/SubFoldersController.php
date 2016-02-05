@@ -51,7 +51,7 @@ class SubFoldersController extends AppController {
 			$this->SubFolder->create();
 			if ($this->SubFolder->save($this->request->data)) {
 				$this->Session->setFlash(__('The sub folder has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The sub folder could not be saved. Please, try again.'));
 			}

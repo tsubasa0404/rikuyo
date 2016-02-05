@@ -1,16 +1,16 @@
 <?php $this->set('title_for_layout', 'Home'); ?>
 <?php echo $this->Html->css('libs/footable.core', array('inline' => false, 'block' => 'page-css')) ?>
 
-										<h1>ホーム</h1>
+										<h1><?= __('Home') ?></h1>
 									</div>
 								</div>
 							</div>
 
 							<div class="row">
-								<div class="col-lg-12">
+								<div class="col-lg-12 maxW700">
 									<div class="main-box clearfix">
 										<header class="main-box-header clearfix">
-											<h2 class="pull-left">面接予定表</h2>
+											<h2 class="pull-left"><?= __('Interview Schedule') ?></h2>
 											<div class="filter-block pull-right">
 												<?php echo $this->Html->link(
 													'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Interview'),
@@ -30,376 +30,51 @@
 												<table id="interview-table" class="table  toggle-circle-filled table-striped table-bordered" >
 													<thead>
 														<tr>
-															<th><a href="#"><?= __('Interview No') ?></a></th>
-															<th><a href="#" class="desc"><?= __('Interview Date') ?></a></th>
-															<th><a href="#" class="desc"><?= __('Interview Time') ?></a></th>
-															<th><a href="#" class="asc"><?= __('Association') ?></a></th>
-															<th><a href="#" class="asc"><?= __('Company') ?></a></th>
-															<th><a href="#" class="asc"><?= __('Recruitment Num') ?></a></th>
-															<th><a href="#" class="asc"><?= __('Person in charge') ?></a></th>
+															<th><a href="#"><?= __('Date') ?></a></th>
+															<th><a href="#" class="asc"><?= __('Company(Association)') ?></a></th>
+															<th><a href="#" class="asc"><?= __('Candidates') ?></a></th>
+															<th><a href="#" class="asc"><?= __('Staff') ?></a></th>
+															<th><a href="#" class="asc"></a></th>
 														</tr>
 													</thead>
 													<tbody>
-														<tr>
-															<td>
-																<a href="interview-order-detail.html">0001</a>
-															</td>
-															<td>
-																2015/12/01
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">山本組合</a>
-															</td>
-															<td class="">
-																<a href="#">山本株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0002</a>
-															</td>
-															<td>
-																2015/12/05
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">橋本組合</a>
-															</td>
-															<td class="">
-																<a href="#">橋本株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0003</a>
-															</td>
-															<td>
-																2015/12/06
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">Lina組合</a>
-															</td>
-															<td class="">
-																<a href="#">Lina株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0004</a>
-															</td>
-															<td>
-																2015/12/20
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">Saly組合</a>
-															</td>
-															<td class="">
-																<a href="#">Saly株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0004</a>
-															</td>
-															<td>
-																2015/12/20
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">Saly組合</a>
-															</td>
-															<td class="">
-																<a href="#">Saly株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0004</a>
-															</td>
-															<td>
-																2015/12/20
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">Saly組合</a>
-															</td>
-															<td class="">
-																<a href="#">Saly株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0004</a>
-															</td>
-															<td>
-																2015/12/20
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">Saly組合</a>
-															</td>
-															<td class="">
-																<a href="#">Saly株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0004</a>
-															</td>
-															<td>
-																2015/12/20
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">Saly組合</a>
-															</td>
-															<td class="">
-																<a href="#">Saly株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0004</a>
-															</td>
-															<td>
-																2015/12/20
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">Saly組合</a>
-															</td>
-															<td class="">
-																<a href="#">Saly株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0004</a>
-															</td>
-															<td>
-																2015/12/20
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">Saly組合</a>
-															</td>
-															<td class="">
-																<a href="#">Saly株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0004</a>
-															</td>
-															<td>
-																2015/12/20
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">Saly組合</a>
-															</td>
-															<td class="">
-																<a href="#">Saly株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0004</a>
-															</td>
-															<td>
-																2015/12/20
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">Saly組合</a>
-															</td>
-															<td class="">
-																<a href="#">Saly株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0004</a>
-															</td>
-															<td>
-																2015/12/20
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">Saly組合</a>
-															</td>
-															<td class="">
-																<a href="#">Saly株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0004</a>
-															</td>
-															<td>
-																2015/12/20
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">Saly組合</a>
-															</td>
-															<td class="">
-																<a href="#">Saly株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
-														<tr>
-															<td>
-																<a href="#">0004</a>
-															</td>
-															<td>
-																2015/12/20
-															</td>
-															<td>
-																10:00
-															</td>
-															<td>
-																<a href="#">Saly組合</a>
-															</td>
-															<td class="">
-																<a href="#">Saly株式会社</a>
-															</td>
-															<td class="">
-																5人
-															</td>
-															<!-- <td class="text-right">
-																&dollar; 825.50
-															</td> -->
-															<td>Saly,橋本</td>
-														</tr>
+														<?php foreach ($interviews as $int) : ?>
+															<?php
+																echo '<tr><td class="td_first_block">';
+																echo $int['Interview']['interview_date']." ".$int['Interview']['interview_time']." ";
+																echo $this->Html->link(
+																	__('Detail'),
+																	array('controller' => 'interviews', 'action' => 'profile', $int['Interview']['id']),
+																	array('escape' => false)
+																	);
+																echo '</td><td>';
+																echo $this->Html->link(
+																	$this->Btn->switchLang($lang, $int['Company']['company_jp'], $int['Company']['company_en']),
+																	array('controller' => 'companies', 'action' => 'profile', $int['Company']['id']),
+																	array('escape' => false)
+																	);
+																echo " (";
+																echo $this->Html->link(
+																	$this->Btn->switchLang($lang, $int['Association']['association_jp'], $int['Association']['association_en']),
+																	array('controller' => 'associations', 'action' => 'profile', $int['Association']['id']),
+																	array('escape' => false)
+																	);
+																echo ")";
+																echo "</td><td>";
+																echo $int[0]['count']." "._('people');
+																echo "</td><td>";
+																echo $int['Interview']['interview_staff'];
+																echo '</td><td><div class="actions">';
+																echo $this->Form->postlink(
+																	'<i class="fa fa-trash-o"></i>',
+																	array('controller' => 'interviews', 'action' => 'update_delete_flag',$int['Interview']['id']),
+																	array('confirm' => __('Are you sure you want to delete # %s?', $int['Interview']['id']),'escape' => false, 'class' => 'table-link' )
+																);
+																echo '</div></td>';
+																echo "</tr>"
+
+															?>
+														<?php endforeach; ?>
 													</tbody>
 												</table>
 											</div>

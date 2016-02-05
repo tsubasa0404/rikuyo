@@ -26,8 +26,23 @@ class BtnHelper extends AppHelper
 		}
 	}
 
+	function switchLang($lang, $ja, $en){
+		switch ($lang){
+			case 'ja':
+				return $ja;
+				break;
 
+			case 'en':
+				return $en;
+				break;
+		}
+	}
 
+	function calcAge($birthday){
+		$now = date('Ymd');
+		$birthday = date('Ymd', strtotime($birthday));
+		return floor(($now-$birthday)/10000);
+	}
 
 
 }

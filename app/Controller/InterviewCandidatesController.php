@@ -13,7 +13,7 @@ class InterviewCandidatesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'RequestHandler');
 
 /**
  * index method
@@ -38,6 +38,23 @@ class InterviewCandidatesController extends AppController {
 		}
 		$options = array('conditions' => array('InterviewCandidate.' . $this->InterviewCandidate->primaryKey => $id));
 		$this->set('interviewCandidate', $this->InterviewCandidate->find('first', $options));
+	}
+
+	public function addAjax(){
+		if($this->RequestHandler->isAjax()){
+			Configure::write('debug', 0);
+		 }
+		if($this->request->is('ajax')){
+		$this->autoRender = false;
+		var_dump($this->request->data);
+			$this->InterviewCandidate->create();
+			if ($this->InterviewCandidate->save($this->request->data)) {
+				echo $this->InterviewCandidate->getLastInsertID();
+				// return $this->Session->setFlash('The time card has been saved.', 'flash_success');
+			} else {
+				return $this->Session->setFlash('The Candidate could not be saved. Please, try again.', 'flash_failure');
+			}
+		}
 	}
 
 /**

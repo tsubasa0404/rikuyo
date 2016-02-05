@@ -70,12 +70,12 @@ class CompaniesController extends AppController {
  */
 	public function add() {
 
-		$lang = $this->__setLang();
-		$option_associations = $this->Association->optionAssociations($lang);
-		$option_jobs = $this->Job->optionJobs($lang);
-		$this->set(compact('option_associations', 'option_jobs'));
 
 		if ($this->request->is('post')) {
+
+			$job_array = implode(',', $this->request->data['Company']['job']);
+			$this->request->data['Company']['job'] = $job_array;
+
 			$this->Company->create();
 			if ($this->Company->save($this->request->data)) {
 				$this->Session->setFlash(__('The company has been saved.'));
@@ -84,8 +84,17 @@ class CompaniesController extends AppController {
 				$this->Session->setFlash(__('The company could not be saved. Please, try again.'));
 			}
 		}
+
+		//言語切り替え変数$lang取得
+		$lang = $this->__setLang();
+
+		//組合リスト(言語切り替え機能済み)取得
+		$option_associations = $this->Association->optionAssociations($lang);
+		//職種(言語切り替え機能済み)取得
+		$option_jobs = $this->Job->optionJobs($lang);
+
 		$associations = $this->Company->Association->find('list');
-		$this->set(compact('associations'));
+		$this->set(compact('associations','option_associations', 'option_jobs'));
 	}
 
 	public function profile($id = null) {

@@ -57,7 +57,7 @@
 											echo $this->Form->postlink(
 												'<i class="fa fa-trash-o"></i>',
 												array('controller' => 'sectors', 'action' => 'update_delete_flag',$sector['Sector']['id']),
-												array('confirm' => __('Are you sure you want to delete # %s?', $sector['Sector']['id']),'escape' => false, 'class' => 'table-link' )
+												array('confirm' => __('Are you sure you want to delete # %s?', $sector['Sector']['id']),'escape' => false, 'class' => 'table-link red' )
 											);
 											echo '</div></td></tr>';
 										?>
@@ -137,7 +137,7 @@
 											echo $this->Form->postlink(
 												'<i class="fa fa-trash-o"></i>',
 												array('controller' => 'jobs', 'action' => 'update_delete_flag',$job['Job']['id']),
-												array('confirm' => __('Are you sure you want to delete # %s?', $job['Job']['id']),'escape' => false, 'class' => 'table-link' )
+												array('confirm' => __('Are you sure you want to delete # %s?', $job['Job']['id']),'escape' => false, 'class' => 'table-link red' )
 											);
 											echo '</div></td></tr>';
 										?>

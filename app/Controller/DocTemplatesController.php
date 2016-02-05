@@ -47,10 +47,21 @@ class DocTemplatesController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+
+			$doc_name = $this->request->data['DocTemplate']['document_name_id'];
+			$folder_id = $this->request->data['DocTemplate']['folder_id'];
+			$sub_folder_id = $this->request->data['DocTemplate']['sub_folder_id'];
+			$doc_lang = $this->request->data['DocTemplate']['lang'];
+			$org_img_file_name = $this->request->data['DocTemplate']['img']['name'];
+
+			$ext = pathinfo($org_img_file_name, PATHINFO_EXTENSION);//ファイル名の拡張子を取得
+			$new_img_file_name = $folder_id . "_".$sub_folder_id."_".$doc_name . "_" . $doc_lang .".". $ext;
+			$this->request->data['DocTemplate']['img']['name'] = $new_img_file_name;
+
 			$this->DocTemplate->create();
 			if ($this->DocTemplate->save($this->request->data)) {
 				$this->Session->setFlash(__('The doc template has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The doc template could not be saved. Please, try again.'));
 			}

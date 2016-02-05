@@ -1,14 +1,14 @@
 <?php $this->set('title_for_layout', 'Associations'); ?>
 <?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
-<?php $this->Html->addCrumb(__('Association List'), 'associations'); ?>
+<?php $this->Html->addCrumb(__('Association List')); ?>
 					<h1><?= __('Association List') ?></h1>
 					</div>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-12 maxW900">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2 class="pull-left"><?= __('Association List') ?></h2>
@@ -26,12 +26,12 @@
 							<table id="table-association-db" class="table table-hover">
 								<thead>
 									<tr>
-										<th><?= __('Association') ?></th>
-										<th data-hide="phone,tablet" class=""><?= __('Prefecture') ?></th>
-										<th data-hide="all" class=""><?= __('Address') ?></th>
-										<th data-hide="" class=""><?= __('Phone') ?></th>
-										<th data-hide="" class=""><?= __('Sector') ?></th>
-										<th data-hide="" class=""></th>
+										<th class="maxW300"><?= __('Association') ?></th>
+										<th class="maxW100" data-hide="phone,tablet"><?= __('Province') ?></th>
+										<th class="" data-hide="all"><?= __('Address') ?></th>
+										<th class="maxW100" data-hide=""><?= __('Phone') ?></th>
+
+										<th class="maxW50" data-hide=""></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -57,14 +57,12 @@
 											echo $association['Association']['address_en'];
 											echo "</td><td>";
 											echo $association['Association']['phone1'];
-											echo "</td><td>";
-											echo $association['Association']['sector'];
 											echo "</td>";
 											echo '<td><div class="actions">';
 											echo $this->Form->postlink(
 												'<i class="fa fa-trash-o"></i>',
 												array('controller' => 'associations', 'action' => 'update_delete_flag',$association['Association']['id']),
-												array('confirm' => __('Are you sure you want to delete # %s?', $association['Association']['id']),'escape' => false, 'class' => 'table-link' )
+												array('confirm' => __('Are you sure you want to delete # %s?', $association['Association']['id']),'escape' => false, 'class' => 'table-link red' )
 											);
 											echo '</div></td>';
 											echo "</tr>"

@@ -48,9 +48,19 @@ class TraineeMicrofinanceImagesController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->TraineeMicrofinanceImage->create();
+
+
+			$title = $this->request->data['TraineeMicrofinanceImage']['title'];
+			$trainee_control_no = $this->request->data['TraineeMicrofinanceImage']['trainee_control_no'];
+			$org_img_file_name = $this->request->data['TraineeMicrofinanceImage']['img']['name'];
+			$ext = substr($org_img_file_name, -4);
+			$new_img_file_name = $trainee_control_no . "_" . date('Ymdhis') . $ext;
+			$this->request->data['TraineeMicrofinanceImage']['img']['name'] = $new_img_file_name;
+
+
 			if ($this->TraineeMicrofinanceImage->save($this->request->data)) {
 				$this->Session->setFlash(__('The trainee microfinance image has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The trainee microfinance image could not be saved. Please, try again.'));
 			}
@@ -103,6 +113,6 @@ class TraineeMicrofinanceImagesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The trainee microfinance image could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer());
 	}
 }

@@ -1,199 +1,407 @@
-<div class="trainees form">
-<?php echo $this->Form->create('Trainee'); ?>
-	<fieldset>
-		<legend><?php echo __('Add Trainee'); ?></legend>
-	<?php
-		echo $this->Form->input('control_no');
-		echo $this->Form->input('family_name_en');
-		echo $this->Form->input('family_name_jp');
-		echo $this->Form->input('family_name_kh');
-		echo $this->Form->input('given_name_en');
-		echo $this->Form->input('given_name_jp');
-		echo $this->Form->input('given_name_kh');
-		echo $this->Form->input('sex');
-		echo $this->Form->input('birthday');
-		echo $this->Form->input('height');
-		echo $this->Form->input('weight');
-		echo $this->Form->input('face_feature_en');
-		echo $this->Form->input('face_feature_jp');
-		echo $this->Form->input('face_feature_kh');
-		echo $this->Form->input('shoe_size');
-		echo $this->Form->input('married');
-		echo $this->Form->input('families_en');
-		echo $this->Form->input('families_jp');
-		echo $this->Form->input('province_id');
-		echo $this->Form->input('district_id');
-		echo $this->Form->input('commune_id');
-		echo $this->Form->input('address_en');
-		echo $this->Form->input('address_jp');
-		echo $this->Form->input('address_kh');
-		echo $this->Form->input('birthplace_province_id');
-		echo $this->Form->input('birthplace_district_id');
-		echo $this->Form->input('birthplace_commune_id');
-		echo $this->Form->input('birthplace_address_en');
-		echo $this->Form->input('birthplace_address_jp');
-		echo $this->Form->input('birthplace_address_kh');
-		echo $this->Form->input('phone');
-		echo $this->Form->input('handed');
-		echo $this->Form->input('academic1_en');
-		echo $this->Form->input('academic1_from');
-		echo $this->Form->input('academic1_to');
-		echo $this->Form->input('academic1_jp');
-		echo $this->Form->input('academic1_kh');
-		echo $this->Form->input('academic2_en');
-		echo $this->Form->input('academic2_from');
-		echo $this->Form->input('academic2_to');
-		echo $this->Form->input('academic2_jp');
-		echo $this->Form->input('academic2_kh');
-		echo $this->Form->input('academic3_en');
-		echo $this->Form->input('academic3_from');
-		echo $this->Form->input('academic3_to');
-		echo $this->Form->input('academic3_jp');
-		echo $this->Form->input('academic3_kh');
-		echo $this->Form->input('academic4_en');
-		echo $this->Form->input('academic4_from');
-		echo $this->Form->input('academic4_to');
-		echo $this->Form->input('academic4_jp');
-		echo $this->Form->input('academic4_kh');
-		echo $this->Form->input('employ1_en');
-		echo $this->Form->input('employ1_from');
-		echo $this->Form->input('employ1_to');
-		echo $this->Form->input('employ1_jp');
-		echo $this->Form->input('employ1_kh');
-		echo $this->Form->input('employ1_job');
-		echo $this->Form->input('employ1_salary');
-		echo $this->Form->input('employ2_en');
-		echo $this->Form->input('employ2_from');
-		echo $this->Form->input('employ2_to');
-		echo $this->Form->input('employ2_jp');
-		echo $this->Form->input('employ2_kh');
-		echo $this->Form->input('employ2_job');
-		echo $this->Form->input('employ2_salary');
-		echo $this->Form->input('employ3_en');
-		echo $this->Form->input('employ3_from');
-		echo $this->Form->input('employ3_to');
-		echo $this->Form->input('employ3_jp');
-		echo $this->Form->input('employ3_kh');
-		echo $this->Form->input('employ3_job');
-		echo $this->Form->input('employ3_salary');
-		echo $this->Form->input('employ4_en');
-		echo $this->Form->input('employ4_from');
-		echo $this->Form->input('employ4_to');
-		echo $this->Form->input('employ4_jp');
-		echo $this->Form->input('employ4_kh');
-		echo $this->Form->input('employ4_job');
-		echo $this->Form->input('employ4_salary');
-		echo $this->Form->input('employ5_en');
-		echo $this->Form->input('employ5_from');
-		echo $this->Form->input('employ5_to');
-		echo $this->Form->input('employ5_jp');
-		echo $this->Form->input('employ5_kh');
-		echo $this->Form->input('employ5_job');
-		echo $this->Form->input('employ5_salary');
-		echo $this->Form->input('job1_id');
-		echo $this->Form->input('job1_term');
-		echo $this->Form->input('job2_id');
-		echo $this->Form->input('job2_term');
-		echo $this->Form->input('english');
-		echo $this->Form->input('lang_others_en');
-		echo $this->Form->input('lang_others_jp');
-		echo $this->Form->input('visit_jpn');
-		echo $this->Form->input('visit_jpn_from');
-		echo $this->Form->input('visit_jpn_to');
-		echo $this->Form->input('facebook');
-		echo $this->Form->input('religious_en');
-		echo $this->Form->input('religious_jp');
-		echo $this->Form->input('medicalchk_status_id');
-		echo $this->Form->input('medicalchk_note');
-		echo $this->Form->input('idcard_status_id');
-		echo $this->Form->input('idcard_note');
-		echo $this->Form->input('fb');
-		echo $this->Form->input('rb');
-		echo $this->Form->input('cb');
-		echo $this->Form->input('passport_status_id');
-		echo $this->Form->input('passport_note');
-		echo $this->Form->input('coe_status_id');
-		echo $this->Form->input('coe_note');
-		echo $this->Form->input('immigration_status_id');
-		echo $this->Form->input('immigration_note');
-		echo $this->Form->input('labor_ministry_status_id');
-		echo $this->Form->input('labor_ministry_note');
-		echo $this->Form->input('departure_date');
-		echo $this->Form->input('departure_status_id');
-		echo $this->Form->input('return_date');
-		echo $this->Form->input('return_status_id');
-		echo $this->Form->input('class_id');
-		echo $this->Form->input('note');
-		echo $this->Form->input('flag');
-		echo $this->Form->input('health');
-		echo $this->Form->input('blood_type');
-		echo $this->Form->input('brother_cnt');
-		echo $this->Form->input('brother_index');
-		echo $this->Form->input('eyesight_left');
-		echo $this->Form->input('eyesight_right');
-		echo $this->Form->input('color_blindness');
-		echo $this->Form->input('district_part');
-		echo $this->Form->input('tatoo');
-		echo $this->Form->input('tabacco');
-		echo $this->Form->input('drink');
-		echo $this->Form->input('experience_group_life');
-		echo $this->Form->input('good_point_jp');
-		echo $this->Form->input('good_point_en');
-		echo $this->Form->input('hobby_jp');
-		echo $this->Form->input('hobby_en');
-		echo $this->Form->input('character_jp');
-		echo $this->Form->input('character_en');
-		echo $this->Form->input('specialty_jp');
-		echo $this->Form->input('specialty_en');
-		echo $this->Form->input('purpose_jp');
-		echo $this->Form->input('purpose_en');
-		echo $this->Form->input('plan_after_return_jp');
-		echo $this->Form->input('plan_after_return_en');
-		echo $this->Form->input('saving_money');
-		echo $this->Form->input('family_in_jpn');
-		echo $this->Form->input('family_in_jpn_relationship_jp');
-		echo $this->Form->input('family_in_jpn_relationship_en');
-		echo $this->Form->input('family_permission');
-		echo $this->Form->input('id_number');
-		echo $this->Form->input('introduced_from');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+<?php $this->set('title_for_layout', 'Add Trainee'); ?>
+<?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->addCrumb(__('Trainee List'), '/trainees'); ?>
+<?php $this->Html->addCrumb(__('Add Trainee'), ''); ?>
+					<h1><?= __('Add Trainee') ?></h1>
+					</div>
+				</div>
+			</div>
 
-		<li><?php echo $this->Html->link(__('List Trainees'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Provinces'), array('controller' => 'provinces', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Province'), array('controller' => 'provinces', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Districts'), array('controller' => 'districts', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New District'), array('controller' => 'districts', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Communes'), array('controller' => 'communes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Commune'), array('controller' => 'communes', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Jobs'), array('controller' => 'jobs', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Job1'), array('controller' => 'jobs', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Status Lists'), array('controller' => 'status_lists', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Medicalchk Status'), array('controller' => 'status_lists', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Trainee Classes'), array('controller' => 'trainee_classes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Class'), array('controller' => 'trainee_classes', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Interview Candidates'), array('controller' => 'interview_candidates', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Interview Candidate'), array('controller' => 'interview_candidates', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Trainee Documents'), array('controller' => 'trainee_documents', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Trainee Document'), array('controller' => 'trainee_documents', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Trainee Expenses'), array('controller' => 'trainee_expenses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Trainee Expense'), array('controller' => 'trainee_expenses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Trainee Families'), array('controller' => 'trainee_families', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Trainee Family'), array('controller' => 'trainee_families', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Trainee Microfinance Images'), array('controller' => 'trainee_microfinance_images', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Trainee Microfinance Image'), array('controller' => 'trainee_microfinance_images', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Trainee Microfinance Records'), array('controller' => 'trainee_microfinance_records', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Trainee Microfinance Record'), array('controller' => 'trainee_microfinance_records', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Trainee Phones'), array('controller' => 'trainee_phones', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Trainee Phone'), array('controller' => 'trainee_phones', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Trainee Profile Images'), array('controller' => 'trainee_profile_images', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Trainee Profile Image'), array('controller' => 'trainee_profile_images', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Trainee Voices'), array('controller' => 'trainee_voices', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Trainee Voice'), array('controller' => 'trainee_voices', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+
+			<div class="row">
+				<div class="col-lg-8 col-md-10 col-sm-12 maxW500">
+					<div class="main-box">
+						<div class="main-box-body clearfix">
+							<?php echo $this->Form->create('Trainee', array(
+								'action' => 'add',
+								'class' => 'form_trainee_register',
+								'inputDefault' => array(
+									'div' => false
+									)
+							)); ?>
+								<h3><span>Basic Info</span></h3>
+								<div class="form-group">
+									<?php echo $this->Form->input('control_no', array(
+										'label' => __('Trainee ID'),
+										'type' => 'text',
+										'class' => 'form-control maxW160',
+										'placeholder' => __('ex.T16030101'),
+										'required' => true,
+										'value' => "T".date("ymd")."_"
+									)); ?>
+								</div>
+								<div class="row">
+									<div class="form-group col-lg-6 col-md-6 col-sm-6">
+										<?php echo $this->Form->input('family_name_kh', array(
+											'label' => __('Famly Name in Khmer'),
+											'type' => 'text',
+											'class' => 'form-control',
+											'placeholder' => 'ឈ្មោះគ្រួសារ',
+											'required' => true
+										)); ?>
+									</div>
+									<div class="form-group col-lg-6 col-md-6 col-sm-6">
+										<?php echo $this->Form->input('family_name_en', array(
+											'label' => __('Famly Name in English'),
+											'type' => 'text',
+											'class' => 'form-control',
+											'placeholder' => 'Family Name in English',
+											'required' => true
+										)); ?>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-lg-6 col-md-6 col-sm-6">
+										<?php echo $this->Form->input('given_name_kh', array(
+											'label' => __('Given Name in Khmer'),
+											'type' => 'text',
+											'class' => 'form-control',
+											'placeholder' => 'ឈ្មោះ',
+											'required' => true
+										)); ?>
+									</div>
+									<div class="form-group col-lg-6 col-md-6 col-sm-6">
+										<?php echo $this->Form->input('given_name_en', array(
+											'label' => __('Given Name in English'),
+											'type' => 'text',
+											'class' => 'form-control',
+											'placeholder' => 'Given Name in English',
+											'required' => true
+										)); ?>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-lg-4 col-md-4 col-sm-4">
+										<label>Sex</label>
+										<?php echo $this->Form->input('sex', array(
+												'legend' => false,
+												'before' => '<div class="radio">',
+												'separator' => '</div><div class="radio">',
+												'after' => '</div>',
+												'type' => 'radio',
+												'options' => array('male' =>__('Male'),'female' =>__('Female'))
+											)) ?>
+									</div>
+									<div class="form-group col-lg-4 col-md-4 col-sm-4">
+										<label>Handedness</label>
+										<?php echo $this->Form->input('handed', array(
+												'legend' => false,
+												'before' => '<div class="radio">',
+												'separator' => '</div><div class="radio">',
+												'after' => '</div>',
+												'type' => 'radio',
+												'options' => array('right' =>__('Right'),'left' =>__('Left'))
+											)) ?>
+									</div>
+									<div class="form-group col-lg-4 col-md-4 col-sm-4">
+										<label>Marriage</label>
+										<?php echo $this->Form->input('married', array(
+												'legend' => false,
+												'before' => '<div class="radio">',
+												'separator' => '</div><div class="radio">',
+												'after' => '</div>',
+												'type' => 'radio',
+												'options' => array('single' =>__('Single'),'married' =>__('Married'))
+											)) ?>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-lg-12 col-md-12 col-sm-12">
+										<label><?= __('Birthday') ?></label>
+										<?php echo $this->Form->date('birthday', array(
+											'label' => false,
+											'class' => 'form-control maxW160',
+										)) ?>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-lg-4 col-md-4 col-sm-4">
+										<?php echo $this->Form->input('height', array(
+										'label' => __('Height(cm)'),
+										'type' => 'number',
+										'class' => 'form-control maxW100',
+										'required' => true,
+										'min' => 0,
+										'step' => 0.1
+									)); ?>
+									</div>
+									<div class="form-group col-lg-4 col-md-4 col-sm-4">
+										<?php echo $this->Form->input('weight', array(
+										'label' => __('Weight(kg)'),
+										'type' => 'number',
+										'class' => 'form-control maxW100',
+										'required' => true,
+										'min' => 0,
+										'step' => 0.1
+									)); ?>
+									</div>
+									<div class="form-group col-lg-4 col-md-4 col-sm-4">
+										<?php echo $this->Form->input('shoe_size', array(
+										'label' => __('Shoe Size(cm)'),
+										'type' => 'number',
+										'class' => 'form-control maxW100',
+										'required' => true,
+										'min' => 0,
+										'step' => 0.1
+									)); ?>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-lg-6 col-md-6 col-sm-6">
+										<?php echo $this->Form->input('face_feature_kh', array(
+										'label' => __('Face Feature in Khmer'),
+										'type' => 'text',
+										'class' => 'form-control maxW200',
+									)); ?>
+									</div>
+									<div class="form-group col-lg-6 col-md-6 col-sm-6">
+										<?php echo $this->Form->input('face_feature_en', array(
+										'label' => __('Face feature in English'),
+										'type' => 'text',
+										'class' => 'form-control maxW200',
+									)); ?>
+									</div>
+								</div>
+
+								<h3><span>Current Address</span></h3>
+								<div class="row">
+									<div class="col-lg-4 col-md-4 col-sm-4">
+										<div class="form-group form-group-select2">
+											<label for="TraineeProvinceId"><?= __('Province') ?></label>
+											<select  id="TraineeProvinceId" name="data[Trainee][province_id]" class="form-control cam_province_id">
+												<option value=""></option>
+												<option value="1">Banteay Meanchey</option>
+												<option value="2">Battambang</option>
+												<option value="3">Kampong Cham</option>
+												<option value="4">Kampong Chhnang</option>
+												<option value="5">Kampong Speu</option>
+												<option value="6">Kampong Thom</option>
+												<option value="7">Kampot</option>
+												<option value="8">Kandal</option>
+												<option value="9">Kep</option>
+												<option value="10">Koh Kong</option>
+												<option value="11">Kratie</option>
+												<option value="12">Mondol Kiri</option>
+												<option value="13">Otdar Meanchey</option>
+												<option value="14">Pailin</option>
+												<option value="15">Phnom Penh</option>
+												<option value="16">Preah Sihanouk</option>
+												<option value="17">Preah Vihear</option>
+												<option value="18">Prey Veng</option>
+												<option value="19">Pursat</option>
+												<option value="20">Ratanak Kiri</option>
+												<option value="21">Siem Reap</option>
+												<option value="22">Stung Treng</option>
+												<option value="23">Svay Rieng</option>
+												<option value="24">Takeo</option>
+												<option value="25">Tbong Khmum</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4">
+										<div class="form-group form-group-select2">
+											<label for="TraineeDistrictId"><?= __('District') ?></label>
+											<select id="TraineeDistrictId" name="data[Trainee][district_id]" class="form-control cam_district_id" >
+											</select>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4">
+										<div class="form-group form-group-select2">
+											<label for="TraineeCommuneId">Commune</label>
+											<select id="TraineeCommuneId" name="data[Trainee][commune_id]" class="form-control cam_commune_id" >
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-lg-12 col-md-12 col-sm-12">
+										<?php echo $this->Form->input('address_kh', array(
+										'label' => __('Address(No, Street, Village, Khmer)'),
+										'type' => 'text',
+										'class' => 'form-control maxW300',
+									)); ?>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-lg-12 col-md-12 col-sm-12">
+										<?php echo $this->Form->input('address_en', array(
+										'label' => __('Address(No, Street, Village, English)'),
+										'type' => 'text',
+										'class' => 'form-control maxW300',
+									)); ?>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for=""><?= __('Phone') ?></label>
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-phone"></i></span>
+										<input name="data[Trainee][phone]" class="form-control maxW160" maxlength="255" type="text" id="TraineePhone">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for=""><?= __('Facebook User ID') ?></label>
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
+										<input name="data[Trainee][facebook]" class="form-control maxW160" maxlength="255" type="text" id="TraineeFacebook">
+									</div>
+									<span class="help-block">http://www.facebook.com/<span class="red">user-id</span></span>
+								</div>
+								<div class="form-group">
+									<label for=""><?= __('Mail') ?></label>
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+										<input name="data[Trainee][mail]" class="form-control maxW200" maxlength="255" type="text" id="TraineeMail">
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-lg-4 col-md-4 col-sm-4">
+										<label><?= __('Languages') ?></label><br>
+										<div class="checkbox-nice checkbox-inline">
+											<input type="hidden" name="data[Trainee][english]" value="0" id="TraineeEnglish_">
+											<input type="checkbox" name="data[Trainee][english]" value="1" id="TraineeEnglish" />
+											<label for="TraineeEnglish">
+												<?= __('English') ?>
+											</label>
+										</div>
+									</div>
+									<div class="form-group col-lg-6 col-md-6 col-sm-6">
+										<?php echo $this->Form->input('lang_others_en', array(
+										'label' => __('Other languages'),
+										'type' => 'text',
+										'class' => 'form-control',
+										'placeholder' => __('Enter in English')
+									)); ?>
+									</div>
+								</div>
+								<div class="form-group">
+									<label><?= __('Experience to visit Japan') ?></label>
+									<div class="radio">
+										<input type="radio" name="data[Trainee][visit_jpn]" id="TraineeVisitJpnNo" value="0">
+										<label for="TraineeVisitJpnNo">
+											<?= __('No') ?>
+										</label>
+									</div>
+									<div class="radio">
+										<input type="radio" name="data[Trainee][visit_jpn]" id="TraineeVisitJpnYes" value="1">
+										<label for="TraineeVisitJpnYes">
+											<?= __('Yes') ?>
+										</label>
+									</div>
+
+										<div class="row">
+											<div class="form-group experience">
+												<div class="col-lg-6 col-md-6 col-sm-6">
+													<div class="hide toggle">
+														<label for="">From</label>
+														<input type="month" name="data[Trainee][visit_jpn_from]" class="form-control maxW200" id="TraineeVisitJpnFromMonth">
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-sm-6">
+													<div class="hide toggle">
+														<label for="">To</label>
+														<input type="month" name="data[Trainee][visit_jpn_to]" class="form-control maxW200" id="TraineeVisitJpnToMonth">
+													</div>
+												</div>
+											</div>
+										</div>
+								</div>
+								<div class="btn_register">
+									<button type="submit" class="pull-right btn btn-default btn_register">
+										<i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Trainee') ?>
+									</button>
+								</div>
+							<?php echo $this->Form->end(); ?>
+						</div>
+					</div>
+	<?php
+		echo $this->Html->script('modernizr.custom', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('classie', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('modalEffects', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('rikuyo_js/myModal', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('rikuyo_js/autoFormatRikuyo', array('inline' => false, 'block' => 'page-js'));
+		echo $this->Html->script('select2.min', array('inline' => false, 'block' => 'page-js'));
+	 ?>
+	<!-- this page specific inline scripts -->
+	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
+	$(function($) {
+
+		//experience jp switch
+		//yesが選択されたらhideをremove
+		$('#TraineeVisitJpnYes').on('click', function(){
+			$('.experience').find('.toggle').removeClass('hide');
+		});
+		//noが選択されたらhideをつけてvalueをクリア
+		$('#TraineeVisitJpnNo').on('click', function(){
+			$('.experience').find('.toggle').addClass('hide');
+			$('.hide').each(function(){
+				$(this).children('input').val("");
+			});
+		});
+
+	});
+	$(function($){
+		//nice select boxes( address Province)
+		$('.cam_province_id').select2();
+		$('.cam_province_id').change(function(){
+			var province_id = $(this).select2('val');
+			$(this).val(province_id);
+		});
+
+		//nice select boxes( address District)
+		$('.cam_district_id').select2();
+		$('.cam_district_id').change(function(){
+			var district_id = $(this).select2('val');
+			$(this).val(district_id);
+		});
+
+		//nice select boxes( address District)
+		$('.cam_commune_id').select2();
+		$('.cam_commune_id').change(function(){
+			var commune_id = $(this).select2('val');
+			$(this).val(commune_id);
+		});
+
+
+		var districts = <?php echo $districs = json_encode($districts, JSON_HEX_APOS); ?>;
+		var communes = <?php echo $communes = json_encode($communes, JSON_HEX_APOS); ?>;
+		$('.cam_province_id').change(function(){
+				setDistrictSelect($(this).val());
+			});
+
+			function setDistrictSelect(s){
+				$('.cam_district_id').find('option').remove();
+				$('.cam_district_id').append('<option value=""></option>');
+				$(districts).each(function(i){
+					if(districts[i].province_id == s){
+						$('.cam_district_id').append($('<option></option>')
+							.attr('province', districts[i].province)
+							.val(districts[i].district_id)
+							.text(districts[i].district));
+						}
+					}
+				);
+			}
+			setDistrictSelect('');
+
+			$('.cam_district_id').change(function(){
+				setCommuneSelect($(this).val());
+			});
+
+			function setCommuneSelect(s){
+				$('.cam_commune_id').find('option').remove();
+				$('.cam_commune_id').append('<option value=""></option>');
+				$(communes).each(function(i){
+					if(communes[i].district_id == s){
+						$('.cam_commune_id').append($('<option></option>')
+							.attr('district', communes[i].district)
+							.val(communes[i].commune_id)
+							.text(communes[i].commune));
+						}
+					}
+				);
+			}
+			setCommuneSelect('');
+	});
+	<?php $this->Html->scriptEnd(); ?>

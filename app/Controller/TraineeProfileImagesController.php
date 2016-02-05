@@ -8,6 +8,15 @@ App::uses('AppController', 'Controller');
  */
 class TraineeProfileImagesController extends AppController {
 
+	public $uses = array(
+		'Trainee',
+		'TraineeProfileImage'
+		);
+
+	public $helpers = array(
+		'Form',
+		'UploadPack.Upload'
+		);
 /**
  * Components
  *
@@ -48,9 +57,21 @@ class TraineeProfileImagesController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->TraineeProfileImage->create();
+
+      $trainee_control_no = $this->request->data['TraineeProfileImage']['trainee_control_no'];
+      $trainee_id = $this->request->data['TraineeProfileImage']['trainee_id'];
+
+			//元のファイル名の拡張子を残して新しいファイル名にする
+			//fileの情報は['name']や['type']など複数の情報があるので注意。
+      $org_img_file_name = $this->request->data['TraineeProfileImage']['img']['name'];
+      $org_img_file = $this->request->data['TraineeProfileImage']['img'];
+      $extension = substr($org_img_file_name, -4);
+      $new_img_file_name = $trainee_control_no.$extension;
+      $this->request->data['TraineeProfileImage']['img']['name'] = $new_img_file_name;
+
 			if ($this->TraineeProfileImage->save($this->request->data)) {
 				$this->Session->setFlash(__('The trainee profile image has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The trainee profile image could not be saved. Please, try again.'));
 			}
@@ -73,7 +94,7 @@ class TraineeProfileImagesController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->TraineeProfileImage->save($this->request->data)) {
 				$this->Session->setFlash(__('The trainee profile image has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The trainee profile image could not be saved. Please, try again.'));
 			}
@@ -103,6 +124,6 @@ class TraineeProfileImagesController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The trainee profile image could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer());
 	}
 }

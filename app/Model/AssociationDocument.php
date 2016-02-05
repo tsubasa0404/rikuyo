@@ -9,8 +9,71 @@ App::uses('AppModel', 'Model');
  */
 class AssociationDocument extends AppModel {
 
+	//組合の選択された書類のフォルダー取得
+  public function selectedFolders($association_id){
+    $options = array();
+    $options['conditions'] = array(
+      'AssociationDocument.association_id'=> $association_id
+      );
+    $options['fields'] = array(
+      'SelectedDocName.id',
+      'SelectedDocName.folder_id',
+      'DocFolder.id',
+      'DocFolder.folder_jp',
+      'DocFolder.folder_en',
+      );
+    $options['joins'][] = array(
+      'table' => 'doc_names',
+      'alias' => 'SelectedDocName',
+      'type' => 'LEFT',
+      'conditions' => array('SelectedDocName.id = AssociationDocument.doc_name_id', 'SelectedDocName.flag' => 0)
+      );
+    $options['joins'][] = array(
+    'table' => 'doc_folders',
+    'alias' => 'DocFolder',
+    'type' => 'LEFT',
+    'conditions' => 'DocFolder.id = SelectedDocName.folder_id'
+    );
+    $options['recursive'] = -1;
+    $options['group'] = 'DocFolder.id';
+    return $this->find('all', $options);
+  }
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+  //組合の選択された書類一覧
+	public function selectedDocuments($association_id){
+		$options = array();
+		$options['conditions'] = array(
+			'AssociationDocument.selected'=> 1,
+			'AssociationDocument.association_id' => $association_id
+			);
+		$options['fields'] = array(
+			'AssociationDocument.id',
+			'AssociationDocument.association_id',
+			'AssociationDocument.doc_name_id',
+			'AssociationDocument.note',
+			'AssociationDocument.selected',
+			'DocName.name_jp',
+			'DocName.name_en',
+			'DocName.folder_id',
+			'DocName.lang_jpn',
+			'DocName.lang_eng',
+			'DocName.lang_khm',
+			'DocName.note',
+			);
+		$options['joins'][] = array(
+		'table' => 'doc_names',
+		'alias' => 'DocName',
+		'type' => 'LEFT',
+		'conditions' => array('DocName.id = AssociationDocument.doc_name_id','DocName.flag' => 0 )
+		);
+		$options['recursive'] = -1;
+		return $this->find('all', $options);
+	}
+
+	public function documents(){
+		return $this->find('all');
+
+	}
 
 /**
  * belongsTo associations

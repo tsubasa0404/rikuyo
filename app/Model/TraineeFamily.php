@@ -8,7 +8,30 @@ App::uses('AppModel', 'Model');
 class TraineeFamily extends AppModel {
 
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+	public function traineeFamilyList($trainee_id){
+		$options = array();
+		$options['conditions'] = array(
+			'TraineeFamily.trainee_id'=> $trainee_id
+			);
+		$options['fields'] = array(
+			'TraineeFamily.id',
+			'TraineeFamily.name',
+			'TraineeFamily.relationship',
+			'TraineeFamily.birthday',
+			'TraineeFamily.job_id',
+			'TraineeFamily.phone',
+			'TraineeFamily.note',
+			'Job.job_jp',
+			'Job.job_en'
+			);
+		$options['joins'][] = array(
+			'table' => 'jobs',
+			'alias' => 'Job',
+			'type' => 'LEFT',
+			'conditions' => 'TraineeFamily.job_id=Job.id'
+			);
+		return $this->find('all', $options);
+	}
 
 /**
  * belongsTo associations

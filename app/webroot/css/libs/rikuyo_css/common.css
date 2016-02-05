@@ -51,7 +51,10 @@ ul.trainee_document li:nth-child(even){
 	padding-bottom: 5px;
 }
 
-
+div.flight-schedule input,
+div.flight-schedule select{
+	max-width: 146px;
+}
 
 form.form_trainee_edit input,
 form.form_trainee_edit textarea{
@@ -124,21 +127,36 @@ td.td_first_block:first-child{
 	opacity:0.8;
 }
 
-.mT10{
-	margin-top: 10px !important;
-}
-.mT15{
-	margin-top: 15px !important;
-}
-.mB5{
-	margin-bottom:5px !important;
-}
-.mR5{
-	margin-right: 5px !important;
-}
-.mL5{
-	margin-left:5px !important;
-}
+.left{float:left !important;}
+.mT20{margin-top: 20px !important;}
+.mT15{margin-top: 15px !important;}
+.mT10{margin-top: 10px !important;}
+.mB5{margin-bottom:5px !important;}
+.mR5{margin-right: 5px !important;}
+.mL5{margin-left:5px !important;}
+.maxW50{max-width: 50px !important;}
+.maxW60{max-width: 60px !important;}
+.maxW70{max-width: 70px !important;}
+.maxW100{max-width: 100px !important;}
+.maxW120{max-width: 120px !important;}
+.maxW160{max-width: 160px !important;}
+.maxW200{max-width: 200px !important;}
+.maxW250{max-width: 250px !important;}
+.maxW300{max-width: 300px !important;}
+.maxW360{max-width: 360px !important;}
+.maxW400{max-width: 400px !important;}
+.maxW450{max-width: 450px !important;}
+.maxW500{max-width: 500px !important;}
+.maxW560{max-width: 560px !important;}
+.maxW600{max-width: 600px !important;}
+.maxW700{max-width: 700px !important;}
+.maxW750{max-width: 750px !important;}
+.maxW800{max-width: 800px !important;}
+.maxW850{max-width: 850px !important;}
+.maxW900{max-width: 900px !important;}
+.maxW960{max-width: 960px !important;}
+.maxW1200{max-width: 1200px !important;}
+
 /* end module*/
 
 /* interview */

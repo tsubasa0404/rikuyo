@@ -48,9 +48,18 @@ class TraineeDocumentsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->TraineeDocument->create();
+
+			$doc_name = $this->request->data['TraineeDocument']['doc_name_en'];
+			$trainee_control_no = $this->request->data['TraineeDocument']['trainee_control_no'];
+			$org_img_file_name = $this->request->data['TraineeDocument']['img']['name'];
+			$ext = substr($org_img_file_name, -4);
+			$new_img_file_name = $trainee_control_no . "_" . $doc_name ."_". date('Ymdhis') . $ext;
+			$this->request->data['TraineeDocument']['img']['name'] = $new_img_file_name;
+
+
 			if ($this->TraineeDocument->save($this->request->data)) {
 				$this->Session->setFlash(__('The trainee document has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The trainee document could not be saved. Please, try again.'));
 			}

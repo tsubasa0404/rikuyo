@@ -7,8 +7,22 @@ App::uses('AppModel', 'Model');
  */
 class TraineeDocument extends AppModel {
 
+	public $actsAs = array(
+		'UploadPack.Upload' => array(
+			'img' => array(
+				'path' => ':webroot/img/:model/:basename.:extension',
+				'maxSize' => array(
+					'rule' => array('attachmentMaxSize', 20971520),
+					'message' => 'The Maximum File Upload Size is under 20MB. Please upload again.'
+					),
+				'item' => array(
+					'rule' => array('attachmentContentType', array('image/jpeg', 'image/gif', 'image/png')),
+					'message' => 'You can upload only JPG, GIF or PNG files.'
+					)
+				)
+			)
+		);
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
  * belongsTo associations

@@ -127,6 +127,7 @@
 			</div>
 		</div>
 	</div>
+<?php echo $this->element('doc_modal'); ?>
 	<div id="theme-wrapper">
 		<!-- header -->
 		<?php echo $this->element('header'); ?>
