@@ -52,8 +52,8 @@ class TraineeDocumentsController extends AppController {
 			$doc_name = $this->request->data['TraineeDocument']['doc_name_en'];
 			$trainee_control_no = $this->request->data['TraineeDocument']['trainee_control_no'];
 			$org_img_file_name = $this->request->data['TraineeDocument']['img']['name'];
-			$ext = substr($org_img_file_name, -4);
-			$new_img_file_name = $trainee_control_no . "_" . $doc_name ."_". date('Ymdhis') . $ext;
+			$ext = pathinfo($org_img_file_name, PATHINFO_EXTENSION);
+			$new_img_file_name = $trainee_control_no . "_" . $doc_name ."_". date('Ymdhis')."." . $ext;
 			$this->request->data['TraineeDocument']['img']['name'] = $new_img_file_name;
 
 
@@ -107,11 +107,12 @@ class TraineeDocumentsController extends AppController {
 			throw new NotFoundException(__('Invalid trainee document'));
 		}
 		$this->request->allowMethod('post', 'delete');
+
 		if ($this->TraineeDocument->delete()) {
 			$this->Session->setFlash(__('The trainee document has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The trainee document could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer());
 	}
 }

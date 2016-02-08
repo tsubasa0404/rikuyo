@@ -13,7 +13,12 @@ class Interview extends AppModel {
 	public function interviewList(){
 		$options = array();
 		$options['conditions'] = array(
-			'Interview.flag'=> 0
+			'Interview.flag'=> 0,
+			'Interview.status' => 0,
+			'OR' => array(
+			'Interview.interview_date >=' => '(CURDATE() - interval 3 day)',
+			'Interview.interview_date' => ""
+				)
 			);
 		$options['fields'] = array(
 			'Interview.id',

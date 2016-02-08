@@ -13,7 +13,7 @@ class InterviewDocStatusListsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'RequestHandler');
 
 /**
  * index method
@@ -59,6 +59,44 @@ class InterviewDocStatusListsController extends AppController {
 		$associationDocuments = $this->InterviewDocStatusList->AssociationDocument->find('list');
 		$statusLists = $this->InterviewDocStatusList->StatusList->find('list');
 		$this->set(compact('interviews', 'associationDocuments', 'statusLists'));
+	}
+
+	public function addAjax() {
+		$this->autoRender = false;
+		if($this->RequestHandler->isAjax()){
+			Configure::write('debug', 0);
+		 }
+		if($this->request->is('ajax')){
+			$this->request->data['InterviewDocStatusList']['id'] = $_POST['id'];
+			$this->request->data['InterviewDocStatusList']['interview_id'] = $_POST['interview_id'];
+			$this->request->data['InterviewDocStatusList']['association_document_id'] = $_POST['association_document_id'];
+			$this->request->data['InterviewDocStatusList']['status_id'] = $_POST['status_id'];
+			$this->InterviewDocStatusList->create();
+			if ($this->InterviewDocStatusList->save($this->request->data)) {
+				echo json_encode($this->InterviewDocStatusList->getLastInsertID());
+				// return $this->Session->setFlash('The time card has been saved.', 'flash_success');
+			} else {
+				return $this->Session->setFlash('The Candidate could not be saved. Please, try again.', 'flash_failure');
+			}
+		}
+	}
+	public function updateAjax() {
+		$this->autoRender = false;
+		if($this->RequestHandler->isAjax()){
+			Configure::write('debug', 0);
+		 }
+		if($this->request->is('ajax')){
+			$this->request->data['InterviewDocStatusList']['id'] = $_POST['id'];
+			$this->request->data['InterviewDocStatusList']['interview_id'] = $_POST['interview_id'];
+			$this->request->data['InterviewDocStatusList']['association_document_id'] = $_POST['association_document_id'];
+			$this->request->data['InterviewDocStatusList']['status_id'] = $_POST['status_id'];
+			if ($this->InterviewDocStatusList->save($this->request->data)) {
+				echo json_encode($this->InterviewDocStatusList->getLastInsertID());
+				// return $this->Session->setFlash('The time card has been saved.', 'flash_success');
+			} else {
+				return $this->Session->setFlash('The Candidate could not be saved. Please, try again.', 'flash_failure');
+			}
+		}
 	}
 
 /**

@@ -69,6 +69,13 @@
 							array('escape' => false, 'class' => '')
 						) ?>
 					</li>
+					<li>
+						<?php echo $this->Html->link(
+							'<i class="fa fa-car"></i><span>'.__('Inspections').'</span>',
+							array('controller' => 'inspections', 'action' => 'index'),
+							array('escape' => false, 'class' => '')
+						) ?>
+					</li>
 				</ul>
 			</div>
 		</div>

@@ -39,41 +39,45 @@
 													</thead>
 													<tbody>
 														<?php foreach ($interviews as $int) : ?>
-															<?php
-																echo '<tr><td class="td_first_block">';
-																echo $int['Interview']['interview_date']." ".$int['Interview']['interview_time']." ";
-																echo $this->Html->link(
-																	__('Detail'),
-																	array('controller' => 'interviews', 'action' => 'profile', $int['Interview']['id']),
-																	array('escape' => false)
-																	);
-																echo '</td><td>';
-																echo $this->Html->link(
-																	$this->Btn->switchLang($lang, $int['Company']['company_jp'], $int['Company']['company_en']),
-																	array('controller' => 'companies', 'action' => 'profile', $int['Company']['id']),
-																	array('escape' => false)
-																	);
-																echo " (";
-																echo $this->Html->link(
-																	$this->Btn->switchLang($lang, $int['Association']['association_jp'], $int['Association']['association_en']),
-																	array('controller' => 'associations', 'action' => 'profile', $int['Association']['id']),
-																	array('escape' => false)
-																	);
-																echo ")";
-																echo "</td><td>";
-																echo $int[0]['count']." "._('people');
-																echo "</td><td>";
-																echo $int['Interview']['interview_staff'];
-																echo '</td><td><div class="actions">';
-																echo $this->Form->postlink(
-																	'<i class="fa fa-trash-o"></i>',
-																	array('controller' => 'interviews', 'action' => 'update_delete_flag',$int['Interview']['id']),
-																	array('confirm' => __('Are you sure you want to delete # %s?', $int['Interview']['id']),'escape' => false, 'class' => 'table-link' )
-																);
-																echo '</div></td>';
-																echo "</tr>"
-
-															?>
+															<tr>
+																<td class="td_first_block">
+																	<?php if($int['Interview']['interview_date']==""){echo __("Undecided");} echo $int['Interview']['interview_date']." ".$int['Interview']['interview_time']." ";?>
+																	<?php echo $this->Html->link(
+																		__('Detail'),
+																		array('controller' => 'interviews', 'action' => 'profile', $int['Interview']['id']),
+																		array('escape' => false)
+																	);?>
+																</td>
+																<td>
+																	<?php echo $this->Html->link(
+																		$this->Btn->switchLang($lang, $int['Company']['company_jp'], $int['Company']['company_en']),
+																		array('controller' => 'companies', 'action' => 'profile', $int['Company']['id']),
+																		array('escape' => false)
+																		);?>
+																	(
+																	<?php echo $this->Html->link(
+																		$this->Btn->switchLang($lang, $int['Association']['association_jp'], $int['Association']['association_en']),
+																		array('controller' => 'associations', 'action' => 'profile', $int['Association']['id']),
+																		array('escape' => false)
+																		);?>
+																	)
+																</td>
+																<td>
+																	<?php echo $int[0]['count']." "._('people');?>
+																</td>
+																<td>
+																	<?php echo $int['Interview']['interview_staff'];?>
+																</td>
+																<td>
+																	<div class="actions">
+																		<?php echo $this->Form->postlink(
+																			'<i class="fa fa-trash-o"></i>',
+																			array('controller' => 'interviews', 'action' => 'delete',$int['Interview']['id']),
+																			array('confirm' => __('Are you sure you want to delete # %s?', $int['Interview']['id']),'escape' => false, 'class' => 'table-link red' )
+																		);?>
+																	</div>
+																</td>
+															</tr>
 														<?php endforeach; ?>
 													</tbody>
 												</table>
@@ -84,18 +88,22 @@
 							</div>
 
 							<div class="row">
-								<div class="col-lg-12">
+								<div class="col-lg-12 maxW800">
 									<div class="main-box clearfix">
 										<header class="main-box-header clearfix">
-											<h2 class="pull-left">視察予定表</h2>
+											<h2 class="pull-left"><?= __('Inspections') ?></h2>
 											<div class="filter-block pull-right">
-												<a href="inspection-register.html" class="btn btn-primary pull-left">
-													<i class="fa fa-plus-circle fa-lg"></i> 新規視察登録
-												</a>
+												<?php echo $this->Html->link(
+													'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Inspection'),
+													array('controller' => 'inspections', 'action' => 'add'),
+													array('escape' => false, 'class' => 'btn btn-primary pull right')
+												) ?>
 
-												<a href="inspection.html" class="btn btn-primary pull-right">
-													<i class="fa fa-eye fa-lg"></i> 視察一覧へ
-												</a>
+												<?php echo $this->Html->link(
+													'<i class="fa fa-eye fa-lg"></i> '.__('Inspections List'),
+													array('controller' => 'inspections', 'action' => 'index'),
+													array('escape' => false, 'class' => 'btn btn-primary pull right')
+												) ?>
 											</div>
 										</header>
 
@@ -103,71 +111,50 @@
 												<table id="inspection-table" class="table toggle-circle-filled table-striped table-bordered" >
 													<thead>
 														<tr>
-															<th><a href="#" class="desc">実施日</a></th>
-															<th><a href="#" class="asc">組合</a></th>
-															<th><a href="#" class="asc">企業</a></th>
-															<th><a href="#" class="asc">視察担当者</a></th>
-															<th><a href="#" class="asc">視察同伴スタッフ</a></th>
-															<th><a href="#" class="asc">備考</a></th>
+															<th><a href="#" class="desc"><?= __('Inspection Date') ?></a></th>
+															<th><a href="#" class="asc"><?= __('Company') ?></a></th>
+															<th><a href="#" class="asc"><?= __('Association') ?></a></th>
+															<th><a href="#" class="asc"><?= __('Customer') ?></a></th>
+															<th><a href="#" class="asc"><?= __('Rikuyo Staff') ?></a></th>
+															<th><a href="#" class="asc"><?= __('Note') ?></a></th>
+															<th><a href="#" class="asc"></a></th>
 														</tr>
 													</thead>
 													<tbody>
-														<tr>
-															<td>
-																2015/12/01 ~ 2015/12/30
-															</td>
-															<td>
-																<a href="#">山本組合</a>
-															</td>
-															<td class="">
-																<a href="#">山本株式会社</a>
-															</td>
-															<td>山本貴宏(Takahiro Yamamoto)</td>
-															<td>Saly,橋本</td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>
-																2015/12/05 ~ 2015/12/30
-															</td>
-															<td>
-																<a href="#">橋本組合</a>
-															</td>
-															<td class="">
-																<a href="#">橋本株式会社</a>
-															</td>
-															<td>山本貴宏(Takahiro Yamamoto)</td>
-															<td>Saly,橋本</td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>
-																2015/12/06 ~ 2015/12/30
-															</td>
-															<td>
-																<a href="#">Lina組合</a>
-															</td>
-															<td class="">
-																<a href="#">Lina株式会社</a>
-															</td>
-															<td>山本貴宏(Takahiro Yamamoto)</td>
-															<td>Saly,橋本</td>
-															<td></td>
-														</tr>
-														<tr>
-															<td>
-																2015/12/20 ~ 2015/12/30
-															</td>
-															<td>
-																<a href="#">Saly組合</a>
-															</td>
-															<td class="">
-																<a href="#">Saly株式会社</a>
-															</td>
-															<td>山本貴宏(Takahiro Yamamoto)</td>
-															<td>Saly,橋本</td>
-															<td></td>
-														</tr>
+														<?php if(!empty($inspections[0]['Inspection']['id'])): ?>
+															<?php foreach ($inspections as $inspection) : ?>
+																<tr>
+																	<td class="td_first_block">
+																		<?php echo $inspection['Inspection']['inspection_from'] ." ~ ".$inspection['Inspection']['inspection_from'] ;?>
+																	</td>
+																	<td>
+																		<?php echo $this->Html->link(
+																			$this->Btn->switchLang($lang, $inspection['Company']['company_jp'], $inspection['Company']['company_en']),
+																			array('controller' => 'companies', 'action' => 'profile', $inspection['Inspection']['company_id']),
+																			array('escape' => false, 'class' => '', 'target' => '_blank')
+																		) ?>
+																	</td>
+																	<td class="">
+																		<?php echo $this->Html->link(
+																			$this->Btn->switchLang($lang, $inspection['Association']['association_jp'], $inspection['Association']['association_en']),
+																			array('controller' => 'associations', 'action' => 'profile', $inspection['Inspection']['association_id']),
+																			array('escape' => false, 'class' => '', 'target' => '_blank')
+																		) ?>
+																	</td>
+																	<td><?php echo $inspection['Inspection']['smb'] ?></td>
+																	<td><?php echo $inspection['Inspection']['staff'] ?></td>
+																	<td><?php echo $inspection['Inspection']['note'] ?></td>
+																	<td>
+																		<?php echo $this->Form->postlink(
+																			'<i class="fa fa-trash-o"></i>',
+																			array('controller' => 'inspections', 'action' => 'delete',$inspection['Inspection']['id']),
+																			array('confirm' => __('Are you sure you want to delete # %s?', $inspection['Inspection']['id']),'escape' => false, 'class' => 'table-link red' )
+																		); ?>
+																	</td>
+																</tr>
+															<?php endforeach; ?>
+														<?php endif; ?>
+
 													</tbody>
 												</table>
 

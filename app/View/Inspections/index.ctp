@@ -1,66 +1,98 @@
-<div class="inspections index">
-	<h2><?php echo __('Inspections'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('association_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('company_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('smb'); ?></th>
-			<th><?php echo $this->Paginator->sort('staff'); ?></th>
-			<th><?php echo $this->Paginator->sort('from'); ?></th>
-			<th><?php echo $this->Paginator->sort('to'); ?></th>
-			<th><?php echo $this->Paginator->sort('note'); ?></th>
-			<th><?php echo $this->Paginator->sort('flag'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	</thead>
-	<tbody>
-	<?php foreach ($inspections as $inspection): ?>
-	<tr>
-		<td><?php echo h($inspection['Inspection']['id']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($inspection['Association']['id'], array('controller' => 'associations', 'action' => 'view', $inspection['Association']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($inspection['Company']['id'], array('controller' => 'companies', 'action' => 'view', $inspection['Company']['id'])); ?>
-		</td>
-		<td><?php echo h($inspection['Inspection']['smb']); ?>&nbsp;</td>
-		<td><?php echo h($inspection['Inspection']['staff']); ?>&nbsp;</td>
-		<td><?php echo h($inspection['Inspection']['from']); ?>&nbsp;</td>
-		<td><?php echo h($inspection['Inspection']['to']); ?>&nbsp;</td>
-		<td><?php echo h($inspection['Inspection']['note']); ?>&nbsp;</td>
-		<td><?php echo h($inspection['Inspection']['flag']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $inspection['Inspection']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $inspection['Inspection']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $inspection['Inspection']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $inspection['Inspection']['id']))); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</tbody>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Inspection'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Associations'), array('controller' => 'associations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Association'), array('controller' => 'associations', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Companies'), array('controller' => 'companies', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Company'), array('controller' => 'companies', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<?php $this->set('title_for_layout', 'Interviews'); ?>
+<?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->addCrumb(__('Inspection List')); ?>
+					<h1><?= __('Inspection List') ?></h1>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12 maxW800">
+					<div class="main-box clearfix">
+						<header class="main-box-header clearfix">
+							<h2 class="pull-left"><?= __('Inspections') ?></h2>
+							<div class="filter-block pull-right">
+								<?php echo $this->Html->link(
+									'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Inspection'),
+									array('controller' => 'inspections', 'action' => 'add'),
+									array('escape' => false, 'class' => 'btn btn-primary pull right')
+								) ?>
+
+							</div>
+						</header>
+
+						<div class="main-box-body clearfix">
+								<table id="inspection-table" class="table toggle-circle-filled table-striped table-bordered" >
+									<thead>
+										<tr>
+											<th><a href="#" class="desc"><?= __('Inspection Date') ?></a></th>
+											<th><a href="#" class="asc"><?= __('Company') ?></a></th>
+											<th><a href="#" class="asc"><?= __('Association') ?></a></th>
+											<th><a href="#" class="asc"><?= __('Customer') ?></a></th>
+											<th><a href="#" class="asc"><?= __('Rikuyo Staff') ?></a></th>
+											<th><a href="#" class="asc"><?= __('Note') ?></a></th>
+											<th><a href="#" class="asc"></a></th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php if(!empty($inspections[0]['Inspection']['id'])): ?>
+											<?php foreach ($inspections as $inspection) : ?>
+												<tr>
+													<td class="td_first_block">
+														<?php echo $inspection['Inspection']['inspection_from'] ." ~ ".$inspection['Inspection']['inspection_from'] ;?>
+													</td>
+													<td>
+														<?php echo $this->Html->link(
+															$this->Btn->switchLang($lang, $inspection['Company']['company_jp'], $inspection['Company']['company_en']),
+															array('controller' => 'companies', 'action' => 'profile', $inspection['Inspection']['company_id']),
+															array('escape' => false, 'class' => '', 'target' => '_blank')
+														) ?>
+													</td>
+													<td class="">
+														<?php echo $this->Html->link(
+															$this->Btn->switchLang($lang, $inspection['Association']['association_jp'], $inspection['Association']['association_en']),
+															array('controller' => 'associations', 'action' => 'profile', $inspection['Inspection']['association_id']),
+															array('escape' => false, 'class' => '', 'target' => '_blank')
+														) ?>
+													</td>
+													<td><?php echo $inspection['Inspection']['smb'] ?></td>
+													<td><?php echo $inspection['Inspection']['staff'] ?></td>
+													<td><?php echo $inspection['Inspection']['note'] ?></td>
+													<td class="text-center">
+														<div class="action">
+															<?php echo $this->Html->link(
+																'<i class="fa fa-pencil"></i>',
+																array('controller' => 'inspections', 'action' => 'profile', $inspection['Inspection']['id']),
+																array('escape' => false, 'class' => '')
+															) ?>
+															<?php echo $this->Form->postlink(
+																'<i class="fa fa-trash-o"></i>',
+																array('controller' => 'inspections', 'action' => 'delete',$inspection['Inspection']['id']),
+																array('confirm' => __('Are you sure you want to delete # %s?', $inspection['Inspection']['id']),'escape' => false, 'class' => 'table-link red' )
+															); ?>
+														</div>
+													</td>
+												</tr>
+											<?php endforeach; ?>
+										<?php endif; ?>
+
+									</tbody>
+								</table>
+
+						</div>
+					</div>
+				</div>
+<?php
+		echo $this->Html->script('jquery.dataTables', array('inline' => false, 'block' => 'table-js'));
+		echo $this->Html->script('dataTables.fixedHeader', array('inline' => false, 'block' => 'table-js'));
+		echo $this->Html->script('dataTables.tableTools', array('inline' => false, 'block' => 'table-js'));
+		echo $this->Html->script('jquery.dataTables.bootstrap', array('inline' => false, 'block' => 'table-js'));
+	 ?>
+
+	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
+		$(document).ready(function() {
+			$('#interview-table').dataTable({
+				"bInfo":false
+			});
+		});
+	<?php $this->Html->scriptEnd(); ?>

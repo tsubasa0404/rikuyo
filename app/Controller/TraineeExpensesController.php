@@ -86,7 +86,7 @@ class TraineeExpensesController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->TraineeExpense->save($this->request->data)) {
 				$this->Session->setFlash(__('The trainee expense has been saved.'));
-				return $this->redirect($this->referer());
+				return $this->redirect(array('controller' => 'trainees', 'action' => 'profile', $this->request->data['TraineeExpense']['trainee_id']));
 			} else {
 				$this->Session->setFlash(__('The trainee expense could not be saved. Please, try again.'));
 			}
@@ -95,7 +95,10 @@ class TraineeExpensesController extends AppController {
 			$this->request->data = $this->TraineeExpense->find('first', $options);
 		}
 		$trainees = $this->TraineeExpense->Trainee->find('list');
-		$this->set(compact('trainees'));
+		$trainee_expenses = $this->TraineeExpense->find('first', array(
+			'conditions' => array('id' => $id),
+			'recursive' => -1) );
+		$this->set(compact('trainees', 'trainee_expenses'));
 	}
 
 /**

@@ -35,13 +35,11 @@ class Trainee extends AppModel {
 	}
 
 	//Interview Candidate用学生一覧
-	public function candidateTraineeList(){
+	public function candidateTraineeList($interview_id){
 		$options = array();
 		$options['conditions'] = array(
 			'Trainee.flag'=> 0,
 			'Trainee.departure_status_id' => 0,
-			'Candidate.interview_result_id !=' => array(2, 4),
-
 			);
 		$options['fields'] = array(
 			'Trainee.id',
@@ -54,6 +52,9 @@ class Trainee extends AppModel {
 			'TraineeProfileImage.trainee_id',
 			'TraineeProfileImage.img_file_name',
 			'TraineeProfileImage.trainee_control_no',
+			'Candidate.id',
+			'Candidate.interview_id',
+			'Candidate.trainee_id',
 			'Candidate.interview_result_id',
 			);
 		$options['joins'][] = array(
@@ -66,7 +67,9 @@ class Trainee extends AppModel {
 			'table' => 'interview_candidates',
 			'alias' => 'Candidate',
 			'type' => 'LEFT',
-			'conditions' => 'Candidate.trainee_id = Trainee.id'
+			'conditions' => array(
+				'Candidate.trainee_id = Trainee.id',
+				)
 			);
 		$options['group'] = array('Trainee.id');
 		return $this->find('all', $options);

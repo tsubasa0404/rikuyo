@@ -1,6 +1,12 @@
 <?php $this->set('title_for_layout', 'Trainee Profile'); ?>
 <?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/ns-default', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/ns-style-growl', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/ns-style-bar', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/ns-style-attached', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/ns-style-other', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/ns-style-theme', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->addCrumb(__('Interview List'), '/interviews'); ?>
 <?php $this->Html->addCrumb(__('Interview Profile'), ''); ?>
 					<h1><?= __('Interview Profile') ?></h1>
@@ -174,9 +180,7 @@
 							</div>
 						</div>
 					</div> <!-- /Select jobs-->
-				</div>
 
-				<div class="col-lg-6 col-md-6 col-sm-12 maxW450">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2><?= __('Requests') ?></h2>
@@ -411,9 +415,8 @@
 								<?php echo $this->Form->end(); ?>
 							</div>
 						</div>
-					</div>
-				</div> <!-- /Job and Salary-->
-
+					</div> <!-- Requests -->
+				</div>
 
 				<div class="col-lg-6 col-md-6 col-sm-12 maxW360">
 					<div class="main-box clearfix">
@@ -464,7 +467,8 @@
 															'type' => 'select',
 															'options' => $option_results,
 															'value' => $can['InterviewCandidate']['interview_result_id'],
-															'data-interview-candidate-id' => $can['InterviewCandidate']['id']
+															'data-interview-candidate-id' => $can['InterviewCandidate']['id'],
+															'data-trainee-id' => $can['CandidateTrainee']['id']
 														)); ?>
 												</td>
 											</tr>
@@ -472,276 +476,93 @@
 									</tbody>
 								</table>
 							</div>
-							<!-- <button class="md-trigger btn mrg-b-lg btn-success pull-left" data-modal="modal-result">
-								<span class="fa fa-heart"></span> 面接結果確定
-							</button> -->
-								<?php echo $this->Html->link(
-									'<i class="fa fa-child"></i> '. __('Success Candidates List'),
-									array( 'action' => 'success', $prof['Interview']['id']),
-									array('escape' => false, 'class' => 'btn btn-success pull-right')
-								) ?>
 						</div>
 					</div>
 				</div> <!-- /Candidates-->
 
-				<div class="col-lg-12 col-md-12 col-sm-12 maxW600">
+
+
+
+				<div class="col-lg-12 col-md-12 col-sm-12 maxW700">
 					<div class="main-box">
 						<header class="main-box-header clearfix">
-							<h2 class="pull-left">書類提出状況一覧</h2>
-							<!-- <a href="document-select.html" class="btn btn-primary pull-right"><i class="fa fa-lg fa-plus-circle"></i> 提出書類を選択</a> -->
+							<h2 class="pull-left"><?= __('Documents List') ?></h2>
 						</header>
 						<div class="main-box-body clearfix">
-							<div class="table-responsive ">
+							<div class="table-responsive">
 								<table class="table table-bordered table-hover widget-todo">
 									<thead>
 										<tr>
-											<th><span>書類名</span></th>
-											<th><span>言語</span></th>
-											<th><span>備考</span></th>
-											<th><span></span></th>
+											<th><span><?= __('Document Name') ?></span></th>
+											<th><span><?= __('Language') ?></span></th>
+											<th><span><?= __('Note') ?></span></th>
+											<th><span><?= __('') ?></span></th>
+
 										</tr>
 									</thead>
 									<tbody>
-										<tr class="warning">
-											<th colspan="4"><span>送り出し機関</span></th>
-										</tr>
-										<tr>
-											<td>
-												<div class="checkbox-nice">
-													<input type="checkbox" id="chk_doc_1" name="doc" value=""  data-id="doc_1" class="doc-chk doc_1">
-												<label for="chk_doc_1">
-												Human Power(送り出し機関)概要書
-												</label>
-												</div>
-											</td>
-											<td>日本語,英語</td>
-											<td>1セット<br>手書きサイン必要</td>
-											<td class="text-center">
-												<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
-
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="checkbox-nice">
-													<input type="checkbox" class="doc-chk doc_2" id="chk_doc_2" name="doc" value=""  data-id="doc_2">
-												<label for="chk_doc_2">
-												Human Power(送り出し機関)概要書
-												</label>
-												</div>
-											</td>
-											<td>日本語,英語</td>
-											<td>1セット</td>
-											<td class="text-center">
-												<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="checkbox-nice">
-													<input type="checkbox" class="doc-chk doc_3" id="chk_doc_3" name="doc" value=""  data-id="doc_3">
-												<label for="chk_doc_3">
-												Human Power(送り出し機関)概要書
-												</label>
-												</div>
-											</td>
-											<td>日本語,英語</td>
-											<td>1セット</td>
-											<td class="text-center">
-												<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
-											</td>
-										</tr>
-										<tr class="warning">
-											<th colspan="4"><span>所属機関</span></th>
-										</tr>
-										<tr>
-											<td>
-												<div class="checkbox-nice">
-													<input type="checkbox" class="doc-chk doc_4" id="chk_doc_4" name="doc" value=""  data-id="doc_4">
-												<label for="chk_doc_4">
-												Human Power(送り出し機関)概要書
-												</label>
-												</div>
-											</td>
-											<td>日本語,英語</td>
-											<td>1セット</td>
-											<td class="text-center">
-												<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
-											</td>
-										</tr>
-										<tr class="warning">
-											<th colspan="4"><span>Rikuyo Japan Training Center</span></th>
-										</tr>
-										<tr>
-											<td>
-												<div class="checkbox-nice">
-													<input type="checkbox" class="doc-chk doc_5" id="chk_doc_5" name="doc" value="" data-id="doc_5">
-												<label for="chk_doc_5">
-												Human Power(送り出し機関)概要書
-												</label>
-												</div>
-											</td>
-											<td>日本語,英語</td>
-											<td>1セット</td>
-											<td class="text-center">
-												<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="checkbox-nice">
-													<input type="checkbox" class="doc-chk doc_6" id="chk_doc_6" name="doc" value="" data-id="doc_6">
-												<label for="chk_doc_6">
-												Human Power(送り出し機関)概要書
-												</label>
-												</div>
-											</td>
-											<td>日本語,英語</td>
-											<td>1セット</td>
-											<td class="text-center">
-												<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
-											</td>
-										</tr>
-										<tr class="warning">
-											<th colspan="4"><span>カンボジア労働省</span></th>
-										</tr>
-										<tr>
-											<td>
-												<div class="checkbox-nice">
-													<input type="checkbox" class="doc-chk doc_7" id="chk_doc_7" name="doc" value="" data-id="doc_7">
-												<label for="chk_doc_7">
-												Human Power(送り出し機関)概要書
-												</label>
-												</div>
-											</td>
-											<td>日本語,英語</td>
-											<td>1セット</td>
-											<td class="text-center">
-												<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
-											</td>
-										</tr>
-										<tr class="warning">
-											<th colspan="4"><span>実習生関係</span></th>
-										</tr>
-										<tr>
-											<td>
-												<div class="checkbox-nice">
-													<input type="checkbox" class="doc-chk doc_8" id="chk_doc_8" name="doc" value="" data-id="doc_8">
-												<label for="chk_doc_8">
-												Human Power(送り出し機関)概要書
-												</label>
-												</div>
-											</td>
-											<td>日本語,英語</td>
-											<td>1セット</td>
-											<td class="text-center">
-												<a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a>
-											</td>
-										</tr>
-										<tr class="warning">
-											<th colspan="4"><span>返還待ち書類</span></th>
-										</tr>
-										<tr>
-											<td>
-												<div class="checkbox-nice">
-													<input type="checkbox" class="doc-chk doc_9" id="chk_doc_9" name="doc" value="" data-id="doc_9">
-												<label for="chk_doc_9">
-												雇用条件書
-												</label>
-												</div>
-											</td>
-											<td>日本語,クメール語</td>
-											<td>1セット</td>
-											<td class="text-center">
-											</td>
-										</div>
-										<tr>
-											<td>
-												<div class="checkbox-nice">
-													<input type="checkbox" class="doc-chk doc_10" id="chk_doc_10" name="doc" value="" data-id="doc_10">
-													<label for="chk_doc_10">
-													雇用契約書
-													</label>
-												</div>
-											</td>
-											<td>日本語、クメール語</td>
-											<td>1セット</td>
-											<td class="text-center">
-											</td>
-										</tr>
+										<?php foreach ($folders as $folder) : ?>
+											<tr class="warning">
+												<th colspan="4"><span><?php echo $folder['DocFolder']['folder_jp']."(".$folder['DocFolder']['folder_en'].")" ?></span></th>
+											</tr>
+												<?php foreach($this->Foreach->association_document_list($folder['DocFolder']['id']) as $doc): ?>
+													<tr>
+														<td class="td_first_block">
+															<div class="checkbox-nice">
+																<input type="checkbox" id="doc_<?php echo $doc['AssociationDocument'][0]['id']; ?>" name="data[InterviewDocumentStatusList][status_id]" value="<?php if(!empty($doc['InterviewDocStatusList']['id'])) {echo $doc['InterviewDocStatusList']['status_id'];} ?>"  data-doc-status-id="<?php if(!empty($doc['InterviewDocStatusList'])) {echo $doc['InterviewDocStatusList']['id'];} ?>" data-interview-id="<?php echo $this->request->data['Interview']['id']; ?>" data-association-document-id="<?php echo $doc['AssociationDocument'][0]['id']; ?>" class="doc-chk">
+																<label for="doc_<?php echo $doc['AssociationDocument'][0]['id']; ?>">
+																	<?php echo $doc['DocName']['name_jp']."<br>".$doc['DocName']['name_en'] ;?>
+																</label>
+															</div>
+														</td>
+														<td><?php if($doc['DocName']['lang_jpn'] == 1){echo __('Japanese').", ";}if($doc['DocName']['lang_eng'] == 1){echo __('English').", ";}if($doc['DocName']['lang_khm'] == 1){echo __('Khmer');} ?></td>
+														<td><?php echo $doc['DocName']['note']."<br>". $doc['AssociationDocument'][0]['note']; ?></td>
+														<td><a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a></td>
+													</tr>
+												<?php endforeach; ?>
+											<?php endforeach; ?>
 									</tbody>
 								</table>
 							</div>
-
-
-							<!--
-							下のテーブルには、
-							interview_idが同じで、
-							selected = 1の場合、
-							association_document_idを取得
-							 -->
-							<table class="hide check-doc-list">
-								<thead>
-									<tr>
-										<th>id</th>
-										<th>interview_id</th>
-										<th>association_doc_id</th>
-										<th>doc_name_id</th>
-										<th>status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>1</td>
-										<td>1</td>
-										<td data-doc-id="doc_1" class="checked_doc_id">doc_1</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>1</td>
-										<td>2</td>
-										<td data-doc-id="doc_2" class="checked_doc_id">doc_2</td>
-										<td data-selected="0">0</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>1</td>
-										<td>3</td>
-										<td data-doc-id="doc_3" class="checked_doc_id">doc_3</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>1</td>
-										<td>3</td>
-										<td data-doc-id="doc_4" class="checked_doc_id">doc_3</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>1</td>
-										<td>3</td>
-										<td data-doc-id="doc_5" class="checked_doc_id">doc_3</td>
-									</tr>
-								</tbody>
-							</table>
 						</div>
 					</div>
 				</div> <!-- /Documents List-->
 
 
+			<?php echo $this->Form->create('InterviewCandidate', array(
+				'action' => 'updateResultAjax',
+				'class' => 'hide interview_result_form'
+			)) ?>
+			<?php echo $this->Form->end(); ?>
+			<?php echo $this->Form->create('InterviewDocStatusList', array(
+				'action' => 'addAjax',
+				'class' => 'hide doc_status_form'
+			)) ?>
+			<?php echo $this->Form->end(); ?>
+			<?php echo $this->Form->create('InterviewDocStatusList', array(
+				'action' => 'updateAjax',
+				'class' => 'hide doc_status_update_form'
+			)) ?>
+			<?php echo $this->Form->end(); ?>
 
 
 
 	<?php
 		echo $this->Html->script('moment.min', array('inline' => false, 'block' => 'page-js'));
 		echo $this->Html->script('modernizr.custom', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('snap.svg-min', array('inline' => false, 'block' => 'modal-js'));
 		echo $this->Html->script('classie', array('inline' => false, 'block' => 'modal-js'));
 		echo $this->Html->script('modalEffects', array('inline' => false, 'block' => 'modal-js'));
 		echo $this->Html->script('rikuyo_js/myModal', array('inline' => false, 'block' => 'modal-js'));
 		echo $this->Html->script('select2.min', array('inline' => false, 'block' => 'page-js'));
+		echo $this->Html->script('notificationFx', array('inline' => false, 'block' => 'modal-js'));
 	 ?>
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
+		//モーダル削除
+		$(function(){
+			$('.md-modal').remove();
+		});
 		//実習生募集要項フォーム
 		$(function(){
 			$('.sel_company').select2({
@@ -750,49 +571,123 @@
 			$('.sel_job').select2();
 		});
 
+		//インタビュー結果変更ajax
 		$(function(){
 			$('.interview_result_btn').on('change', function(){
 				var result_id = $(this).val();
 				var candidate_id = $(this).data('interview-candidate-id');
-				$('.interview_result_form').on('submit', function(){
-					$.post('', {
+				var trainee_id = $(this).data('trainee-id');
+				var url = $('.interview_result_form').attr('action');
+				console.log(result_id);
+				console.log(candidate_id);
 
-					}, function(res){
+				$.ajax({
+					url: url,
+					type: 'POST',
+					dataType:'json',
+					data : {
+						id:candidate_id,
+						interview_result_id:result_id,
+						trainee_id:trainee_id
+					},
+					success: function(){
+						var notification = new NotificationFx({
+							message:'<p><?= __('Interview Result has successfully Updated!') ?>',
+							'layout': 'other',
+							'effect': 'boxspinner',
+							ttl:6000,
+							type:'success',
+							onClose:function(){
+							bttnBoxSpinner.disabled = false;
+							}
+						});
+						notification.show();
+					},
+					error: function(){
+						alert('error');
+					}
+				}); //ajax
 
-					});
-				});
-					console.log(candidate_id + "/" +result_id);
 			});
-			return false; //画面遷移をさせない。
 		});
 
 		//提出書類チェッカー
 		$(function(){
-			var asc_doc_id;
-			var checked_doc_list = [];
-			$('table.check-doc-list td.checked_doc_id').each(function(){
-				checked_doc_list.push($(this).data('doc-id'));
-			});
-
 			$('.doc-chk').each(function(){
-				asc_doc_id = $(this).data('id');
-				console.log(asc_doc_id);
-				console.log(checked_doc_list);
-				compare_doc_id(asc_doc_id, checked_doc_list);
+				if($(this).val() == 1){
+					$(this).attr('checked', 'checked');
+				} else {
+					$(this).attr('checked', false);
+				}
 			});
 
+			$('.doc-chk').on('click', function(){
+				var id = $(this).data('doc-status-id');
+				var interview_id = $(this).data('interview-id');
+				var association_document_id = $(this).data('association-document-id');
+				var status_id = $(this).val();
+				var url = $('.doc_status_form').attr('action');
+				var $input = $(this);
 
-			function compare_doc_id(asc_doc_id, checked_doc_list){
-				if($.inArray(asc_doc_id, checked_doc_list)>=0){
-					console.log('have');
-					$('.' +asc_doc_id).prop('checked', true);
-				}else{
-					console.log('not have');
-				};
-			}
-			function set_checked(){
-				$('.doc-chk');
-			}
-
+				if(id === ""){
+					status_id = "1";
+					$.ajax({
+						url: url,
+						type:'POST',
+						dataType:'json',
+						data:{
+							id:id,
+							interview_id:interview_id,
+							association_document_id:association_document_id,
+							status_id:status_id
+						},
+						success:function(rs){
+							$input.val(status_id);
+							$input.attr('data-doc-status-id', rs);
+							location.reload();
+						},
+						error: function(){
+							alert('error2');
+						}
+					});
+				} else if(id){
+					if(status_id == "1"){
+	          status_id = "0";
+	          url = $('.doc_status_update_form').attr('action');
+	        } else if(status_id == "0") {
+	          status_id = "1";
+	          url = $('.doc_status_update_form').attr('action');
+	        }
+	        $.ajax({
+	          url: url,
+	          type:'POST',
+	          dataType:'json',
+	          data:{
+	            id:id,
+	            interview_id:interview_id,
+	            association_document_id:association_document_id,
+	            status_id:status_id
+	          },
+	          success:function(rs){
+	            $input.val(status_id);
+	            var notification = new NotificationFx({
+							message:'<p><?= __('Document Status has successfully Updated!') ?>',
+								'layout': 'growl',
+								'effect': 'genie',
+								ttl:4000,
+								type:'notice',
+								onClose:function(){
+									bttnBoxSpinner.disabled = false;
+								}
+							});
+						notification.show();
+	          },
+	          error: function(){
+	            alert('error');
+	          }
+	        });
+				}
+			});
 		});
+
 	<?php $this->Html->scriptEnd(); ?>

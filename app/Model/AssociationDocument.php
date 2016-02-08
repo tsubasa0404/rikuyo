@@ -9,7 +9,8 @@ App::uses('AppModel', 'Model');
  */
 class AssociationDocument extends AppModel {
 
-	//組合の選択された書類のフォルダー取得
+
+ 	//組合の選択された書類のフォルダー取得 association profile/interview profile page
   public function selectedFolders($association_id){
     $options = array();
     $options['conditions'] = array(
@@ -39,11 +40,10 @@ class AssociationDocument extends AppModel {
     return $this->find('all', $options);
   }
 
-  //組合の選択された書類一覧
+  //組合の選択された書類一覧  association profile/interview profile page
 	public function selectedDocuments($association_id){
 		$options = array();
 		$options['conditions'] = array(
-			'AssociationDocument.selected'=> 1,
 			'AssociationDocument.association_id' => $association_id
 			);
 		$options['fields'] = array(
@@ -51,21 +51,31 @@ class AssociationDocument extends AppModel {
 			'AssociationDocument.association_id',
 			'AssociationDocument.doc_name_id',
 			'AssociationDocument.note',
-			'AssociationDocument.selected',
 			'DocName.name_jp',
 			'DocName.name_en',
 			'DocName.folder_id',
 			'DocName.lang_jpn',
 			'DocName.lang_eng',
 			'DocName.lang_khm',
-			'DocName.note',
+      'DocName.note',
+      'DocStatus.id',
+      'DocStatus.interview_id',
+      'DocStatus.association_document_id',
+      'DocStatus.status_id',
+			'DocStatus.status_id',
 			);
 		$options['joins'][] = array(
 		'table' => 'doc_names',
 		'alias' => 'DocName',
 		'type' => 'LEFT',
-		'conditions' => array('DocName.id = AssociationDocument.doc_name_id','DocName.flag' => 0 )
+		'conditions' => array('DocName.id = doc_name_id','DocName.flag' => 0 )
 		);
+    $options['joins'][] = array(
+    'table' => 'interview_doc_status_lists',
+    'alias' => 'DocStatus',
+    'type' => 'LEFT',
+    'conditions' => array('AssociationDocument.id = DocStatus.association_document_id')
+    );
 		$options['recursive'] = -1;
 		return $this->find('all', $options);
 	}

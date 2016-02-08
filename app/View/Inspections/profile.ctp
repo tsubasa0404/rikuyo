@@ -1,9 +1,9 @@
-<?php $this->set('title_for_layout', 'Add Inspection'); ?>
+<?php $this->set('title_for_layout', 'Inspection Profile'); ?>
 <?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->addCrumb(__('Inspections List'), '/inspections'); ?>
-<?php $this->Html->addCrumb(__('Add Inspection')); ?>
-					<h1><?= __('Add Inspection') ?></h1>
+<?php $this->Html->addCrumb(__('Inspection Profile')); ?>
+					<h1><?= __('Inspection Profile') ?></h1>
 					</div>
 				</div>
 			</div>
@@ -15,19 +15,20 @@
 								<h2><?= __('Inspection') ?></h2>
 							</header>
 							<?php echo $this->Form->create('Inspection', array(
-								'action' => 'add',
+								'action' => 'profile',
 								'class' => 'form_inspection_register',
 								'inputDefault' => array(
 									'div' => false
 									)
 							)); ?>
+							<?php echo $this->Form->hidden('id', array('value' => $this->request->data['Inspection']['id'])) ?>
 								<div class="form-group form-group-select2">
 									<?php echo $this->Form->input('association_id', array(
 										'label' => __('Association'),
 										'type' => 'select',
 										'div' => false,
 										'class' => 'form-control sel_association',
-										'value' => '',
+										'value' => $this->request->data['Inspection']['association_id'],
 										'options' => $option_associations,
 										'style' => 'max-width:300px;display:inline',
 										'empty' => true,
@@ -40,7 +41,7 @@
 										'type' => 'select',
 										'div' => false,
 										'class' => 'form-control sel_company',
-										'value' => '',
+										'value' => $this->request->data['Inspection']['company_id'],
 										'options' => $option_companies,
 										'style' => 'max-width:300px;display:inline',
 										'empty' => true
@@ -50,11 +51,11 @@
 									<div class="row">
 										<div class="col-lg-6 col-md-6 col-sm-6">
 											<label>From</label>
-											<input type="date" name="data[Inspection][inspection_from]" class="form-control maxW200" id="InspectionFromMonth">
+											<input type="date" name="data[Inspection][inspection_from]" class="form-control maxW200" id="InspectionFromMonth" value="<?php echo $this->request->data['Inspection']['inspection_from']; ?>">
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-6">
 											<label for="">To</label>
-											<input type="date" name="data[Inspection][inspection_to]" class="form-control maxW200" id="InspectionToMonth">
+											<input type="date" name="data[Inspection][inspection_to]" class="form-control maxW200" id="InspectionToMonth" value="<?php echo $this->request->data['Inspection']['inspection_to']; ?>">
 										</div>
 									</div>
 								</div>
@@ -88,7 +89,7 @@
 								<?php echo $this->Form->hidden('status', array('value' => 0)) ?>
 								<?php echo $this->Form->hidden('flag', array('value' => 0)) ?>
 								<button type="submit" class="btn btn-default pull-right">
-									<i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Inspection') ?>
+									 <?= __('Save') ?>
 								</button>
 							<?php echo $this->Form->end(); ?>
 						</div>

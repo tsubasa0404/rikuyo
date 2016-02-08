@@ -14,16 +14,34 @@ class InspectionsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
-
+	public $uses = array(
+		'Inspection',
+		'Company',
+		'Association'
+		);
 /**
  * index method
  *
  * @return void
  */
 	public function index() {
+
 		$this->Inspection->recursive = 0;
 		$this->set('inspections', $this->Paginator->paginate());
+
+		//言語切り替え変数$lang取得
+		$lang = $this->__setLang();
+
+		//組合リスト(言語切り替え機能済み)取得
+		$option_associations = $this->Association->optionAssociations($lang);
+		//企業リスト(言語切り替えおよびKeyに組合名を追加)
+		$option_companies = $this->Company->__optionComAso($lang);
+
+
+		$this->set(compact('lang', 'option_associations', 'option_companies'));
 	}
+
+
 
 /**
  * view method
@@ -47,17 +65,51 @@ class InspectionsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+
 			$this->Inspection->create();
 			if ($this->Inspection->save($this->request->data)) {
 				$this->Session->setFlash(__('The inspection has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'pages', 'action' => 'display'));
 			} else {
 				$this->Session->setFlash(__('The inspection could not be saved. Please, try again.'));
 			}
 		}
-		$associations = $this->Inspection->Association->find('list');
-		$companies = $this->Inspection->Company->find('list');
-		$this->set(compact('associations', 'companies'));
+		//言語切り替え変数$lang取得
+		$lang = $this->__setLang();
+
+		//組合リスト(言語切り替え機能済み)取得
+		$option_associations = $this->Association->optionAssociations($lang);
+		//企業リスト(言語切り替えおよびKeyに組合名を追加)
+		$option_companies = $this->Company->__optionComAso($lang);
+
+
+		$this->set(compact( 'option_associations', 'option_companies'));
+	}
+
+	public function profile($id) {
+		if ($this->request->is('post')) {
+
+			$this->Inspection->create();
+			if ($this->Inspection->save($this->request->data)) {
+				$this->Session->setFlash(__('The inspection has been saved.'));
+				return $this->redirect(array('controller' => 'inspections', 'action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The inspection could not be saved. Please, try again.'));
+			}
+		}
+
+		$options = array('conditions' => array('Inspection.' . $this->Inspection->primaryKey => $id));
+			$this->request->data = $this->Inspection->find('first', $options);
+		//言語切り替え変数$lang取得
+		$lang = $this->__setLang();
+
+		//組合リスト(言語切り替え機能済み)取得
+		$option_associations = $this->Association->optionAssociations($lang);
+		//企業リスト(言語切り替えおよびKeyに組合名を追加)
+		$option_companies = $this->Company->__optionComAso($lang);
+
+
+		$this->set(compact( 'option_associations', 'option_companies'));
 	}
 
 /**
@@ -105,6 +157,6 @@ class InspectionsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The inspection could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer());
 	}
 }

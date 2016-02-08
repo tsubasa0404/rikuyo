@@ -13,7 +13,7 @@ class AssociationDocumentsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'RequestHandler');
 
 /**
  * index method
@@ -62,6 +62,24 @@ class AssociationDocumentsController extends AppController {
 		$this->set(compact('associations', 'docNames'));
 	}
 
+	public function addAjax(){
+		if($this->RequestHandler->isAjax()){
+			Configure::write('debug', 0);
+		 }
+		if($this->request->is('ajax')){
+		$this->autoRender = false;
+
+			$this->AssociationDocument->create();
+			if ($this->AssociationDocument->save($this->request->data)) {
+				echo json_encode($this->AssociationDocument->getLastInsertID());
+
+				// return $this->Session->setFlash('The time card has been saved.', 'flash_success');
+			} else {
+				return $this->Session->setFlash('The Candidate could not be saved. Please, try again.', 'flash_failure');
+			}
+		}
+	}
+
 /**
  * edit method
  *
@@ -96,7 +114,8 @@ class AssociationDocumentsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function delete() {
+		$id = $this->request->data['AssociationDocument']['id'];
 		$this->AssociationDocument->id = $id;
 		if (!$this->AssociationDocument->exists()) {
 			throw new NotFoundException(__('Invalid association document'));
@@ -107,6 +126,28 @@ class AssociationDocumentsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The association document could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer());
+	}
+
+	public function deleteAjax() {
+		if($this->RequestHandler->isAjax()){
+			Configure::write('debug', 0);
+		 }
+		if($this->request->is('ajax')){
+		$this->autoRender = false;
+
+		$id = $this->request->data['AssociationDocument']['id'];
+		$this->AssociationDocument->id = $id;
+	}
+		if (!$this->AssociationDocument->exists()) {
+			throw new NotFoundException(__('Invalid association document'));
+		}
+		$this->request->allowMethod('post', 'delete');
+		if ($this->AssociationDocument->delete()) {
+			$this->Session->setFlash(__('The association document has been deleted.'));
+		} else {
+			$this->Session->setFlash(__('The association document could not be deleted. Please, try again.'));
+		}
+		return $this->redirect($this->referer());
 	}
 }

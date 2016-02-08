@@ -37,6 +37,7 @@ class PagesController extends AppController {
  */
 	public $uses = array(
 		'Interview',
+		'Inspection',
 		);
 
 /**
@@ -66,11 +67,13 @@ class PagesController extends AppController {
 		}
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 
-		//Home インタビュースケジュール
+
+		//Home インタビュースケジュール / inspection schedule
 		$lang = $this->__setLang();
 		$this->Interview->recursive = -1;
 		$interviews = $this->Interview->interviewList();
-		$this->set(compact('lang', 'interviews'));
+		$inspections = $this->Inspection->inspectionList();
+		$this->set(compact('lang', 'interviews', 'inspections'));
 
 
 		try {

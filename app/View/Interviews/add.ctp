@@ -294,28 +294,13 @@
 			});
 
 		});
-			//モーダルフォーム
-		$(function(){
-			$('.job_form_btn').on('click', function(){
-				var job_jp = $('#jobJp').val();
-				var job_en = $('#jobEn').val();
-				if(!job_jp ||!job_en){
-					alert("入力されていない項目があります。");
-					return ;
-				}
-				var option = '<option value="'+"lastInsertId"+'">'+job_jp+'</option>';
-				$('.sel_job').prepend(option);
-				close();
-			});
-
-			$('.btn_close').on('click', function(){
-				close();
-			});
-			function close(){
-				$('#modal-job').removeClass('md-show');
-				$('#jobJp').val("");
-				$('#jobEn').val("");
-			}
-		});
-
+		 $(function(){
+        $("input"). keydown(function(e) {
+            if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+    });
 	<?php $this->Html->scriptEnd(); ?>

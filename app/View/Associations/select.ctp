@@ -16,7 +16,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-12 maxW900">
+				<div class="col-lg-12 maxW700">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2><?= __('Documents List') ?></h2>
@@ -40,17 +40,14 @@
 																<th class="text-center"><span><?= __('Document Name') ?></span></th>
 																<th class="text-center"><span><?= __('Language') ?></span></th>
 																<th class="text-center"><span><?= __('Note') ?></span></th>
-																<th class="text-center"><span><?= __('Memo') ?></span></th>
-																<th style="width:70px"></th>
 															</tr>
 														</thead>
 														<tbody>
 															<?php foreach($this->Foreach->association_documents($folder['DocFolder']['id']) as $doc): ?>
-
 																<tr>
 																	<td>
 																		<div class="checkbox-nice">
-																			<input type="checkbox" id="doc_<?php echo $doc['DocName']['id']?>" name="data[AssociationDocument][doc_name_id]" value="<?php echo $doc['DocName']['id']?>"  data-id="<?php echo $doc['DocName']['id']?>" data-association-id="<?php echo $this->request->data['Association']['id'] ?>" <?php if(!empty($doc['AssociationDocument'])) { if($doc['AssociationDocument'][0]['selected'] == 1){ echo "checked";}else{echo "non checked" ;} }  ?>>
+																			<input type="checkbox" id="doc_<?php echo $doc['DocName']['id']?>" name="data[AssociationDocument][id]" value="<?php if(empty($doc['AssociationDocument'])){echo "" ;}else{echo $doc['AssociationDocument'][0]['id'];}?>"  data-doc-id="<?php echo $doc['DocName']['id']?>" data-association-id="<?php echo $this->request->data['Association']['id'] ?>">
 																			<label for="doc_<?php echo $doc['DocName']['id']?>" >
 																				<?php echo $doc['DocName']['name_jp']."<br>".$doc['DocName']['name_en']; ?>
 																			</label>
@@ -63,15 +60,11 @@
 																	<td class="text-center">
 																		<?php echo $doc['DocName']['note']; ?>
 																	</td>
-																	<td>
-																		<input type="text" class="form-control" name="data[AssociationDocument][note]" value="<?php if(!empty($doc['AssociationDocument']))
-																		{ echo $doc['AssociationDocument'][0]['note'];} ?>"></td>
-																	<td><button type="button" class="btn btn-default" value="保存" data-submit-id="doc_<?php $doc['DocName']['id']?>">保存</button></td>
-
 																</tr>
 															<?php endforeach; ?>
 														</tbody>
 													</table>
+
 												</div>
 											</div>
 										</div>
@@ -79,7 +72,17 @@
 
 								<?php endforeach; ?>
 							</div>
-
+							<?php echo $this->Form->create('AssociationDocument', array(
+								'action' => 'addAjax',
+								'class' => 'hide'
+							)) ?>
+							<?php echo $this->Form->end(); ?>
+							<?php echo $this->Form->create('AssociationDocument', array(
+								'action' => 'delete',
+								'class' => 'hide'
+							)) ?>
+							<?php echo $this->Form->hidden('id') ?>
+							<?php echo $this->Form->end(); ?>
 						</div>
 					</div>
 				</div>
@@ -98,87 +101,102 @@
 		echo $this->Html->script('modernizr.custom', array('inline' => false, 'block' => 'page-js'));
 		echo $this->Html->script('classie', array('inline' => false, 'block' => 'page-js'));
 		echo $this->Html->script('notificationFx', array('inline' => false, 'block' => 'page-js'));
+		echo $this->Html->script('sweetalert.min', array('inline' => false, 'block' => 'page-js'));
+		//echo $this->Html->script('rikuyo_js/document_select', array('inline' => false, 'block' => 'page-js'));
 	 ?>
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 
 
+	//書類選択処理
 	$(function(){
-		var doc_id_arr;
-		$('#document_select_table tr').each(function(){
-			if($(this).find('[type=checkbox]').prop('checked')){
-				$(this).find('td>[type=text]').removeClass('hide');
-				$(this).find('td>button').removeClass('hide');
+		//変数一覧
+		var url = $('#AssociationDocumentAddAjaxForm').attr('action');
+		var url_delete = $('#AssociationDocumentDeleteForm').attr('action');
+		var id = '';
+		var doc_id = '';
+		var association_id = '';
+		var doc_name = '';
+
+		//AssociationDocumentにデータがあるかチェックし、チェックボックスを入れる。
+		$('[type=checkbox]').each(function(){
+			if($(this).val()){
+				$(this).prop('checked', true);
 			} else {
-				$(this).find('[type=text]').addClass('hide');
-				$(this).find('td>button').addClass('hide');
+				$(this).prop('checked', false);
 			}
 		});
+
+		//チェックボックスがクリックされたら、
 		$('[type=checkbox]').on('click', function(){
+				id = $(this).val();
+				doc_id = $(this).data('doc-id');
+				doc_name = $(this).next('label').text();
+				association_id = $(this).data('association-id');
 
-			var doc_id = $(this).data('id');
-			var doc_name = $(this).next('label').text();
-			var checked;
-			console.log(doc_name);
-			$(this).parents('tr').find('[type=text]').toggleClass('hide');
-			$(this).parents('tr').find('button').toggleClass('hide');
+			if(!$(this).val()){ //AssociationDocumentにデータがなかったら新規登録
 
-			var notification = new NotificationFx({
-				message : '<p>「 '+ doc_name + ' 」をリストに加えました',
-				layout : 'growl',
-				effect : 'slide',
-				type : 'success',
-				ttl : 5000,
-				onClose : function(){
-					return true;
+				$.ajax({
+							url: url,
+							type: 'POST',
+							dataType: 'json',
+							data: {
+								id: id,
+								doc_name_id: doc_id,
+								association_id: association_id,
+							},
+							success: function(rs){
+								var notification = new NotificationFx({
+									message : '<p>「 '+ doc_name + ' 」 is added in the list.',
+									layout : 'growl',
+									effect : 'slide',
+									type : 'success',
+									ttl : 3000,
+									onClose : function(){
+										return true;
+									}
+								});
+							notification.show();
+							console.log(rs);
+
+							$('#doc_'+doc_id).attr('data-id', rs);
+							$('#doc_'+doc_id).val(rs);
+
+						},
+							error: function(exception){
+								console.log(exception);
+						}
+					});
+			} else {
+				$('#AssociationDocumentId').val(id);
+				swal({
+				title: '<?= __("Do you remove this from Document List?") ?>',
+				text: "",
+				type: "warning",
+				showCancelButton: true,
+				cancelButtonText: "Cancel",
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes",
+				closeOnConfirm: false
+				},
+				function(isConfirm){
+					if(isConfirm){
+							$('#AssociationDocumentDeleteForm').submit();
+						}
+					else {
+
+						$('#doc_'+doc_id).prop('checked', 'checked')
+					return ;
+					}
 				}
-			});
-			notification.show();
+				);//swal
 
-		});
-	});
-
-<!-- todo_ajax.jsを外部ファイルに作成
-$(function(){
-	'use strict';
-
-	//チェックボックスがクリックされたときの挙動
-	//_ajax.php->Todo.php->post()->_update()->return 'state'の値をresとして取得してきて、function(res)の処理を実行
-	$('#todos').on('click', '.update_todo', function(){
-		//checkBoxがクリックされたら、そのタスクのidを取得
-		var id = $(this).parents('li').data('id');
-		//ajax処理
-		$.post('_ajax.php', { //_ajax.phpにはpostで渡ってきた情報をjson_encode($res)、またはエラーを表示するtry catchを作成
-			id: id,
-			mode: 'update' //class Todoの条件分岐switchで使用する
-		}, function(res){ //ここのresがなぞ。=> todo.php
-			if(res.state === '1'){
-				$('#todo_' + id).attr('checked', 'checked');
-			} else{
-				$('#todo_' + id).removeAttr('checked');
 			}
 		});
+
+
+
 	});
 
-	//delete_todo(削除ボタン)がクリックされた時の挙動
-	$('#todos').on('click', '.delete_todo', function(){
-		var id = $(this).parents('li').data('id');
-		//ajax処理
-		if(confirm('are you sure?')){ //削除するかどうかの確認処理をして、
-			$.post('_ajax.php', {
-				id: id,
-				mode: 'delete',
-				token: $('#token').val()
-			}, function(){ //なぜresを除いた???=>削除処理の場合は、返り値returnは空の配列[]を返すだけなので不要。
-				$('#todo_' + id).fadeout(800); //liが消える。
-			}
-			);
-		}
-	});
-}) -->
-<!-- jquery php Todoのロジックメモ
-1.取得してきたタスクの、stateカラム(0が未了、1が完了)が1だったら、echo 'checked'
-2.jqueryの動作用に、class="update_todo"を指定
-3.各タスク毎に、li id="todo_{タスクのid}"とdata-id={タスクのid}を設置
--->
+
 		<?php $this->Html->scriptEnd(); ?>

@@ -173,7 +173,7 @@
 							<?php echo $this->Html->link(
 								'<i class="fa fa-lg fa-plus-circle"></i> '. __('Select Document') ,
 								array('controller' => 'associations', 'action' => 'select', $this->request->data['Association']['id']),
-								array('escape' => false, 'class' => 'btn btn-primary pull-right', 'target' => '_blank')
+								array('escape' => false, 'class' => 'btn btn-primary pull-right')
 							) ?>
 						</header>
 						<div class="main-box-body clearfix">

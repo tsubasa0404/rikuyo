@@ -16,13 +16,13 @@ class InterviewsController extends AppController {
 	public $components = array('Paginator');
 	public $uses = array(
 		'Association',
+		'AssociationDocument',
 		'Company',
 		'Interview',
 		'InterviewCandidate',
 		'InterviewResult',
 		'InterviewDocStatusList',
 		'Job',
-		'JobMap',
 		'Trainee'
 		);
 
@@ -77,6 +77,10 @@ class InterviewsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+
+			$job_array = implode(',', $this->request->data['Interview']['job']);
+			$this->request->data['Interview']['job'] = $job_array;
+
 			$this->Interview->create();
 			if ($this->Interview->save($this->request->data)) {
 				$this->Session->setFlash(__('The interview has been saved.'));
@@ -148,7 +152,7 @@ class InterviewsController extends AppController {
 		} else {
 
       $lang             = $this->__setLang();
-      $prof             = $this->Interview->prof($id);
+      $prof             = $this->Interview->prof($id); //interviewの詳細
       $option_jobs      = $this->Job->optionJobs($lang);
       $option_companies = $this->Company->__optionComAso($lang);
 
@@ -158,6 +162,12 @@ class InterviewsController extends AppController {
 			//面接候補者
 			$candidates = $this->InterviewCandidate->candidateList($id);
 			$this->set(compact('candidates'));
+
+			//提出書類一覧取得
+      $association_id = $prof['Asso']['id']; //Association ID取得
+			$folders = $this->AssociationDocument->selectedFolders($association_id);//folderを取得
+			$documents = $this->AssociationDocument->selectedDocuments($association_id);
+			$this->set(compact('documents', 'folders'));
 
 			$options = array('conditions' => array('Interview.' . $this->Interview->primaryKey => $id));
 			$this->request->data = $this->Interview->find('first', $options);
@@ -187,7 +197,7 @@ class InterviewsController extends AppController {
 			$this->set(compact('lang', 'prof'));
 
 			//面接候補者
-			$trainees = $this->Trainee->candidateTraineeList();
+			$trainees = $this->Trainee->candidateTraineeList($id);
 			$candidates = $this->InterviewCandidate->candidateList($id);
 			$this->set(compact('candidates', 'trainees'));
 
@@ -197,6 +207,33 @@ class InterviewsController extends AppController {
 
 	}
 
+	public function success($id = null) {
+		if (!$this->Interview->exists($id)) {
+			throw new NotFoundException(__('Invalid interview'));
+		}
+
+		  $lang             = $this->__setLang();
+      $prof             = $this->Interview->prof($id); //interviewの詳細
+      $option_jobs      = $this->Job->optionJobs($lang);
+      $option_companies = $this->Company->__optionComAso($lang);
+
+      $option_results   = $this->InterviewResult->optionResults($lang);
+			$this->set(compact('lang', 'prof', 'option_companies', 'option_jobs', 'option_results'));
+
+			//面接候補者
+			$candidates = $this->InterviewCandidate->candidateList($id);
+			$this->set(compact('candidates'));
+
+			//提出書類一覧取得
+      $association_id = $prof['Asso']['id']; //Association ID取得
+			$folders = $this->AssociationDocument->selectedFolders($association_id);//folderを取得
+			$documents = $this->AssociationDocument->selectedDocuments($association_id);
+			$this->set(compact('documents', 'folders'));
+
+			$options = array('conditions' => array('Interview.' . $this->Interview->primaryKey => $id));
+			$this->request->data = $this->Interview->find('first', $options);
+
+	}
 
 
 /**

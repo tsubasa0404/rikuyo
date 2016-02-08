@@ -1,27 +1,55 @@
-<div class="traineeMicrofinanceRecords form">
+<?php $this->set('title_for_layout', 'Trainee Profile'); ?>
+<?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/dropzone', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/magnific-popup', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->addCrumb(__('Trainee List'), '/trainees'); ?>
+<?php $this->Html->addCrumb(__('Trainee Profile'), '/trainees/profile/'.$trainee_microfinance_records['TraineeMicrofinanceRecord']['trainee_id']); ?>
+<?php $this->Html->addCrumb(__('Trainee Microfinance Record Edit') ); ?>
+					<h1><?= __('Trainee Microfinance Record Edit') ?></h1>
+					</div>
+				</div>
+			</div>
+
+<div class="traineeMicrofinanceRecords form maxW200">
 <?php echo $this->Form->create('TraineeMicrofinanceRecord'); ?>
 	<fieldset>
-		<legend><?php echo __('Edit Trainee Microfinance Record'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('trainee_id');
-		echo $this->Form->input('pay_month');
-		echo $this->Form->input('pay_price');
-		echo $this->Form->input('pay_date');
-		echo $this->Form->input('status_id');
-		echo $this->Form->input('note');
-		echo $this->Form->input('flag');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('TraineeMicrofinanceRecord.id')), array(), __('Are you sure you want to delete # %s?', $this->Form->value('TraineeMicrofinanceRecord.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Trainee Microfinance Records'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Trainees'), array('controller' => 'trainees', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Trainee'), array('controller' => 'trainees', 'action' => 'add')); ?> </li>
-	</ul>
+	<?php
+		echo $this->Form->hidden('id', array('value' => $trainee_microfinance_records['TraineeMicrofinanceRecord']['id']));
+		echo $this->Form->hidden('trainee_id', array('value' => $trainee_microfinance_records['TraineeMicrofinanceRecord']['trainee_id']));
+		echo '<div class="form-group">';
+		echo '<label>'.__('Pay Month').'</label>';
+		echo '<input type="month" name="data[TraineeMicrofinanceRecord][pay_month]" value="'.$trainee_microfinance_records['TraineeMicrofinanceRecord']['pay_month'].'" class="form-control maxW200" id="">';
+		echo '</div>';
+		echo '<div class="form-group">';
+		echo $this->Form->hidden('pay_price',array('value' => $trainee_microfinance_records['TraineeMicrofinanceRecord']['pay_price'], 'class' => 'form-control' ));
+		echo '</div>';
+		echo '<div class="form-group">';
+		echo '<label>'.__('Pay Date').'</label>';
+		echo $this->Form->date('pay_date',array('value' => $trainee_microfinance_records['TraineeMicrofinanceRecord']['pay_date'], 'class' => 'form-control' ));
+		echo '</div>';
+		echo '<div class="form-group">';
+		echo $this->Form->input('status_id', array(
+					'label' => __('Status'),
+					'type' => 'select',
+					'class' => 'form-control',
+					'value' => $trainee_microfinance_records['TraineeMicrofinanceRecord']['status_id'],
+					'options' => array('0'=> __('Not Yet'),'1'=> __('OK'))));
+		echo '</div>';
+		echo '<div class="form-group">';
+		echo $this->Form->input('note',array('value' => $trainee_microfinance_records['TraineeMicrofinanceRecord']['note'], 'class' => 'form-control' ));
+		echo '</div>';
+		echo $this->Form->hidden('flag',array('value' => $trainee_microfinance_records['TraineeMicrofinanceRecord']['flag'], 'class' => 'form-control' ));
+	?>
+	<div class="center-block text-left" style="margin-bottom: 15px">
+	<?php echo $this->Html->link(
+		__('Back'),
+		array('controller' => 'trainees', 'action' => 'profile', $trainee_microfinance_records['TraineeMicrofinanceRecord']['trainee_id']),
+		array('escape' => false, 'class' => 'btn btn-default')
+	) ?>
+	<button type="submit" class="btn btn-primary pull-right"> <?= __('Save') ?></button>
+</div>
+	</fieldset>
+<?php echo $this->Form->end(); ?>
 </div>

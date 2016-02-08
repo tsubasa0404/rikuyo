@@ -33,43 +33,46 @@
 								</thead>
 								<tbody>
 									<?php foreach ($interviews as $int) : ?>
-									<?php
-										echo '<tr><td class="td_first_block">';
-										echo $int['Interview']['interview_date']." ".$int['Interview']['interview_time']." ";
-										echo $this->Html->link(
-											__('Detail'),
-											array('controller' => 'interviews', 'action' => 'profile', $int['Interview']['id']),
-											array('escape' => false)
-											);
-										echo '</td><td>';
-										echo $this->Html->link(
-											$this->Btn->switchLang($lang, $int['Company']['company_jp'], $int['Company']['company_en']),
-											array('controller' => 'companies', 'action' => 'profile', $int['Company']['id']),
-											array('escape' => false)
-											);
-										echo " (";
-										echo $this->Html->link(
-											$this->Btn->switchLang($lang, $int['Association']['association_jp'], $int['Association']['association_en']),
-											array('controller' => 'associations', 'action' => 'profile', $int['Association']['id']),
-											array('escape' => false)
-											);
-										echo ")";
-										echo "</td><td>";
-										echo $int[0]['count']." "._('people');
-										echo "</td><td>";
-										echo $int['Interview']['interview_staff'];
-										echo '</td><td><div class="actions">';
-										echo $this->Form->postlink(
-											'<i class="fa fa-trash-o"></i>',
-											array('controller' => 'interviews', 'action' => 'update_delete_flag',$int['Interview']['id']),
-											array('confirm' => __('Are you sure you want to delete # %s?', $int['Interview']['id']),'escape' => false, 'class' => 'table-link' )
-										);
-										echo '</div></td>';
-										echo "</tr>"
-
-									?>
+										<tr>
+											<td class="td_first_block">
+												<?php if($int['Interview']['interview_date']==""){echo __("Undecided");} echo $int['Interview']['interview_date']." ".$int['Interview']['interview_time']." ";?>
+												<?php echo $this->Html->link(
+													__('Detail'),
+													array('controller' => 'interviews', 'action' => 'profile', $int['Interview']['id']),
+													array('escape' => false)
+												);?>
+											</td>
+											<td>
+												<?php echo $this->Html->link(
+													$this->Btn->switchLang($lang, $int['Company']['company_jp'], $int['Company']['company_en']),
+													array('controller' => 'companies', 'action' => 'profile', $int['Company']['id']),
+													array('escape' => false)
+													);?>
+												(
+												<?php echo $this->Html->link(
+													$this->Btn->switchLang($lang, $int['Association']['association_jp'], $int['Association']['association_en']),
+													array('controller' => 'associations', 'action' => 'profile', $int['Association']['id']),
+													array('escape' => false)
+													);?>
+												)
+											</td>
+											<td>
+												<?php echo $int[0]['count']." "._('people');?>
+											</td>
+											<td>
+												<?php echo $int['Interview']['interview_staff'];?>
+											</td>
+											<td>
+												<div class="actions">
+													<?php echo $this->Form->postlink(
+														'<i class="fa fa-trash-o"></i>',
+														array('controller' => 'interviews', 'action' => 'delete',$int['Interview']['id']),
+														array('confirm' => __('Are you sure you want to delete # %s?', $int['Interview']['id']),'escape' => false, 'class' => 'table-link red' )
+													);?>
+												</div>
+											</td>
+										</tr>
 									<?php endforeach; ?>
-
 								</tbody>
 							</table>
 						</div>

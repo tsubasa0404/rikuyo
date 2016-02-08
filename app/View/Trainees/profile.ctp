@@ -2037,6 +2037,7 @@
 																	</tr>
 																</thead>
 																<tbody>
+																	<?php if(!empty($doc_imgs[0]['DocImg']['id'])) : ?>
 																	<?php foreach ($doc_imgs as $doc) : ?>
 																		<?php
 																			echo "<tr>";
@@ -2065,6 +2066,7 @@
 																			echo "</td></tr>";
 																		 ?>
 																	<?php endforeach; ?>
+																<?php endif; ?>
 																</tbody>
 															</table>
 														</div>
@@ -2186,7 +2188,7 @@
 																</div>
 															</div> -->
 
-															<div class="table-responsive col-lg-12 col-md-12 col-sm-12 maxW900">
+															<div class="table-responsive col-lg-12 col-md-12 col-sm-12 maxW800">
 																<table class="table table-bordered finance">
 																	<thead>
 																		<tr>
@@ -2198,61 +2200,59 @@
 																	</thead>
 																	<tbody class="expense-table">
 																		<?php if($expenses[0]['TraineeExpense']['id']): ?>
-																		<?php foreach ($expenses as $expense) : ?>
-																			<?php
-																				echo '<tr class="expense-'.$expense['TraineeExpense']['id'].'" data-expense-id="'.$expense['TraineeExpense']['id'].'">';
-																				echo '<td class="text-center td_first_block">';
-																				echo $expense['TraineeExpense']['expected_date'];
-																				echo '</td>';
-																				echo '<td class="text-center">';
-																				echo "$ ".$expense['TraineeExpense']['expected_price'];
-																				echo '</td>';
-																				echo '<td>';
-																				echo '<div class="row">';
-																				echo '<div class="col-lg-4 col-md-4 col-sm-4">';
-																				echo '<label>'.__('Pay Date').'</label>';
-																				echo $this->form->date('TraineeExpense.pay_date', array(
-																					'label' => false,
-																					'class' => 'form-control maxW200 chk expense-'.$expense['TraineeExpense']['id'],
-																					'value' => $expense['TraineeExpense']['pay_date']
-																					));
-																				echo '</div>';
-																				echo '<div class="col-lg-2 col-md-2 col-sm-2">';
-																				echo $this->form->input('TraineeExpense.pay_price', array(
-																					'label' => __('Price($)'),
-																					'type' => 'number',
-																					'class' => 'form-control maxW100 chk expense-'.$expense['TraineeExpense']['id'],
-																					'value' => $expense['TraineeExpense']['pay_price']
-																					));
-																				echo '</div>';
-																				echo '<div class="col-lg-4 col-md-4 col-sm-4">';
-																				echo $this->Form->input('TraineeExpense.note', array(
-																					'label' => __('Note'),
-																					'class' => 'form-control expense-'.$expense['TraineeExpense']['id'],
-																					'value' => $expense['TraineeExpense']['note']
-																					));
-																				echo '</div>';
-																				echo '<div class="col-lg-2 col-md-2 col-sm-2">';
-																				echo '<button type="button" class="btn btn-success mT10 ok" data-id="'.$expense['TraineeExpense']['id'].'" data-trainee-id="'.$expense['TraineeExpense']['trainee_id'].'">OK!</button>';
-																				echo '</div>';
-																				echo '</div>';
-																				echo '</td>';
-																				echo '<td class="text-center">';
-																				echo $this->Form->postlink(
-																					'<i class="fa fa-pencil"></i>',
-																					array('controller' => 'trainee_expenses', 'action' => 'edit',$expense['TraineeExpense']['id']),
-																					array('escape' => false, 'class' => 'table-link' )
-																				);
-																				echo $this->Form->postlink(
-																					'<i class="fa fa-trash-o"></i>',
-																					array('controller' => 'trainee_expenses', 'action' => 'delete',$expense['TraineeExpense']['id']),
-																					array('confirm' => __('Are you sure you want to delete # %s?',$expense['TraineeExpense']['id']),'escape' => false, 'class' => 'table-link red' )
-																				);
-																				echo '</td>';
+																			<?php foreach ($expenses as $expense) : ?>
+																				<tr class="expense-<?php echo $expense['TraineeExpense']['id']?>" data-expense-id="<?php $expense['TraineeExpense']['id'];?> ">
+																					<td class="text-center td_first_block">
+																						<?php echo $expense['TraineeExpense']['expected_date'];?>
+																					</td>
+																					<td class="text-center">
+																					<?php echo "$ ".$expense['TraineeExpense']['expected_price'];?>
+																					</td>
+																					<td>
+																					<div class="row">
+																					<div class="col-lg-4 col-md-4 col-sm-4">
+																						<label><?= __('Pay Date')?></label>
+																						<?php echo $this->form->date('TraineeExpense.pay_date', array(
+																							'label' => false,
+																							'class' => 'form-control maxW200 chk expense-'.$expense['TraineeExpense']['id'],
+																							'value' => $expense['TraineeExpense']['pay_date'],
+																							'disabled' => true
+																							));?>
+																					</div>
+																					<div class="col-lg-3 col-md-3 col-sm-3">
+																						<?php echo $this->form->input('TraineeExpense.pay_price', array(
+																							'label' => __('Price($)'),
+																							'type' => 'number',
+																							'class' => 'form-control maxW100 chk expense-'.$expense['TraineeExpense']['id'],
+																							'value' => $expense['TraineeExpense']['pay_price'],
+																							'disabled' => true
+																							));?>
+																					</div>
+																					<div class="col-lg-4 col-md-4 col-sm-4">
+																					<?php echo $this->Form->input('TraineeExpense.note', array(
+																						'label' => __('Note'),
+																						'class' => 'form-control expense-'.$expense['TraineeExpense']['id'],
+																						'value' => $expense['TraineeExpense']['note'],
+																						'disabled' => true
+																						));?>
+																					</div>
 
-																				echo '</tr>';
-																			?>
-																		<?php endforeach; ?>
+																					</div>
+																					</td>
+																					<td class="text-center">
+																					<?php echo $this->Form->postlink(
+																						'<i class="fa fa-pencil"></i>',
+																						array('controller' => 'trainee_expenses', 'action' => 'edit',$expense['TraineeExpense']['id']),
+																						array('escape' => false, 'class' => 'table-link')
+																					);
+																					echo $this->Form->postlink(
+																						'<i class="fa fa-trash-o"></i>',
+																						array('controller' => 'trainee_expenses', 'action' => 'delete',$expense['TraineeExpense']['id']),
+																						array('confirm' => __('Are you sure you want to delete # %s?',$expense['TraineeExpense']['id']),'escape' => false, 'class' => 'table-link red' )
+																					);?>
+																					</td>
+																				</tr>
+																			<?php endforeach; ?>
 																		<?php endif; ?>
 																	</tbody>
 																</table>
@@ -2373,14 +2373,17 @@
 																								</tr>
 																							</thead>
 																							<tbody id="microfinance">
+																							<?php if(!empty($microfinance_images[0]['TraineeMicrofinanceImage']['id'])): ?>
 																								<?php foreach ($microfinance_images as $image) : ?>
-																									<?php
-																										echo "<tr>";
-																										echo "<td>";
-																										echo $image['TraineeMicrofinanceImage']['title'];
-																										echo '</td><td class="text-center">';
-																										echo '<a href="/dev/img/trainee_microfinance_images/original/'.$image['TraineeMicrofinanceImage']['img_file_name'].'" class="table-link popup" alt="Show Image"><i class="fa fa-eye fa-lg"></i></a>';
-																										echo $this->Html->link(
+																									<tr>
+																										<td>
+																											<?php echo $image['TraineeMicrofinanceImage']['title'];?>
+																										</td>
+																										<td class="text-center">
+																											<a href="/dev/img/trainee_microfinance_images/original/<?php echo $image['TraineeMicrofinanceImage']['img_file_name'];?>" class="table-link popup" alt="Show Image">
+																												<i class="fa fa-eye fa-lg"></i>
+																											</a>
+																										<?php echo $this->Html->link(
 																											'<i class="fa fa-pencil"></i>',
 																											array(
 																												'controller' => 'trainee_microfinance_images', 'action'=> 'edit', $image['TraineeMicrofinanceImage']['id']
@@ -2397,10 +2400,11 @@
 																											array(
 																												'confirm' => __('Are you sure you want to delete # %s?', $image['TraineeMicrofinanceImage']['id']),'escape' => false, 'class' => 'table-link red'
 																												)
-																											);
-																										echo "</td></tr>";
-																									 ?>
+																											);?>
+																										</td>
+																									</tr>
 																								<?php endforeach; ?>
+																							<?php endif; ?>
 																							</tbody>
 																						</table>
 																					</div>
@@ -2414,7 +2418,7 @@
 														</div>
 
 														<div class="row">
-															<div class="table-responsive col-lg-12 col-md-12 col-sm-12 maxW700">
+															<div class="table-responsive col-lg-12 col-md-12 col-sm-12 maxW600">
 																<div class="col-lg-12 col-md-12 col-sm-12">
 																	<table class="table table-bordered finance">
 																		<thead>
@@ -2427,50 +2431,44 @@
 																		<tbody>
 																			<?php if($microfinances[0]['TraineeMicrofinanceRecord']['id']): ?>
 																				<?php foreach ($microfinances as $record) : ?>
-																					<?php
-																						echo '<tr class="miacrofinance-'.$record['TraineeMicrofinanceRecord']['id'].'" data-microfinance-id="'.$record['TraineeMicrofinanceRecord']['id'].'">';
-																						echo '<td class="text-center td_first_block">';
-																						echo $record['TraineeMicrofinanceRecord']['pay_month'];
-																						echo '</td>';
-																						echo '<td>';
-																						echo '<div class="row">';
-																						echo '<div class="col-lg-4 col-md-4 col-sm-4 maxW160">';
-																						echo '<label>'.__('Status').'</label>';
-																						echo $this->form->input('TraineeMicrofinanceRecord.status_id', array(
-																							'label' => false,
-																							'class' => 'form-control maxW120 microfinance-'.$record['TraineeMicrofinanceRecord']['id'],
-																							'value' => $record['TraineeMicrofinanceRecord']['status_id'],
-																							'type' => 'select',
-																							'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
-																							));
-																						echo '</div>';
-																						echo '<div class="col-lg-6 col-md-6 col-sm-6 maxW200">';
-																						echo $this->Form->input('TraineeMicrofinanceRecord.note', array(
-																							'label' => __('Note'),
-																							'class' => 'form-control microfinance-'.$record['TraineeMicrofinanceRecord']['id'],
-																							'value' => $record['TraineeMicrofinanceRecord']['note']
-																							));
-																						echo '</div>';
-																						echo '<div class="col-lg-2 col-md-2 col-sm-2">';
-																						echo '<button type="button" class="btn btn-success mT10 ok" data-id="'.$record['TraineeMicrofinanceRecord']['id'].'" data-trainee-id="'.$record['TraineeMicrofinanceRecord']['trainee_id'].'">OK!</button>';
-																						echo '</div>';
-																						echo '</div>';
-																						echo '</td>';
-																						echo '<td class="text-center">';
-																						echo $this->Form->postlink(
-																							'<i class="fa fa-pencil"></i>',
-																							array('controller' => 'trainee_microfinance_records', 'action' => 'edit',$record['TraineeMicrofinanceRecord']['id']),
-																							array('escape' => false, 'class' => 'table-link' )
-																						);
-																						echo $this->Form->postlink(
-																							'<i class="fa fa-trash-o"></i>',
-																							array('controller' => 'trainee_microfinance_records', 'action' => 'delete',$record['TraineeMicrofinanceRecord']['id']),
-																							array('confirm' => __('Are you sure you want to delete # %s?',$record['TraineeMicrofinanceRecord']['id']),'escape' => false, 'class' => 'table-link red' )
-																						);
-																						echo '</td>';
-
-																						echo '</tr>';
-																					?>
+																						<tr class="miacrofinance-<?php echo $record['TraineeMicrofinanceRecord']['id']?>" data-microfinance-id="<?php echo $record['TraineeMicrofinanceRecord']['id'];?>">
+																							<td class="text-center td_first_block">
+																						<?php echo $record['TraineeMicrofinanceRecord']['pay_month'];?>
+																						</td>
+																						<td>
+																						<div class="row">
+																							<div class="col-lg-4 col-md-4 col-sm-4 maxW160">
+																								<label><?= __('Status'); ?></label>
+																									<?php echo $this->form->input('TraineeMicrofinanceRecord.status_id', array(
+																										'label' => false,
+																										'class' => 'form-control maxW120 microfinance-'.$record['TraineeMicrofinanceRecord']['id'],
+																										'value' => $record['TraineeMicrofinanceRecord']['status_id'],
+																										'type' => 'select',
+																										'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																										));?>
+																							</div>
+																							<div class="col-lg-8 col-md-8 col-sm-8">
+																								<?php echo $this->Form->input('TraineeMicrofinanceRecord.note', array(
+																									'label' => __('Note'),
+																									'class' => 'form-control microfinance-'.$record['TraineeMicrofinanceRecord']['id'],
+																									'value' => $record['TraineeMicrofinanceRecord']['note']
+																									));?>
+																							</div>
+																						</div>
+																						</td>
+																						<td class="text-center">
+																							<?php echo $this->Form->postlink(
+																								'<i class="fa fa-pencil"></i>',
+																								array('controller' => 'trainee_microfinance_records', 'action' => 'edit',$record['TraineeMicrofinanceRecord']['id']),
+																								array('escape' => false, 'class' => 'table-link' )
+																							);
+																							echo $this->Form->postlink(
+																								'<i class="fa fa-trash-o"></i>',
+																								array('controller' => 'trainee_microfinance_records', 'action' => 'delete',$record['TraineeMicrofinanceRecord']['id']),
+																								array('confirm' => __('Are you sure you want to delete # %s?',$record['TraineeMicrofinanceRecord']['id']),'escape' => false, 'class' => 'table-link red' )
+																							);?>
+																						</td>
+																					</tr>
 																				<?php endforeach; ?>
 																			<?php endif; ?>
 																		</tbody>
@@ -2614,6 +2612,13 @@
         var pay_date  = $('tr.expense-'+id+ ' #TraineeExpensePayDate').val();
         var pay_price = $('tr.expense-'+id+ ' #TraineeExpensePayPrice').val();
         var note      = $('tr.expense-'+id+ ' #TraineeExpenseNote').val();
+
+        alert(id);
+        alert(trainee_id);
+        alert(pay_date);
+        alert(pay_price);
+        alert(note);
+
 
 				$('#TraineeExpenseUpdateForm #TraineeExpenseId').val(id);
 				$('#TraineeExpenseUpdateForm #TraineeExpenseTraineeId').val(trainee_id);
