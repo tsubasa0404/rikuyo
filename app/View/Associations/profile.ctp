@@ -230,11 +230,8 @@
 											<tbody>
 
 												<tr>
-													<td>
-														<?= __('Sectors') ?>
-													</td>
-													<td>
-													<!--これは別のフォームにとばしてsector_mapに格納する -->
+													<td class="td_first_block">
+
 														<?php echo $this->Form->input('sector',array(
 															'label' => false,
 															'type' => 'select',
@@ -242,10 +239,9 @@
 															'selected' => explode(',', $this->request->data['Association']['sector']),
 															'class' => "form-control sel_sector",
 															'multiple' => true,
-															'style' => array("width:100px;"),
 															'div' => false
 														)); ?>
-														<button type="button" id="" class="md-trigger btn btn-primary" data-modal="modal-sector" style="float:right"><i class="fa fa-plus-circle fa-lg" ></i> <?= __('Add Sector') ?>
+
 													</td>
 												</tr>
 

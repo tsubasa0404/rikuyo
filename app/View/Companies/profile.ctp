@@ -9,7 +9,7 @@
 			</div>
 
 			<div class="row" id="company-profile">
-				<div class="col-lg-8 col-md-8 col-sm-12 maxW600">
+				<div class="col-lg-8 col-md-8 col-sm-12 maxW410">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2><?php echo $this->request->data['Company']['company_jp']."(".$this->request->data['Company']['company_en'].")" ?></h2>
@@ -20,6 +20,7 @@
 							<div class="company-profile-details">
 								<div class="table-responsive">
 									<?php echo $this->Form->create('Company', array(
+										'action' => 'add',
 										'class' => 'form_company_edit',
 										'inputDefaults' => array(
 											'div' => false,
@@ -27,15 +28,9 @@
 									)); ?>
 									<?php echo $this->Form->hidden('id'); ?>
 									<table class="table table-bordered table-hover">
-										<thead>
-											<tr>
-												<th><span></span></th>
-												<th class="text-center"><span></span></th>
-											</tr>
-										</thead>
 										<tbody>
 											<tr>
-												<td>
+												<td class="td_first_block">
 													<?= __('Affiliated Association') ?>
 												</td>
 												<td>
@@ -52,22 +47,22 @@
 												</td>
 											</tr>
 											<tr>
-												<td>
+												<td class="td_first_block">
 													<?= __('Comapny Name') ?>
 												</td>
 												<td>
 													<?php echo $this->Form->input('company_jp',array(
 														'label' => false,
-														'class' => 'form-control  maxW200'
+														'class' => 'form-control  '
 													)) ?><br>
 													<?php echo $this->Form->input('company_en',array(
 														'label' => false,
-														'class' => 'form-control maxW200'
+														'class' => 'form-control '
 													)) ?>
 												</td>
 											</tr>
 											<tr>
-												<td>
+												<td class="td_first_block">
 													<?= __('Representative') ?>
 												</td>
 												<td>
@@ -104,15 +99,15 @@
 												</td>
 											</tr>
 											<tr>
-												<td rowspan="3">
+												<td rowspan="3" class="td_first_block">
 													<?= __('Address') ?>
 												</td>
 												<td>
 													<div class="row">
-														<div class="col-lg-4 col-md-4 col-sm-4">
+														<div class="col-lg-12 col-md-12 col-sm-12">
 															<?php echo $this->Form->input('postcode',array(
 																'label' => __('Postcode'),
-																'class' => 'form-control maxW200',
+																'class' => 'form-control maxW100',
 																'id' => 'postcode',
 																'type' => 'text'
 															)) ?>
@@ -125,10 +120,10 @@
 											<tr>
 												<td class="td_first_block">
 													<div class="row">
-														<div class="col-lg-4 col-md-4 col-sm-4">
+														<div class="col-lg-12 col-md-12 col-sm-12">
 															<?php echo $this->Form->input('province',array(
 																'label' => __('Province'),
-																'class' => 'form-control maxW200',
+																'class' => 'form-control maxW100',
 																'id' => 'province'
 															)) ?>
 														</div>
@@ -149,7 +144,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td rowspan="2">
+												<td rowspan="2" class="td_first_block">
 													<?= __('Contact') ?>
 												</td>
 												<td>
@@ -291,11 +286,10 @@
 												</td>
 											</tr>
 											<tr>
-												<td>
+												<td class="td_first_block">
 													<?= __('Job') ?>
 												</td>
 												<td>
-													<!--これは別のフォームにとばしてsector_mapに格納する -->
 													<?php echo $this->Form->input('job',array(
 														'label' => false,
 														'type' => 'select',
@@ -310,7 +304,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td>
+												<td class="td_first_block">
 													<?= __('Note') ?>
 												</td>
 												<td>

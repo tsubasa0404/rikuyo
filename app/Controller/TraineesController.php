@@ -22,6 +22,7 @@ class TraineesController extends AppController {
 		'TraineeDocument',
 		'TraineeExpense',
 		'TraineeMicrofinanceImage',
+		'TraineeVoice',
 		'Province',
 		'District',
 		'Commune',
@@ -177,11 +178,15 @@ class TraineesController extends AppController {
 			$job1 = $this->Trainee->traineeJob1($id);
 			$job2 = $this->Trainee->traineeJob2($id);
 
-
+			//Voice取得
+			$voices = $this->TraineeVoice->find('all', array(
+				'fields' => array('id', 'trainee_id', 'title_en', 'voice_en', 'created'),
+				'order' => array('created' => 'asc')
+				));
 
 			$this->set(compact(
 				'option_jobs','option_provinces','option_districts', 'option_communes',
-				 'trainee_families', 'lang', 'job1', 'job2', 'prof_img','doc_imgs', 'int_results'));
+				 'trainee_families', 'lang', 'job1', 'job2', 'prof_img','doc_imgs', 'int_results', 'voices'));
 		}
 	}
 

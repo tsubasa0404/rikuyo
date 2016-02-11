@@ -38,6 +38,7 @@ class PagesController extends AppController {
 	public $uses = array(
 		'Interview',
 		'Inspection',
+		'Task',
 		);
 
 /**
@@ -75,6 +76,10 @@ class PagesController extends AppController {
 		$inspections = $this->Inspection->inspectionList();
 		$this->set(compact('lang', 'interviews', 'inspections'));
 
+		//Task
+		$this->Task->recursive = -1;
+		$tasks = $this->Task->find('all');
+		$this->set(compact('tasks'));
 
 		try {
 			$this->render(implode('/', $path));

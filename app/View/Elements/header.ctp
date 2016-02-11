@@ -22,7 +22,7 @@
 				<li class="dropdown">
 					<a class="btn dropdown-toggle" data-toggle="dropdown">
 						<i class="fa fa-bell"></i>
-						<span class="count">8</span>
+						<span class="count"><?php echo count($notification_tasks); ?></span>
 					</a>
 					<ul class="dropdown-menu notifications-list">
 						<li class="pointer">
@@ -30,53 +30,59 @@
 								<div class="arrow"></div>
 							</div>
 						</li>
-						<li class="item-header">You have 6 new notificationsここのロジック考える</li>
-						<li class="item">
-							<a href="#">
-								<i class="fa fa-comment"></i>
-								<span class="content">New comment on ‘Awesome P...</span>
-								<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-							</a>
-						</li>
-						<li class="item">
-							<a href="#">
-								<i class="fa fa-plus"></i>
-								<span class="content">New user registration</span>
-								<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-							</a>
-						</li>
-						<li class="item">
-							<a href="#">
-								<i class="fa fa-envelope"></i>
-								<span class="content">New Message from George</span>
-								<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-							</a>
-						</li>
-						<li class="item">
-							<a href="#">
-								<i class="fa fa-shopping-cart"></i>
-								<span class="content">New purchase</span>
-								<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-							</a>
-						</li>
-						<li class="item">
-							<a href="#">
-								<i class="fa fa-eye"></i>
-								<span class="content">New order</span>
-								<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
-							</a>
-						</li>
+						<li class="item-header"><?= __('Uncompleted Tasks') ?></li>
+						<?php foreach ($notification_tasks as $task) : ?>
+							<li class="item">
+								<?php echo $this->Html->link(
+									'<i class="fa fa-tasks"></i><p class="content">'.$task['Task']['task'].'</p><span class="time"><i class="fa fa-clock-o"></i>'.date('m/d', strtotime($task['Task']['expected_date'])).'</span>',
+									array('controller' => 'tasks', 'action' => 'index'),
+									array('escape' => false, 'class' => '')
+								) ?>
+							</li>
+						<?php endforeach; ?>
 						<li class="item-footer">
-							<a href="#">
-								View all notifications
-							</a>
+							<?php echo $this->Html->link(
+								__('View All notifications'),
+								array('controller' => 'tasks', 'action' => 'index'),
+								array('escape' => false, 'class' => '')
+							) ?>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="btn dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-money"></i>
+						<span class="count"><?php echo count($notification_expenses); ?></span>
+					</a>
+					<ul class="dropdown-menu notifications-list">
+						<li class="pointer">
+							<div class="pointer-inner">
+								<div class="arrow"></div>
+							</div>
+						</li>
+						<li class="item-header"><?= __('Unpaid School Tuitions') ?></li>
+						<?php foreach ($notification_expenses as $expense) : ?>
+							<li class="item">
+								<?php echo $this->Html->link(
+									'<i class="fa fa-tasks"></i><p class="content">'.$expense['Trainee']['given_name_en']." ".$expense['Trainee']['family_name_en'].'</p><span class="time"><i class="fa fa-clock-o"></i>'.date('m/d', strtotime($expense['TraineeExpense']['expected_date'])).'</span>',
+									array('controller' => 'trainees', 'action' => 'profile', $expense['Trainee']['id']),
+									array('escape' => false, 'class' => '')
+								) ?>
+							</li>
+						<?php endforeach; ?>
+						<li class="item-footer">
+							<?php echo $this->Html->link(
+								__('View All notifications'),
+								array('controller' => 'tasks', 'action' => 'index'),
+								array('escape' => false, 'class' => '')
+							) ?>
 						</li>
 					</ul>
 				</li>
 
 				<li class="dropdown">
 					<a class="btn dropdown-toggle" data-toggle="dropdown">
-						Languages
+						<?= __('Languages') ?>
 						<i class="fa fa-caret-down"></i>
 					</a>
 					<ul class="dropdown-menu">

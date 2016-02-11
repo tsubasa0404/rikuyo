@@ -9,7 +9,7 @@
 			</div>
 
 			<div class="row" id="agent-profile">
-				<div class="col-lg-8 col-md-8 col-sm-12 maxW600">
+				<div class="col-lg-8 col-md-8 col-sm-12 maxW400">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2><?php echo $this->request->data['Agent']['agent_jp'] ?></h2>
@@ -27,18 +27,13 @@
 									)); ?>
 									<?php echo $this->Form->hidden('id'); ?>
 										<table class="table table-bordered table-hover">
-											<thead>
-												<tr>
-													<th><span></span></th>
-													<th class="text-center"><span></span></th>
-												</tr>
-											</thead>
+
 											<tbody>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Agent Name') ?>
 													</td>
-													<td>
+													<td class="td_first_block">
 														<?php echo $this->Form->input('agent_en', array(
 															'label' => __('Agent Name_English'),
 															'type' => 'text',
@@ -56,7 +51,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Representative') ?>
 													</td>
 													<td>
@@ -90,7 +85,7 @@
 																	<?php echo $this->Form->input('rep_position_en', array(
 																		'label' => __('Position_English'),
 																		'type' => 'text',
-																		'class' => 'form-control maxW200',
+																		'class' => 'form-control ',
 																		'placeholder' => __('Enter Position in English'),
 																		'required' => true
 																	)); ?>
@@ -113,7 +108,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Establish Date') ?>
 													</td>
 													<td>
@@ -128,7 +123,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Capitals') ?>
 													</td>
 													<td>
@@ -160,7 +155,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Sales') ?>
 														<br>(直近年度)
 													</td>
@@ -193,7 +188,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Employees Count') ?>
 													</td>
 													<td>
@@ -209,11 +204,11 @@
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Trading Partners') ?>
 														<br>主要貿易(取引)相手国
 													</td>
-													<td>
+													<td class="td_first_block">
 														<?php echo $this->Form->input('export_en', array(
 															'label' => __('Export To_English'),
 															'type' => 'text',
@@ -228,12 +223,12 @@
 												</tr>
 
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Address') ?>
 													</td>
 													<td>
 														<div class="row">
-															<div class="col-lg-6 col-md-6 col-sm-6">
+															<div class="col-lg-12 col-md-12 col-sm-12">
 																<div class="form-group form-group-select2">
 																	<label for="AgentProvinceId"><?= __('Province') ?></label>
 																		<?php echo $this->Form->input('province_id', array(
@@ -248,7 +243,7 @@
 															</div>
 														</div>
 														<div class="row">
-															<div class="col-lg-6 col-md-6 col-sm-6">
+															<div class="col-lg-12 col-md-12 col-sm-12">
 																<div class="form-group form-group-select2">
 																	<label for="AgentDistrictId"><?= __('District') ?></label>
 																	<?php echo $this->Form->input('district_id', array(
@@ -263,7 +258,7 @@
 															</div>
 														</div>
 														<div class="row">
-															<div class="col-lg-6 col-md-6 col-sm-6">
+															<div class="col-lg-12 col-md-12 col-sm-12">
 																<div class="form-group form-group-select2">
 																	<label for="AgentCommuneId">Commune</label>
 																	<?php echo $this->Form->input('commune_id', array(
@@ -370,10 +365,10 @@
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Sector') ?>
 													</td>
-													<td>
+													<td class="td_first_block">
 														<?php echo $this->Form->input('sector',array(
 															'label' => false,
 															'type' => 'select',
@@ -381,17 +376,16 @@
 															'selected' => explode(',', $this->request->data['Agent']['sector']),
 															'class' => "form-control sel_sector",
 															'multiple' => true,
-															'style' => array("width:200px"),
 															'div' => false
 														)); ?>
 
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Note') ?>
 													</td>
-													<td>
+													<td class="td_first_block">
 														<?php echo $this->Form->textarea('note',array(
 															'rows' => '4',
 															'class' => 'form-control',

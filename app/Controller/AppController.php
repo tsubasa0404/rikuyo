@@ -20,6 +20,8 @@
  */
 
 App::uses('Controller', 'Controller');
+App::import('Model', 'Task');
+App::import('Model', 'TraineeExpense');
 
 /**
  * Application Controller
@@ -51,6 +53,10 @@ class AppController extends Controller {
 
     //言語切り替えスイッチ
 		$this->__setLang();
+
+		//通知用データ取得
+		$this->__taskNotification();
+		$this->__expenseNotification();
 	}
 
 
@@ -69,5 +75,16 @@ class AppController extends Controller {
 			$this->Session->write('lang', $lang);
 			return $lang;
 		}
+	}
+
+	public function __taskNotification(){
+		$Task = new Task;
+		$notification_tasks = $Task->tasks();
+		$this->set(compact('notification_tasks'));
+	}
+	public function __expenseNotification(){
+		$TraineeExpense = new TraineeExpense;
+		$notification_expenses = $TraineeExpense->expenses();
+		$this->set(compact('notification_expenses'));
 	}
 }

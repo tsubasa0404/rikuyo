@@ -1,54 +1,183 @@
-<div class="provinces index">
-	<h2><?php echo __('Provinces'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('province_en'); ?></th>
-			<th><?php echo $this->Paginator->sort('province_jp'); ?></th>
-			<th><?php echo $this->Paginator->sort('province_kh'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	</thead>
-	<tbody>
-	<?php foreach ($provinces as $province): ?>
-	<tr>
-		<td><?php echo h($province['Province']['id']); ?>&nbsp;</td>
-		<td><?php echo h($province['Province']['province_en']); ?>&nbsp;</td>
-		<td><?php echo h($province['Province']['province_jp']); ?>&nbsp;</td>
-		<td><?php echo h($province['Province']['province_kh']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $province['Province']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $province['Province']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $province['Province']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $province['Province']['id']))); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</tbody>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Province'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Agents'), array('controller' => 'agents', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Agent'), array('controller' => 'agents', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Districts'), array('controller' => 'districts', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New District'), array('controller' => 'districts', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Trainees'), array('controller' => 'trainees', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Trainee'), array('controller' => 'trainees', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<?php $this->set('title_for_layout', 'Cambodia Address'); ?>
+<?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->addCrumb(__('Cambodia Address List')); ?>
+					<h1><?= __('Cambodia Address List') ?></h1>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6">
+					<div class="main-box">
+						<header class="main-box-header clearfix">
+							<h2><?= __('Province List') ?>
+							</h2>
+						</header>
+						<div class="main-box-body clearfix">
+							<div class="table-responsive">
+								<table id="table-province-db" class="table table-bordered table-hover ">
+									<thead>
+										<tr>
+											<th><?= __('Japanese') ?></th>
+											<th><?= __('English') ?></th>
+											<th><?= __('Khmer') ?></th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<?php foreach ($provinces as $province) : ?>
+											<tr id="<?php echo $province['Province']['id'];?>" data-id="<?php echo $province['Province']['id'];?>">
+												<td class="td_first_block">
+													<?php echo $this->Form->input('province_jp', array(
+														'value' => $province['Province']['province_jp'],
+														'class' => "on_change_input form-control jp-".$province['Province']['id'],
+														'data-id' => $province['Province']['id'],
+														'data-type' => 'province',
+														'data-lang' => 'jp',
+														'data-alias-jp' => $province['Province']['province_jp'],
+														'data-alias-en' => $province['Province']['province_en'],
+														'data-alias-kh' => $province['Province']['province_kh'],
+														'label' => false,
+														'id' => 'province_jp_'. $province['Province']['id']
+													));?>
+												</td>
+												<td>
+													<?php echo $this->Form->input('province_en', array(
+														'value' => $province['Province']['province_en'],
+														'class' => "on_change_input form-control en-".$province['Province']['id'],
+														'data-id' => $province['Province']['id'],
+														'data-type' => 'province',
+														'data-lang' => 'en',
+														'data-alias-jp' => $province['Province']['province_jp'],
+														'data-alias-en' => $province['Province']['province_en'],
+														'data-alias-kh' => $province['Province']['province_kh'],
+														'label' => false,
+														'id' => 'Province_en_'. $province['Province']['id']
+													));?>
+												</td>
+												<td>
+													<?php echo $this->Form->input('province_kh', array(
+														'value' => $province['Province']['province_kh'],
+														'class' => "on_change_input form-control kh-".$province['Province']['id'],
+														'data-id' => $province['Province']['id'],
+														'data-type' => 'province',
+														'data-lang' => 'kh',
+														'data-alias-jp' => $province['Province']['province_jp'],
+														'data-alias-en' => $province['Province']['province_en'],
+														'data-alias-kh' => $province['Province']['province_kh'],
+														'label' => false,
+														'id' => 'Province_kh_'. $province['Province']['id']
+													));?>
+												</td>
+											</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+							</div>
+							<div class="hide">
+								<?php echo $this->Form->create('Province', array(
+									'action' => 'addAjax',
+									'class' => 'province_form'
+								)) ?>
+								<?php echo $this->Form->end(); ?>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6">
+					<div class="main-box">
+						<header class="main-box-header clearfix">
+							<h2><?= __('District and Commune') ?>
+								<div class="filter-block pull-right">
+									<?php //echo $this->Html->link('<i class="fa fa-plus-circle fa-lg"></i> '.__('New Trainee'),array('controller' => 'trainees', 'action' => 'add'),array('escape' => false, 'class' => 'btn btn-primary pull right')) ?>
+								</div>
+							</h2>
+						</header>
+						<div class="main-box-body clearfix">
+							<div class="table-responsive">
+								<table id="table-address-db" class="table table-bordered table-hover footable" data-page-size="25"  data-limit-navigation="5">
+									<thead>
+										<tr>
+											<th><?= __('Japanese') ?></th>
+											<th><?= __('English') ?></th>
+											<th><?= __('Khmer') ?></th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php foreach ($address as $add) : ?>
+											<tr id="<?php echo $add['CambodiaPlaceDictionary']['id'];?>" data-id="<?php echo $add['CambodiaPlaceDictionary']['id'];?>">
+												<td class="td_first_block">
+													<?php echo $this->Form->input('place_jp', array(
+														'value' => $add['CambodiaPlaceDictionary']['place_jp'],
+														'class' => "on_change_input form-control jp-".$add['CambodiaPlaceDictionary']['id'],
+														'data-id' => $add['CambodiaPlaceDictionary']['id'],
+														'data-type' => 'address',
+														'data-lang' => 'jp',
+														'data-alias-jp' => $add['CambodiaPlaceDictionary']['place_jp'],
+														'data-alias-en' => $add['CambodiaPlaceDictionary']['place_en'],
+														'data-alias-kh' => $add['CambodiaPlaceDictionary']['place_kh'],
+														'label' => false,
+														'data-value' => $add['CambodiaPlaceDictionary']['place_jp']
+														));?>
+												</td>
+												<td>
+													<?php echo $this->Form->input('place_en', array(
+														'value' => $add['CambodiaPlaceDictionary']['place_en'],
+														'class' => "on_change_input form-control en-".$add['CambodiaPlaceDictionary']['id'],
+														'data-id' => $add['CambodiaPlaceDictionary']['id'],
+														'data-type' => 'address',
+														'data-lang' => 'en',
+														'data-alias-jp' => $add['CambodiaPlaceDictionary']['place_jp'],
+														'data-alias-en' => $add['CambodiaPlaceDictionary']['place_en'],
+														'data-alias-kh' => $add['CambodiaPlaceDictionary']['place_kh'],
+														'label' => false
+													));?>
+												</td>
+												<td>
+													<?php echo $this->Form->input('place_kh', array(
+														'value' => $add['CambodiaPlaceDictionary']['place_kh'],
+														'class' => "on_change_input form-control en-".$add['CambodiaPlaceDictionary']['id'],
+														'data-id' => $add['CambodiaPlaceDictionary']['id'],
+														'data-type' => 'address',
+														'data-lang' => 'kh',
+														'data-alias-jp' => $add['CambodiaPlaceDictionary']['place_jp'],
+														'data-alias-en' => $add['CambodiaPlaceDictionary']['place_en'],
+														'data-alias-kh' => $add['CambodiaPlaceDictionary']['place_kh'],
+														'label' => false
+													));?>
+												</td>
+											</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+							<ul class="pagination pull-right hide-if-no-paging"></ul>
+							</div>
+							<div class="hide">
+								<?php echo $this->Form->create('CambodiaPlaceDictionary', array(
+									'action' => 'addAjax',
+									'class' => 'place_form'
+								)) ?>
+								<?php echo $this->Form->end(); ?>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			<?php
+				echo $this->Html->script('footable', array('inline' => false, 'block' => 'modal-js'));
+				echo $this->Html->script('footable.paginate', array('inline' => false, 'block' => 'modal-js'));
+				echo $this->Html->script('modernizr.custom', array('inline' => false, 'block' => 'modal-js'));
+				echo $this->Html->script('classie', array('inline' => false, 'block' => 'modal-js'));
+				echo $this->Html->script('modalEffects', array('inline' => false, 'block' => 'modal-js'));
+				echo $this->Html->script('rikuyo_js/myModal', array('inline' => false, 'block' => 'modal-js'));
+				echo $this->Html->script('rikuyo_js/onChangeSubmitAddress', array('inline' => false, 'block' => 'modal-js'));
+			 ?>
+
+			<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
+				$(function(){
+					$('.footable').footable();
+					$('.on_change_input').onChangeSubmitAddress();
+				});
+			<?php $this->Html->scriptEnd(); ?>

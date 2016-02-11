@@ -13,7 +13,7 @@ class JobsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'RequestHandler');
 
 /**
  * index method
@@ -55,6 +55,23 @@ class JobsController extends AppController {
 				$this->Session->setFlash(__('The job could not be saved. Please, try again.'));
 			}
 		}
+	}
+
+	public function addAjax() {
+	  $this->autoRender = false;
+	  if($this->RequestHandler->isAjax()){
+	    Configure::write('debug', 0);
+	   }
+	  if($this->request->is('ajax')){
+	    $this->request->data['Job']['id'] = $_POST['id'];
+	    $this->request->data['Job']['job_jp'] = $_POST['job_jp'];
+	    $this->request->data['Job']['job_en'] = $_POST['job_en'];
+	    $this->Job->create();
+	    if ($this->Job->save($this->request->data)) {
+	      echo json_encode($this->Job->getLastInsertID());
+	    } else {
+	    }
+	  }
 	}
 
 /**

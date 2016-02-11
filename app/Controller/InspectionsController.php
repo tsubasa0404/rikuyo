@@ -27,7 +27,9 @@ class InspectionsController extends AppController {
 	public function index() {
 
 		$this->Inspection->recursive = 0;
-		$this->set('inspections', $this->Paginator->paginate());
+		$inspections = $this->Inspection->find('all', array(
+			'order' => array('inspection_from' => 'asc')));
+		$this->set(compact('inspections'));
 
 		//言語切り替え変数$lang取得
 		$lang = $this->__setLang();

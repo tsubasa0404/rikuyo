@@ -3,48 +3,85 @@
 	$.fn.onChangeSubmit = function() {
 		var input_elem = this; //thisをわかりやすい名前にする
 
-		input_elem.each(function(){
 
-			$(this).change(function(){
+			$(document).on('change keyup bind', '.on_change_input', function(){
 				//valueとdata-lang取得
+				var $input = $(this);
 				var type = $(this).data('type');
         var val  = $(this).val();
 				var lang = $(this).data('lang');
 				var id = $(this).data('id');
 				var alias = $(this).data('alias');
-				if(!val||!alias){return false}
+				var input_id = $(this).attr('id');
+				var jp = "";
+				var en = "";
+				if(!val||!alias){return false;}
 
-				if(type == 'sector'){
+				if(type === 'sector'){
 	        //inputにvalueを渡す
-	        if(lang == 'sector_jp'){
-	        	$('div.hide').find('input.sector_jp').val(val);
-	        	$('div.hide').find('input.sector_en').val(alias);
+	        if(lang === 'sector_jp'){
+	        	jp = val;
+	        	en = alias;
 	        } else {
-	        	$('div.hide').find('input.sector_en').val(val);
-	        	$('div.hide').find('input.sector_jp').val(alias);
+	        	jp = alias;
+	        	en = val;
 	        }
 	        var url = $('form.sector_form').attr('action');
-	        var new_url = url+'/'+id;
-	        $('form.sector_form').find('.sector_id').val(id);
-	        $('form.sector_form').attr('action', new_url).submit();
+
+	        $.ajax({
+	        	url : url,
+	        	type :'POST',
+	        	dataType: 'json',
+	        	data: {
+	        		id:id,
+	        		sector_jp:jp,
+	        		sector_en:en,
+	        	},
+	        	success: function(){
+	        		$('input').parents('tr').find('.en-'+id).attr('data-alias', jp);
+	        		$('input').parents('tr').find('.jp-'+id).attr('data-alias', en);
+
+	        	},
+	        	error: function(){
+
+	        	}
+	        });
 
 				} else {
 
 					if(lang == 'job_jp'){
-	        	$('div.hide').find('input.job_jp').val(val);
-	        	$('div.hide').find('input.job_en').val(alias);
+	        	jp = val;
+	        	en = alias;
 	        } else {
-	        	$('div.hide').find('input.job_en').val(val);
-	        	$('div.hide').find('input.job_jp').val(alias);
+	        	jp = alias;
+	        	en = val;
 	        }
 	        var url = $('form.job_form').attr('action');
 	        var new_url = url+'/'+id;
-	        $('form.job_form').find('.job_id').val(id);
-	        $('form.job_form').attr('action', new_url).submit();
+	        var url = $('form.job_form').attr('action');
+
+	        $.ajax({
+	        	url : url,
+	        	type :'POST',
+	        	dataType: 'json',
+	        	data: {
+	        		id:id,
+	        		job_jp:jp,
+	        		job_en:en,
+	        	},
+	        	success: function(){//ajaxAdd後にvalueなどの要素が変わらない。
+	        		$('input').parents('tr').find('.en-'+id).attr('data-alias', jp);
+	        		$('input').parents('tr').find('.jp-'+id).attr('data-alias', en);
+
+	        	},
+	        	error: function(){
+
+	        	}
+	        });
 
 				}
 			});
-		});
+
 
 		return this;
 

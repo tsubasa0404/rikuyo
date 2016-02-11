@@ -7,7 +7,7 @@
 							</div>
 
 							<div class="row">
-								<div class="col-lg-12 maxW700">
+								<div class="col-lg-12 maxW800">
 									<div class="main-box clearfix">
 										<header class="main-box-header clearfix">
 											<h2 class="pull-left"><?= __('Interview Schedule') ?></h2>
@@ -125,7 +125,7 @@
 															<?php foreach ($inspections as $inspection) : ?>
 																<tr>
 																	<td class="td_first_block">
-																		<?php echo $inspection['Inspection']['inspection_from'] ." ~ ".$inspection['Inspection']['inspection_from'] ;?>
+																		<?php echo $inspection['Inspection']['inspection_from'] ." ~ ".$inspection['Inspection']['inspection_to'] ;?>
 																	</td>
 																	<td>
 																		<?php echo $this->Html->link(
@@ -361,102 +361,7 @@
 																			</a>
 																		</td>
 																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
 
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="#">Ms.LIM PISEY</a><br>
-																			<a href="#">Ms.SAM KOEM YONG</a><br>
-																			<a href="#">Ms.DEK SYNAN</a><br>
-																			<a href="#">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="#">Ms.LIM PISEY</a><br>
-																			<a href="#">Ms.SAM KOEM YONG</a><br>
-																			<a href="#">Ms.DEK SYNAN</a><br>
-																			<a href="#">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="#">Ms.LIM PISEY</a><br>
-																			<a href="#">Ms.SAM KOEM YONG</a><br>
-																			<a href="#">Ms.DEK SYNAN</a><br>
-																			<a href="#">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
 
 																</tbody>
 															</table>
@@ -573,244 +478,7 @@
 																			</a>
 																		</td>
 																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">橋本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			食品加工業
-																		</td>
 
-																		<td>
-																			<a href="#">橋本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="trainee-profile.html">Yamamoto Takahiro</a><br>
-																			<a href="trainee-profile.html">Ms.SAM KOEM YONG</a><br>
-																			<a href="trainee-profile.html">Ms.DEK SYNAN</a><br>
-																			<a href="trainee-profile.html">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="trainee-profile.html">Yamamoto Takahiro</a><br>
-																			<a href="trainee-profile.html">Ms.SAM KOEM YONG</a><br>
-																			<a href="trainee-profile.html">Ms.DEK SYNAN</a><br>
-																			<a href="trainee-profile.html">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="trainee-profile.html">Yamamoto Takahiro</a><br>
-																			<a href="trainee-profile.html">Ms.SAM KOEM YONG</a><br>
-																			<a href="trainee-profile.html">Ms.DEK SYNAN</a><br>
-																			<a href="trainee-profile.html">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="trainee-profile.html">Yamamoto Takahiro</a><br>
-																			<a href="trainee-profile.html">Ms.SAM KOEM YONG</a><br>
-																			<a href="trainee-profile.html">Ms.DEK SYNAN</a><br>
-																			<a href="trainee-profile.html">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="#">Ms.LIM PISEY</a><br>
-																			<a href="#">Ms.SAM KOEM YONG</a><br>
-																			<a href="#">Ms.DEK SYNAN</a><br>
-																			<a href="#">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="#">Ms.LIM PISEY</a><br>
-																			<a href="#">Ms.SAM KOEM YONG</a><br>
-																			<a href="#">Ms.DEK SYNAN</a><br>
-																			<a href="#">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="#">Ms.LIM PISEY</a><br>
-																			<a href="#">Ms.SAM KOEM YONG</a><br>
-																			<a href="#">Ms.DEK SYNAN</a><br>
-																			<a href="#">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
 
 																</tbody>
 															</table>
@@ -900,210 +568,7 @@
 																			</a>
 																		</td>
 																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
 
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="trainee-profile.html">Yamamoto Takahiro</a><br>
-																			<a href="trainee-profile.html">Ms.SAM KOEM YONG</a><br>
-																			<a href="trainee-profile.html">Ms.DEK SYNAN</a><br>
-																			<a href="trainee-profile.html">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="trainee-profile.html">Yamamoto Takahiro</a><br>
-																			<a href="trainee-profile.html">Ms.SAM KOEM YONG</a><br>
-																			<a href="trainee-profile.html">Ms.DEK SYNAN</a><br>
-																			<a href="trainee-profile.html">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="trainee-profile.html">Yamamoto Takahiro</a><br>
-																			<a href="trainee-profile.html">Ms.SAM KOEM YONG</a><br>
-																			<a href="trainee-profile.html">Ms.DEK SYNAN</a><br>
-																			<a href="trainee-profile.html">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="#">Ms.LIM PISEY</a><br>
-																			<a href="#">Ms.SAM KOEM YONG</a><br>
-																			<a href="#">Ms.DEK SYNAN</a><br>
-																			<a href="#">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="#">Ms.LIM PISEY</a><br>
-																			<a href="#">Ms.SAM KOEM YONG</a><br>
-																			<a href="#">Ms.DEK SYNAN</a><br>
-																			<a href="#">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="#">Ms.LIM PISEY</a><br>
-																			<a href="#">Ms.SAM KOEM YONG</a><br>
-																			<a href="#">Ms.DEK SYNAN</a><br>
-																			<a href="#">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
 
 																</tbody>
 															</table>
@@ -1160,210 +625,7 @@
 																			</a>
 																		</td>
 																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">橋本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			食品加工業
-																		</td>
 
-																		<td>
-																			<a href="#">橋本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="trainee-profile.html">Yamamoto Takahiro</a><br>
-																			<a href="trainee-profile.html">Ms.SAM KOEM YONG</a><br>
-																			<a href="trainee-profile.html">Ms.DEK SYNAN</a><br>
-																			<a href="trainee-profile.html">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="trainee-profile.html">Yamamoto Takahiro</a><br>
-																			<a href="trainee-profile.html">Ms.SAM KOEM YONG</a><br>
-																			<a href="trainee-profile.html">Ms.DEK SYNAN</a><br>
-																			<a href="trainee-profile.html">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="trainee-profile.html">Yamamoto Takahiro</a><br>
-																			<a href="trainee-profile.html">Ms.SAM KOEM YONG</a><br>
-																			<a href="trainee-profile.html">Ms.DEK SYNAN</a><br>
-																			<a href="trainee-profile.html">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="trainee-profile.html">Yamamoto Takahiro</a><br>
-																			<a href="trainee-profile.html">Ms.SAM KOEM YONG</a><br>
-																			<a href="trainee-profile.html">Ms.DEK SYNAN</a><br>
-																			<a href="trainee-profile.html">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="#">Ms.LIM PISEY</a><br>
-																			<a href="#">Ms.SAM KOEM YONG</a><br>
-																			<a href="#">Ms.DEK SYNAN</a><br>
-																			<a href="#">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<a href="#">山本株式会社</a>
-																		</td>
-																		<td>
-																			2015/12/01
-																		</td>
-																		<td>
-																			製造業
-																		</td>
-
-																		<td>
-																			<a href="#">山本組合</a>
-																		</td>
-																		<td>
-																			4名
-																		</td>
-																		<td>
-																			<a href="#">Ms.LIM PISEY</a><br>
-																			<a href="#">Ms.SAM KOEM YONG</a><br>
-																			<a href="#">Ms.DEK SYNAN</a><br>
-																			<a href="#">Ms.MORK SOPANRON</a><br>
-																		</td>
-																		<td>
-																			その他の項目はこちらに表示。
-																		</td>
-																		<td class="text-center">
-																			<a href="#" class="table-link">
-																				<span class="fa-stack">
-																					<i class="fa fa-pencil"></i>
-																				</span>
-																			</a>
-																		</td>
-																	</tr>
 																	<tr>
 																		<td>
 																			<a href="#">山本株式会社</a>
@@ -1411,221 +673,112 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-lg-12">
+								<div class="col-lg-12 maxW800">
 									<div class="main-box clearfix">
 										<header class="main-box-header clearfix">
-											<h2>報連相・タスク管理</h2>
+											<h2><?= __('Tasks, Todo List') ?></h2>
 										</header>
-										<div class="main-box-body clearfix hidden-xs">
+										<div class="main-box-body clearfix">
 											<div class="row">
-												<form action="/task/addAjax" class="form-group" id="" method="post" accept-charset="utf-8">
-													<div style="display:none;">
-														<input type="hidden" name="_method" value="POST">
+												<?php echo $this->Form->create('Task', array(
+													'action' => 'addAjax',
+													'class' => 'add_ajax_form'
+												)); ?>
+													<div class="form-group col-lg-12 col-md-12 col-sm-12">
+														<label for="" class="sr-only"><?= __('Enter Task, todo or any information ') ?></label>
+														<input name="data[Task][task]" id="new_task" class="form-control" placeholder="<?= __('Task, todo or any information ') ?>" required="required">
 													</div>
-													<div class="form-group col-lg-6 col-md-12 col-sm-12" style="">
-
-														<label for="TimeCardNote" class="sr-only">タスク・連絡事項などを入力してください</label>
-
-										<!-- //新しいタスクを追加の処理
-										$('#new_todo_form').on('submit', function(){
-											//taskを取得
-											var task_var = $('#new_todo').val();
-											//ajax処理
-											$.post('_ajax.php', {
-												task: task_var,
-												mode: 'create',
-												token: $('#token').val()
-											}, function(res){ //自動発行されたid(lastInsertId())を取得してきてresに格納して持ってくる。
-											//liを一番上に追加する
-												var $li = $('#todo_template').clone();
-												//$liにすることで、オブジェクトとしてあとでattrなどメソッドチェーンが利用できる。
-												//.clone()によって、templateを引っ張ってこれる。
-												$li
-													.attr('id', 'todo_' + res.id) //liにid="todo_{lastInsertId()}"をattributeする。
-													.data('id', res.id) //data-id="{lastInsertId()}"にする。
-													.find('.todo_title').text(title); //li内の.todo_titleの中身(span)にtitleを挿入する。
-												$('#todos').prepend($li.fadeIn()); ul#todosの直下に$liをprepend(挿入)する。
-												$('#new_todo').val('').focus(); //入力した内容が削除されて、フォーカスが当たるようにする。
-											});
-											return false; //画面遷移させないようにするため。
-										});
-
-										 -->
-														<input name="" id="new_todo" class="form-control" placeholder="タスク・連絡事項などを入力してください" required="required" id="">
+													<div class="form-group col-lg-4 col-md-4 col-sm-4 maxW300">
+														<label for="" class=""><?= __('Assigned Person') ?></label>
+														<input type="text" id="someone" class="form-control" name="data[Task][someone]" placeholder="<?= __('Name this task assigned') ?>">
 													</div>
-													<div class="form-group col-lg-3 col-md-6 col-sm-6">
-														<label for="" class="sr-only">入力者名</label>
-														<input type="text" class="form-control" name="" value="" placeholder="入力者名を入力してください">
-													</div>
-													<div class="form-group col-lg-3 col-md-6 col-sm-6">
+													<div class="form-group col-lg-6 col-md-6 col-sm-6">
+															<label for="" class=""><?= __('Due Date') ?></label>
 														<div class="input-group">
 															<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-															<label for="" class="sr-only">期日</label>
-															<input type="date" name="" class="form-control" placeholder="期日を入力してください" style="" id="">
+															<input type="date" id="expected_date" name="data[Task][expected_date]" class="form-control maxW160" placeholder="<?= __('Due Date') ?>" >
 														</div>
 													</div>
-												</form>
+														<button type="button" class="btn btn-primary todo_btn mT20">
+															<i class="fa fa-plus-circle fa-lg"></i> <?= __('Add') ?>
+														</button>
 											</div>
-													<a class="btn btn-primary pull-right"><i class="fa fa-plus-circle fa-lg"></i> 保存</a>
-													<a href="/mosaic/time_cards/edit" class="hidden" id="time-card-edit-link">edit</a>
 										</div>
+										<?php echo $this->Form->end(); ?>
 
 										<div class="main-box-body clearfix">
 											<!-- jqueryのセレクタ用に、ulにidを追加 -->
 											<ul id="todo_ajax" class="widget-todo">
-												<li class="clearfix">
-													<div class="name">
-														<div class="checkbox-nice">
+												<?php foreach ($tasks as $task) : ?>
+													<li class="clearfix">
+														<div class="name">
+															<div class="checkbox-nice">
+																<input type="checkbox" id="todo_<?php echo $task['Task']['id'] ?>" class="update_todo" data-id="<?php echo $task['Task']['id'] ?>" data-status="<?php echo $task['Task']['status_id'] ?>" data-expected-date="<?php echo $task['Task']['expected_date']; ?>" value="<?php echo $task['Task']['status_id'] ?>"/>
+																<label for="todo_<?php echo $task['Task']['id'] ?>">
+																	<span class="todo_title"><?php echo $task['Task']['task'] ?></span> <span class="label label-default someone_name"><?php echo $task['Task']['someone'] ?></span>
+																</label>
+															</div>
+														</div>
+														<div class="actions">
+															<?php echo $this->Html->link(
+																'<i class="fa fa-pencil"></i>',
+																array('controller' => 'tasks', 'action' => 'edit', $task['Task']['id']),
+																array('escape' => false, 'class' => '')
+															) ?>
+															<!-- jquery用にdelete_todoクラスを準備 -->
+															<?php echo $this->Form->postlink(
+																'<i class="fa fa-trash-o"></i>',
+																array('controller' => 'tasks', 'action' => 'delete', $task['Task']['id']),
+																array('confirm' => __('Are you sure you want to delete?', $task['Task']['id']),'escape' => false, 'class' => 'table-link red' )
+															) ?>
+														</div>
+														<div class="actions">
+															<span class="label label-danger "><?php echo $task['Task']['expected_date'] ?></span>
+														</div>
+													</li>
+												<?php endforeach; ?>
 
-												<!-- todo_ajax.jsを外部ファイルに作成
-												$(function(){
-													'use strict';
-
-													//チェックボックスがクリックされたときの挙動
-													//_ajax.php->Todo.php->post()->_update()->return 'state'の値をresとして取得してきて、function(res)の処理を実行
-													$('#todos').on('click', '.update_todo', function(){
-														//checkBoxがクリックされたら、そのタスクのidを取得
-														var id = $(this).parents('li').data('id');
-														//ajax処理
-														$.post('_ajax.php', { //_ajax.phpにはpostで渡ってきた情報をjson_encode($res)、またはエラーを表示するtry catchを作成
-															id: id,
-															mode: 'update' //class Todoの条件分岐switchで使用する
-														}, function(res){ //ここのresがなぞ。=> todo.php
-															if(res.state === '1'){
-																$('#todo_' + id).attr('checked', 'checked');
-															} else{
-																$('#todo_' + id).removeAttr('checked');
-															}
-														});
-													});
-
-													//delete_todo(削除ボタン)がクリックされた時の挙動
-													$('#todos').on('click', '.delete_todo', function(){
-														var id = $(this).parents('li').data('id');
-														//ajax処理
-														if(confirm('are you sure?')){ //削除するかどうかの確認処理をして、
-															$.post('_ajax.php', {
-																id: id,
-																mode: 'delete',
-																token: $('#token').val()
-															}, function(){ //なぜresを除いた???=>削除処理の場合は、返り値returnは空の配列[]を返すだけなので不要。
-																$('#todo_' + id).fadeout(800); //liが消える。
-															}
-															);
-														}
-													});
-												}) -->
-												<!-- jquery php Todoのロジックメモ
-												1.取得してきたタスクの、stateカラム(0が未了、1が完了)が1だったら、echo 'checked'
-												2.jqueryの動作用に、class="update_todo"を指定
-												3.各タスク毎に、li id="todo_{タスクのid}"とdata-id={タスクのid}を設置
-												-->
-															<input type="checkbox" id="todo_1" class="update_todo" data-id="1"/>
-															<label for="todo_1">
-																<span class="todo_title">企業から実習生逃亡のクレーム</span> <span class="label label-default">Hashimoto</span>
-															</label>
-														</div>
-													</div>
-													<div class="actions">
-														<a href="#" class="table-link">
-															<i class="fa fa-pencil"></i>
-														</a>
-														<!-- jquery用にdelete_todoクラスを準備 -->
-														<a href="#" class="table-link danger delete_todo">
-															<i class="fa fa-trash-o"></i>
-														</a>
-													</div>
-													<div class="actions">
-														<span class="label label-danger ">2015/1/15</span>
-													</div>
-												</li>
-												<li class="clearfix">
+												<li class="clearfix hide">
 													<div class="name">
 														<div class="checkbox-nice">
-															<input type="checkbox" id="todo-2" />
-															<label for="todo-2">
-																ID翻訳の情報を労働相に状況刈り取り
+															<input type="checkbox" id="" value="" class="update_todo" data-id="" data-status="" data-expected-date=""/>
+															<label for="">
+																<span class="todo_title"></span>
+																<span class="label label-default someone_name"></span>
 															</label>
 														</div>
 													</div>
 													<div class="actions">
-														<a href="#" class="table-link">
-															<i class="fa fa-pencil"></i>
-														</a>
-														<a href="#" class="table-link danger">
-															<i class="fa fa-trash-o"></i>
-														</a>
+														<?php echo $this->Html->link(
+																'<i class="fa fa-pencil"></i>',
+																array('controller' => 'tasks', 'action' => 'edit'),
+																array('escape' => false, 'class' => 'edit_todo')
+															) ?>
+															<!-- jquery用にdelete_todoクラスを準備 -->
+															<?php echo $this->Form->postlink(
+																'<i class="fa fa-trash-o"></i>',
+																array('controller' => 'tasks', 'action' => 'delete'),
+																array('confirm' => __('Are you sure you want to delete?'),'escape' => false, 'class' => 'table-link red delete_todo' )
+															) ?>
 													</div>
 													<div class="actions">
-														<span class="label label-danger ">2015/1/15</span>
+														<span class="label label-danger expected_date"></span>
 													</div>
 												</li>
-												<li class="clearfix">
-													<div class="name">
-														<div class="checkbox-nice">
-															<input type="checkbox" id="todo-3"/>
-															<label for="todo-3">
-																新しい先生の面接 2015/12/09 15時～ @会議室
-															</label>
-														</div>
-													</div>
-													<div class="actions">
-														<a href="#" class="table-link">
-															<i class="fa fa-pencil"></i>
-														</a>
-														<a href="#" class="table-link danger">
-															<i class="fa fa-trash-o"></i>
-														</a>
-													</div>
-													<div class="actions">
-														<span class="label label-danger ">2015/1/15</span>
-													</div>
-												</li>
-												<li class="clearfix">
-													<div class="name">
-														<div class="checkbox-nice">
-															<input type="checkbox" id="todo-4" />
-															<label for="todo-4">
-																山本組合組長カンボジア視察の準備 2015/12/19 ~ 12/24 <span class="label label-default">Hashimoto</span>
-															</label>
-														</div>
-													</div>
-													<div class="actions">
-														<a href="#" class="table-link">
-															<i class="fa fa-pencil"></i>
-														</a>
-														<a href="#" class="table-link danger">
-															<i class="fa fa-trash-o"></i>
-														</a>
-													</div>
-												</li>
-												<li class="clearfix">
-													<div class="name">
-														<div class="checkbox-nice">
-															<input type="checkbox" id="todo-5" />
-															<label for="todo-5">
-																実習生募集・送り出し状況報告書を山本さんに提出 <span class="label label-default">Hashimoto</span>
-															</label>
-														</div>
-													</div>
-													<div class="actions">
-														<a href="#" class="table-link">
-															<i class="fa fa-pencil"></i>
-														</a>
-														<a href="#" class="table-link danger">
-															<i class="fa fa-trash-o"></i>
-														</a>
-													</div>
-													<div class="actions">
-														<span class="label label-danger ">2015/1/15</span>
-													</div>
-												</li>
-												<!-- //新たに追加されるタスク用に、空のテンプレートliをhiddenで準備しておくと便利。
-
-												 -->
 											</ul>
+											<?php echo $this->Form->create('Task', array(
+												'action' => 'edit',
+												'class' => 'hide edit_task_form'
+											)) ?>
+											<?php echo $this->Form->end(); ?>
+											<?php echo $this->Form->create('Task', array(
+												'action' => 'delete',
+												'class' => 'hide delete_task_form'
+											)) ?>
+											<?php echo $this->Form->end(); ?>
+										</div>
+									</div>
 								</div>
-							</div>
 
 
 
@@ -1644,24 +797,19 @@
 
 ?>
 
-	<!-- this page form scripts -->
-<?php
-	// echo $this->Html->script('', array('inline' => false, 'block' => 'form-js'));
-?>
-
-	<!-- this page modal scripts -->
-<?php
-	// echo $this->Html->script('', array('inline' => false, 'block' => 'modal-js'));
-?>
-<!-- this page scripts -->
 <?php
 	echo $this->Html->script('moment.min', array('inline' => false, 'block' => 'page-js'));
+	echo $this->Html->script('rikuyo_js/myTodo', array('inline' => false, 'block' => 'page-js'));
 ?>
 
 	<!-- this page specific inline scripts -->
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 
+
+
+
 	$(document).ready(function() {
+		$('.md-modal').remove();
 		$('.footable').footable();
 
 		$('#interview-table').dataTable({

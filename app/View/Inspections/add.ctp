@@ -50,7 +50,7 @@
 									<div class="row">
 										<div class="col-lg-6 col-md-6 col-sm-6">
 											<label>From</label>
-											<input type="date" name="data[Inspection][inspection_from]" class="form-control maxW200" id="InspectionFromMonth">
+											<input type="date" name="data[Inspection][inspection_from]" class="form-control maxW200" id="InspectionFromMonth" required="">
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-6">
 											<label for="">To</label>

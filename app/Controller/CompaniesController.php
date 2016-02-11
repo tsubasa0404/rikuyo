@@ -79,7 +79,7 @@ class CompaniesController extends AppController {
 			$this->Company->create();
 			if ($this->Company->save($this->request->data)) {
 				$this->Session->setFlash(__('The company has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The company could not be saved. Please, try again.'));
 			}

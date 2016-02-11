@@ -9,16 +9,13 @@ App::uses('AppModel', 'Model');
  */
 class Interview extends AppModel {
 
+
 	//interviewテーブル用取得
 	public function interviewList(){
 		$options = array();
 		$options['conditions'] = array(
 			'Interview.flag'=> 0,
 			'Interview.status' => 0,
-			'OR' => array(
-			'Interview.interview_date >=' => '(CURDATE() - interval 3 day)',
-			'Interview.interview_date' => ""
-				)
 			);
 		$options['fields'] = array(
 			'Interview.id',
@@ -54,6 +51,53 @@ class Interview extends AppModel {
 
 		$options['group'] = array('Interview.id');
 		$options['order'] = array('Interview.interview_date' => 'asc', 'Interview.interview_time' => 'asc');
+		return $this->find('all', $options);
+	}
+
+	//past interviews table
+	public function pastInterviewsList(){
+
+
+		$options = array();
+		$options['conditions'] = array(
+			'Interview.flag'=> 0,
+			'Interview.status' => 1,
+			);
+		$options['fields'] = array(
+			'Interview.id',
+			'Interview.interview_date',
+			'Interview.interview_time',
+			'Interview.interview_staff',
+			'Company.id',
+			'Company.company_en',
+			'Company.company_jp',
+			'Association.id',
+			'Association.association_en',
+			'Association.association_jp',
+			'count(Candidate.id) as count',
+
+			);
+		$options['joins'][] = array(
+			'table' => 'interview_candidates',
+			'alias' => 'Candidate',
+			'type' => 'LEFT',
+			'conditions' => 'Candidate.interview_id = Interview.id'
+			);
+		$options['joins'][] = array(
+			'table' => 'companies',
+			'alias' => 'Company',
+			'type' => 'LEFT',
+			'conditions' => 'Company.id = Interview.company_id'
+			);
+		$options['joins'][] = array(
+			'table' => 'associations',
+			'alias' => 'Association',
+			'type' => 'LEFT',
+			'conditions' => 'Association.id = Company.association_id'
+			);
+
+		$options['group'] = array('Interview.id');
+		$options['order'] = array('Interview.interview_date' => 'desc');
 		return $this->find('all', $options);
 	}
 

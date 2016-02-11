@@ -8,15 +8,48 @@ App::uses('AppHelper', 'View/Helper');
 class ForeachHelper extends AppHelper
 {
 
+  //interview index past_interviewsテーブル用 提出済み書類数取得
+  public function completed_document_count($interview_id){
+    $this->InterviewDocStatusList = ClassRegistry::init('InterviewDocStatusList');
+
+    $options = array();
+    $options['conditions'] = array(
+      'InterviewDocStatusList.interview_id'=> $interview_id,
+      'InterviewDocStatusList.status_id' => 1
+      );
+    $options['fields'] = array(
+      'count(InterviewDocStatusList.id) as cnt',
+      );
+    $completed_document_count = $this->InterviewDocStatusList->find('all', $options);
+    return $completed_document_count;
+
+  }
+
+  //interview index past_interviewsテーブル用 組合書類総数取得
+  public function document_count($association_id){
+    $this->AssociationDocument = ClassRegistry::init('AssociationDocument');
+
+    $options = array();
+    $options['conditions'] = array(
+      'AssociationDocument.association_id'=> $association_id
+      );
+    $options['fields'] = array(
+      'count(AssociationDocument.id) as cnt',
+      );
+    $association_document_list = $this->AssociationDocument->find('all', $options);
+    return $association_document_list;
+
+  }
+
   //インタビュー profileページ 提出書類一覧取得Helper
   //組合書類選択ページ用書類取得Helper
-  public function association_document_list($folder_id){
+  public function association_document_list($folder_id, $interview_id){
     $this->DocName = ClassRegistry::init('DocName');
     $this->InterviewDocStatusList = ClassRegistry::init('InterviewDocStatusList');
     $this->AssociationDocument = ClassRegistry::init('AssociationDocument');
     $options['conditions'] = array(
       'DocName.folder_id' => $folder_id,
-      'DocName.flag' => 0
+      'DocName.flag' => 0,
     );
     $options['fields'] = array(
       'DocName.id',
@@ -30,6 +63,7 @@ class ForeachHelper extends AppHelper
       'DocName.note',
       'DocName.flag',
       'InterviewDocStatusList.id',
+      'InterviewDocStatusList.interview_id',
       'InterviewDocStatusList.status_id',
       );
     $options['group'] = array('DocName.id');
@@ -43,7 +77,7 @@ class ForeachHelper extends AppHelper
       'table' => 'interview_doc_status_lists',
       'alias' => 'InterviewDocStatusList',
       'type' => 'LEFT',
-      'conditions' => 'AssoDoc.id = InterviewDocStatusList.association_document_id'
+      'conditions' => array('AssoDoc.id = InterviewDocStatusList.association_document_id', 'InterviewDocStatusList.interview_id' =>$interview_id)
     );
     $documents = $this->DocName->find('all', $options);
     return $documents;

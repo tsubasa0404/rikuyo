@@ -20,8 +20,9 @@
 								<?php echo $this->Html->link(
 									'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Trainee'),
 									array('controller' => 'trainees', 'action' => 'add'),
-									array('escape' => false, 'class' => 'btn btn-primary pull right')
+									array('escape' => false, 'class' => 'btn btn-primary pull-right')
 								) ?>
+							</div>
 						</header>
 
 						<div class="main-box-body clearfix">
@@ -47,60 +48,74 @@
 								</thead>
 								<tbody>
 									<?php foreach ($trainees as $trainee) : ?>
-										<?php
-											echo "<tr><td>";
-											echo $this->Html->link(
-												$trainee['Trainee']['control_no'],
-												array('action' => 'profile', $trainee['Trainee']['id']),
-												array('escape' => false, 'class' => '')
-											);
-											echo "</td><td>";
-											if($trainee['TraineeProfileImage'])
-												{
-													echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage'][0]['img_file_name']);
-												} else {
-													echo $this->Html->image('trainee_profile_images/thumb/default.png');
-												};
-											echo "<br>";
-											echo $trainee['Trainee']['given_name_en']." ".$trainee['Trainee']['family_name_en'];
-											echo "</td><td>";
-											echo "interview date";
-											echo "</td><td>";
-											echo $trainee['Trainee']['birthday'];
-											echo "</td><td>";
-											echo $trainee['Trainee']['phone'];
-											echo "</td><td>";
-											echo $trainee['Trainee']['sex'];
-											echo '</td><td class="text-center">';
-											echo $this->Btn->statusBtn($trainee['Trainee']['medicalchk_status_id']);
-											echo '</td><td class="text-center">';
-											echo $this->Btn->statusBtn($trainee['Trainee']['idcard_status_id']);
-											echo '</td><td class="text-center">';
-											echo $this->Btn->statusBtn($trainee['Trainee']['passport_status_id']);
-											echo '</td><td class="text-center">';
-											echo $this->Btn->statusBtn($trainee['Trainee']['coe_status_id']);
-											echo '</td><td class="text-center">';
-											echo $this->Btn->statusBtn($trainee['Trainee']['immigration_status_id']);
-											echo '</td><td class="text-center">';
-											echo $this->Btn->statusBtn($trainee['Trainee']['labor_ministry_status_id']);
-											echo '</td><td class="text-center">';
-											echo $this->Btn->statusBtn($trainee['Trainee']['departure_status_id']);
-											echo "<br>";
-											if($trainee['Trainee']['departure_date']){echo $trainee['Trainee']['departure_date'];}else{echo $trainee['Trainee']['departure_note'];};
-											echo '</td><td class="text-center">';
-											echo $this->Btn->statusBtn($trainee['Trainee']['return_status_id']);
-											echo "<br>";
-											if($trainee['Trainee']['return_date']){echo $trainee['Trainee']['return_date'];}else{echo $trainee['Trainee']['return_note'];};
-											echo "</td>";
-											echo '<td><div class="actions">';
-											echo $this->Form->postlink(
-												'<i class="fa fa-trash-o"></i>',
-												array('controller' => 'trainees', 'action' => 'update_delete_flag',$trainee['Trainee']['id']),
-												array('confirm' => __('Are you sure you want to delete # %s?', $trainee['Trainee']['id']),'escape' => false, 'class' => 'table-link' )
-											);
-											echo '</div></td>';
-											echo "</tr>"
-										 ?>
+										<tr>
+											<td>
+												<?php echo $this->Html->link(
+													$trainee['Trainee']['control_no'],
+													array('action' => 'profile', $trainee['Trainee']['id']),
+													array('escape' => false, 'class' => '')
+												);?>
+											</td>
+											<td>
+												<?php if($trainee['TraineeProfileImage'])
+													{
+														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage'][0]['img_file_name']);
+													} else {
+														echo $this->Html->image('trainee_profile_images/thumb/default.png');
+													};?>
+													<br>
+												<?php echo $trainee['Trainee']['given_name_en']." ".$trainee['Trainee']['family_name_en'];?>
+											</td>
+											<td>
+												interview date
+											</td>
+											<td>
+												<?php echo $trainee['Trainee']['birthday'];?>
+											</td>
+											<td>
+												<?php echo $trainee['Trainee']['phone'];?>
+											</td>
+											<td>
+												<?php echo $trainee['Trainee']['sex'];?>
+											</td>
+											<td class="text-center">
+												<?php echo $this->Btn->statusBtn($trainee['Trainee']['medicalchk_status_id']);?>
+											</td>
+											<td class="text-center">
+												<?php echo $this->Btn->statusBtn($trainee['Trainee']['idcard_status_id']);?>
+											</td>
+											<td class="text-center">
+												<?php echo $this->Btn->statusBtn($trainee['Trainee']['passport_status_id']);?>
+											</td>
+											<td class="text-center">
+												<?php echo $this->Btn->statusBtn($trainee['Trainee']['coe_status_id']);?>
+											</td>
+											<td class="text-center">
+												<?php echo $this->Btn->statusBtn($trainee['Trainee']['immigration_status_id']);?>
+											</td>
+											<td class="text-center">
+												<?php echo $this->Btn->statusBtn($trainee['Trainee']['labor_ministry_status_id']);?>
+											</td>
+											<td class="text-center">
+												<?php echo $this->Btn->statusBtn($trainee['Trainee']['departure_status_id']);?>
+												<br>
+												<?php if($trainee['Trainee']['departure_date']){echo $trainee['Trainee']['departure_date'];}else{echo $trainee['Trainee']['departure_note'];};?>
+											</td>
+											<td class="text-center">
+												<?php echo $this->Btn->statusBtn($trainee['Trainee']['return_status_id']);?>
+												<br>
+												<?php if($trainee['Trainee']['return_date']){echo $trainee['Trainee']['return_date'];}else{echo $trainee['Trainee']['return_note'];};?>
+											</td>
+											<td>
+												<div class="actions">
+													<?php echo $this->Form->postlink(
+														'<i class="fa fa-trash-o"></i>',
+														array('controller' => 'trainees', 'action' => 'update_delete_flag',$trainee['Trainee']['id']),
+														array('confirm' => __('Are you sure you want to delete # %s?', $trainee['Trainee']['id']),'escape' => false, 'class' => 'table-link' )
+													);?>
+												</div>
+											</td>
+										</tr>
 									<?php endforeach; ?>
 								</tbody>
 							</table>

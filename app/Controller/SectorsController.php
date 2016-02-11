@@ -13,7 +13,7 @@ class SectorsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Auth');
+	public $components = array('Paginator', 'Auth', 'RequestHandler');
 	public $uses = array(
 		'Sector',
 		'Job',
@@ -60,6 +60,23 @@ class SectorsController extends AppController {
 				$this->Session->setFlash(__('The sector could not be saved. Please, try again.'));
 			}
 		}
+	}
+
+	public function addAjax() {
+	  $this->autoRender = false;
+	  if($this->RequestHandler->isAjax()){
+	    Configure::write('debug', 0);
+	   }
+	  if($this->request->is('ajax')){
+	    $this->request->data['Sector']['id'] = $_POST['id'];
+	    $this->request->data['Sector']['sector_jp'] = $_POST['sector_jp'];
+	    $this->request->data['Sector']['sector_en'] = $_POST['sector_en'];
+	    $this->Sector->create();
+	    if ($this->Sector->save($this->request->data)) {
+	      echo json_encode($this->Sector->getLastInsertID());
+	    } else {
+	    }
+	  }
 	}
 
 	public function update_delete_flag($id = null){

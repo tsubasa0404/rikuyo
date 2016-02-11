@@ -35,7 +35,9 @@
 									<?php foreach ($interviews as $int) : ?>
 										<tr>
 											<td class="td_first_block">
-												<?php if($int['Interview']['interview_date']==""){echo __("Undecided");} echo $int['Interview']['interview_date']." ".$int['Interview']['interview_time']." ";?>
+												<?php if($int['Interview']['interview_date']==""){
+														echo __("Undecided");
+													} echo $int['Interview']['interview_date']." ".$int['Interview']['interview_time']." ";?>
 												<?php echo $this->Html->link(
 													__('Detail'),
 													array('controller' => 'interviews', 'action' => 'profile', $int['Interview']['id']),
@@ -81,10 +83,10 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-12 maxW700">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
-							<h2 class="pull-left">過去の面接一覧</h2>
+							<h2 class="pull-left"><?= __('Past Interviews') ?></h2>
 							<div class="filter-block pull-right">
 
 							</div>
@@ -92,119 +94,53 @@
 
 						<div class="main-box-body clearfix">
 							<div class="table-responsive clearfix">
-								<table class="table table-hover footable toggle-circle-filled">
+								<table id="past-interview-table" class="table toggle-circle-filled table-striped table-bordered">
 									<thead>
 										<tr>
-											<th><a href="#">面接番号</a></th>
-											<th><a href="#" class="desc">実施日</a></th>
-											<th><a href="#" class="asc">組合</a></th>
-											<th><a href="#" class="asc">企業</a></th>
-											<th data-hide="all"><a href="#" class="asc">合格者</a></th>
-											<th><a href="#" class="asc">書類状況</a></th>
+											<th><a href="#"><?= __('Date') ?></a></th>
+											<th><a href="#"><?= __('Company(Association)') ?></a></th>
+											<th><a href="#"><?= __('Documents Status') ?></a></th>
 										</tr>
 									</thead>
 									<tbody>
-									<!-- 20個ごとにページング -->
-										<tr>
-											<td>
-												<a href="interview-order-detail.html">0001</a>
-											</td>
-											<td>
-												2015/12/01
-											</td>
-											<td>
-												<a href="#">山本組合</a>
-											</td>
-											<td class="">
-												<a href="#">山本株式会社</a>
-											</td>
-											<td class="">
-												<a href="student-profile.html" title="">Yamamoto Takahiro</a><br>
-												<a href="student-profile.html" title="">Takemoto Takahiro</a><br>
-												<a href="student-profile.html" title="">KoshimotoTakahiro</a><br>
-												<a href="student-profile.html" title="">Sakamoto Takahiro</a><br>
-												<a href="student-profile.html" title="">Hashimoto Masatoshi</a><br>
-											</td>
-											<!-- <td class="text-right">
-												&dollar; 825.50
-											</td> -->
-											<td>未了</td>
+										<?php foreach ($past_interviews as $past_int) : ?>
+											<tr>
+												<td class="td_first_block">
+													<?php echo $past_int['Interview']['interview_date'];?>
+													<?php echo $this->Html->link(
+														__('Detail'),
+														array('controller' => 'interviews', 'action' => 'profile', $past_int['Interview']['id']),
+														array('escape' => false)
+													);?>
+												</td>
+												<td>
+													<?php echo $this->Html->link(
+													$this->Btn->switchLang($lang, $past_int['Company']['company_jp'], $past_int['Company']['company_en']),
+													array('controller' => 'companies', 'action' => 'profile', $past_int['Company']['id']),
+													array('escape' => false)
+													);?>
+													(
+													<?php echo $this->Html->link(
+														$this->Btn->switchLang($lang, $past_int['Association']['association_jp'], $past_int['Association']['association_en']),
+														array('controller' => 'associations', 'action' => 'profile', $past_int['Association']['id']),
+														array('escape' => false)
+														);?>
+													)
+												</td>
+												<td>
+													<?php
+														$completed_cnt = $this->Foreach->completed_document_count($past_int['Interview']['id'])[0][0]['cnt'];
+														$doc_cnt = $this->Foreach->document_count($past_int['Association']['id'])[0][0]['cnt'];
+														echo $completed_cnt." / ".$doc_cnt;
+														if($completed_cnt == $doc_cnt){
+															echo '<span class="label label-primary mL5">OK</span>';
+														} else {
+															echo '<span class="label label-danger mL5">Not Yet</span>';
+														}
+													;?>
+												</td>
 										</tr>
-										<tr>
-											<td>
-												<a href="#">0002</a>
-											</td>
-											<td>
-												2015/12/05
-											</td>
-											<td>
-												<a href="#">橋本組合</a>
-											</td>
-											<td class="">
-												<a href="#">橋本株式会社</a>
-											</td>
-											<td class="">
-												<a href="student-profile.html" title="">Yamamoto Takahiro</a><br>
-												<a href="student-profile.html" title="">Takemoto Takahiro</a><br>
-												<a href="student-profile.html" title="">Koshimoto Takahiro</a><br>
-												<a href="student-profile.html" title="">Sakamoto Takahiro</a><br>
-												<a href="student-profile.html" title="">Hashimoto Masatoshi</a><br>
-											</td>
-											<!-- <td class="text-right">
-												&dollar; 825.50
-											</td> -->
-											<td>完了</td>
-										</tr>
-										<tr>
-											<td>
-												<a href="#">0003</a>
-											</td>
-											<td>
-												2015/12/06
-											</td>
-											<td>
-												<a href="#">Lina組合</a>
-											</td>
-											<td class="">
-												<a href="#">Lina株式会社</a>
-											</td>
-											<td class="">
-												<a href="student-profile.html" title="">Yamamoto Takahiro</a><br>
-												<a href="student-profile.html" title="">Takemoto Takahiro</a><br>
-												<a href="student-profile.html" title="">KoshimotoTakahiro</a><br>
-												<a href="student-profile.html" title="">Sakamoto Takahiro</a><br>
-												<a href="student-profile.html" title="">Hashimoto Masatoshi</a><br>
-											</td>
-											<!-- <td class="text-right">
-												&dollar; 825.50
-											</td> -->
-											<td>完了</td>
-										</tr>
-										<tr>
-											<td>
-												<a href="#">0004</a>
-											</td>
-											<td>
-												2015/12/20
-											</td>
-											<td>
-												<a href="#">Saly組合</a>
-											</td>
-											<td class="">
-												<a href="#">Saly株式会社</a>
-											</td>
-											<td class="">
-												<a href="student-profile.html" title="">Yamamoto Takahiro</a><br>
-												<a href="student-profile.html" title="">Takemoto Takahiro</a><br>
-												<a href="student-profile.html" title="">KoshimotoTakahiro</a><br>
-												<a href="student-profile.html" title="">Sakamoto Takahiro</a><br>
-												<a href="student-profile.html" title="">Hashimoto Masatoshi</a><br>
-											</td>
-											<!-- <td class="text-right">
-												&dollar; 825.50
-											</td> -->
-											<td>完了</td>
-										</tr>
+										<?php endforeach; ?>
 									</tbody>
 								</table>
 							</div>
@@ -217,6 +153,10 @@
 		echo $this->Html->script('dataTables.fixedHeader', array('inline' => false, 'block' => 'table-js'));
 		echo $this->Html->script('dataTables.tableTools', array('inline' => false, 'block' => 'table-js'));
 		echo $this->Html->script('jquery.dataTables.bootstrap', array('inline' => false, 'block' => 'table-js'));
+		echo $this->Html->script('footable', array('inline' => false, 'block' => 'table-js'));
+		echo $this->Html->script('footable.sort', array('inline' => false, 'block' => 'table-js'));
+		echo $this->Html->script('footable.paginate', array('inline' => false, 'block' => 'table-js'));
+		echo $this->Html->script('footable.filter', array('inline' => false, 'block' => 'table-js'));
 	 ?>
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
@@ -224,5 +164,10 @@
 			$('#interview-table').dataTable({
 				"bInfo":false
 			});
+			$('#past-interview-table').dataTable({
+				"bInfo":false,
+				"order":[0,'desc']
+			});
+			$('.footable').footable();
 		});
 	<?php $this->Html->scriptEnd(); ?>

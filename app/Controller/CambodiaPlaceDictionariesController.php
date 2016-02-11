@@ -13,7 +13,7 @@ class CambodiaPlaceDictionariesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'RequestHandler');
 
 /**
  * index method
@@ -55,6 +55,24 @@ class CambodiaPlaceDictionariesController extends AppController {
 				$this->Session->setFlash(__('The cambodia place dictionary could not be saved. Please, try again.'));
 			}
 		}
+	}
+
+		public function addAjax() {
+	  $this->autoRender = false;
+	  if($this->RequestHandler->isAjax()){
+	    Configure::write('debug', 0);
+	   }
+	  if($this->request->is('ajax')){
+	    $this->request->data['CambodiaPlaceDictionary']['id'] = $_POST['id'];
+	    $this->request->data['CambodiaPlaceDictionary']['place_jp'] = $_POST['place_jp'];
+	    $this->request->data['CambodiaPlaceDictionary']['place_en'] = $_POST['place_en'];
+	    $this->request->data['CambodiaPlaceDictionary']['place_kh'] = $_POST['place_kh'];
+	    $this->CambodiaPlaceDictionary->create();
+	    if ($this->CambodiaPlaceDictionary->save($this->request->data)) {
+	      echo json_encode($this->CambodiaPlaceDictionary->getLastInsertID());
+	    } else {
+	    }
+	  }
 	}
 
 /**

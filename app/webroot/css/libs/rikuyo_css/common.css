@@ -6,18 +6,36 @@ body {
 #header-navbar a#logo img{
 	background: white;
 }
+#header-navbar .nav > li >a {
+  font-size:1.2em !important;
+}
+.notifications-list .item{
+  overflow:hidden;
+  width:340px;
+}
+.notifications-list .item p{
+  width: 80%;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0;
+}
 
 #sidebar-nav .nav >li > a> i{
 	font-size:18px;
 }
 
-#content-wrapper{
+/*#content-wrapper{
   margin-left:160px;
 }
 #nav-col{
   width:160px;
-}
+}*/
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
 /*end Common Parts */
 
 /* Form */
@@ -102,6 +120,10 @@ td.td_first_block:first-child{
 	font-weight: normal !important;
 }
 
+#past-interview-table_wrapper{
+  width:98%;
+}
+
 /*end Form */
 
 /* table */
@@ -134,7 +156,7 @@ td.td_first_block:first-child{
 	opacity:0.8;
 }
 
-
+.btn{font-size: 12px;}
 .left{float:left !important;}
 .mT20{margin-top: 20px !important;}
 .mT15{margin-top: 15px !important;}
@@ -153,6 +175,7 @@ td.td_first_block:first-child{
 .maxW300{max-width: 300px !important;}
 .maxW360{max-width: 360px !important;}
 .maxW400{max-width: 400px !important;}
+.maxW410{max-width: 410px !important;}
 .maxW450{max-width: 450px !important;}
 .maxW500{max-width: 500px !important;}
 .maxW560{max-width: 560px !important;}
@@ -175,6 +198,6 @@ td.td_first_block:first-child{
 
 /* document */
 #accordion_sub .panel-heading{
-	background-color: #ffc107;
+	background-color: #90a4ae;
 }
 /* end document*/

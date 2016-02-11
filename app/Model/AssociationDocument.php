@@ -41,7 +41,7 @@ class AssociationDocument extends AppModel {
   }
 
   //組合の選択された書類一覧  association profile/interview profile page
-	public function selectedDocuments($association_id){
+	public function selectedDocuments($association_id, $interview_id =null){
 		$options = array();
 		$options['conditions'] = array(
 			'AssociationDocument.association_id' => $association_id
@@ -74,7 +74,7 @@ class AssociationDocument extends AppModel {
     'table' => 'interview_doc_status_lists',
     'alias' => 'DocStatus',
     'type' => 'LEFT',
-    'conditions' => array('AssociationDocument.id = DocStatus.association_document_id')
+    'conditions' => array('AssociationDocument.id = DocStatus.association_document_id', 'DocStatus.interview_id' => $interview_id)
     );
 		$options['recursive'] = -1;
 		return $this->find('all', $options);

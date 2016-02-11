@@ -9,6 +9,34 @@ App::uses('AppModel', 'Model');
  */
 class Agent extends AppModel {
 
+	//interview profileページ
+	public function optionAgents($lang){
+			$options = array(
+				'conditions' => array(
+					'flag' => 0
+					),
+				'order' => array('id' => 'asc')
+			);
+
+		if($lang == 'ja'){
+			$fields = array(
+				'fields' => array(
+					'id',
+					'agent_jp'
+				)
+			);
+		} else {
+			$fields = array(
+				'fields' =>array(
+					'id',
+					'agent_en'
+					)
+				);
+		}
+		$options = array_merge($options, $fields);
+		return $this->find('list', $options);
+	}
+
 
 	public function validAgents(){
 		$options = array();

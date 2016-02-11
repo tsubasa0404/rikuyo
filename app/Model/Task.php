@@ -7,8 +7,28 @@ App::uses('AppModel', 'Model');
  */
 class Task extends AppModel {
 
+  public function tasks(){
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+    $options = array();
+
+    $options['conditions'] = array(
+      'status_id' => 0,
+      'expected_date - CURDATE() <=' => 0
+      );
+    $options['fields'] = array(
+      'id',
+      'task',
+      'someone',
+      'expected_date',
+      'status_id',
+      'note',
+      'flag',
+      );
+
+    $options['order'] = array('expected_date' => 'asc');
+    $options['recursive'] = -1;
+    return $this->find('all', $options);
+  }
 
 /**
  * belongsTo associations

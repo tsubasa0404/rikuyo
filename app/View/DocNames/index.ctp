@@ -33,7 +33,7 @@
 										<div id="folder_id_<?php echo $folder['DocFolder']['id'] ?>" class="panel-collapse collapse">
 											<div class="panel-body">
 												<div class="row">
-													<button type="button" id="" class="md-trigger btn btn-warning mrg-b-lg pull-right mL5" data-modal="modal-new-sub-folder" data-folder-id="<?php echo $folder['DocFolder']['id'] ?>">
+													<button type="button" id="" class="md-trigger btn btn-default mrg-b-lg pull-right mL5" data-modal="modal-new-sub-folder" data-folder-id="<?php echo $folder['DocFolder']['id'] ?>">
 														<i class="fa fa-folder fa-lg"></i> <?= __('Add New Sub Folder') ?>
 													</button>
 													<button type="button" id="" class="md-trigger btn btn-danger mrg-b-lg pull-left new-file-btn" data-modal="modal-new-file" data-folder-id="<?php echo $folder['DocFolder']['id'] ?>" data-sub-folder-id="0">
@@ -66,7 +66,7 @@
 																	<td class="text-center">
 																		<?php echo $doc['DocName']['note']; ?>
 																	</td>
-																	<td>
+																	<td class="text-center">
 																		<?php foreach($this->Foreach->downloadJpn($doc['DocName']['id']) as $jpn ): ?>
 																			<?php if($jpn['DocTemplate']['img_file_name']): ?>
 																			<button type="button" class="btn btn-info"><a href="doc/doc_templates/<?php echo $jpn['DocTemplate']['img_file_name']; ?>" class="red"><i class="fa fa-cloud-download"></i> JP</a></button>
@@ -83,7 +83,7 @@
 																			<?php endif; ?>
 																		<?php endforeach; ?>
 																	</td>
-																	<td>
+																	<td class="text-center">
 																		<div class="actions">
 																			<?php echo $this->Form->postlink(
 																				'<i class="fa fa-trash-o"></i>',
@@ -159,7 +159,7 @@
 																								<?php endif; ?>
 																							<?php endforeach; ?>
 																						</td>
-																						<td>
+																						<td class="text-center">
 																							<div class="actions">
 																								<?php echo $this->Form->postlink(
 																									'<i class="fa fa-trash-o"></i>',
@@ -173,7 +173,7 @@
 																			</tbody>
 																		</table>
 																	</div>
-																	<button type="button" id="" class="md-trigger btn btn-warning mrg-b-lg pull-right mL5 edit-sub-folder-btn" data-modal="modal-edit-sub-folder" data-folder-id="<?php echo $sub['DocFolder']['id'] ?>" data-sub-folder-id="<?php echo $sub['SubFolder']['id'] ?>">
+																	<button type="button" id="" class="md-trigger btn btn-default mrg-b-lg pull-right mL5 edit-sub-folder-btn" data-modal="modal-edit-sub-folder" data-folder-id="<?php echo $sub['DocFolder']['id'] ?>" data-sub-folder-id="<?php echo $sub['SubFolder']['id'] ?>">
 																		<i class="fa fa-edit fa-lg"></i> <?= __('Edit/Delete Sub Folder') ?>
 																	</button>
 																</div>

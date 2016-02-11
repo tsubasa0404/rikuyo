@@ -13,7 +13,7 @@ class TraineeVoicesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'RequestHandler');
 
 /**
  * index method
@@ -59,6 +59,23 @@ class TraineeVoicesController extends AppController {
 		$this->set(compact('trainees'));
 	}
 
+	public function addAjax() {
+	  $this->autoRender = false;
+	  if($this->RequestHandler->isAjax()){
+	    Configure::write('debug', 0);
+	   }
+	  if($this->request->is('ajax')){
+	    $this->request->data['TraineeVoice']['trainee_id'] = $_POST['trainee_id'];
+	    $this->request->data['TraineeVoice']['title_en'] = $_POST['title_en'];
+	    $this->request->data['TraineeVoice']['voice_en'] = $_POST['voice_en'];
+	    $this->TraineeVoice->create();
+	    if ($this->TraineeVoice->save($this->request->data)) {
+	      echo json_encode($this->TraineeVoice->getLastInsertID());
+	    } else {
+	    }
+	  }
+	}
+
 /**
  * edit method
  *
@@ -73,7 +90,7 @@ class TraineeVoicesController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->TraineeVoice->save($this->request->data)) {
 				$this->Session->setFlash(__('The trainee voice has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'trainees', 'action' => 'profile', $id));
 			} else {
 				$this->Session->setFlash(__('The trainee voice could not be saved. Please, try again.'));
 			}

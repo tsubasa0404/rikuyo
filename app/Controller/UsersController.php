@@ -21,9 +21,16 @@ class UsersController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->layout='default_cake';
+
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
+		$roles = $this->User->Role->find('list', array(
+			'fields' => array('id', 'role'),
+			'order' => array('id' => 'asc') ));
+		$roles_list = $this->User->Role->find('all', array(
+			'fields' => array('id', 'role'),
+			'order' => array('id' => 'asc') ));
+		$this->set(compact('roles', 'roles_list'));
 	}
 
 /**
@@ -34,12 +41,13 @@ class UsersController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		$this->layout='default_cake';
+
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$this->set('user', $this->User->find('first', $options));
+
 	}
 
 /**
@@ -48,7 +56,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function add() {
-		$this->layout='default_cake';
+
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -58,7 +66,7 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
 		}
-		$roles = $this->User->Role->find('list');
+		$roles = $this->User->Role->find('list', array('fields' => array('id', 'role')));
 		$this->set(compact('roles'));
 	}
 
@@ -70,7 +78,7 @@ class UsersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
-		$this->layout='default_cake';
+
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
@@ -85,7 +93,7 @@ class UsersController extends AppController {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
 		}
-		$roles = $this->User->Role->find('list');
+		$roles = $this->User->Role->find('list', array('fields' => array('id', 'role')));
 		$this->set(compact('roles'));
 	}
 

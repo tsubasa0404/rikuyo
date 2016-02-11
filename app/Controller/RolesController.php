@@ -50,7 +50,7 @@ class RolesController extends AppController {
 			$this->Role->create();
 			if ($this->Role->save($this->request->data)) {
 				$this->Session->setFlash(__('The role has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The role could not be saved. Please, try again.'));
 			}

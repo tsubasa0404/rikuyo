@@ -13,7 +13,8 @@ class ProvincesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'RequestHandler');
+	public $uses = array('Province', 'CambodiaPlaceDictionary');
 
 /**
  * index method
@@ -22,7 +23,10 @@ class ProvincesController extends AppController {
  */
 	public function index() {
 		$this->Province->recursive = 0;
-		$this->set('provinces', $this->Paginator->paginate());
+		$this->CambodiaPlaceDictionary->recursive = -1;
+		$address = $this->CambodiaPlaceDictionary->find('all', array('order' =>array('place_en' => 'asc')));
+		$provinces = $this->Province->find('all', array('order' => array('province_en' => 'asc')));
+		$this->set(compact('address','provinces'));
 	}
 
 /**
@@ -55,6 +59,24 @@ class ProvincesController extends AppController {
 				$this->Session->setFlash(__('The province could not be saved. Please, try again.'));
 			}
 		}
+	}
+
+	public function addAjax() {
+	  $this->autoRender = false;
+	  if($this->RequestHandler->isAjax()){
+	    Configure::write('debug', 0);
+	   }
+	  if($this->request->is('ajax')){
+	    $this->request->data['Province']['id'] = $_POST['id'];
+	    $this->request->data['Province']['province_jp'] = $_POST['province_jp'];
+	    $this->request->data['Province']['province_en'] = $_POST['province_en'];
+	    $this->request->data['Province']['province_kh'] = $_POST['province_kh'];
+	    $this->Province->create();
+	    if ($this->Province->save($this->request->data)) {
+	      echo json_encode($this->Province->getLastInsertID());
+	    } else {
+	    }
+	  }
 	}
 
 /**

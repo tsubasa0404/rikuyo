@@ -15,6 +15,7 @@ class InterviewsController extends AppController {
  */
 	public $components = array('Paginator');
 	public $uses = array(
+		'Agent',
 		'Association',
 		'AssociationDocument',
 		'Company',
@@ -35,7 +36,23 @@ class InterviewsController extends AppController {
 		$lang = $this->__setLang();
 		$this->Interview->recursive = -1;
 		$interviews = $this->Interview->interviewList();
-		$this->set(compact('lang', 'interviews'));
+		$past_interviews = $this->Interview->pastInterviewsList();
+		$this->set(compact('lang', 'interviews', 'past_interviews'));
+	}
+
+	public function update_status() {
+	  $this->autoRender = false;
+	  if($this->RequestHandler->isAjax()){
+	    Configure::write('debug', 0);
+	   }
+	  if($this->request->is('ajax')){
+	    $this->request->data['Interview']['id'] = $_POST['id'];
+	    $this->request->data['Interview']['status'] = $_POST['status'];
+	    if ($this->Interview->save($this->request->data)) {
+
+	    } else {
+	    }
+	  }
 	}
 
 	public function update_delete_flag($id = null){
@@ -154,10 +171,11 @@ class InterviewsController extends AppController {
       $lang             = $this->__setLang();
       $prof             = $this->Interview->prof($id); //interviewの詳細
       $option_jobs      = $this->Job->optionJobs($lang);
+      $option_agents      = $this->Agent->optionAgents($lang);
       $option_companies = $this->Company->__optionComAso($lang);
 
       $option_results   = $this->InterviewResult->optionResults($lang);
-			$this->set(compact('lang', 'prof', 'option_companies', 'option_jobs', 'option_results'));
+			$this->set(compact('lang', 'prof', 'option_companies', 'option_jobs','option_agents', 'option_results'));
 
 			//面接候補者
 			$candidates = $this->InterviewCandidate->candidateList($id);
@@ -166,7 +184,7 @@ class InterviewsController extends AppController {
 			//提出書類一覧取得
       $association_id = $prof['Asso']['id']; //Association ID取得
 			$folders = $this->AssociationDocument->selectedFolders($association_id);//folderを取得
-			$documents = $this->AssociationDocument->selectedDocuments($association_id);
+			$documents = $this->AssociationDocument->selectedDocuments($association_id, $id);
 			$this->set(compact('documents', 'folders'));
 
 			$options = array('conditions' => array('Interview.' . $this->Interview->primaryKey => $id));

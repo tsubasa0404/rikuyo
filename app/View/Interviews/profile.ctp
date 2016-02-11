@@ -1,6 +1,7 @@
 <?php $this->set('title_for_layout', 'Trainee Profile'); ?>
 <?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
+<?php $this->Html->css('libs/sweetalert', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/ns-default', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/ns-style-growl', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/ns-style-bar', array('inline'=>false, 'block'=>'page-css'));?>
@@ -17,7 +18,26 @@
 				<div class="col-lg-6 col-md-6 col-sm-12 maxW400">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
-							<h2><?= __('Schedule') ?></h2>
+							<h2><?= __('Schedule') ?>
+
+								<div class="pull-right">
+									<span><?= __('Interview Status') ?></span>
+									<?php echo $this->Form->create('Interview', array(
+										'action' => 'update_status',
+										'class' => 'update_status_form'
+									)) ?>
+									<?php echo $this->Form->hidden('id', array(
+										'value' => $this->request->data['Interview']['id']
+									)) ?>
+									<?php echo $this->Form->input('status', array(
+										'class' => 'form-control',
+										'options' => array('0' => __('Not Yet'), '1' => __('Finished')),
+										'value' => $this->request->data['Interview']['status'],
+										'label' => false
+									)) ?>
+									<?php echo $this->Form->end(); ?>
+								</div>
+							</h2>
 						</header>
 						<div class="main-box-body clearfix">
 							<div class="table-responsive" id="">
@@ -31,7 +51,7 @@
 												<th colspan="2" ><span><?= __('Association') ?></span></th>
 											</tr>
 											<tr>
-												<td>
+												<td class="td_first_block">
 													<?= __('Association') ?>
 												</td>
 												<td>
@@ -44,26 +64,23 @@
 												</td>
 											</tr>
 											<tr>
-												<td>
+												<td class="td_first_block">
 													<?= __('Company') ?>
 												</td>
 												<td>
-													<?php echo $this->Form->input('company_id', array(
-														'label' => false,
-														'type' => 'select',
-														'div' => false,
-														'class' => 'form-control sel_company',
-														'value' => $prof['Com']['id'],
-														'options' => $option_companies,
-														'style' => 'max-width:300px;display:inline',
-													)) ?>
+													<?php echo $this->Html->link(
+														$prof['Com']['company_jp'],array(
+															'controller' => 'companies', 'action' => 'profile', $prof['Com']['id']),
+														array('target' => '_blank')
+													) ?><br>
+													(<?php echo $prof['Com']['company_en']; ?>)
 												</td>
 											</tr>
 											<tr class="warning">
-												<th colspan="2"><?= __('Schedules') ?></th>
+												<th colspan="2" class="td_first_block"><?= __('Schedules') ?></th>
 											</tr>
 											<tr>
-												<td><?= __('Immigration Time') ?></td>
+												<td class="td_first_block"><?= __('Immigration Time') ?></td>
 												<td>
 													<?php echo $this->Form->input('immigration_time',array(
 														'label' => false,
@@ -72,7 +89,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td><?= __('Commencement Time') ?></td>
+												<td class="td_first_block"><?= __('Commencement Time') ?></td>
 												<td>
 													<?php echo $this->Form->input('start_time',array(
 														'label' => false,
@@ -81,7 +98,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td><?= __('Interview Date') ?></td>
+												<td class="td_first_block"><?= __('Interview Date') ?></td>
 												<td>
 													<?php echo $this->Form->date('interview_date',array(
 														'label' => false,
@@ -91,7 +108,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td><?= __('Interview Time (Cambodia Time)') ?></td>
+												<td class="td_first_block"><?= __('Interview Time (Cambodia Time)') ?></td>
 												<td>
 													<div class="input-group input-append bootstrap-timepicker">
 														<span class="add-on input-group-addon"><i class="fa fa-clock-o"></i></span>
@@ -99,7 +116,7 @@
 														</div>
 											</tr>
 											<tr>
-												<td><?= __('Interview Place') ?></td>
+												<td class="td_first_block"><?= __('Interview Place') ?></td>
 												<td>
 													<?php echo $this->Form->input('interview_place',array(
 														'label' => false,
@@ -108,7 +125,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td><?= __('Interview Details') ?></td>
+												<td class="td_first_block"><?= __('Interview Details') ?></td>
 												<td>
 													<?php echo $this->Form->input('interview_detail',array(
 														'label' => false,
@@ -117,7 +134,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td><?= __('Interview Commander of Rikuyo') ?></td>
+												<td class="td_first_block"><?= __('Interview Commander of Rikuyo') ?></td>
 												<td>
 													<?php echo $this->Form->input('interview_staff',array(
 														'label' => false,
@@ -152,7 +169,7 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr>
-												<td>
+												<td class="td_first_block">
 													<?= __('Job') ?>
 												</td>
 												<td>
@@ -162,7 +179,6 @@
 														'selected' => explode(",", $this->request->data['Interview']['job']), //複数選択は値を配列で渡すだけ
 														'multiple' => true,
 														'class' => "form-control sel_job",
-														'style' => array("width:200px"),
 														'div' => false,
 
 													)); ?>
@@ -183,6 +199,46 @@
 
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
+							<h2><?= __('Select Agent') ?></h2>
+						</header>
+						<div class="main-box-body clearfix">
+							<div class="table-responsive" id="">
+								<?php echo $this->Form->create('Interview',
+									array('action' => 'update' ))
+								?>
+								<?php echo $this->Form->hidden('id', array('value' => $this->request->data['Interview']['id'])) ?>
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<td class="td_first_block">
+													<?= __('Agent') ?>
+												</td>
+												<td>
+													<?php echo $this->Form->input('agent_id',array(
+														'label' => false,
+														'options' => $option_agents,
+														'selected' => $this->request->data['Interview']['agent_id'],
+														'class' => "form-control sel_agent",
+														'div' => false,
+
+													)); ?>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="profile-message-btn center-block text-right">
+										<button type="submit" class="btn btn-default">
+											<i class="fa fa-pencil"></i>
+											<?= __('Save') ?>
+										</button>
+									</div>
+								<?php echo $this->Form->end(); ?>
+							</div>
+						</div>
+					</div> <!-- /Select agent-->
+
+					<div class="main-box clearfix">
+						<header class="main-box-header clearfix">
 							<h2><?= __('Requests') ?></h2>
 						</header>
 						<div class="main-box-body clearfix">
@@ -199,7 +255,7 @@
 											</tr>
 
 											<tr>
-												<td>
+												<td class="td_first_block">
 													<?= __('Work Content') ?>
 												</td>
 												<td>
@@ -211,7 +267,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td>
+												<td class="td_first_block">
 													<?= __('Work Schedule') ?>
 												</td>
 												<td>
@@ -223,7 +279,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td>
+												<td class="td_first_block">
 													<?= __('Adoption Number') ?>
 												</td>
 												<td>
@@ -248,7 +304,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td>
+												<td class="td_first_block">
 													<?= __('Age') ?>
 												</td>
 												<td>
@@ -260,7 +316,7 @@
 												</td>
 											</tr>
 											<tr>
-												<td rowspan="9"><?= __('Salary') ?></td>
+												<td class="td_first_block" rowspan="9"><?= __('Salary') ?></td>
 												<td>
 													<div class="row">
 														<div class="col-lg-12 col-md-12 col-sm-12">
@@ -393,7 +449,9 @@
 												</td>
 											</tr>
 											<tr>
-												<td><?= __('Requests') ?></td>
+												<td class="td_first_block">
+													<?= __('Requests') ?>
+												</td>
 												<td>
 													<?php echo $this->Form->textarea('request',array(
 														'label' => false,
@@ -505,11 +563,11 @@
 											<tr class="warning">
 												<th colspan="4"><span><?php echo $folder['DocFolder']['folder_jp']."(".$folder['DocFolder']['folder_en'].")" ?></span></th>
 											</tr>
-												<?php foreach($this->Foreach->association_document_list($folder['DocFolder']['id']) as $doc): ?>
+												<?php foreach($this->Foreach->association_document_list($folder['DocFolder']['id'], $this->request->data['Interview']['id']) as $doc): ?>
 													<tr>
 														<td class="td_first_block">
 															<div class="checkbox-nice">
-																<input type="checkbox" id="doc_<?php echo $doc['AssociationDocument'][0]['id']; ?>" name="data[InterviewDocumentStatusList][status_id]" value="<?php if(!empty($doc['InterviewDocStatusList']['id'])) {echo $doc['InterviewDocStatusList']['status_id'];} ?>"  data-doc-status-id="<?php if(!empty($doc['InterviewDocStatusList'])) {echo $doc['InterviewDocStatusList']['id'];} ?>" data-interview-id="<?php echo $this->request->data['Interview']['id']; ?>" data-association-document-id="<?php echo $doc['AssociationDocument'][0]['id']; ?>" class="doc-chk">
+																<input type="checkbox" id="doc_<?php echo $doc['AssociationDocument'][0]['id']; ?>" name="data[InterviewDocumentStatusList][status_id]" value="<?php if(!empty($doc['InterviewDocStatusList']['status_id'])) {echo $doc['InterviewDocStatusList']['status_id'];}else{echo 0;} ?>"  data-doc-status-id="<?php if(!empty($doc['InterviewDocStatusList'])) {echo $doc['InterviewDocStatusList']['id'];} ?>" data-interview-id="<?php echo $this->request->data['Interview']['id']; ?>" data-association-document-id="<?php echo $doc['AssociationDocument'][0]['id']; ?>" class="doc-chk">
 																<label for="doc_<?php echo $doc['AssociationDocument'][0]['id']; ?>">
 																	<?php echo $doc['DocName']['name_jp']."<br>".$doc['DocName']['name_en'] ;?>
 																</label>
@@ -556,6 +614,7 @@
 		echo $this->Html->script('rikuyo_js/myModal', array('inline' => false, 'block' => 'modal-js'));
 		echo $this->Html->script('select2.min', array('inline' => false, 'block' => 'page-js'));
 		echo $this->Html->script('notificationFx', array('inline' => false, 'block' => 'modal-js'));
+		echo $this->Html->script('sweetalert.min', array('inline' => false, 'block' => 'modal-js'));
 	 ?>
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
@@ -569,6 +628,29 @@
 				allowClear:false
 			});
 			$('.sel_job').select2();
+			$('.sel_agent').select2();
+		});
+
+		//インタビュー状況変更
+		$(function(){
+			$('.update_status_form').on('change', 'select', function(){
+				var url = $('.update_status_form').attr('action');
+				var id = '<?php echo $this->request->data['Interview']['id']; ?>';
+				var status = $(this).val();
+				$.ajax({
+					uri:url,
+					type:'POST',
+					dataType:'json',
+					data:{
+						id:id,
+						status:status
+					}, success:function(){
+						alert('success');
+					}, error:function(){
+
+					}
+				});
+			})
 		});
 
 		//インタビュー結果変更ajax
@@ -621,7 +703,7 @@
 				}
 			});
 
-			$('.doc-chk').on('click', function(){
+			$(document).on('click','.doc-chk', function(){
 				var id = $(this).data('doc-status-id');
 				var interview_id = $(this).data('interview-id');
 				var association_document_id = $(this).data('association-document-id');
@@ -630,6 +712,11 @@
 				var $input = $(this);
 
 				if(id === ""){
+							swal({
+								title: '<?= __("Wait a while...") ?>',
+								timer: 2000,
+								showConfirmButton: false
+							});
 					status_id = "1";
 					$.ajax({
 						url: url,

@@ -37,7 +37,7 @@
 										?>
 									</div>
 
-									<div class="main-box-body clearfix center-block " >
+									<div class="main-box-body clearfix center-block " style="padding-bottom: 10px !important;" >
 										<?php
 											echo $this->Form->create('TraineeProfileImage', array(
 											'action' => 'add',
@@ -73,7 +73,7 @@
 											<table class="table table-bordered table-hover">
 												<tbody>
 													<tr>
-														<td><?= __('Departure Date') ?></td>
+														<td class="td_first_block"><?= __('Departure Date') ?></td>
 														<td>
 															<?php echo $this->Form->date('departure_date',array(
 																'label' => false,
@@ -82,7 +82,7 @@
 														</td>
 													</tr>
 													<tr>
-														<td><?= __('Departure Status') ?></td>
+														<td class="td_first_block"><?= __('Departure Status') ?></td>
 														<td>
 															<?php echo $this->Form->input('departure_status_id',array(
 															'label' => false,
@@ -95,14 +95,14 @@
 
 													</tr>
 													<tr>
-														<td><?= __('Return Date') ?></td>
+														<td class="td_first_block"><?= __('Return Date') ?></td>
 														<td><?php echo $this->Form->date('return_date',array(
 															'label' => false,
 															'class' => 'form-control maxW160'
 														)) ?></td>
 													</tr>
 													<tr>
-														<td><?= __('Return Status') ?></td>
+														<td class="td_first_block"><?= __('Return Status') ?></td>
 														<td>
 															<?php echo $this->Form->input('return_status_id',array(
 																'label' => false,
@@ -133,13 +133,13 @@
 										<table class="table table-bordered table-hover">
 											<tbody>
 												<tr>
-													<td><?= __('Medical Checkup') ?></td>
+													<td class="td_first_block"><?= __('Medical Checkup') ?></td>
 													<td>
 														<div class="row">
 															<div class="form-group">
 																<div class="col-lg-4 col-md-4 col-sm-4">
 																	<?php echo $this->Form->input('medicalchk_status_id',array(
-																		'label' => __('Status'),
+																		'label' => false,
 																		'type' => 'select',
 																		'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
 																		'class' => "form-control maxW100",
@@ -148,7 +148,8 @@
 																</div>
 																<div class="col-lg-8 col-md-8 col-sm-8">
 																	<?php echo $this->Form->input('medicalchk_note',array(
-																		'label' => __('Note'),
+																		'label' => false,
+																		'placeholder' => __('Note'),
 																		'class' => 'form-control'
 																	)) ?>
 																</div>
@@ -157,13 +158,13 @@
 													</td>
 												</tr>
 												<tr>
-													<td rowspan="2"><?= __('ID Card') ?></td>
+													<td class="td_first_block" rowspan="2"><?= __('ID Card') ?></td>
 													<td>
 														<div class="row">
 															<div class="form-group">
 																<div class="col-lg-4 col-md-4 col-sm-4">
 																	<?php echo $this->Form->input('idcard_status_id',array(
-																		'label' => __('Status'),
+																		'label' => false,
 																		'type' => 'select',
 																		'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
 																		'class' => "form-control maxW100",
@@ -172,7 +173,8 @@
 																</div>
 																<div class="col-lg-8 col-md-8 col-sm-8">
 																	<?php echo $this->Form->input('idcard_note',array(
-																		'label' => __('Note'),
+																		'label' => false,
+																		'placeholder' => __('Note'),
 																		'class' => 'form-control'
 																	)) ?>
 																</div>
@@ -216,13 +218,13 @@
 													</td>
 												</tr>
 												<tr>
-													<td><?= __('Passport') ?></td>
+													<td class="td_first_block"><?= __('Passport') ?></td>
 													<td>
 														<div class="row">
 															<div class="form-group">
 																<div class="col-lg-4 col-md-4 col-sm-4">
 																	<?php echo $this->Form->input('passport_status_id',array(
-																			'label' => __('Status'),
+																			'label' => false,
 																			'type' => 'select',
 																			'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
 																			'class' => "form-control maxW100",
@@ -231,7 +233,8 @@
 																</div>
 																<div class="col-lg-8 col-md-8 col-sm-8">
 																	<?php echo $this->Form->input('passport_note',array(
-																		'label' => __('Note'),
+																		'label' => false,
+																		'placeholder' => __('Note'),
 																		'class' => 'form-control'
 																	)) ?>
 																</div>
@@ -240,13 +243,13 @@
 													</td>
 												</tr>
 												<tr>
-													<td><?= __('COE') ?></td>
+													<td class="td_first_block"><?= __('COE') ?></td>
 													<td>
 														<div class="row">
 															<div class="form-group">
 																<div class="col-lg-4 col-md-4 col-sm-4">
 																	<?php echo $this->Form->input('coe_status_id',array(
-																			'label' => __('Status'),
+																			'label' => false,
 																			'type' => 'select',
 																			'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
 																			'class' => "form-control maxW100",
@@ -255,7 +258,8 @@
 																</div>
 																<div class="col-lg-8 col-md-8 col-sm-8">
 																	<?php echo $this->Form->input('coe_note',array(
-																		'label' => __('Note'),
+																		'label' => false,
+																		'placeholder' => __('Note'),
 																		'class' => 'form-control'
 																	)) ?>
 																</div>
@@ -264,13 +268,13 @@
 													</td>
 												</tr>
 												<tr>
-													<td><?= __('Immigration') ?></td>
+													<td class="td_first_block"><?= __('Immigration') ?></td>
 													<td>
 														<div class="row">
 															<div class="form-group">
 																<div class="col-lg-4 col-md-4 col-sm-4">
 																	<?php echo $this->Form->input('immigration_status_id',array(
-																			'label' => __('Status'),
+																			'label' => false,
 																			'type' => 'select',
 																			'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
 																			'class' => "form-control maxW100",
@@ -279,7 +283,8 @@
 																</div>
 																<div class="col-lg-8 col-md-8 col-sm-8">
 																	<?php echo $this->Form->input('immigration_note',array(
-																		'label' => __('Note'),
+																		'label' => false,
+																		'placeholder' => __('Note'),
 																		'class' => 'form-control'
 																	)) ?>
 																</div>
@@ -288,13 +293,13 @@
 													</td>
 												</tr>
 												<tr>
-													<td><?= __('Labor Ministry') ?></td>
+													<td class="td_first_block"><?= __('Labor Ministry') ?></td>
 													<td>
 														<div class="row">
 															<div class="form-group">
 																<div class="col-lg-4 col-md-4 col-sm-4">
 																	<?php echo $this->Form->input('labor_ministry_status_id',array(
-																			'label' => __('Status'),
+																			'label' => false,
 																			'type' => 'select',
 																			'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
 																			'class' => "form-control maxW100",
@@ -303,7 +308,8 @@
 																</div>
 																<div class="col-lg-8 col-md-8 col-sm-8">
 																	<?php echo $this->Form->input('labor_ministry_note',array(
-																		'label' => __('Note'),
+																		'label' => false,
+																		'placeholder' => __('Note'),
 																		'class' => 'form-control'
 																	)) ?>
 																</div>
@@ -366,7 +372,7 @@
 																</thead>
 																<tbody>
 																	<tr>
-																		<td>
+																		<td class="td_first_block">
 																			<?= __('Trainee ID') ?>
 																		</td>
 																		<td>
@@ -380,7 +386,7 @@
 																		</td>
 																	</tr>
 																	<tr>
-																		<td>
+																		<td class="td_first_block">
 																			<?= __('ID Number') ?>
 																		</td>
 																		<td>
@@ -397,7 +403,7 @@
 																		</td>
 																	</tr>
 																	<tr>
-																		<td>
+																		<td class="td_first_block">
 																			<?= __('Name') ?>
 																		</td>
 																		<td>
@@ -455,8 +461,12 @@
 																		</td>
 																	</tr>
 																	<tr>
-																		<td><?= __('Introduced From') ?></td>
-																		<td></td>
+																		<td class="td_first_block">
+																			<?= __('Introduced From') ?>
+																		</td>
+																		<td>
+
+																		</td>
 																		<td>
 																			<?php echo $this->Form->input('introduced_from',array(
 																				'label' => false,
@@ -467,7 +477,7 @@
 																		</td>
 																	</tr>
 																	<tr>
-																		<td>
+																		<td class="td_first_block">
 																			<?= __('Sex') ?>
 																		</td>
 																		<td>
@@ -491,7 +501,7 @@
 																		</td>
 																	</tr>
 																	<tr>
-																		<td>
+																		<td class="td_first_block">
 																			<?= __('Birthday') ?>
 																		</td>
 																		<td>
@@ -513,16 +523,11 @@
 																			</div>
 																		</td>
 																		<td>
-																			<?php
-																				//$birthday = $this->request->data['Trainee']['birthday'];
-																				//$birthday_time = date('Y-m-d', strtotime($birthday));
-																				//list($y['y'], $m['m'], $d['d']) = explode('-', $birthday_time);
-																				//echo $d['d']."/".$m['m']."/" . $y['y'] .""."(".$this->Btn->calcAge($birthday).")";
-																				?>
+
 																		</td>
 																	</tr>
 																	<tr>
-																		<td>
+																		<td class="td_first_block">
 																			<?= __('Marriage') ?>
 																		</td>
 																		<td>
@@ -547,7 +552,7 @@
 																		</td>
 																	</tr>
 																	<tr>
-																		<td>
+																		<td class="td_first_block">
 																			<?= __('Brothers') ?>
 																		</td>
 																		<td>
@@ -556,18 +561,18 @@
 																		<td>
 																			<div class="row">
 																				<div class="form-group">
-																					<div class="col-lg-3 col-md-3 col-sm-3">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
 																						<label class="" for="brother_cnt"><?= __('How many brothers?')?></label>
 																						<?php echo $this->Form->input('brother_cnt',array(
 																							'label' => false,
-																							'class' => 'form-control maxW100'
+																							'class' => 'form-control '
 																						)) ?>
 																					</div>
-																					<div class="col-lg-3 col-md-3 col-sm-3">
+																					<div class="col-lg-6 col-md-6 col-sm-6">
 																						<label  class="" for="brother_index"><?= __('How manieth brother?')?></label>
 																						<?php echo $this->Form->input('brother_index',array(
 																							'label' => false,
-																							'class' => 'form-control maxW100'
+																							'class' => 'form-control '
 																						)) ?>
 																					</div>
 																				</div>
@@ -579,7 +584,7 @@
 																	</tr>
 
 																	<tr>
-																		<td>
+																		<td class="td_first_block">
 																			<?= __('Birthplace') ?>
 																		</td>
 																		<td>
@@ -588,7 +593,7 @@
 																		<td>
 																			<div class="row">
 																				<div class="form-group form-group-select2">
-																					<div class="col-lg-6 col-md-6 col-sm-6">
+																					<div class="col-lg-12 col-md-12 col-sm-12">
 																						<label for="TraineeBirthplaceProvinceId">Province</label>
 																						<?php echo $this->Form->input('birthplace_province_id', array(
 																							'label' => false,
@@ -607,7 +612,7 @@
 																		</td>
 																	</tr>
 																	<tr>
-																		<td>
+																		<td class="td_first_block">
 																			<?= __('Current Address') ?>
 																		</td>
 																		<td>
@@ -636,8 +641,8 @@
 																			</div>
 																		</td>
 																		<td>
-																			<div class="row maxW500">
-																				<div class="col-lg-4 col-md-4 col-sm-4">
+																			<div class="row ">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
 																					<div class="form-group ">
 																						<label for="TraineeProvinceId"><?= __('Province') ?></label>
 																						<?php echo $this->Form->input('province_id', array(
@@ -650,7 +655,9 @@
 																						)) ?>
 																					</div>
 																				</div>
-																				<div class="col-lg-4 col-md-4 col-sm-4">
+																			</div>
+																			<div class="row">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
 																					<div class="form-group ">
 																						<label for="TraineeDistrictId"><?= __('District') ?></label>
 																						<?php echo $this->Form->input('district_id', array(
@@ -663,7 +670,7 @@
 																						)) ?>
 																					</div>
 																				</div>
-																				<div class="col-lg-4 col-md-4 col-sm-4">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
 																					<div class="form-group ">
 																						<label for="TraineeCommuneId"><?= __('Commune') ?></label>
 																						<?php echo $this->Form->input('commune_id', array(
@@ -702,7 +709,7 @@
 																		<td>
 																			<div class="row">
 																				<div class="form-group">
-																					<div class="col-lg-6 col-md-6 col-sm-6">
+																					<div class="col-lg-12 col-md-12 col-sm-12">
 																						<?php echo $this->Form->input('address_kh',array(
 																							'label' => false,
 																							'class' => 'form-control',
@@ -712,16 +719,18 @@
 																				</div>
 																				<div class="form-group">
 																					<div class="col-lg-12 col-md-12 col-sm-12">
+																						<span style="font-size: 16px;">
 																							<?php echo $commune_en['CamPlaceDic']['place_kh'].", "; ?>
 																							<?php echo $district_en['CamPlaceDic']['place_kh'].", "; ?>
 																							<?php echo $province_en['CamPlaceDic']['place_kh'].", "; ?>
+																						</span>
 																					</div>
 																				</div>
 																			</div>
 																		</td>
 																	</tr>
 																	<tr>
-																		<td>
+																		<td class="td_first_block">
 																			<?= __('Phone') ?>
 																		</td>
 																		<td>
@@ -737,7 +746,7 @@
 																		</td>
 																	</tr>
 																	<tr>
-																		<td>
+																		<td class="td_first_block">
 																			<?= __('Languages') ?>
 																		</td>
 																		<td>
@@ -770,7 +779,7 @@
 																	</tr>
 
 																	<tr>
-																		<td>
+																		<td class="td_first_block">
 																			<?= __('Facebook User ID') ?>
 																		</td>
 																		<td>
@@ -810,12 +819,12 @@
 															<table class="table table-bordered table-hover">
 																<thead>
 																	<tr>
-																		<th style="width:90px"></th>
-																		<th style="width:90px"></th>
-																		<th style="width:90px"></th>
+																		<th style="width:100px"></th>
+																		<th style="width:100px"></th>
+																		<th style="width:100px"></th>
 																		<th style="width:100px"></th>
 																		<th style="width:200px"></th>
-																		<th style="width:200px"></th>
+																		<th style="width:100px"></th>
 																	</tr>
 																</thead>
 																<tbody>
@@ -1121,29 +1130,6 @@
 																				'required' =>true
 																			)) ?>
 																		</div>
-																	<!-- //新しいタスクを追加の処理
-																		$('#new_todo_form').on('submit', function(){
-																		//taskを取得
-																		var task_var = $('#new_todo').val();
-																		//ajax処理
-																		$.post('_ajax.php', {
-																			task: task_var,
-																			mode: 'create',
-																			token: $('#token').val()
-																		}, function(res){ //自動発行されたid(lastInsertId())を取得してきてresに格納して持ってくる。
-																		//liを一番上に追加する
-																			var $li = $('#todo_template').clone();
-																			//$liにすることで、オブジェクトとしてあとでattrなどメソッドチェーンが利用できる。
-																			//.clone()によって、templateを引っ張ってこれる。
-																			$li
-																				.attr('id', 'todo_' + res.id) //liにid="todo_{lastInsertId()}"をattributeする。
-																				.data('id', res.id) //data-id="{lastInsertId()}"にする。
-																				.find('.todo_title').text(title); //li内の.todo_titleの中身(span)にtitleを挿入する。
-																			$('#todos').prepend($li.fadeIn()); ul#todosの直下に$liをprepend(挿入)する。
-																			$('#new_todo').val('').focus(); //入力した内容が削除されて、フォーカスが当たるようにする。
-																		});
-																		return false; //画面遷移させないようにするため。
-																		</div>-->
 
 																		<div class="form-group col-lg-3 col-md-3 col-sm-3">
 																			<label for="" class=""><?= __('Relationship') ?></label>
@@ -1235,33 +1221,37 @@
 																	</thead>
 																	<tbody>
 																		<?php foreach ($trainee_families as $family) : ?>
-																			<?php
-																				echo '<tr data-family-id="'.$family['TraineeFamily']['id'].'">';
-																				echo '<td>';
-																				echo $family['TraineeFamily']['name'];
-																				echo '</td><td>';
-																				echo $family['TraineeFamily']['relationship'];
-																				echo '</td><td>';
-																				echo $family['TraineeFamily']['birthday']." (".$this->Btn->calcAge($family['TraineeFamily']['birthday']).")";
-																				echo '</td><td>';
-																				echo $this->Btn->switchLang($lang, $family['Job']['job_jp'], $family['Job']['job_en']);
-																				echo '</td><td>';
-																				echo $family['TraineeFamily']['phone'];
-																				echo '</td>';
-																				echo '<td><div class="actions text-center">';
-																				echo $this->Form->postlink(
-																					'<i class="fa fa-pencil"></i>',
-																					array('controller' => 'trainee_families', 'action' => 'edit',$family['TraineeFamily']['id']),
-																					array('escape' => false, 'class' => 'table-link' )
-																				);
-																				echo $this->Form->postlink(
-																					'<i class="fa fa-trash-o"></i>',
-																					array('controller' => 'trainee_families', 'action' => 'delete',$family['TraineeFamily']['id']),
-																					array('confirm' => __('Are you sure you want to delete # %s?', $family['TraineeFamily']['id']),'escape' => false, 'class' => 'table-link red' )
-																				);
-																				echo '</div></td>';
-																				echo "</tr>"
-																			 ?>
+																			<tr data-family-id="'.$family['TraineeFamily']['id'].'">
+																				<td>
+																					<?php echo $family['TraineeFamily']['name'];?>
+																				</td>
+																				<td>
+																					<?php echo $family['TraineeFamily']['relationship'];?>
+																				</td>
+																				<td>
+																					<?php echo $family['TraineeFamily']['birthday']." (".$this->Btn->calcAge($family['TraineeFamily']['birthday']).")";?>
+																				</td>
+																				<td>
+																					<?php echo $this->Btn->switchLang($lang, $family['Job']['job_jp'], $family['Job']['job_en']);?>
+																				</td>
+																				<td>
+																					<?php echo $family['TraineeFamily']['phone'];?>
+																				</td>
+																				<td>
+																					<div class="actions text-center">
+																						<?php echo $this->Html->link(
+																							'<i class="fa fa-pencil"></i>',
+																							array('controller' => 'trainee_families', 'action' => 'edit',$family['TraineeFamily']['id']),
+																							array('escape' => false, 'class' => 'table-link' )
+																						);?>
+																						<?php echo $this->Form->postlink(
+																							'<i class="fa fa-trash-o"></i>',
+																							array('controller' => 'trainee_families', 'action' => 'delete',$family['TraineeFamily']['id']),
+																							array('confirm' => __('Are you sure you want to delete # %s?', $family['TraineeFamily']['id']),'escape' => false, 'class' => 'table-link red' )
+																						);?>
+																					</div>
+																				</td>
+																			</tr>
 																		<?php endforeach; ?>
 																	</tbody>
 																</table>
@@ -1281,9 +1271,9 @@
 															<table class="table table-bordered table-hover">
 																<thead>
 																	<tr>
-																		<th ><span></span></th>
-																		<th class="text-center" style="width:45%"><span>日本語</span></th>
-																		<th class="text-center" style="width:45%"><span>English</span></th>
+																		<th style="width:100px"><span></span></th>
+																		<th class="text-center" style="width:300px"><span>日本語</span></th>
+																		<th class="text-center" style="width:360px"><span>English</span></th>
 																	</tr>
 																</thead>
 																<tbody>
@@ -1711,7 +1701,7 @@
 																		</td>
 																		<td>
 																			<div class="form-group">
-																				<div class="col-lg-4 col-md-4 col-sm-4">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
 																					<label><?= __('Job') ?></label>
 																						<?php echo $this->Form->input('job1_id',array(
 																							'label' => false,
@@ -1740,7 +1730,7 @@
 																		</td>
 																		<td>
 																			<div class="form-group">
-																				<div class="col-lg-4 col-md-4 col-sm-4">
+																				<div class="col-lg-6 col-md-6 col-sm-6">
 																					<label><?= __('Job') ?></label>
 																						<?php echo $this->Form->input('job2_id',array(
 																							'label' => false,
@@ -2039,22 +2029,23 @@
 																<tbody>
 																	<?php if(!empty($doc_imgs[0]['DocImg']['id'])) : ?>
 																	<?php foreach ($doc_imgs as $doc) : ?>
-																		<?php
-																			echo "<tr>";
-																			echo "<td>";
-																			echo $doc['DocImg']['doc_name_jp']."<br>".$doc['DocImg']['doc_name_en'];
-																			echo '</td><td class="text-center">';
-																			echo '<a href="/dev/img/trainee_documents/'.$doc['DocImg']['img_file_name'].'" class="table-link popup" alt="Show Image"><i class="fa fa-eye fa-lg"></i></a>';
-																			echo $this->Html->link(
-																				'<i class="fa fa-pencil"></i>',
-																				array(
-																					'controller' => 'trainee_documents', 'action'=> 'edit', $doc['DocImg']['id']
-																					),
-																				array(
-																					'escape' => false, 'class' => 'table-link'
-																					)
-																				);
-																			echo $this->Form->postlink(
+																		<tr>
+																			<td>
+																				<?php echo $doc['DocImg']['doc_name_jp']."<br>".$doc['DocImg']['doc_name_en'];?>
+																			</td>
+																			<td class="text-center">
+																				<a href="/dev/img/trainee_documents/'.$doc['DocImg']['img_file_name'].'" class="table-link popup" alt="Show Image"><i class="fa fa-eye fa-lg"></i>
+																				</a>
+																				<?php echo $this->Html->link(
+																					'<i class="fa fa-pencil"></i>',
+																					array(
+																						'controller' => 'trainee_documents', 'action'=> 'edit', $doc['DocImg']['id']
+																						),
+																					array(
+																						'escape' => false, 'class' => 'table-link'
+																						)
+																					);?>
+																				<?php echo $this->Form->postlink(
 																				'<i class="fa fa-trash-o"></i>',
 																				array(
 																					'controller' => 'trainee_documents', 'action' => 'delete',$doc['DocImg']['id']
@@ -2062,9 +2053,9 @@
 																				array(
 																					'confirm' => __('Are you sure you want to delete # %s?', $doc['DocImg']['id']),'escape' => false, 'class' => 'table-link red'
 																					)
-																				);
-																			echo "</td></tr>";
-																		 ?>
+																				);?>
+																			</td>
+																		</tr>
 																	<?php endforeach; ?>
 																<?php endif; ?>
 																</tbody>
@@ -2076,29 +2067,11 @@
 										</div>
 									</div>
 								</div>
-									<!--
-									//getImages()というメソッドを使い、$images[]に画像を格納して
-									予め準備しておいた
-									//<ul>内にforeachで回していく。
-									//<li> <a href="<?php //echo basename(IMAGES_DIR).'/'.basename($image);;?>"> //basename(IMAGE_DIR) =>
-									 -->
-									<!-- 画像アップロード処理
-									//画像を入れるフォルダ img/trainee/
-									//サムネイルを入れるフォルダ img/trainee/thumbs/
-									//パーミッションは755に
-									<form action="" enctype="multipart/form-data" id="upload_form"> <=jquery用にidをセット
-									<input type="hidden" name="MAX_FILE_SIZE" value="<?php //echo h(MAX_FILESIZE);?>" defineでMAX_FILE_SIZEを作成し、ファイルの最大容量(10*1024*1024=10MB)を設定
-									<input type="file" name="image" id="upload_file"> //jquery用にidをセット
-									<script>
-									$(function(){ //input#upload_fileの中身がchangeしたら、#upload_formをsubmit
-										$('#upload_file').on('change', function(){$('#upload_form').submit();});
-									})
-									</script>
-									 -->
+
 
 								<div class="tab-pane fade" id="tab-interview">
-									<div class="">
-										<div class="table-responsive maxW750">
+
+										<div class="table-responsive maxW600">
 											<table class="table table-bordered">
 												<thead>
 													<tr>
@@ -2110,26 +2083,28 @@
 												<tbody>
 													<?php if($int_results[0]['Interview']['id']):?>
 														<?php foreach ($int_results as $res) : ?>
-															<?php
-																echo "<tr><td>";
-																echo $res['Interview']['interview_date'] . " " . $res['Interview']['interview_time'];
-																echo $this->Html->link(
-																	__('Interview Detail Page'),
-																	array('controller' => 'interviews', 'action' => 'profile',$res['Interview']['id']),
-																	array('escape' => false, 'class' => '', 'target' => '_blank')
-																);
-																echo "</td><td>";
-																echo $this->Btn->switchLang($lang, $res['Company']['company_jp'], $res['Company']['company_en']) . " (" . $this->Btn->switchLang($lang, $res['Association']['association_jp'], $res['Association']['association_en']) . " )";
-																echo "</td><td>";
-																echo $this->Btn->switchLang($lang, $res['InterviewResultAlias']['result_jp'],$res['InterviewResultAlias']['result_en']);
-																echo "</td></tr>"
-															 ?>
+															<tr>
+																<td class="td_first_block">
+																	<?php echo $res['Interview']['interview_date'] . " " . $res['Interview']['interview_time'];?>
+																	<?php echo $this->Html->link(
+																		__(' Interview Detail Page'),
+																		array('controller' => 'interviews', 'action' => 'profile',$res['Interview']['id']),
+																		array('escape' => false, 'class' => '', 'target' => '_blank')
+																	);?>
+																</td>
+																<td>
+																	<?php echo $this->Btn->switchLang($lang, $res['Company']['company_jp'], $res['Company']['company_en']) . " (" . $this->Btn->switchLang($lang, $res['Association']['association_jp'], $res['Association']['association_en']) . " )";?>
+																</td>
+																<td>
+																	<?php echo $this->Btn->switchLang($lang, $res['InterviewResultAlias']['result_jp'],$res['InterviewResultAlias']['result_en']);?>
+																</td>
+															</tr>
 														<?php endforeach; ?>
 													<?php endif; ?>
 												</tbody>
 											</table>
 										</div>
-									</div>
+
 								</div>
 								<div class="tab-pane fade" id="tab-finance">
 									<div class="main-box clearfix">
@@ -2158,14 +2133,14 @@
 																			<label for="payScheduleDate"><?= __('Expected Pay Date') ?></label>
 																			<div class="input-group">
 																				<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-																				<input type="date" name='data[TraineeExpense][expected_date]' class="form-control maxW200" id="" >
+																				<input type="date" name='data[TraineeExpense][expected_date]' class="form-control maxW200" id="" required="" >
 																			</div>
 																		</div>
 																		<div class="form-group">
 																			<label for="paySheduleAmount"><?= __('Expected Price') ?></label>
 																			<div class="input-group">
 																				<span class="input-group-addon">$</span>
-																				<input type="number" name='data[TraineeExpense][expected_price]' class="form-control maxW200" id="paySheduleAmount" size="5">
+																				<input type="number" name='data[TraineeExpense][expected_price]' class="form-control maxW200" id="paySheduleAmount" size="5"  required="">
 																			</div>
 																		</div>
 																		<button type="submit" class="btn btn-primary"><?= __('Add') ?></button>
@@ -2173,20 +2148,6 @@
 																	</div>
 																</div>
 															</div>
-															<!-- <div class="col-lg-6 col-md-6 col-sm-6">
-																<div class="main-box">
-																	<header class="main-box-header clearfix">
-																		<h2>Pay Record</h2>
-																	</header>
-																	<div class="main-box-body clearfix">
-																		<div class="form-group">
-																			<p>必要支払い金額: $5000</p>
-																			<p>支払い済み金額: $500</p>
-																			<p>残額: <span class="red">$4500</span></p>
-																		</div>
-																	</div>
-																</div>
-															</div> -->
 
 															<div class="table-responsive col-lg-12 col-md-12 col-sm-12 maxW800">
 																<table class="table table-bordered finance">
@@ -2212,7 +2173,7 @@
 																					<div class="row">
 																					<div class="col-lg-4 col-md-4 col-sm-4">
 																						<label><?= __('Pay Date')?></label>
-																						<?php echo $this->form->date('TraineeExpense.pay_date', array(
+																						<?php echo $this->Form->date('TraineeExpense.pay_date', array(
 																							'label' => false,
 																							'class' => 'form-control maxW200 chk expense-'.$expense['TraineeExpense']['id'],
 																							'value' => $expense['TraineeExpense']['pay_date'],
@@ -2220,7 +2181,7 @@
 																							));?>
 																					</div>
 																					<div class="col-lg-3 col-md-3 col-sm-3">
-																						<?php echo $this->form->input('TraineeExpense.pay_price', array(
+																						<?php echo $this->Form->input('TraineeExpense.pay_price', array(
 																							'label' => __('Price($)'),
 																							'type' => 'number',
 																							'class' => 'form-control maxW100 chk expense-'.$expense['TraineeExpense']['id'],
@@ -2291,7 +2252,7 @@
 																					<div class="col-lg-12 col-md-12 col-sm-12">
 																						<div class="form-group">
 																							<label for=""><?= __('Pay Month') ?></label>
-																							<input type="month" name="data[TraineeMicrofinanceRecord][pay_month]" class="form-control" id="TraineeMicrofinanceRecordPayMonthMonth" style="width:180px">
+																							<input type="month" name="data[TraineeMicrofinanceRecord][pay_month]" class="form-control" id="TraineeMicrofinanceRecordPayMonthMonth" style="width:180px"  required="">
 																						</div>
 																					</div>
 																					<div class="col-lg-12 col-md-12 col-sm-12">
@@ -2302,6 +2263,7 @@
 																								'type' => 'select',
 																								'class' => 'form-control maxW100',
 																								'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																								'required' => true
 																							)) ?>
 																						</div>
 																					</div>
@@ -2320,7 +2282,6 @@
 
 																<div class="col-lg-8 col-md-8 col-sm-8">
 																	<div class="row">
-
 																		<div class="col-lg-6 col-md-6 col-sm-6 maxW300">
 																			<div class="main-box">
 																				<header class="main-box-header clearfix">
@@ -2484,103 +2445,90 @@
 								</div>
 								<div class="tab-pane fade" id="tab-chat">
 									<div class="conversation-wrapper">
-										<div class="conversation-content">
-											<div class="conversation-inner">
-												<div class="conversation-item item-right clearfix">
-													<!-- <div class="conversation-user">
-														<img src="img/samples/kunis.png" alt=""/>
-													</div> -->
-													<div class="conversation-body">
-														<div class="name">
-															期待していること
-														</div>
-														<div class="time hidden-xs">
-															12/07/2015
-														</div>
-														<div class="text">
-															にほんにいったら、おいしいごはんをたくさんたべて、かわいいおんなひとをたくさんたべて、しごとをがんばりたいです。
-														</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 maxW400">
+											<div class="main-box">
+												<div class="main-box-body clearfix">
+													<div class="conversation-new-message">
+														<?php echo $this->Form->create('TraineeVoice', array(
+															'action' => 'addAjax',
+															'class' => 'voice_form'
+														)) ?>
+															<div class="form-group">
+																<?php echo $this->Form->input('title_en', array(
+																	'class' => 'form-control title_en',
+																	'label' => __('Title'),
+																	'required' => true,
+																)) ?>
+															</div>
+															<div class="form-group">
+																<label for=""><?= __('Trainee\'s Voice') ?></label>
+																<?php echo $this->Form->textarea('voice_en', array(
+																	'class' => 'form-control voice_en',
+																	'label' => false,
+																	'rows' => 4,
+																	'required' => true
+																)) ?>
+															</div>
+															<?php echo $this->Form->hidden('trainee_id', array(
+																'value' => $this->request->data['Trainee']['id']
+															)); ?>
+															<div class="clearfix">
+																<button type="button" class="btn btn-primary pull-right voice_btn"><?= __('Add') ?></button>
+															</div>
+														<?php echo $this->Form->end(); ?>
 													</div>
 												</div>
-												<div class="conversation-item item-right clearfix">
-													<!-- <div class="conversation-user">
-														<img src="img/samples/kunis.png" alt=""/>
-													</div> -->
-													<div class="conversation-body">
-														<div class="name">
-															不安なこと
-														</div>
-														<div class="time hidden-xs">
-															12/07/2015
-														</div>
-														<div class="text">
-															日本人はわたしをやさしいかわからないですから不安です。また、わたしは日本語を話せないですので、もしわたしがこまったとき、たすけてくれる友だちがいないかもしれません。またかわいいおんなひとにお金をとられるかも知れないですので困ります。
-														</div>
-													</div>
-												</div>
-												<!-- <div class="conversation-item item-left clearfix">
-													<div class="conversation-user">
-														<img src="img/samples/ryan.png" alt=""/>
-													</div>
-													<div class="conversation-body">
-														<div class="name">
-															Ryan Gossling
-														</div>
-														<div class="time hidden-xs">
-															September 21, 2013 18:28
-														</div>
-														<div class="text">
-															I don't think they tried to market it to the billionaire, spelunking,
-															base-jumping crowd.
-														</div>
-													</div>
-												</div> -->
-												<div class="conversation-item item-right clearfix">
-													<!-- <div class="conversation-user">
-														<img src="img/samples/kunis.png" alt=""/>
-													</div> -->
-													<div class="conversation-body">
-														<div class="name">
-															日本に行ってよかったこと
-														</div>
-														<div class="time hidden-xs">
-															12/05/2016
-														</div>
-														<div class="text">
-															私は日本へ技能実習生として採用頂き、縫製に関わる技術は元より、日本国民固有の改善への飽くなき探究心に触れ、また人と人との調和を大切にする心とそれに基づく独特な言動に深く感銘を受けました。祖国カンボジアを出国するときに抱えていた数多くの不安がありましたが、現地の受入企業で働く方々、街の警察官、道行く知らない人たち一人一人が優しく手助けをしてくださったので、安心安全に日々を過ごすことができました。
-														</div>
-													</div>
-												</div>
-												<div class="conversation-item item-right clearfix">
-													<!-- <div class="conversation-user">
-														<img src="img/samples/kunis.png" alt=""/>
-													</div> -->
-													<div class="conversation-body">
-														<div class="name">
-															日本に行って困ったこと
-														</div>
-														<div class="time hidden-xs">
-															12/05/2016
-														</div>
-														<div class="text">
-															上記には日本国最高バンザイという旨書きましたけどぶっちゃけ日本最悪でした。マジ給料未払いのときとかあったし、職場の人は明らか差別的な目で見てくるし、全然日本語教えてくれないし、てか「家の上にバナナがあります」とか使うとこなかったんですけどｗｗまあ冗談は置いておいて、一番困ったのが冬がむちゃくちゃ寒いのに洋服が高すぎて買えなかったことと、本当に言葉が通じなくて上司や先輩にたくさん迷惑をかけたので、次に日本へ行く人は、マジでホントちゃんと日本語勉強しといた方がいいよ。日本行ってから欝気味の連れとか結構いてマジ半端なかったからね。
-														</div>
-													</div>
-												</div>
-
 											</div>
 										</div>
-										<div class="conversation-new-message">
-											<form>
-												<div class="form-group">
-													<textarea class="form-control" rows="2" placeholder="Enter your message..."></textarea>
+										<div class="col-lg-6 col-md-6 col-sm-6 maxW500">
+											<div class="main-box-body clearfix">
+												<div class="conversation-content">
+													<div class="conversation-inner">
+														<?php foreach ($voices as $voice) : ?>
+															<div class="conversation-item item-right clearfix">
+																<div class="conversation-body">
+																	<div class="name">
+																		<?php echo $voice['TraineeVoice']['title_en']; ?>
+																	</div>
+																	<div class="time hidden-xs">
+																		<?php echo $voice['TraineeVoice']['created']; ?>
+																		<?php echo $this->Html->link(
+																			'<i class="fa fa-pencil"></i>',
+																			array('controller' => 'trainee_voices', 'action' => 'edit',$voice['TraineeVoice']['id']),
+																			array('escape' => false, 'class' => 'table-link' )
+																		);?>
+																		<?php echo $this->Form->postlink(
+																			'<i class="fa fa-trash-o"></i>',
+																			array('controller' => 'trainee_voices', 'action' => 'delete',$voice['TraineeVoice']['id']),
+																			array('confirm' => __('Are you sure you want to delete # %s?', $voice['TraineeVoice']['id']),'escape' => false, 'class' => 'table-link red' )
+																		);?>
+																	</div>
+																	<div class="text">
+																		<?php echo $voice['TraineeVoice']['voice_en']; ?>
+																	</div>
+																</div>
+															</div>
+														<?php endforeach; ?>
+													</div>
 												</div>
 
-												<div class="clearfix">
-													<button type="submit" class="btn btn-success pull-right">Send message</button>
-												</div>
-											</form>
+														<div class="conversation-item item-right clearfix hide voice_tmp">
+															<div class="conversation-body">
+																<div class="name voice_title_en">
+
+																</div>
+																<div class="time hidden-xs voice_created">
+
+																</div>
+																<div class="text voice_en">
+
+																</div>
+															</div>
+														</div>
+											</div>
 										</div>
+
+
 									</div>
 								</div>
 							</div>
@@ -2603,6 +2551,7 @@
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 
+	//expenses ajax
 	$(function(){
 		$('.ok').on('click', function(){
 			var id = $(this).data('id');
@@ -2630,6 +2579,7 @@
 		});
 	});
 
+	//select 2
 	$(function(){
 		$('.sel_job').select2({
 			placeholder: "<?= __('Select Job') ?>",
@@ -2642,34 +2592,39 @@
 		});
 	});
 
-	//モーダルフォーム
-	$(function(){
-			$('.job_form_btn').on('click', function(){
-				var job_jp = $('#jobJp').val();
-				var job_en = $('#jobEn').val();
-				if(!job_jp ||!job_en){
-					alert("入力されていない項目があります。");
-					return ;
-				}
-				var option = '<option value="'+"lastInsertId"+'">'+job_jp+'</option>';
-				$('.sel_job').prepend(option);
-				close();
-			});
-
-			$('.btn_close').on('click', function(){
-				close();
-			});
-			function close(){
-				$('#modal-job').removeClass('md-show');
-				$('#jobJp').val("");
-				$('#jobEn').val("");
-			}
-		});
 
 	//学生Voice
 	$(document).ready(function() {
 		$('.conversation-inner').slimScroll({
 	    height: '340px'
+	  });
+	  $('.voice_btn').on('click', function(){
+			var $voice_form = $('.voice_form');
+			var url = $voice_form.attr('action');
+			var trainee_id = '<?php echo $this->request->data['Trainee']['id']; ?>';
+			var title = $voice_form.find('.title_en').val();
+			var voice = $voice_form.find('.voice_en').val();
+			$.ajax({
+				url:url,
+				type:'POST',
+				dataType:'json',
+				data: {
+					trainee_id :trainee_id,
+					title_en:title,
+					voice_en:voice
+				}, success:function(rs){
+			var $tmp = $('.voice_tmp').clone();
+					$tmp.removeClass('hide');
+					$tmp.find('.voice_title_en').text(title);
+					$tmp.find('.voice_en').text(voice);
+
+					$('.conversation-inner').prepend($tmp);
+					$voice_form.find('.title_en').val("");
+					$voice_form.find('.voice_en').val("");
+				}, error: function(){
+
+				}
+			});
 	  });
 	});
 
