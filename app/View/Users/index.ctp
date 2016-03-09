@@ -16,6 +16,7 @@
 							</h2>
 						</header>
 						<div class="main-box-body clearfix">
+						<?php echo $this->Session->flash('user_table') ?>
 							<div class="table-responsive">
 								<table id="table-sector-db" class="table table-bordered table-hover ">
 									<thead>
@@ -57,6 +58,8 @@
 						<div class="main-box-body clearfix">
 
 							<div class="users form">
+				<?php echo $this->Session->flash('add_user'); ?>
+
 							<?php echo $this->Form->create('User', array('action' => 'add')); ?>
 
 								<div class="form-group">
@@ -64,13 +67,17 @@
 										'class' => 'form-control',
 										'value' => "",
 										'placeholder' => 'Enter Username',
+										'required' => true,
+										'error' => false
 									));?>
+									<?php echo $this->Form->error('User.username'); ?>
 								</div>
 								<div class="form-group">
 									<?php echo $this->Form->input('password', array(
 										'class' => 'form-control',
 										'value' => "",
-										'placeholder' => 'Enter Password'
+										'placeholder' => 'Enter Password',
+										'required' => true
 									));?>
 								</div>
 								<div class="form-group">
@@ -98,6 +105,7 @@
 							</h2>
 						</header>
 						<div class="main-box-body clearfix">
+						<?php echo $this->Session->flash('role_table'); ?>
 							<div class="table-responsive">
 								<table id="table-db" class="table table-bordered table-hover ">
 									<thead>
@@ -134,6 +142,8 @@
 						</header>
 						<div class="main-box-body clearfix">
 							<div class="roles form">
+				<?php echo $this->Session->flash('add_role'); ?>
+
 								<?php echo $this->Form->create('Role', array('action' => 'add')); ?>
 									<div class="form-group">
 										<?php echo $this->Form->input('role', array(
@@ -150,12 +160,14 @@
 					</div>
 				</div>
 
+<?php echo $this->Session->flash(); ?>
 
 <?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 	$(function(){
 		$('.md-modal').remove();
-		$('input').each(function(){
-			$(this).val("");
-		});
+		$('#UserUsername').val("");
+		$('#UserPassword').val("");
+
+		$('.alert').fadeOut(5000);
 	});
 <?php $this->Html->scriptEnd(); ?>

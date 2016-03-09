@@ -80,6 +80,8 @@ class Commune extends AppModel {
 		return $this->find('list', $options);
 	}
 
+
+
 /**
  * belongsTo associations
  *

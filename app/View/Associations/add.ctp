@@ -15,6 +15,7 @@
 						<div class="main-box-body clearfix">
 							<header class="main-box-header clearfix">
 							</header>
+							<?php echo $this->Session->flash() ?>
 							<?php echo $this->Form->create('Association', array(
 								'action' => 'add',
 								'class' => 'form_association_register',
@@ -28,7 +29,7 @@
 										'type' => 'text',
 										'class' => 'form-control maxW400',
 										'placeholder' => __('Association Name in Japanese'),
-										'required' => true
+										'required' => true,
 									)); ?>
 								</div>
 								<div class="form-group">
@@ -112,7 +113,7 @@
 										'style' => array("width:200px"),
 										'div' => false
 									)); ?>
-									<button type="button" id="" class="md-trigger btn btn-primary" data-modal="modal-sector"><i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Sector') ?></button>
+
 								</div>
 
 								<button type="submit" class="btn btn-default pull-right"><i class=""></i> <?= __('Save') ?></button>

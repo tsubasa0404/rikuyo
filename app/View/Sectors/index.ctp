@@ -6,9 +6,9 @@
 					</div>
 				</div>
 			</div>
-
+<?php echo $this->Session->flash(); ?>
 			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="col-lg-6 col-md-6 col-sm-6 maxW500">
 					<div class="main-box">
 						<header class="main-box-header clearfix">
 							<h2><?= __('Sector List') ?>
@@ -53,7 +53,7 @@
 													));?>
 												</td>
 												<td>
-													<div class="actions">
+													<div class="actions text-center">
 														<?php echo $this->Form->postlink(
 															'<i class="fa fa-trash-o"></i>',
 															array('controller' => 'sectors', 'action' => 'update_delete_flag',$sector['Sector']['id']),
@@ -103,6 +103,7 @@
 								<table id="table-job-db" class="table table-bordered table-hover ">
 									<thead>
 										<tr>
+											<th><?= __('Sector') ?></th>
 											<th><?= __('Japanese') ?></th>
 											<th><?= __('English') ?></th>
 											<th></th>
@@ -111,7 +112,10 @@
 									<tbody>
 										<?php foreach ($jobs as $job) : ?>
 											<tr id="<?php echo $job['Job']['id'];?>" data-id="<?php echo $job['Job']['id'];?>">
-												<td class="td_first_block">
+												<td class="td_first_block text-center">
+													<?php echo $this->Btn->switchLang($lang, $job['Sector']['sector_jp'], $job['Sector']['sector_en']) ?>
+												</td>
+												<td>
 													<?php echo $this->Form->input('job_jp', array(
 														'value' => $job['Job']['job_jp'],
 														'class' => "on_change_input form-control jp-".$job['Job']['id'],
@@ -134,7 +138,7 @@
 													));?>
 												</td>
 												<td>
-													<div class="actions">
+													<div class="actions  text-center">
 														<?php echo $this->Form->postlink(
 															'<i class="fa fa-trash-o"></i>',
 															array('controller' => 'jobs', 'action' => 'update_delete_flag',$job['Job']['id']),
@@ -184,6 +188,8 @@
 
 			<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 				$(function(){
+					$('.alert').fadeOut(5000);
+
 					$('.on_change_input').onChangeSubmit();
 				});
 			<?php $this->Html->scriptEnd(); ?>

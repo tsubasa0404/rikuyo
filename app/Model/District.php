@@ -24,6 +24,7 @@ class District extends AppModel {
 	}
 
 
+
 /**
  * belongsTo associations
  *

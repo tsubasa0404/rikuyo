@@ -32,6 +32,8 @@ class InterviewResult extends AppModel {
 		return $this->find('list', $options);
 	}
 
+
+
 /**
  * hasMany associations
  *

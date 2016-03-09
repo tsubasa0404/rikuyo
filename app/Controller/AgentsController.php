@@ -33,22 +33,6 @@ class AgentsController extends AppController {
 		$this->set(compact('agents', 'lang'));
 	}
 
-	public function update_delete_flag($id = null){
-		if(!$this->Agent->exists($id)){
-			throw new NotFoundException(__('You cannot delete this'));
-		}
-		if($this->request->is(array('post', 'put'))){
-			$this->request->data = array(
-				'id' => $id,
-				'flag' => '1'
-				);
-			if($this->Agent->save($this->request->data)){
-				return $this->redirect($this->referer());
-			} else {
-				$this->Session->setFlash(__('You cannot delete this.'));
-			}
-		}
-	}
 
 /**
  * view method
@@ -75,25 +59,25 @@ class AgentsController extends AppController {
 		$lang = $this->__setLang();
 		$option_sectors = $this->Sector->optionSectors($lang);
 
-
 		$districts = $this->Commune->formatPlacesToJson('district');
 		$communes = $this->Commune->formatPlacesToJson('commune');
 
 		$this->set('_serialize', 'districts');
 		$this->set('_serialize', 'communes');
-		$this->set(compact('option_sectors','districts', 'communes'));
+		$this->set(compact('option_sectors','districts', 'communes', 'lang'));
 
 		if ($this->request->is('post')) {
-
-			$sector_array = implode(',', $this->request->data['Agent']['sector']);
-			$this->request->data['Agent']['sector'] = $sector_array;
+			if($this->request->data['Agent']['sector']){
+				$sector_array = implode(',', $this->request->data['Agent']['sector']);
+				$this->request->data['Agent']['sector'] = $sector_array;
+			}
 			$this->Agent->create();
 
 			if ($this->Agent->save($this->request->data)) {
-				$this->Session->setFlash(__('The agent has been saved.'));
+				$this->Session->setFlash(__('The agent has been saved.'), 'success_flash');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The agent could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The agent could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 	}
@@ -101,16 +85,17 @@ class AgentsController extends AppController {
 	public function update() {
 
 		if ($this->request->is('post')) {
+			if( $this->request->data['Agent']['sector']){
+				$sector_array = implode(',', $this->request->data['Agent']['sector']);
+				$this->request->data['Agent']['sector'] = $sector_array;
+			}
 
-			$sector_array = implode(',', $this->request->data['Agent']['sector']);
-			$this->request->data['Agent']['sector'] = $sector_array;
-			$this->Agent->create();
 
 			if ($this->Agent->save($this->request->data)) {
-				$this->Session->setFlash(__('The agent has been saved.'));
+				$this->Session->setFlash(__('The agent has been changed.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The agent could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The agent could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 	}
@@ -143,7 +128,7 @@ class AgentsController extends AppController {
       $option_districts = $this->District->optionDistrict();
       $option_communes  = $this->Commune->optionCommune();
 			$this->request->data = $this->Agent->find('first', $options);
-			$this->set(compact('option_sectors', 'option_provinces', 'option_districts', 'option_communes'));
+			$this->set(compact('option_sectors', 'option_provinces', 'option_districts', 'option_communes', 'lang'));
 
 			//Select2用住所リスト
 			$districts = $this->Commune->formatPlacesToJson('district');
@@ -202,4 +187,23 @@ class AgentsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+		public function update_delete_flag($id = null){
+		if(!$this->Agent->exists($id)){
+			throw new NotFoundException(__('You cannot delete this'));
+		}
+		if($this->request->is(array('post', 'put'))){
+			$this->request->data = array(
+				'id' => $id,
+				'flag' => '1'
+				);
+			if($this->Agent->save($this->request->data)){
+				$this->Session->setFlash(__('The agent has been deleted.'), 'success_flash');
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('You cannot delete this.'), 'error_flash');
+			}
+		}
+	}
+
 }

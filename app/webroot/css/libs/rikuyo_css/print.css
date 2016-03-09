@@ -1,0 +1,35 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print{
+  #new-page{
+    page-break-before:always;
+  }
+  .no-print{
+    display: none;
+  }
+  #debug-kit-toolbar{
+    display: none;
+  }
+  .print-area{
+    display: normal;
+  }
+
+  .jitcoBox{
+    font-size:16px;
+    background-color: #000000;
+    color:#FFFFFF;
+    line-height:1.3;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .circle{
+      border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
+    border:solid 1px #000000;
+  }
+}

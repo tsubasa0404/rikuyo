@@ -21,6 +21,8 @@ class CommunesController extends AppController {
  * @return void
  */
 	public function index() {
+		$this->__setLang();
+		$this->set(compact('lang'));
 		$this->Commune->recursive = 0;
 		$this->set('communes', $this->Paginator->paginate());
 	}

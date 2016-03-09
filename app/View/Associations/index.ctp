@@ -6,7 +6,7 @@
 					</div>
 				</div>
 			</div>
-
+<?php echo $this->Session->flash(); ?>
 			<div class="row">
 				<div class="col-lg-12 maxW900">
 					<div class="main-box clearfix">
@@ -86,6 +86,8 @@
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 		$(function(){
 			$(document).ready(function() {
+				$('.alert').fadeOut(5000);
+
 				$('#table-association-db').dataTable({
 					"bInfo":false,
 				});

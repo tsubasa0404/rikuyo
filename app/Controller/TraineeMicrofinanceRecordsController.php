@@ -13,7 +13,7 @@ class TraineeMicrofinanceRecordsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'RequestHandler');
 
 /**
  * index method
@@ -60,6 +60,51 @@ class TraineeMicrofinanceRecordsController extends AppController {
 		$this->set(compact('trainees', 'statuses'));
 	}
 
+	public function addAjax() {
+	  $this->autoRender = false;
+	  if($this->RequestHandler->isAjax()){
+	    Configure::write('debug', 0);
+	   }
+	  if($this->request->is('ajax')){
+	    $this->request->data['TraineeMicrofinanceRecord']['id'] = $_POST['id'];
+	    $this->request->data['TraineeMicrofinanceRecord']['trainee_id'] = $_POST['trainee_id'];
+	    $this->request->data['TraineeMicrofinanceRecord']['pay_month'] = $_POST['pay_month'];
+	    $this->request->data['TraineeMicrofinanceRecord']['status_id'] = $_POST['status_id'];
+	    $this->request->data['TraineeMicrofinanceRecord']['status_id'] = $_POST['status_id'];
+	    $this->request->data['TraineeMicrofinanceRecord']['note'] = $_POST['note'];
+	    $this->TraineeMicrofinanceRecord->create();
+	    if ($this->TraineeMicrofinanceRecord->save($this->request->data)) {
+	      echo json_encode($this->TraineeMicrofinanceRecord->getLastInsertID());
+	    } else {
+	    }
+	  }
+	}
+
+	public function updateAjax($id = null) {
+	  $this->autoRender = false;
+	  if($this->RequestHandler->isAjax()){
+	    Configure::write('debug', 0);
+	   }
+	  if($this->request->is('ajax')){
+	    $this->request->data['TraineeMicrofinanceRecord']['id'] = $_POST['id'];
+	    switch ($_POST['column']) {
+	    	case 'status_id':
+	    		$this->request->data['TraineeMicrofinanceRecord']['status_id'] = $_POST['val'];
+	    		break;
+    		case 'note':
+	    		$this->request->data['TraineeMicrofinanceRecord']['note'] = $_POST['val'];
+    			break;
+	    	default:
+	    		break;
+	    }
+	    if ($this->TraineeMicrofinanceRecord->save($this->request->data)) {
+	      return true;
+	    } else {
+	    	return true;
+	    }
+	  }
+	}
+
 /**
  * edit method
  *
@@ -73,10 +118,10 @@ class TraineeMicrofinanceRecordsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->TraineeMicrofinanceRecord->save($this->request->data)) {
-				$this->Session->setFlash(__('The trainee microfinance record has been saved.'));
+				$this->Session->setFlash(__('The trainee microfinance record has been saved.'), 'success_flash');
 				return $this->redirect(array('controller' => 'trainees', 'action' => 'profile', $this->request->data['TraineeMicrofinanceRecord']['trainee_id']));
 			} else {
-				$this->Session->setFlash(__('The trainee microfinance record could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The trainee microfinance record could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('TraineeMicrofinanceRecord.' . $this->TraineeMicrofinanceRecord->primaryKey => $id));
@@ -104,9 +149,9 @@ class TraineeMicrofinanceRecordsController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->TraineeMicrofinanceRecord->delete()) {
-			$this->Session->setFlash(__('The trainee microfinance record has been deleted.'));
+			$this->Session->setFlash(__('The trainee microfinance record has been deleted.'), 'success_flash');
 		} else {
-			$this->Session->setFlash(__('The trainee microfinance record could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The trainee microfinance record could not be deleted. Please, try again.'), 'error_flash');
 		}
 		return $this->redirect($this->referer());
 	}

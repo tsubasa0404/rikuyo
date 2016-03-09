@@ -17,6 +17,7 @@ class AssociationsController extends AppController {
 	public $uses = array(
 		'Association',
 		'AssociationDocument',
+		'AssociationExpense',
 		'Company',
 		'Sector',
 		'DocFolder',
@@ -40,22 +41,6 @@ class AssociationsController extends AppController {
 
 	}
 
-	public function update_delete_flag($id = null){
-		if(!$this->Association->exists($id)){
-			throw new NotFoundException(__('You cannot delete this'));
-		}
-		if($this->request->is(array('post', 'put'))){
-			$this->request->data = array(
-				'id' => $id,
-				'flag' => '1'
-				);
-			if($this->Association->save($this->request->data)){
-				return $this->redirect($this->referer());
-			} else {
-				$this->Session->setFlash(__('You cannot delete this.'));
-			}
-		}
-	}
 
 	public function select($id = null) {
 		if (!$this->Association->exists($id)) {
@@ -113,32 +98,34 @@ class AssociationsController extends AppController {
 		$this->set(compact('option_sectors'));
 
 		if ($this->request->is('post')) {
-
 			$sector_array = implode(',', $this->request->data['Association']['sector']);
 			$this->request->data['Association']['sector'] = $sector_array;
+
+			$this->Association->validates();
 			$this->Association->create();
 
 			if ($this->Association->save($this->request->data)) {
-				$this->Session->setFlash(__('The association has been saved.'));
+				$this->Session->setFlash(__('The association has been saved.'), 'success_flash', "");
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The association could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The association could not be saved. Please, try again.'), 'error_flash', "");
 			}
 		}
 	}
 
 	public function sectorAdd() {
 		if ($this->request->is('post')) {
-
-			$sector_array = implode(',', $this->request->data['Association']['sector']);
-			$this->request->data['Association']['sector'] = $sector_array;
+			if($this->request->data['Association']['sector']){
+				$sector_array = implode(',', $this->request->data['Association']['sector']);
+				$this->request->data['Association']['sector'] = $sector_array;
+			}
 			$this->Association->create();
 
 			if ($this->Association->save($this->request->data)) {
-				$this->Session->setFlash(__('The association has been saved.'));
+				$this->Session->setFlash(__('The association has been changed.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The association could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The association could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 	}
@@ -154,10 +141,10 @@ class AssociationsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Association->save($this->request->data)) {
-				$this->Session->setFlash(__('The association has been saved.'));
+				$this->Session->setFlash(__('The association has been changed.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The association could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The association could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 			$this->Association->recursive = -1;
@@ -175,7 +162,10 @@ class AssociationsController extends AppController {
 			$folders = $this->AssociationDocument->selectedFolders($id);
 			$documents = $this->AssociationDocument->selectedDocuments($id);
 
-			$this->set(compact('option_sectors', 'companies', 'option_sectors', 'lang', 'documents', 'folders'));
+			//管理費一覧取得
+			$expenses = $this->AssociationExpense->expenses($id);
+
+			$this->set(compact('option_sectors', 'companies', 'option_sectors', 'lang', 'documents', 'folders', 'expenses'));
 		}
 	}
 
@@ -217,10 +207,27 @@ class AssociationsController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Association->delete()) {
-			$this->Session->setFlash(__('The association has been deleted.'));
+			$this->Session->setFlash(__('The association has been deleted.'), 'success_flash');
 		} else {
 			$this->Session->setFlash(__('The association could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+	public function update_delete_flag($id = null){
+		if(!$this->Association->exists($id)){
+			throw new NotFoundException(__('You cannot delete this'));
+		}
+		if($this->request->is(array('post', 'put'))){
+			$this->request->data = array(
+				'id' => $id,
+				'flag' => '1'
+				);
+			if($this->Association->save($this->request->data)){
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('You cannot delete this.'));
+			}
+		}
 	}
 }

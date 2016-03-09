@@ -83,31 +83,58 @@ class Company extends AppModel {
 		//企業と組織の多次元連想配列から、
 		//企業idと企業名(組合名)の2次元連想配列を作る
 		$raw_options = $this->__getComAsoArray();
-
-		if($lang=='ja'){
-			foreach($raw_options as $opt){
-				$associative_array[] = array(
-					$opt['Company']['id'], $opt['Company']['company_jp']."(".$opt['Asso']['association_jp'].")");
-			}
-		} else {
-			foreach($raw_options as $opt){
-				$associative_array[] = array(
-					$opt['Company']['id'], $opt['Company']['company_en']."(".$opt['Asso']['association_en'].")");
-			}
-		}
-		return $associative_array;
+    if($raw_options){
+  		if($lang=='ja'){
+  			foreach($raw_options as $opt){
+  				$associative_array[] = array(
+  					$opt['Company']['id'], $opt['Company']['company_jp']."(".$opt['Asso']['association_jp'].")");
+  			}
+  		} else {
+  			foreach($raw_options as $opt){
+  				$associative_array[] = array(
+  					$opt['Company']['id'], $opt['Company']['company_en']."(".$opt['Asso']['association_en'].")");
+  			}
+  		}
+  		return $associative_array;
+    }
+    return $associative_array = array();
 	}
 
 	public function __optionComAso($lang){
 		//2次元連想配列から2次元配列に整形する。
 		$associative_array = $this->__setTwoDimensionalArray($lang);
-		foreach($associative_array as $arr){
-			$key = $arr[0];
-			$val = $arr[1];
-		 $com_aso_options[$key] = $val;
-		}
-		return $com_aso_options;
+    if($associative_array){
+
+  		foreach($associative_array as $arr){
+  			$key = $arr[0];
+  			$val = $arr[1];
+  		 $com_aso_options[$key] = $val;
+  		}
+  		return $com_aso_options;
+    }
+    return $com_aso_options = array();
 	}
+
+	public $validate = array(
+    'company_en' => array(
+      'alphaNumeric' => array(
+        'rule' => 'alphaNumeric', //半角英数字のみ
+        'message' => 'Only Alphabet and Number is valid'
+        )
+     	),
+    'postcode' => array(
+      'numeric' => array(
+        'rule' => 'numeric', //数字のみ
+        'message' => 'Only number is valid. If using "-", please remove it', //数字のみ
+        ),
+      'custom' => array(
+      	'rule' => array('custom', "/^[0-9]+$/"),
+      	'message' => 'Only number is valid.'
+      	)
+    	)
+  );
+
+
 /**
  * belongsTo associations
  *

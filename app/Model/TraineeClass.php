@@ -6,4 +6,6 @@ App::uses('AppModel', 'Model');
  */
 class TraineeClass extends AppModel {
 
+
+
 }

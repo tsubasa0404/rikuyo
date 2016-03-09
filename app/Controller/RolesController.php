@@ -47,12 +47,15 @@ class RolesController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			$this->Role->validates();
 			$this->Role->create();
 			if ($this->Role->save($this->request->data)) {
-				$this->Session->setFlash(__('The role has been saved.'));
+				$this->Session->setFlash(__('The role has been saved.'), 'success_flash', "", 'add_role');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The role could not be saved. Please, try again.'));
+
+				$this->Session->setFlash(__('The role could not be saved. Please try again.'),'error_flash',"" ,'add_role');
+					return $this->redirect($this->referer());
 			}
 		}
 	}
@@ -95,10 +98,10 @@ class RolesController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Role->delete()) {
-			$this->Session->setFlash(__('The role has been deleted.'));
+
 		} else {
-			$this->Session->setFlash(__('The role could not be deleted. Please, try again.'));
+
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer());
 	}
 }

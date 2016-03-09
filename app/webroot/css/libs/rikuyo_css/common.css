@@ -2,9 +2,14 @@
 
 body {
 	font-size: 12px;
+  font-family: 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif
 }
+h1, h2, h3, h4, h5{
+  font-family: 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif
+}
+
 #header-navbar a#logo img{
-	background: white;
+	background: transparent;
 }
 #header-navbar .nav > li >a {
   font-size:1.2em !important;
@@ -156,8 +161,40 @@ td.td_first_block:first-child{
 	opacity:0.8;
 }
 
+
+/*印刷用*/
+button.print_btn{
+  position:relative;
+  width: 45px;
+  height: 25px;
+}
+.print_btn a{
+  position:absolute;
+  top: 3px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+.print-area{
+  width: 650px;
+}
+.circle{
+    border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
+
+    border:solid 1px #000000;
+  }
+
+.error-message{color:red;}
+.white{color:white !important;}
 .btn{font-size: 12px;}
 .left{float:left !important;}
+.right{float:right !important;}
 .mT20{margin-top: 20px !important;}
 .mT15{margin-top: 15px !important;}
 .mT10{margin-top: 10px !important;}
@@ -178,6 +215,7 @@ td.td_first_block:first-child{
 .maxW410{max-width: 410px !important;}
 .maxW450{max-width: 450px !important;}
 .maxW500{max-width: 500px !important;}
+.maxW550{max-width: 550px !important;}
 .maxW560{max-width: 560px !important;}
 .maxW600{max-width: 600px !important;}
 .maxW700{max-width: 700px !important;}

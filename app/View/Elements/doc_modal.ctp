@@ -293,7 +293,6 @@
 						'label' => false,
 						'type' => 'select',
 						'class' => 'form-control init',
-						'options' => $option_documents,
 						'empty' => true,
 						'required' => true
 					)) ?>
@@ -324,7 +323,7 @@
 				<?php echo $this->Form->hidden('sub_folder_id', array('class'=> 'upload-document-sub-folder-id')) ?>
 				<?php echo $this->Form->hidden('flag', array('value' => 0, 'class' => 'delete-sub-folder-flag')) ?>
 				<div class="form-group">
-					<label for="">Note</label>
+					<label for=""><?= __('Note')?></label>
 					<?php echo $this->Form->input('note', array(
 						'label' => false,
 						'class' => 'form-control init',

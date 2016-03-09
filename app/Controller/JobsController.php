@@ -49,10 +49,10 @@ class JobsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Job->create();
 			if ($this->Job->save($this->request->data)) {
-				$this->Session->setFlash(__('The job has been saved.'));
+				$this->Session->setFlash(__('The job has been saved.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The job could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The job could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 	}
@@ -87,10 +87,10 @@ class JobsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Job->save($this->request->data)) {
-				$this->Session->setFlash(__('The job has been saved.'));
+				$this->Session->setFlash(__('The job has been saved.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The job could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The job could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('Job.' . $this->Job->primaryKey => $id));
@@ -112,9 +112,9 @@ class JobsController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Job->delete()) {
-			$this->Session->setFlash(__('The job has been deleted.'));
+			$this->Session->setFlash(__('The job has been deleted.'), 'success_flash');
 		} else {
-			$this->Session->setFlash(__('The job could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The job could not be deleted. Please, try again.'), 'error_flash');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
@@ -131,7 +131,7 @@ class JobsController extends AppController {
 			if($this->Job->save($this->request->data)){
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('You cannot delete this.'));
+				$this->Session->setFlash(__('You cannot delete this.'), 'error_flash');
 			}
 		}
 	}

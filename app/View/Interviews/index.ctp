@@ -5,7 +5,7 @@
 					</div>
 				</div>
 			</div>
-
+<?php echo $this->Session->flash(); ?>
 			<div class="row">
 				<div class="col-lg-12 maxW700">
 					<div class="main-box clearfix">
@@ -25,7 +25,7 @@
 								<thead>
 									<tr>
 										<th><a href="#"><?= __('Date') ?></a></th>
-										<th><a href="#" class="asc"><?= __('Company(Association)') ?></a></th>
+										<th><a href="#" class="asc"><?= __('Association(Company)') ?></a></th>
 										<th><a href="#" class="asc"><?= __('Candidates') ?></a></th>
 										<th><a href="#" class="asc"><?= __('Staff') ?></a></th>
 										<th><a href="#" class="asc"></a></th>
@@ -46,16 +46,17 @@
 											</td>
 											<td>
 												<?php echo $this->Html->link(
-													$this->Btn->switchLang($lang, $int['Company']['company_jp'], $int['Company']['company_en']),
-													array('controller' => 'companies', 'action' => 'profile', $int['Company']['id']),
-													array('escape' => false)
-													);?>
-												(
-												<?php echo $this->Html->link(
 													$this->Btn->switchLang($lang, $int['Association']['association_jp'], $int['Association']['association_en']),
 													array('controller' => 'associations', 'action' => 'profile', $int['Association']['id']),
 													array('escape' => false)
 													);?>
+												(
+												<?php echo $this->Html->link(
+													$this->Btn->switchLang($lang, $int['Company']['company_jp'], $int['Company']['company_en']),
+													array('controller' => 'companies', 'action' => 'profile', $int['Company']['id']),
+													array('escape' => false)
+													);?>
+
 												)
 											</td>
 											<td>
@@ -98,7 +99,7 @@
 									<thead>
 										<tr>
 											<th><a href="#"><?= __('Date') ?></a></th>
-											<th><a href="#"><?= __('Company(Association)') ?></a></th>
+											<th><a href="#"><?= __('Association(Company)') ?></a></th>
 											<th><a href="#"><?= __('Documents Status') ?></a></th>
 										</tr>
 									</thead>
@@ -115,16 +116,16 @@
 												</td>
 												<td>
 													<?php echo $this->Html->link(
-													$this->Btn->switchLang($lang, $past_int['Company']['company_jp'], $past_int['Company']['company_en']),
-													array('controller' => 'companies', 'action' => 'profile', $past_int['Company']['id']),
-													array('escape' => false)
-													);?>
-													(
-													<?php echo $this->Html->link(
 														$this->Btn->switchLang($lang, $past_int['Association']['association_jp'], $past_int['Association']['association_en']),
 														array('controller' => 'associations', 'action' => 'profile', $past_int['Association']['id']),
 														array('escape' => false)
 														);?>
+													(
+													<?php echo $this->Html->link(
+														$this->Btn->switchLang($lang, $past_int['Company']['company_jp'], $past_int['Company']['company_en']),
+														array('controller' => 'companies', 'action' => 'profile', $past_int['Company']['id']),
+														array('escape' => false)
+													);?>
 													)
 												</td>
 												<td>
@@ -161,6 +162,8 @@
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 		$(document).ready(function() {
+			$('.alert').fadeOut(5000);
+
 			$('#interview-table').dataTable({
 				"bInfo":false
 			});

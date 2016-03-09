@@ -6,8 +6,10 @@
 					</div>
 				</div>
 			</div>
+
+<?php echo $this->Session->flash() ?>
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-12 maxW700">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2 class="pull-left"><?= __('Trainee List') ?></h2>
@@ -31,18 +33,12 @@
 									<tr>
 										<th><?= __('Trainee ID') ?></th>
 										<th><?= __('') ?></th>
-										<th><?= __('Interview Date') ?></th>
 										<th data-hide="all" class=""><?= __('Birthday') ?></th>
 										<th data-hide="all" class=""><?= __('Phone') ?></th>
 										<th data-hide="all" class=""><?= __('Sex') ?></th>
-										<th><?= __('Medical Check') ?></th>
-										<th><?= __('ID Card') ?></th>
-										<th><?= __('Passport') ?></th>
-										<th><?= __('COE') ?></th>
-										<th><?= __('Immigration') ?></th>
-										<th><?= __('Labor Ministry') ?></th>
-										<th><?= __('Departure') ?></th>
-										<th><?= __('Return') ?></th>
+										<th><?= __('Personal Docs') ?></th>
+										<th><?= __('Docs Return') ?></th>
+										<th><?= __('Flight') ?></th>
 										<th></th>
 									</tr>
 								</thead>
@@ -59,16 +55,14 @@
 											<td>
 												<?php if($trainee['TraineeProfileImage'])
 													{
-														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage'][0]['img_file_name']);
+														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage'][0]['img_file_name'], array('style' => 'width:60px;height:60px;'));
 													} else {
-														echo $this->Html->image('trainee_profile_images/thumb/default.png');
+														echo $this->Html->image('trainee_profile_images/thumb/default.png', array('style' => 'width:60px;height:60px;'));
 													};?>
 													<br>
 												<?php echo $trainee['Trainee']['given_name_en']." ".$trainee['Trainee']['family_name_en'];?>
 											</td>
-											<td>
-												interview date
-											</td>
+
 											<td>
 												<?php echo $trainee['Trainee']['birthday'];?>
 											</td>
@@ -78,40 +72,38 @@
 											<td>
 												<?php echo $trainee['Trainee']['sex'];?>
 											</td>
-											<td class="text-center">
-												<?php echo $this->Btn->statusBtn($trainee['Trainee']['medicalchk_status_id']);?>
+											<td class="">
+												<p class="mB5"><span><?= __('Medical Check') ?></span>
+													<?php echo $this->Btn->statusBtn($trainee['Trainee']['medicalchk_status_id'], 'right');?></p>
+												<p class="mB5"><span><?= __('ID Card') ?></span>
+													<?php echo $this->Btn->statusBtn($trainee['Trainee']['idcard_status_id'], 'right');?></p>
+												<p class="mB5"><span><?= __('Passport') ?></span>
+													<?php echo $this->Btn->statusBtn($trainee['Trainee']['passport_status_id'], 'right');?></p>
+												<p class="mB5"><span><?= __('COE') ?></span>
+													<?php echo $this->Btn->statusBtn($trainee['Trainee']['coe_status_id'], 'right');?></p>
 											</td>
-											<td class="text-center">
-												<?php echo $this->Btn->statusBtn($trainee['Trainee']['idcard_status_id']);?>
+											<td class="">
+												<p class="mB5"><span><?= __('Immigration') ?></span>
+													<?php echo $this->Btn->statusBtn($trainee['Trainee']['immigration_status_id'], 'right');?></p>
+												<p class="mB5"><span><?= __('Labor Ministry') ?></span>
+													<?php echo $this->Btn->statusBtn($trainee['Trainee']['labor_ministry_status_id'], 'right');?></p>
 											</td>
-											<td class="text-center">
-												<?php echo $this->Btn->statusBtn($trainee['Trainee']['passport_status_id']);?>
-											</td>
-											<td class="text-center">
-												<?php echo $this->Btn->statusBtn($trainee['Trainee']['coe_status_id']);?>
-											</td>
-											<td class="text-center">
-												<?php echo $this->Btn->statusBtn($trainee['Trainee']['immigration_status_id']);?>
-											</td>
-											<td class="text-center">
-												<?php echo $this->Btn->statusBtn($trainee['Trainee']['labor_ministry_status_id']);?>
-											</td>
-											<td class="text-center">
-												<?php echo $this->Btn->statusBtn($trainee['Trainee']['departure_status_id']);?>
-												<br>
-												<?php if($trainee['Trainee']['departure_date']){echo $trainee['Trainee']['departure_date'];}else{echo $trainee['Trainee']['departure_note'];};?>
-											</td>
-											<td class="text-center">
-												<?php echo $this->Btn->statusBtn($trainee['Trainee']['return_status_id']);?>
-												<br>
-												<?php if($trainee['Trainee']['return_date']){echo $trainee['Trainee']['return_date'];}else{echo $trainee['Trainee']['return_note'];};?>
+
+											<td class="">
+												<p class="mB5"><span><?= __('Departure') ?></span>
+													<?php echo $this->Btn->statusBtn($trainee['Trainee']['departure_status_id'], 'right');?><br>
+													<?php if($trainee['Trainee']['departure_date']){echo date('m/d', strtotime($trainee['Trainee']['departure_date']));}else{echo $trainee['Trainee']['departure_note'];};?></p>
+
+												<p class="mB5"><span><?= __('Return') ?></span>
+													<?php echo $this->Btn->statusBtn($trainee['Trainee']['return_status_id'], 'right');?><br>
+													<?php if($trainee['Trainee']['return_date']){echo date('m/d', strtotime($trainee['Trainee']['return_date']));}else{echo $trainee['Trainee']['return_note'];};?></p>
 											</td>
 											<td>
 												<div class="actions">
 													<?php echo $this->Form->postlink(
 														'<i class="fa fa-trash-o"></i>',
 														array('controller' => 'trainees', 'action' => 'update_delete_flag',$trainee['Trainee']['id']),
-														array('confirm' => __('Are you sure you want to delete # %s?', $trainee['Trainee']['id']),'escape' => false, 'class' => 'table-link' )
+														array('confirm' => __('Are you sure you want to delete # %s?', $trainee['Trainee']['id']),'escape' => false, 'class' => 'table-link red' )
 													);?>
 												</div>
 											</td>
@@ -133,6 +125,7 @@
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 		$(document).ready(function() {
+			$('.alert').fadeOut(5000);
 			$('.footable').footable();
 		});
 	<?php $this->Html->scriptEnd(); ?>

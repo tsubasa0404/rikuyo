@@ -6,6 +6,7 @@
 					</div>
 				</div>
 			</div>
+<?php echo $this->Session->flash(); ?>
 			<div class="row">
 				<div class="col-lg-12 maxW900">
 					<div class="main-box clearfix">
@@ -39,7 +40,7 @@
 													<button type="button" id="" class="md-trigger btn btn-danger mrg-b-lg pull-left new-file-btn" data-modal="modal-new-file" data-folder-id="<?php echo $folder['DocFolder']['id'] ?>" data-sub-folder-id="0">
 														<i class="fa fa-file-text"></i> <?= __('Add New Document') ?>
 													</button>
-													<button type="button" id="" class="md-trigger btn btn-success mrg-b-lg pull-left mL5 upload-file-btn" data-modal="modal-upload-file" data-folder-id="<?php echo $folder['DocFolder']['id'] ?>" data-sub-folder-id="0" data-url="<?php echo $this->Html->url(array('controller' => 'doc_names', 'action' => 'ajaxGetDocOption')); ?>">
+													<button type="button" id="" class="md-trigger btn btn-success mrg-b-lg pull-left mL5 upload-file-btn" data-modal="modal-upload-file" data-folder-id="<?php echo $folder['DocFolder']['id'] ?>" data-sub-folder-id="0" data-url="<?php echo $this->Html->url(array('controller' => 'doc_names', 'action' => 'getDocOptionAjax')); ?>">
 														<i class="fa fa-cloud-upload fa-lg"></i> <?= __('Upload Document') ?>
 													</button>
 												</div>
@@ -69,17 +70,17 @@
 																	<td class="text-center">
 																		<?php foreach($this->Foreach->downloadJpn($doc['DocName']['id']) as $jpn ): ?>
 																			<?php if($jpn['DocTemplate']['img_file_name']): ?>
-																			<button type="button" class="btn btn-info"><a href="doc/doc_templates/<?php echo $jpn['DocTemplate']['img_file_name']; ?>" class="red"><i class="fa fa-cloud-download"></i> JP</a></button>
+																			<button type="button" class="btn btn-info"><a href="doc/doc_templates/<?php echo $jpn['DocTemplate']['img_file_name']; ?>" class="white"><i class="fa fa-cloud-download"></i> JP</a></button>
 																			<?php endif; ?>
 																		<?php endforeach; ?>
 																		<?php foreach($this->Foreach->downloadEng($doc['DocName']['id']) as $eng ): ?>
 																			<?php if($eng['DocTemplate']['img_file_name']): ?>
-																			<button type="button" class="btn btn-info"><a href="doc/doc_templates/<?php echo $eng['DocTemplate']['img_file_name']; ?>" class="red"><i class="fa fa-cloud-download"></i> EN</a></button>
+																			<button type="button" class="btn btn-info"><a href="doc/doc_templates/<?php echo $eng['DocTemplate']['img_file_name']; ?>" class="white"><i class="fa fa-cloud-download"></i> EN</a></button>
 																			<?php endif; ?>
 																		<?php endforeach; ?>
 																		<?php foreach($this->Foreach->downloadKhm($doc['DocName']['id']) as $khm ): ?>
 																			<?php if($khm['DocTemplate']['img_file_name']): ?>
-																			<button type="button" class="btn btn-info"><a href="doc/doc_templates/<?php echo $khm['DocTemplate']['img_file_name']; ?>" class="red"><i class="fa fa-cloud-download"></i> KH</a></button>
+																			<button type="button" class="btn btn-info"><a href="doc/doc_templates/<?php echo $khm['DocTemplate']['img_file_name']; ?>" class="white"><i class="fa fa-cloud-download"></i> KH</a></button>
 																			<?php endif; ?>
 																		<?php endforeach; ?>
 																	</td>
@@ -118,6 +119,11 @@
 																		<button type="button" id="" class="md-trigger btn btn-success mrg-b-lg pull-left mL5 upload-file-btn" data-modal="modal-upload-file" data-folder-id="<?php echo $sub['DocFolder']['id'] ?>" data-sub-folder-id="<?php echo $sub['SubFolder']['id'] ?>" data-url="<?php echo $this->Html->url(array('controller' => 'doc_names', 'action' => 'ajaxGetDocOption')); ?>">
 																			<i class="fa fa-cloud-upload fa-lg"></i> <?= __('Upload Document') ?>
 																		</button>
+																		<?php echo $this->Form->create('DocName',array(
+																			'action' => 'getDocOptionAjax',
+																			'class' => 'get_doc_option hide'
+																		)) ?>
+																		<?php echo $this->Form->end(); ?>
 																	</div>
 																	<div class="table-responsive">
 																		<table class="table table-bordered">
@@ -210,5 +216,7 @@
 	 ?>
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
-
+		$(function(){
+			$('.alert').fadeOut(5000);
+		});
 	<?php $this->Html->scriptEnd(); ?>

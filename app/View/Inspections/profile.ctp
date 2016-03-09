@@ -50,11 +50,11 @@
 								<div class="form-group">
 									<div class="row">
 										<div class="col-lg-6 col-md-6 col-sm-6">
-											<label>From</label>
+											<label><?= __('From')?></label>
 											<input type="date" name="data[Inspection][inspection_from]" class="form-control maxW200" id="InspectionFromMonth" value="<?php echo $this->request->data['Inspection']['inspection_from']; ?>">
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-6">
-											<label for="">To</label>
+											<label for=""><?= __('To')?></label>
 											<input type="date" name="data[Inspection][inspection_to]" class="form-control maxW200" id="InspectionToMonth" value="<?php echo $this->request->data['Inspection']['inspection_to']; ?>">
 										</div>
 									</div>

@@ -3,7 +3,7 @@ App::uses('AppModel', 'Model');
 
 class Trainee extends AppModel {
 
-	//学生一覧ページテーブル用データ
+	//index 学生一覧ページテーブル用データ
 	public function traineeList(){
 		$options = array('conditions' => array(
 			'Trainee.flag' => 0
@@ -32,6 +32,17 @@ class Trainee extends AppModel {
 			'order' => array('Trainee.control_no' => 'asc')
 		);
 		return $this->find('all', $options);
+	}
+
+	//add TraineeID取得
+	public function getTraineeId($base_trainee_id){
+		$options = array();
+		$options['conditions'] = array(
+			'Trainee.control_no LIKE' => '%'.$base_trainee_id.'%'
+			);
+		$options['group'] = 'Trainee.control_no';
+		$options['recursive'] = -1;
+		return $this->find('count', $options);
 	}
 
 	//Interview Candidate用学生一覧
@@ -170,7 +181,7 @@ class Trainee extends AppModel {
 			'Trainee.commune_id'=> $commune_id
 			);
 		$options['fields'] = array(
-			'Trainee.Commune_id',
+			'Trainee.commune_id',
 			'CamPlaceDic.place_en',
 			'CamPlaceDic.place_jp',
 			'CamPlaceDic.place_kh'
@@ -179,7 +190,7 @@ class Trainee extends AppModel {
 			'table' => 'communes',
 			'alias' => 'Commune',
 			'type' => 'LEFT',
-			'conditions' => 'commune.id = Trainee.commune_id'
+			'conditions' => 'Commune.id = Trainee.commune_id'
 			);
 		$options['joins'][] = array(
 			'table' => 'cambodia_place_dictionaries',
@@ -339,6 +350,17 @@ class Trainee extends AppModel {
 			);
 		return $this->find('all', $options);
 	}
+
+	public $validate = array(
+    'control_no' => array(
+      'isUnique' => array(
+        'rule' => 'isUnique',
+        'message' => 'The Trainee ID already exists.'
+        )
+      )
+  );
+
+
 /**
  * belongsTo associations
  *

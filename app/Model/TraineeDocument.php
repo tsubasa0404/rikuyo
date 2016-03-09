@@ -22,6 +22,15 @@ class TraineeDocument extends AppModel {
 				)
 			)
 		);
+	public $validate = array(
+		'img' => array(
+				'maxSize' => array(
+					'rule' => array('attachmentMaxSize', 20971520),
+					'message' => 'The Maximum File Upload Size is under 20MB. Please upload again.'
+					)
+				)
+		);
+
 
 
 /**

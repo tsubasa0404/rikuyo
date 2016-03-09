@@ -49,20 +49,19 @@ class TraineeMicrofinanceImagesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->TraineeMicrofinanceImage->create();
 
-
-			$title = $this->request->data['TraineeMicrofinanceImage']['title'];
-			$trainee_control_no = $this->request->data['TraineeMicrofinanceImage']['trainee_control_no'];
-			$org_img_file_name = $this->request->data['TraineeMicrofinanceImage']['img']['name'];
-			$ext = substr($org_img_file_name, -4);
-			$new_img_file_name = $trainee_control_no . "_" . date('Ymdhis') . $ext;
-			$this->request->data['TraineeMicrofinanceImage']['img']['name'] = $new_img_file_name;
+      $title                = $this->request->data['TraineeMicrofinanceImage']['title'];
+      $trainee_control_no   = $this->request->data['TraineeMicrofinanceImage']['trainee_control_no'];
+      $org_img_file_name    = $this->request->data['TraineeMicrofinanceImage']['img']['name'];
+      $ext                  = substr($org_img_file_name, -4);
+      $new_img_file_name    = $trainee_control_no . "_" . date('Ymdhis') . $ext;
+      $this->request->data['TraineeMicrofinanceImage']['img']['name']   = $new_img_file_name;
 
 
 			if ($this->TraineeMicrofinanceImage->save($this->request->data)) {
-				$this->Session->setFlash(__('The trainee microfinance image has been saved.'));
+				$this->Session->setFlash(__('The trainee microfinance image has been saved.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The trainee microfinance image could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The trainee microfinance image could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 		$trainees = $this->TraineeMicrofinanceImage->Trainee->find('list');
@@ -109,9 +108,9 @@ class TraineeMicrofinanceImagesController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->TraineeMicrofinanceImage->delete()) {
-			$this->Session->setFlash(__('The trainee microfinance image has been deleted.'));
+			$this->Session->setFlash(__('The trainee microfinance image has been deleted.'), 'success_flash');
 		} else {
-			$this->Session->setFlash(__('The trainee microfinance image could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The trainee microfinance image could not be deleted. Please, try again.'), 'error_flash');
 		}
 		return $this->redirect($this->referer());
 	}

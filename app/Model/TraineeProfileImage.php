@@ -30,6 +30,19 @@ class TraineeProfileImage extends AppModel {
 			)
 		);
 
+	public $validate = array(
+		'img' => array(
+				'maxSize' => array(
+					'rule' => array('attachmentMaxSize', 20971520),
+					'message' => 'The Maximum File Upload Size is under 20MB. Please upload again.'
+					),
+				'type' => array(
+					'rule' => array('attachmentContentType', array('image/jpeg', 'image/gif', 'image/png')),
+					'message' => 'You can upload only JPG, GIF or PNG files.'
+					)
+				)
+		);
+
 	public function profImg($id){
 		$options = array();
 		$options['conditions'] = array(
@@ -49,6 +62,9 @@ class TraineeProfileImage extends AppModel {
 			);
 		return $this->find('all', $options);
 	}
+
+
+
 
 /**
  * belongsTo associations

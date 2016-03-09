@@ -55,22 +55,6 @@ class InterviewsController extends AppController {
 	  }
 	}
 
-	public function update_delete_flag($id = null){
-		if(!$this->Interview->exists($id)){
-			throw new NotFoundException(__('You cannot delete this'));
-		}
-		if($this->request->is(array('post', 'put'))){
-			$this->request->data = array(
-				'id' => $id,
-				'flag' => '1'
-				);
-			if($this->Interview->save($this->request->data)){
-				return $this->redirect($this->referer());
-			} else {
-				$this->Session->setFlash(__('You cannot delete this.'));
-			}
-		}
-	}
 
 /**
  * view method
@@ -100,10 +84,10 @@ class InterviewsController extends AppController {
 
 			$this->Interview->create();
 			if ($this->Interview->save($this->request->data)) {
-				$this->Session->setFlash(__('The interview has been saved.'));
+				$this->Session->setFlash(__('The interview has been saved.'), 'success_flash');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 		$this->Company->recursive = -1;
@@ -135,10 +119,10 @@ class InterviewsController extends AppController {
 				);
 
 			if ($this->Interview->save($this->request->data)) {
-				$this->Session->setFlash(__('The interview has been saved.'));
+				$this->Session->setFlash(__('The interview has been saved.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 	}
@@ -147,10 +131,10 @@ class InterviewsController extends AppController {
 
 		if ($this->request->is('post')) {
 			if ($this->Interview->save($this->request->data)) {
-				$this->Session->setFlash(__('The interview has been saved.'));
+				$this->Session->setFlash(__('The interview has been saved.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 	}
@@ -161,10 +145,10 @@ class InterviewsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Interview->save($this->request->data)) {
-				$this->Session->setFlash(__('The interview has been saved.'));
+				$this->Session->setFlash(__('The interview has been saved.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 
@@ -199,10 +183,10 @@ class InterviewsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Interview->save($this->request->data)) {
-				$this->Session->setFlash(__('The interview has been saved.'));
+				$this->Session->setFlash(__('The interview has been saved.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 			$this->Trainee->recursive = -1;
@@ -270,7 +254,7 @@ class InterviewsController extends AppController {
 				$this->Session->setFlash(__('The interview has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The interview could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('Interview.' . $this->Interview->primaryKey => $id));
@@ -294,10 +278,28 @@ class InterviewsController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Interview->delete()) {
-			$this->Session->setFlash(__('The interview has been deleted.'));
+			$this->Session->setFlash(__('The interview has been deleted.'), 'success_flash');
 		} else {
-			$this->Session->setFlash(__('The interview could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The interview could not be deleted. Please, try again.'), 'error_flash');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function update_delete_flag($id = null){
+		if(!$this->Interview->exists($id)){
+			throw new NotFoundException(__('You cannot delete this'));
+		}
+		if($this->request->is(array('post', 'put'))){
+			$this->request->data = array(
+				'id' => $id,
+				'flag' => '1'
+				);
+			if($this->Interview->save($this->request->data)){
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('You cannot delete this.'), 'error_flash');
+			}
+		}
+	}
+
 }

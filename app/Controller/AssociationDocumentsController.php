@@ -122,7 +122,7 @@ class AssociationDocumentsController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->AssociationDocument->delete()) {
-			$this->Session->setFlash(__('The association document has been deleted.'));
+			$this->Session->setFlash(__('The association document has been removed.'), 'success_flash');
 		} else {
 			$this->Session->setFlash(__('The association document could not be deleted. Please, try again.'));
 		}

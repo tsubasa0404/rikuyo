@@ -1,0 +1,2 @@
+App::uses('DocName', 'Model');
+

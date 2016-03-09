@@ -36,51 +36,17 @@ class DocNamesController extends AppController {
 
 	}
 
-	public function update_delete_flag($id = null){
-		if(!$this->DocName->exists($id)){
-			throw new NotFoundException(__('You cannot delete this'));
-		}
-		if($this->request->is(array('post', 'put'))){
-			$this->request->data = array(
-				'id' => $id,
-				'flag' => '1'
-				);
-			if($this->DocName->save($this->request->data)){
-				return $this->redirect($this->referer());
-			} else {
-				$this->Session->setFlash(__('You cannot delete this.'));
-			}
-		}
-	}
-
-	public function ajaxGetDocOption(){
+	public function getDocOptionAjax(){
 		$this->autoRender = false;
-
 		if($this->RequestHandler->isAjax()){
-			$folder_id = $_POST['folder_id'];
-			$sub_folder_id = $_POST['sub_folder_id'];
-			var_dump($folder_id);
-			var_dump($sub_folder_id);
+    Configure::write('debug', 0);
 
-			$option_documents = $this->DocName->find('list', array(
-				'conditions' => array(
-					'DocName.folder_id' => $folder_id,
-					'DocName.sub_folder_id' => $sub_folder_id,
-					'DocName.flag' => 0,
-					),
-				'fields' => array(
-					'DocName.id',
-					'DocName.folder_id',
-					'DocName.sub_folder_id',
-					'DocName.name_jp',
-					'DocName.name_en',
-					),
-				'order' => array('DocName.id' => 'asc')
-				));
-			//$this->RequestHandler->setContent('json');
-			//$this->RequestHandler->respondAs('application/json;charset=UTF-8');
+      $folder_id     = $_GET['folder_id'];
+      $sub_folder_id = $_GET['sub_folder_id'];
 
-			return "ajax";
+			$doc_options = $this->DocName->getDocOptionAjax($folder_id, $sub_folder_id);
+
+			echo json_encode($doc_options, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
 		}
 	}
 
@@ -172,5 +138,22 @@ class DocNamesController extends AppController {
 			$this->Session->setFlash(__('The doc name could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+	public function update_delete_flag($id = null){
+		if(!$this->DocName->exists($id)){
+			throw new NotFoundException(__('You cannot delete this'));
+		}
+		if($this->request->is(array('post', 'put'))){
+			$this->request->data = array(
+				'id' => $id,
+				'flag' => '1'
+				);
+			if($this->DocName->save($this->request->data)){
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('You cannot delete this.'));
+			}
+		}
 	}
 }

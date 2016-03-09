@@ -1,10 +1,13 @@
 <div class="traineeDocuments form">
-<?php echo $this->Form->create('TraineeDocument'); ?>
+<?php echo $this->Form->create('TraineeDocument', array(
+	'type' => 'file'
+)); ?>
 	<fieldset>
 		<legend><?php echo __('Add Trainee Document'); ?></legend>
 	<?php
 		echo $this->Form->input('trainee_id');
-		echo $this->Form->input('img_file_name');
+		echo $this->Form->input('trainee_control_no', array('value' => 'T160213'));
+		echo $this->Form->file('img');
 		echo $this->Form->input('doc_name_jp');
 		echo $this->Form->input('doc_name_en');
 		echo $this->Form->input('flag');

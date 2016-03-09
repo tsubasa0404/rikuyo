@@ -17,26 +17,29 @@ class User extends AppModel {
 		'username' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Please input username.'
 			),
+			'unique' => array(
+				'rule' => 'isUnique',
+				'message' => 'This username already exists.'
+				),
+			'alphanumeric' => array(
+				'rule' => 'alphaNumeric',
+				'message' => 'Alphabet and Number is valid here.'
+				)
 		),
 		'password' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'message' => 'Please input password.',
 			),
-		),
+			'alphanumeric' => array(
+				'rule' => 'alphanumeric',
+				'message' => 'Alphabet and Number is valid here.'
+				)
+		)
 	);
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
  * belongsTo associations

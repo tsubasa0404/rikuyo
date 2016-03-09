@@ -72,19 +72,26 @@
 
       $.ajax({
         url: url,
-        type: 'POST',
-        dataType: 'json',
+        type: 'GET',
+        //dataType:'json'を削除したらAjaxGetのParserError突破...
         data: {
           folder_id: folder_id,
           sub_folder_id: sub_folder_id
         },success:function(rs){
-          rs = $.parseJSON(rs);
-          console.log(rs);
+          var obj = JSON.parse(rs); //戻り値のJson形式文字列をJSONにparseする。
+          var option ="";
+          var option_arr = "";
+          for(var i = 0; i<obj.length;i++){
+            for(j in obj[i]){
+              $('#DocTemplateDocumentNameId').append('<option value="'+obj[i][j]["id"]+'">'+obj[i][j]["name_jp"]+"("+obj[i][j]["name_en"]+")"+'</option>');
+            }
+          }
         }, error: function(XMLHttpRequest,textStatus){
-          console.log(textStatus);
         }
       });//end ajax
     });
+    //upload documentモーダルを閉じる前にselect optionを空にする。
+
 
       $('.edit_file_btn').on('click', function(){
         //書類編集ボタンクリック時
@@ -137,6 +144,8 @@
         $('.md-trigger').on('click', function(){
           $('input[name="data[DocTemplate][img]"]').val('');
           $('input.init').val('');
+          $('#DocTemplateDocumentNameId option').remove();
+          $('#DocTemplateDocumentNameId').append($("<option>"));
           folder_id = 0;
           sub_folder_id = 0;
           folder_id = $(this).data('folder-id');

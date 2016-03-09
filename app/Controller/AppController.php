@@ -53,7 +53,8 @@ class AppController extends Controller {
 
     //言語切り替えスイッチ
 		$this->__setLang();
-
+		$lang = $this->__setLang();
+		$this->set(compact('lang'));
 		//通知用データ取得
 		$this->__taskNotification();
 		$this->__expenseNotification();

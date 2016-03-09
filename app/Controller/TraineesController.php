@@ -13,7 +13,7 @@ class TraineesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'RequestHandler');
 	public $uses = array(
 		'Trainee',
 		'TraineeFamily',
@@ -35,26 +35,12 @@ class TraineesController extends AppController {
  * @return void
  */
 	public function index() {
+
 		$trainees = $this->Trainee->traineeList();
 		$this->set(compact('trainees'));
 	}
 
-	public function update_delete_flag($id = null){
-		if(!$this->Trainee->exists($id)){
-			throw new NotFoundException(__('You cannot delete this'));
-		}
-		if($this->request->is(array('post', 'put'))){
-			$this->request->data = array(
-				'id' => $id,
-				'flag' => '1'
-				);
-			if($this->Trainee->save($this->request->data)){
-				return $this->redirect($this->referer());
-			} else {
-				$this->Session->setFlash(__('You cannot delete this.'));
-			}
-		}
-	}
+
 
 /**
  * view method
@@ -79,16 +65,21 @@ class TraineesController extends AppController {
 	public function add() {
 		$this->Trainee->recursive = -1;
 		$this->Commune->recursive = -1;
+		$base_trainee_id = "T".date("ymd");
+		$trainee_idx = $this->Trainee->getTraineeId($base_trainee_id)+1;
+		$control_no = $base_trainee_id.sprintf('%02d', $trainee_idx);
+
+		$this->set(compact('base_trainee_id', 'control_no'));
 
 		if ($this->request->is('post')) {
 			$this->Trainee->create();
 
 			if ($this->Trainee->save($this->request->data)) {
 
-				$this->Session->setFlash(__('The trainee has been saved.'));
+				$this->Session->setFlash(__('The trainee has been saved.'), 'success_flash');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The trainee could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The trainee could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 
@@ -99,7 +90,6 @@ class TraineesController extends AppController {
 		$this->set(compact('districts', 'communes'));
 
 	}
-
 
 	public function profile($id = null) {
 		if (!$this->Trainee->exists($id)) {
@@ -118,10 +108,10 @@ class TraineesController extends AppController {
 			}
 
 			if ($this->Trainee->save($this->request->data)) {
-				$this->Session->setFlash(__('The Trainee has been saved.'));
+				$this->Session->setFlash(__('The Trainee has been saved.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The Trainee could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The Trainee could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 
@@ -190,6 +180,259 @@ class TraineesController extends AppController {
 		}
 	}
 
+	public function updateFlightAjax($id=null){
+		  $this->autoRender = false;
+		  if($this->RequestHandler->isAjax()){
+		    Configure::write('debug', 0);
+		   }
+		  if($this->request->is('ajax')){
+		    $this->request->data['Trainee']['id'] = $id;
+		    $this->request->data['Trainee']['departure_date'] = $_POST['departure_date'];
+		    $this->request->data['Trainee']['departure_status_id'] = $_POST['departure_status_id'];
+		    $this->request->data['Trainee']['return_date'] = $_POST['return_date'];
+		    $this->request->data['Trainee']['return_status_id'] = $_POST['return_status_id'];
+		    if ($this->Trainee->save($this->request->data)) {
+		    	return true; //戻り値を空にするとエラーでる。
+		    } else {
+		    	return false;
+		    }
+		  }
+	}
+
+	public function updateDocChkAjax($id=null){
+		  $this->autoRender = false;
+		  if($this->RequestHandler->isAjax()){
+		    Configure::write('debug', 0);
+		   }
+		  if($this->request->is('ajax')){
+		    $this->request->data['Trainee']['id'] = $id;
+		    $this->request->data['Trainee']['medicalchk_status_id'] = $_POST['medicalchk_status_id'];
+		    $this->request->data['Trainee']['medicalchk_note'] = $_POST['medicalchk_note'];
+		    $this->request->data['Trainee']['idcard_status_id'] = $_POST['idcard_status_id'];
+		    $this->request->data['Trainee']['idcard_note'] = $_POST['idcard_note'];
+		    $this->request->data['Trainee']['fb'] = $_POST['fb'];
+		    $this->request->data['Trainee']['rb'] = $_POST['rb'];
+		    $this->request->data['Trainee']['cb'] = $_POST['cb'];
+		    $this->request->data['Trainee']['passport_status_id'] = $_POST['passport_status_id'];
+		    $this->request->data['Trainee']['passport_note'] = $_POST['passport_note'];
+		    $this->request->data['Trainee']['coe_status_id'] = $_POST['coe_status_id'];
+		    $this->request->data['Trainee']['coe_note'] = $_POST['coe_note'];
+		    $this->request->data['Trainee']['immigration_status_id'] = $_POST['immigration_status_id'];
+		    $this->request->data['Trainee']['immigration_note'] = $_POST['immigration_note'];
+		    $this->request->data['Trainee']['labor_ministry_status_id'] = $_POST['labor_ministry_status_id'];
+		    $this->request->data['Trainee']['labor_ministry_note'] = $_POST['labor_ministry_note'];
+
+		    if ($this->Trainee->save($this->request->data)) {
+		    	return true; //戻り値を空にするとエラーでる。
+		    } else {
+		    	return false;
+		    }
+		  }
+	}
+
+	public function updateBasicAjax($id=null){
+		  $this->autoRender = false;
+		  if($this->RequestHandler->isAjax()){
+		    Configure::write('debug', 0);
+		   }
+		  if($this->request->is('ajax')){
+		    $this->request->data['Trainee']['id'] = $id;
+		    $this->request->data['Trainee']['id_number'] = $_POST['id_number'];
+		    $this->request->data['Trainee']['family_name_jp'] = $_POST['family_name_jp'];
+		    $this->request->data['Trainee']['family_name_en'] = $_POST['family_name_en'];
+		    $this->request->data['Trainee']['given_name_en'] = $_POST['given_name_en'];
+		    $this->request->data['Trainee']['given_name_jp'] = $_POST['given_name_jp'];
+		    $this->request->data['Trainee']['family_name_kh'] = $_POST['family_name_kh'];
+		    $this->request->data['Trainee']['given_name_kh'] = $_POST['given_name_kh'];
+		    $this->request->data['Trainee']['introduced_from'] = $_POST['introduced_from'];
+		    $this->request->data['Trainee']['sex'] = $_POST['sex'];
+		    $this->request->data['Trainee']['birthday'] = $_POST['birthday'];
+		    $this->request->data['Trainee']['married'] = $_POST['married'];
+		    $this->request->data['Trainee']['brother_cnt'] = $_POST['brother_cnt'];
+		    $this->request->data['Trainee']['brother_index'] = $_POST['brother_index'];
+		    $this->request->data['Trainee']['birthplace_province_id'] = $_POST['birthplace_province_id'];
+		    $this->request->data['Trainee']['address_jp'] = $_POST['address_jp'];
+		    $this->request->data['Trainee']['district_part_jp'] = $_POST['district_part_jp'];
+		    $this->request->data['Trainee']['province_id'] = $_POST['province_id'];
+		    $this->request->data['Trainee']['district_id'] = $_POST['district_id'];
+		    $this->request->data['Trainee']['commune_id'] = $_POST['commune_id'];
+		    $this->request->data['Trainee']['address_en'] = $_POST['address_en'];
+		    $this->request->data['Trainee']['district_part_en'] = $_POST['district_part_en'];
+		    $this->request->data['Trainee']['address_kh'] = $_POST['address_kh'];
+		    $this->request->data['Trainee']['phone'] = $_POST['phone'];
+		    $this->request->data['Trainee']['lang_others_jp'] = $_POST['lang_others_jp'];
+		    $this->request->data['Trainee']['english'] = $_POST['english'];
+		    $this->request->data['Trainee']['lang_others_en'] = $_POST['lang_others_en'];
+		    $this->request->data['Trainee']['facebook'] = $_POST['facebook'];
+
+		    if ($this->Trainee->save($this->request->data)) {
+		    	return true; //戻り値を空にするとエラーでる。
+		    } else {
+		    	return false;
+		    }
+		  }
+	}
+
+	public function updatePersonalityAjax($id=null){
+		  $this->autoRender = false;
+		  if($this->RequestHandler->isAjax()){
+		    Configure::write('debug', 0);
+		   }
+		  if($this->request->is('ajax')){
+        $this->request->data['Trainee']['id']                    = $id;
+        $this->request->data['Trainee']['height']                = $_POST['height'];
+        $this->request->data['Trainee']['weight']                = $_POST['weight'];
+        $this->request->data['Trainee']['shoe_size']             = $_POST['shoe_size'];
+        $this->request->data['Trainee']['handed']                = $_POST['handed'];
+        $this->request->data['Trainee']['eyesight_left']         = $_POST['eyesight_left'];
+        $this->request->data['Trainee']['eyesight_right']        = $_POST['eyesight_right'];
+        $this->request->data['Trainee']['color_blindness']       = $_POST['color_blindness'];
+        $this->request->data['Trainee']['blood_type']            = $_POST['blood_type'];
+        $this->request->data['Trainee']['tatoo']                 = $_POST['tatoo'];
+        $this->request->data['Trainee']['tabacco']               = $_POST['tabacco'];
+        $this->request->data['Trainee']['drink']                 = $_POST['drink'];
+        $this->request->data['Trainee']['experience_group_life'] = $_POST['experience_group_life'];
+
+
+		    if ($this->Trainee->save($this->request->data)) {
+		    	return true; //戻り値を空にするとエラーでる。
+		    } else {
+		    	return false;
+		    }
+		  }
+	}
+
+	public function updatePersonality2Ajax($id=null){
+		  $this->autoRender = false;
+		  if($this->RequestHandler->isAjax()){
+		    Configure::write('debug', 0);
+		   }
+		  if($this->request->is('ajax')){
+        $this->request->data['Trainee']['id']              = $id;
+        $this->request->data['Trainee']['face_feature_jp'] = $_POST['face_feature_jp'];
+        $this->request->data['Trainee']['face_feature_en'] = $_POST['face_feature_en'];
+        $this->request->data['Trainee']['health_jp']       = $_POST['health_jp'];
+        $this->request->data['Trainee']['health_en']       = $_POST['health_en'];
+        $this->request->data['Trainee']['good_point_jp']   = $_POST['good_point_jp'];
+        $this->request->data['Trainee']['good_point_en']   = $_POST['good_point_en'];
+        $this->request->data['Trainee']['bad_point_jp']    = $_POST['bad_point_jp'];
+        $this->request->data['Trainee']['bad_point_en']    = $_POST['bad_point_en'];
+        $this->request->data['Trainee']['hobby_jp']        = $_POST['hobby_jp'];
+        $this->request->data['Trainee']['hobby_en']        = $_POST['hobby_en'];
+        $this->request->data['Trainee']['character_jp']    = $_POST['character_jp'];
+        $this->request->data['Trainee']['character_en']    = $_POST['character_en'];
+        $this->request->data['Trainee']['specialty_jp']    = $_POST['specialty_jp'];
+        $this->request->data['Trainee']['specialty_en']    = $_POST['specialty_en'];
+        $this->request->data['Trainee']['religious_jp']    = $_POST['religious_jp'];
+        $this->request->data['Trainee']['religious_en']    = $_POST['religious_en'];
+
+
+		    if ($this->Trainee->save($this->request->data)) {
+		    	return true; //戻り値を空にするとエラーでる。
+		    } else {
+		    	return false;
+		    }
+		  }
+	}
+
+	public function updateCareerAjax($id=null){
+		  $this->autoRender = false;
+		  if($this->RequestHandler->isAjax()){
+		    Configure::write('debug', 0);
+		   }
+		  if($this->request->is('ajax')){
+        $this->request->data['Trainee']['id']              = $id;
+        $this->request->data['Trainee']['academic1_jp']     = $_POST['academic1_jp'];
+        $this->request->data['Trainee']['academic1_from']   = $_POST['academic1_from'];
+        $this->request->data['Trainee']['academic1_to']     = $_POST['academic1_to'];
+        $this->request->data['Trainee']['academic1_en']     = $_POST['academic1_en'];
+        $this->request->data['Trainee']['employ1_jp']       = $_POST['employ1_jp'];
+        $this->request->data['Trainee']['employ1_salary']   = $_POST['employ1_salary'];
+        $this->request->data['Trainee']['employ1_job']      = $_POST['employ1_job'];
+        $this->request->data['Trainee']['employ1_from']     = $_POST['employ1_from'];
+        $this->request->data['Trainee']['employ1_to']       = $_POST['employ1_to'];
+        $this->request->data['Trainee']['employ1_en']       = $_POST['employ1_en'];
+        $this->request->data['Trainee']['academic2_jp']     = $_POST['academic2_jp'];
+        $this->request->data['Trainee']['academic2_from']   = $_POST['academic2_from'];
+        $this->request->data['Trainee']['academic2_to']     = $_POST['academic2_to'];
+        $this->request->data['Trainee']['academic2_en']     = $_POST['academic2_en'];
+        $this->request->data['Trainee']['employ2_jp']       = $_POST['employ2_jp'];
+        $this->request->data['Trainee']['employ2_salary']   = $_POST['employ2_salary'];
+        $this->request->data['Trainee']['employ2_job']      = $_POST['employ2_job'];
+        $this->request->data['Trainee']['employ2_from']     = $_POST['employ2_from'];
+        $this->request->data['Trainee']['employ2_to']       = $_POST['employ2_to'];
+        $this->request->data['Trainee']['employ2_en']       = $_POST['employ2_en'];
+        $this->request->data['Trainee']['academic3_jp']     = $_POST['academic3_jp'];
+        $this->request->data['Trainee']['academic3_from']   = $_POST['academic3_from'];
+        $this->request->data['Trainee']['academic3_to']     = $_POST['academic3_to'];
+        $this->request->data['Trainee']['academic3_en']     = $_POST['academic3_en'];
+        $this->request->data['Trainee']['employ3_jp']       = $_POST['employ3_jp'];
+        $this->request->data['Trainee']['employ3_salary']   = $_POST['employ3_salary'];
+        $this->request->data['Trainee']['employ3_job']      = $_POST['employ3_job'];
+        $this->request->data['Trainee']['employ3_from']     = $_POST['employ3_from'];
+        $this->request->data['Trainee']['employ3_to']       = $_POST['employ3_to'];
+        $this->request->data['Trainee']['employ3_en']       = $_POST['employ3_en'];
+        $this->request->data['Trainee']['academic4_jp']     = $_POST['academic4_jp'];
+        $this->request->data['Trainee']['academic4_from']   = $_POST['academic4_from'];
+        $this->request->data['Trainee']['academic4_to']     = $_POST['academic4_to'];
+        $this->request->data['Trainee']['academic4_en']     = $_POST['academic4_en'];
+        $this->request->data['Trainee']['employ4_jp']       = $_POST['employ4_jp'];
+        $this->request->data['Trainee']['employ4_salary']   = $_POST['employ4_salary'];
+        $this->request->data['Trainee']['employ4_job']      = $_POST['employ4_job'];
+        $this->request->data['Trainee']['employ4_from']     = $_POST['employ4_from'];
+        $this->request->data['Trainee']['employ4_to']       = $_POST['employ4_to'];
+        $this->request->data['Trainee']['employ4_en']       = $_POST['employ4_en'];
+        $this->request->data['Trainee']['employ5_jp']       = $_POST['employ5_jp'];
+        $this->request->data['Trainee']['employ5_salary']   = $_POST['employ5_salary'];
+        $this->request->data['Trainee']['employ5_job']      = $_POST['employ5_job'];
+        $this->request->data['Trainee']['employ5_from']     = $_POST['employ5_from'];
+        $this->request->data['Trainee']['employ5_to']       = $_POST['employ5_to'];
+        $this->request->data['Trainee']['employ5_en']       = $_POST['employ5_en'];
+        $this->request->data['Trainee']['job1_id']          = $_POST['job1_id'];
+        $this->request->data['Trainee']['job1_term']        = $_POST['job1_term'];
+        $this->request->data['Trainee']['job2_id']          = $_POST['job2_id'];
+        $this->request->data['Trainee']['job2_term']        = $_POST['job2_term'];
+        if($_POST['visit_jpn'] && $_POST['visit_jpn'] == 0){
+        	$this->request->data['Trainee']['visit_jpn_from']   = "";
+        	$this->request->data['Trainee']['visit_jpn_to']     = "";
+        } else {
+	        $this->request->data['Trainee']['visit_jpn_from']   = $_POST['visit_jpn_from'];
+	        $this->request->data['Trainee']['visit_jpn_to']     = $_POST['visit_jpn_to'];
+        }
+
+
+		    if ($this->Trainee->save($this->request->data)) {
+		    	return true; //戻り値を空にするとエラーでる。
+		    } else {
+		    	return false;
+		    }
+		  }
+	}
+
+	public function updateOthersAjax($id=null){
+		  $this->autoRender = false;
+		  if($this->RequestHandler->isAjax()){
+		    Configure::write('debug', 0);
+		   }
+		  if($this->request->is('ajax')){
+        $this->request->data['Trainee']['id']                            = $id;
+        $this->request->data['Trainee']['purpose_jp']                    = $_POST['purpose_jp'];
+        $this->request->data['Trainee']['purpose_en']                    = $_POST['purpose_en'];
+        $this->request->data['Trainee']['family_in_jpn']                 = $_POST['family_in_jpn'];
+        $this->request->data['Trainee']['family_in_jpn_relationship_en'] = $_POST['family_in_jpn_relationship_en'];
+        $this->request->data['Trainee']['plan_after_return_jp']          = $_POST['plan_after_return_jp'];
+        $this->request->data['Trainee']['plan_after_return_en']          = $_POST['plan_after_return_en'];
+        $this->request->data['Trainee']['saving_money']                  = $_POST['saving_money'];
+        $this->request->data['Trainee']['status_after_return_jp']        = $_POST['status_after_return_jp'];
+        $this->request->data['Trainee']['status_after_return_en']        = $_POST['status_after_return_en'];
+
+		    if ($this->Trainee->save($this->request->data)) {
+		    	return true; //戻り値を空にするとエラーでる。
+		    } else {
+		    	return false;
+		    }
+		  }
+	}
 
 /**
  * edit method
@@ -205,10 +448,10 @@ class TraineesController extends AppController {
 		if ($this->request->is(array('post', 'put'))) {
 
 			if ($this->Trainee->save($this->request->data)) {
-				$this->Session->setFlash(__('The trainee has been saved.'));
+				$this->Session->setFlash(__('The trainee has been saved.'), 'success_flash');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The trainee could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The trainee could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('Trainee.' . $this->Trainee->primaryKey => $id));
@@ -235,10 +478,28 @@ class TraineesController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Trainee->delete()) {
-			$this->Session->setFlash(__('The trainee has been deleted.'));
+			$this->Session->setFlash(__('The trainee has been deleted.'), 'success_flash');
 		} else {
-			$this->Session->setFlash(__('The trainee could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The trainee could not be deleted. Please, try again.'), 'error_flash');
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+
+	public function update_delete_flag($id = null){
+		if(!$this->Trainee->exists($id)){
+			throw new NotFoundException(__('You cannot delete this'));
+		}
+		if($this->request->is(array('post', 'put'))){
+			$this->request->data = array(
+				'id' => $id,
+				'flag' => '1'
+				);
+			if($this->Trainee->save($this->request->data)){
+				$this->Session->setFlash(__('The trainee has been deleted.'), 'success_flash');
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('You cannot delete this.'));
+			}
+		}
 	}
 }

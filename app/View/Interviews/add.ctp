@@ -7,12 +7,14 @@
 					</div>
 				</div>
 			</div>
+<?php echo $this->Session->flash(); ?>
+
 			<div class="row">
 				<div class="col-lg-8 col-md-8 col-sm-12 maxW450">
 					<div class="main-box">
 						<div class="main-box-body clearfix">
 							<header class="main-box-header clearfix">
-								<h2><?= __('Application Requirements ') ?></h2>
+								<h2><?= __('Application Requirements') ?></h2>
 							</header>
 							<h3><?= __('Basic Info') ?></h3>
 							<?php echo $this->Form->create('Interview', array(
@@ -45,7 +47,7 @@
 										'style' => array("width:200px"),
 										'div' => false
 									)); ?>
-									<button type="button" id="" class="md-trigger btn btn-primary" data-modal="modal-job"><i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Job') ?></button>
+
 								</div>
 								<div class="form-group">
 									<?php echo $this->Form->input('work_place', array(
@@ -84,7 +86,7 @@
 									)); ?>
 								</div>
 								<div class="form-group">
-									<label>Sex</label>
+									<label><?= __('Sex')?></label>
 										<?php echo $this->Form->input('sex', array(
 											'legend' => false,
 											'before' => '<div class="radio">',
@@ -282,7 +284,7 @@
 
 
 		$(document).ready(function() {
-
+			$('.alert').fadeOut(5000);
 			$('.sel_company').select2({
 				placeholder: "<?= __('Select Company') ?>",
 				allowClear: false

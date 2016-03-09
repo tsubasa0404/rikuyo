@@ -14,11 +14,12 @@
 					</div>
 				</div>
 			</div>
+<?php echo $this->Session->flash(); ?>
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-12 maxW400">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
-							<h2><?= __('Schedule') ?>
+							<h2><?= __('Application Requirements') ?>
 
 								<div class="pull-right">
 									<span><?= __('Interview Status') ?></span>
@@ -48,10 +49,10 @@
 									<table class="table table-bordered">
 										<tbody>
 											<tr class="warning">
-												<th colspan="2" ><span><?= __('Association') ?></span></th>
+												<th colspan="2" ><span><?= __('Association and Company') ?></span></th>
 											</tr>
 											<tr>
-												<td class="td_first_block">
+												<td class="td_first_block" style="min-width: 70px;">
 													<?= __('Association') ?>
 												</td>
 												<td>
@@ -450,7 +451,7 @@
 											</tr>
 											<tr>
 												<td class="td_first_block">
-													<?= __('Requests') ?>
+													<?= __('Note') ?>
 												</td>
 												<td>
 													<?php echo $this->Form->textarea('request',array(
@@ -541,10 +542,17 @@
 
 
 
-				<div class="col-lg-12 col-md-12 col-sm-12 maxW700">
+				<div class="col-lg-12 col-md-12 col-sm-12 maxW600">
 					<div class="main-box">
 						<header class="main-box-header clearfix">
-							<h2 class="pull-left"><?= __('Documents List') ?></h2>
+							<h2 class="pull-left">
+								<?= __('Documents List') ?>
+							</h2>
+							<?php echo $this->Html->link(
+								'<i class="fa fa-print"></i> '.__('Print Page'),
+								array('controller' => 'output_documents', 'action' => 'doc_list', $this->request->data['Interview']['id']),
+								array('escape' => false, 'class' => 'btn btn-primary pull-right')
+							) ?>
 						</header>
 						<div class="main-box-body clearfix">
 							<div class="table-responsive">
@@ -554,7 +562,7 @@
 											<th><span><?= __('Document Name') ?></span></th>
 											<th><span><?= __('Language') ?></span></th>
 											<th><span><?= __('Note') ?></span></th>
-											<th><span><?= __('') ?></span></th>
+
 
 										</tr>
 									</thead>
@@ -575,7 +583,7 @@
 														</td>
 														<td><?php if($doc['DocName']['lang_jpn'] == 1){echo __('Japanese').", ";}if($doc['DocName']['lang_eng'] == 1){echo __('English').", ";}if($doc['DocName']['lang_khm'] == 1){echo __('Khmer');} ?></td>
 														<td><?php echo $doc['DocName']['note']."<br>". $doc['AssociationDocument'][0]['note']; ?></td>
-														<td><a href="docs/html/organization_outline_en.html" class="btn btn-info " target="_blank"><i class="fa fa-print"></i> Print</a></td>
+
 													</tr>
 												<?php endforeach; ?>
 											<?php endforeach; ?>
@@ -618,8 +626,10 @@
 	 ?>
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
-		//モーダル削除
+
 		$(function(){
+			$('.alert').fadeOut(5000);
+
 			$('.md-modal').remove();
 		});
 		//実習生募集要項フォーム

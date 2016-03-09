@@ -19,6 +19,7 @@
 						<div class="main-box-body clearfix">
 
 							<div class="users form">
+<?php echo $this->Session->flash() ?>
 							<?php echo $this->Form->create('User'); ?>
 								<?php echo $this->Form->input('id'); ?>
 								<div class="form-group">
@@ -38,7 +39,7 @@
 											'options' => $roles
 									));?>
 								</div>
-								<button type="button" class="btn btn-primary pull-right">
+								<button type="submit" class="btn btn-primary pull-right">
 									<i class=""></i> <?= __('Save') ?>
 								</button>
 							<?php echo $this->Form->end(); ?>

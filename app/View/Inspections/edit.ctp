@@ -8,8 +8,8 @@
 		echo $this->Form->input('company_id');
 		echo $this->Form->input('smb');
 		echo $this->Form->input('staff');
-		echo $this->Form->input('from');
-		echo $this->Form->input('to');
+		echo $this->Form->input('from', array('label' => __('From')));
+		echo $this->Form->input('to', array('label' => __('To')));
 		echo $this->Form->input('note');
 		echo $this->Form->input('flag');
 	?>

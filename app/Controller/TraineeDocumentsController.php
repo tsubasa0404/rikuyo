@@ -14,7 +14,7 @@ class TraineeDocumentsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
-
+	public $helpers = array('UploadPack.Upload');
 /**
  * index method
  *
@@ -49,19 +49,19 @@ class TraineeDocumentsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->TraineeDocument->create();
 
-			$doc_name = $this->request->data['TraineeDocument']['doc_name_en'];
-			$trainee_control_no = $this->request->data['TraineeDocument']['trainee_control_no'];
-			$org_img_file_name = $this->request->data['TraineeDocument']['img']['name'];
-			$ext = pathinfo($org_img_file_name, PATHINFO_EXTENSION);
-			$new_img_file_name = $trainee_control_no . "_" . $doc_name ."_". date('Ymdhis')."." . $ext;
-			$this->request->data['TraineeDocument']['img']['name'] = $new_img_file_name;
+      $doc_name             = $this->request->data['TraineeDocument']['doc_name_en'];
+      $trainee_control_no   = $this->request->data['TraineeDocument']['trainee_control_no'];
+      $org_img_file_name    = $this->request->data['TraineeDocument']['img']['name'];
+      $ext                  = pathinfo($org_img_file_name, PATHINFO_EXTENSION);
+      $new_img_file_name    = $trainee_control_no . "_" . $doc_name ."_". date('Ymdhis')."." . $ext;
+      $this->request->data['TraineeDocument']['img']['name']  = $new_img_file_name;
 
 
 			if ($this->TraineeDocument->save($this->request->data)) {
-				$this->Session->setFlash(__('The trainee document has been saved.'));
+				$this->Session->setFlash(__('The trainee document has been saved.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The trainee document could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The trainee document could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 		$trainees = $this->TraineeDocument->Trainee->find('list');
@@ -81,10 +81,10 @@ class TraineeDocumentsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->TraineeDocument->save($this->request->data)) {
-				$this->Session->setFlash(__('The trainee document has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('The trainee document has been saved.'), 'success_flash');
+				return $this->redirect(array('controller' => 'trainees', 'action' => 'profile', $this->request->data['TraineeDocument']['trainee_id']));
 			} else {
-				$this->Session->setFlash(__('The trainee document could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The trainee document could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('TraineeDocument.' . $this->TraineeDocument->primaryKey => $id));
@@ -109,9 +109,9 @@ class TraineeDocumentsController extends AppController {
 		$this->request->allowMethod('post', 'delete');
 
 		if ($this->TraineeDocument->delete()) {
-			$this->Session->setFlash(__('The trainee document has been deleted.'));
+			$this->Session->setFlash(__('The trainee document has been deleted.'), 'success_flash');
 		} else {
-			$this->Session->setFlash(__('The trainee document could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The trainee document could not be deleted. Please, try again.'), 'error_flash');
 		}
 		return $this->redirect($this->referer());
 	}

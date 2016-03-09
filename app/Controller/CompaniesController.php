@@ -27,26 +27,12 @@ class CompaniesController extends AppController {
  * @return void
  */
 	public function index() {
+		$lang = $this->__setLang();
+		$this->set(compact('lang'));
 		$companies = $this->Company->companyList();
 		$this->set(compact('companies'));
 	}
 
-	public function update_delete_flag($id = null){
-		if(!$this->Company->exists($id)){
-			throw new NotFoundException(__('You cannot delete this'));
-		}
-		if($this->request->is(array('post', 'put'))){
-			$this->request->data = array(
-				'id' => $id,
-				'flag' => '1'
-				);
-			if($this->Company->save($this->request->data)){
-				return $this->redirect($this->referer());
-			} else {
-				$this->Session->setFlash(__('You cannot delete this.'));
-			}
-		}
-	}
 
 /**
  * view method
@@ -72,16 +58,17 @@ class CompaniesController extends AppController {
 
 
 		if ($this->request->is('post')) {
-
-			$job_array = implode(',', $this->request->data['Company']['job']);
-			$this->request->data['Company']['job'] = $job_array;
+			if($this->request->data['Company']['job']){
+				$job_array = implode(',', $this->request->data['Company']['job']);
+				$this->request->data['Company']['job'] = $job_array;
+			}
 
 			$this->Company->create();
 			if ($this->Company->save($this->request->data)) {
-				$this->Session->setFlash(__('The company has been saved.'));
-				return $this->redirect($this->referer());
+				$this->Session->setFlash(__('The company has been saved.'),'success_flash');
+				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The company could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The company could not be saved. Please, try again.'),'error_flash');
 			}
 		}
 
@@ -94,14 +81,14 @@ class CompaniesController extends AppController {
 		$option_jobs = $this->Job->optionJobs($lang);
 
 		$associations = $this->Company->Association->find('list');
-		$this->set(compact('associations','option_associations', 'option_jobs'));
+		$this->set(compact('associations','option_associations', 'option_jobs', 'lang'));
 	}
 
 	public function profile($id = null) {
 		$lang = $this->__setLang();
 		$option_associations = $this->Association->optionAssociations($lang);
 		$option_jobs = $this->Job->optionJobs($lang);
-		$this->set(compact('option_associations', 'option_jobs'));
+		$this->set(compact('option_associations', 'option_jobs', 'lang'));
 
 		if (!$this->Company->exists($id)) {
 			throw new NotFoundException(__('Invalid Company'));
@@ -121,6 +108,22 @@ class CompaniesController extends AppController {
 
 
 			$this->set(compact('option_jos'));
+		}
+	}
+
+	public function update() {
+
+		if ($this->request->is('post')) {
+			if($this->request->data['Company']['job']){
+				$job_array = implode(',', $this->request->data['Company']['job']);
+				$this->request->data['Company']['job'] = $job_array;
+			}
+			if ($this->Company->save($this->request->data)) {
+				$this->Session->setFlash(__('The company has been changed.'),'success_flash');
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('The company could not be saved. Please, try again.'),'error_flash');
+			}
 		}
 	}
 
@@ -164,10 +167,29 @@ class CompaniesController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Company->delete()) {
-			$this->Session->setFlash(__('The company has been deleted.'));
+			$this->Session->setFlash(__('The company has been deleted.'), 'success_flash');
 		} else {
-			$this->Session->setFlash(__('The company could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The company could not be deleted. Please, try again.'), 'error_flash');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	public function update_delete_flag($id = null){
+		if(!$this->Company->exists($id)){
+			throw new NotFoundException(__('You cannot delete this'));
+		}
+		if($this->request->is(array('post', 'put'))){
+			$this->request->data = array(
+				'id' => $id,
+				'flag' => '1'
+				);
+			if($this->Company->save($this->request->data)){
+				$this->Session->setFlash(__('The company has been deleted.'), 'success_flash');
+				return $this->redirect($this->referer());
+			} else {
+				$this->Session->setFlash(__('You cannot delete this.'), 'error_flash');
+			}
+		}
+	}
+
 }

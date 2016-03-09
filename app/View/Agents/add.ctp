@@ -7,7 +7,7 @@
 					</div>
 				</div>
 			</div>
-
+<?php echo $this->Session->flash(); ?>
 			<div class="row" id="company-profile">
 				<div class="col-lg-8 col-md-12 col-sm-12 maxW500">
 					<div class="main-box clearfix">
@@ -27,7 +27,7 @@
 										<table class="table table-bordered table-hover">
 											<tbody>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Agent Name') ?>
 													</td>
 													<td>
@@ -48,7 +48,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Representative') ?>
 													</td>
 													<td>
@@ -91,7 +91,7 @@
 														</div>
 														<div class="row">
 															<div class="form-group col-lg-3 col-md-3 col-sm-3">
-																<label>Sex</label>
+																<label><?= __('Sex')?></label>
 																<?php echo $this->Form->input('rep_sex', array(
 																		'legend' => false,
 																		'before' => '<div class="radio">',
@@ -105,7 +105,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Establish Date') ?>
 													</td>
 													<td>
@@ -120,7 +120,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Capitals') ?>
 													</td>
 													<td>
@@ -152,9 +152,8 @@
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Sales') ?>
-														<br>(直近年度)
 													</td>
 													<td>
 														<div class="row">
@@ -185,7 +184,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Employees Count') ?>
 
 													</td>
@@ -196,15 +195,15 @@
 																	'label' => __('Employees Count'),
 																	'type' => 'number',
 																	'class' => 'form-control',
+																	'min' => 0
 																)) ?>
 															</div>
 														</div>
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Trading Partners') ?>
-														<br>主要貿易(取引)相手国
 													</td>
 													<td>
 														<?php echo $this->Form->input('export_en', array(
@@ -221,7 +220,7 @@
 												</tr>
 
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Address') ?>
 													</td>
 													<td>
@@ -272,7 +271,7 @@
 														<div class="row">
 															<div class="col-lg-6 col-md-6 col-sm-6">
 																<div class="form-group form-group-select2">
-																	<label for="AssociationCommuneId">Commune</label>
+																	<label for="AssociationCommuneId"><?= __('Commune')?></label>
 																	<select id="AssociationCommuneId" name="data[Association][commune_id]" class="form-control cam_commune_id" >
 																	</select>
 																</div>
@@ -288,7 +287,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td rowspan="4">
+													<td rowspan="4" class="td_first_block">
 														<?= __('Contact') ?>
 													</td>
 													<td>
@@ -371,7 +370,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Sector') ?>
 													</td>
 													<td>
@@ -384,11 +383,11 @@
 															'style' => array("width:140px"),
 															'div' => false
 														)); ?>
-													<button type="button" id="" class="md-trigger btn btn-primary" data-modal="modal-sector"><i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Sector') ?></button>
+
 													</td>
 												</tr>
 												<tr>
-													<td>
+													<td class="td_first_block">
 														<?= __('Note') ?>
 													</td>
 													<td>
@@ -410,12 +409,7 @@
 										<?php echo $this->Form->end(); ?>
 								</div>
 							</div>
-							<!-- <div class="center-block pull-left">
-                  <a href="agent-db.html" class="btn btn-default">
-                    <i class="fa fa-long-arrow-left fa-lg"></i>
-                    前のページに戻る
-                  </a>
-              </div> -->
+
 						</div>
 					</div>
 				</div>
@@ -435,7 +429,7 @@
 	$(document).ready(function() {
 
 			$('.sel_sector').select2({
-				placeholder: '業種を選択してください',
+				placeholder: '',
 				allowClear: false
 			});
 

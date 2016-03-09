@@ -197,6 +197,7 @@ class ForeachHelper extends AppHelper
     return $downloads;
   }
 
+
   //組合書類選択ページ用書類取得Helper
   public function association_documents($folder_id){
     $this->DocName = ClassRegistry::init('DocName');

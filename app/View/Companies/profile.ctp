@@ -7,7 +7,7 @@
 					</div>
 				</div>
 			</div>
-
+<?php echo $this->Session->flash(); ?>
 			<div class="row" id="company-profile">
 				<div class="col-lg-8 col-md-8 col-sm-12 maxW410">
 					<div class="main-box clearfix">
@@ -18,9 +18,9 @@
 						<div class="main-box-body clearfix">
 
 							<div class="company-profile-details">
-								<div class="table-responsive">
+								<div class="table-responsive" style="width: 355px">
 									<?php echo $this->Form->create('Company', array(
-										'action' => 'add',
+										'action' => 'update',
 										'class' => 'form_company_edit',
 										'inputDefaults' => array(
 											'div' => false,
@@ -98,6 +98,70 @@
 													</div>
 												</td>
 											</tr>
+
+											<tr>
+												<td class="td_first_block">
+													<?= __('Job') ?>
+												</td>
+												<td>
+													<?php echo $this->Form->input('job',array(
+														'label' => false,
+														'type' => 'select',
+														'options' => $option_jobs,
+														'selected' => explode(',', $this->request->data['Company']['job']),
+														'class' => "form-control sel_job",
+														'multiple' => true,
+														'style' => array("width:200px"),
+														'div' => false
+													)); ?>
+
+												</td>
+											</tr>
+											<tr>
+												<td class="td_first_block">
+													<?= __('Note') ?>
+												</td>
+												<td>
+													<?php echo $this->Form->textarea('note',array(
+														'rows' => '4',
+														'class' => 'form-control',
+														'label' => false
+													)) ?>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="profile-message-btn center-block text-right">
+										<button type="submit" class="btn btn-default pull-right">
+											<i class="fa fa-pencil"></i>
+											<?= __('Save') ?>
+										</button>
+									</div>
+									<?php echo $this->Form->end(); ?>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8 col-md-8 col-sm-12 maxW410">
+					<div class="main-box clearfix">
+						<div class="main-box-body clearfix">
+							<header class="main-box-header clearfix">
+							<h2></h2>
+						</header>
+							<div class="company-profile-details">
+								<div class="table-responsive">
+									<?php echo $this->Form->create('Company', array(
+										'action' => 'update',
+										'class' => 'form_company_edit',
+										'inputDefaults' => array(
+											'div' => false,
+											)
+									)); ?>
+									<?php echo $this->Form->hidden('id'); ?>
+									<table class="table table-bordered table-hover">
+										<tbody>
 											<tr>
 												<td rowspan="3" class="td_first_block">
 													<?= __('Address') ?>
@@ -283,36 +347,6 @@
 															</div>
 														</div>
 													</div>
-												</td>
-											</tr>
-											<tr>
-												<td class="td_first_block">
-													<?= __('Job') ?>
-												</td>
-												<td>
-													<?php echo $this->Form->input('job',array(
-														'label' => false,
-														'type' => 'select',
-														'options' => $option_jobs,
-														'selected' => explode(',', $this->request->data['Company']['job']),
-														'class' => "form-control sel_job",
-														'multiple' => true,
-														'style' => array("width:200px"),
-														'div' => false
-													)); ?>
-
-												</td>
-											</tr>
-											<tr>
-												<td class="td_first_block">
-													<?= __('Note') ?>
-												</td>
-												<td>
-													<?php echo $this->Form->textarea('note',array(
-														'rows' => '4',
-														'class' => 'form-control',
-														'label' => false
-													)) ?>
 												</td>
 											</tr>
 										</tbody>

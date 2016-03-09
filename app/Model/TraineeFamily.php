@@ -33,6 +33,9 @@ class TraineeFamily extends AppModel {
 		return $this->find('all', $options);
 	}
 
+
+
+
 /**
  * belongsTo associations
  *

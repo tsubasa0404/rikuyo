@@ -1,4 +1,4 @@
-<div id="nav-col">
+<div id="nav-col" class="no-print">
 	<section id="col-left" class="col-left-nano">
 		<div id="col-left-inner" class="col-left-nano-content">
 			<div id="user-left-box" class="clearfix hidden-sm hidden-xs dropdown profile2-dropdown">

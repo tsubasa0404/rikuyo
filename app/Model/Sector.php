@@ -38,4 +38,6 @@ class Sector extends AppModel {
 		$options = array_merge($options, $fields);
 		return $this->find('list', $options);
 	}
+
+
 }

@@ -16,7 +16,7 @@ class TraineeMicrofinanceImage extends AppModel {
 					'big' => '250h',
 					),
 				'maxSize' => array(
-					'rule' => array('attachmentMaxSize', 20*1024*1024),
+					'rule' => array('attachmentMaxSize', 20971520),
 					'message' => 'The Maximum File Upload Size is under 20MB. Please upload again.'
 					),
 				'item' => array(
@@ -25,6 +25,15 @@ class TraineeMicrofinanceImage extends AppModel {
 					)
 				)
 			)
+		);
+
+	public $validate = array(
+		'img' => array(
+				'maxSize' => array(
+					'rule' => array('attachmentMaxSize', 20971520),
+					'message' => 'The Maximum File Upload Size is under 20MB. Please upload again.'
+					),
+				)
 		);
 
 

@@ -14,6 +14,7 @@
 						<div class="main-box-body clearfix">
 							<header class="main-box-header clearfix">
 							</header>
+							<?php echo $this->Session->flash() ?>
 							<?php echo $this->Form->create('Company', array(
 								'action' => 'add',
 								'class' => 'form_company_register',
@@ -30,15 +31,11 @@
 										'id' => 'sel_association',
 										'value' => '',
 										'options' => $option_associations,
-										'style' => 'width:200px;display:inline',
+
 										'empty' => true,
 										'required' => true
 									)) ?>
-									<?php echo $this->Html->link(
-										'<i class="fa fa-plus-circle fa-lg"></i> '.__('Add Association'),
-										array('controller' => 'associations', 'action' => 'add'),
-										array('escape' => false, 'class' => 'btn btn-primary', 'target' => '_blank')
-									) ?>
+
 								</div>
 								<div class="form-group">
 									<?php echo $this->Form->input('company_jp', array(
@@ -131,7 +128,7 @@
 										'style' => array("width:200px"),
 										'div' => false
 									)); ?>
-									<button type="button" id="" class="md-trigger btn btn-primary" data-modal="modal-job"><i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Job') ?></button>
+
 								</div>
 
 								<button type="submit" class="btn btn-default pull-right"><i class=""></i> <?= __('Save') ?></button>

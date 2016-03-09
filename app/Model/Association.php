@@ -55,6 +55,41 @@ class Association extends AppModel {
 			return $this->find('list', $options);
 	}
 
+
+	public $validate = array(
+    'association_jp' => array(
+      'isUnique' => array(
+        'rule' => 'isUnique',
+        'message' => 'The association already exists.'
+        )
+      ),
+    'association_en' => array(
+      'alphaNumeric' => array(
+        'rule' => 'alphaNumeric', //半角英数字のみ
+        'message' => 'Only Alphabet and Number is valid'
+        ),
+      'isUnique' => array(
+        'rule' => 'isUnique',
+        'message' => 'The association already exists.'
+        )
+    	),
+    'postcode' => array(
+      'numeric' => array(
+        'rule' => 'numeric', //数字のみ
+        'message' => 'Only number is valid. If using "-", please remove it', //数字のみ
+        ),
+      'custom' => array(
+      	'rule' => array('custom', "/^[0-9]+$/"),
+      	'message' => 'Only number is valid.'
+      	)
+    	)
+  );
+
+
+
+
+
+
 /**
  * hasMany associations
  *

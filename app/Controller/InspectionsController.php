@@ -70,10 +70,10 @@ class InspectionsController extends AppController {
 
 			$this->Inspection->create();
 			if ($this->Inspection->save($this->request->data)) {
-				$this->Session->setFlash(__('The inspection has been saved.'));
-				return $this->redirect(array('controller' => 'pages', 'action' => 'display'));
+				$this->Session->setFlash(__('The inspection has been saved.'), 'success_flash');
+				return $this->redirect(array('controller' => 'inspections', 'action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The inspection could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The inspection could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 		//言語切り替え変数$lang取得
@@ -93,10 +93,10 @@ class InspectionsController extends AppController {
 
 			$this->Inspection->create();
 			if ($this->Inspection->save($this->request->data)) {
-				$this->Session->setFlash(__('The inspection has been saved.'));
+				$this->Session->setFlash(__('The inspection has been saved.'), 'success_flash');
 				return $this->redirect(array('controller' => 'inspections', 'action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The inspection could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The inspection could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 
@@ -127,10 +127,10 @@ class InspectionsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Inspection->save($this->request->data)) {
-				$this->Session->setFlash(__('The inspection has been saved.'));
+				$this->Session->setFlash(__('The inspection has been saved.'), 'success_flash');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The inspection could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The inspection could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('Inspection.' . $this->Inspection->primaryKey => $id));
@@ -155,9 +155,9 @@ class InspectionsController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Inspection->delete()) {
-			$this->Session->setFlash(__('The inspection has been deleted.'));
+			$this->Session->setFlash(__('The inspection has been deleted.'), 'success_flash');
 		} else {
-			$this->Session->setFlash(__('The inspection could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The inspection could not be deleted. Please, try again.'), 'error_flash');
 		}
 		return $this->redirect($this->referer());
 	}

@@ -7,13 +7,13 @@
 					</div>
 				</div>
 			</div>
-
+<?php echo $this->Session->flash() ?>
 			<div class="row" id="agent-profile">
-				<div class="col-lg-8 col-md-8 col-sm-12 maxW400">
+				<div class="col-lg-8 col-md-8 col-sm-12 maxW410">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
-							<h2><?php echo $this->request->data['Agent']['agent_jp'] ?></h2>
-								<a href="docs/html/organization_outline_en.html" class="btn btn-info pull-right" target="_blank"><i class="fa fa-print"></i> Outline_En</a>
+							<h2><?php echo $this->request->data['Agent']['agent_jp'] ?>(<?php echo $this->request->data['Agent']['agent_en'] ?>)</h2>
+
 						</header>
 						<div class="main-box-body clearfix">
 							<div class="agent-profile-details">
@@ -113,7 +113,7 @@
 													</td>
 													<td>
 														<div class="row">
-															<div class="col-lg-6 col-md-6 col-sm-6">
+															<div class="col-lg-12 col-md-12 col-sm-12">
 																<?php echo $this->Form->date('establish_date', array(
 																	'label' => false,
 																	'class' => 'form-control maxW200',
@@ -157,7 +157,7 @@
 												<tr>
 													<td class="td_first_block">
 														<?= __('Sales') ?>
-														<br>(直近年度)
+
 													</td>
 													<td>
 														<div class="row">
@@ -206,7 +206,7 @@
 												<tr>
 													<td class="td_first_block">
 														<?= __('Trading Partners') ?>
-														<br>主要貿易(取引)相手国
+
 													</td>
 													<td class="td_first_block">
 														<?php echo $this->Form->input('export_en', array(
@@ -221,6 +221,73 @@
 														)) ?>
 													</td>
 												</tr>
+
+
+												<tr>
+													<td class="td_first_block">
+														<?= __('Sector') ?>
+													</td>
+													<td class="td_first_block">
+														<?php echo $this->Form->input('sector',array(
+															'label' => false,
+															'type' => 'select',
+															'options' => $option_sectors,
+															'selected' => explode(',', $this->request->data['Agent']['sector']),
+															'class' => "form-control sel_sector",
+															'multiple' => true,
+															'div' => false
+														)); ?>
+
+													</td>
+												</tr>
+												<tr>
+													<td class="td_first_block">
+														<?= __('Note') ?>
+													</td>
+													<td class="td_first_block">
+														<?php echo $this->Form->textarea('note',array(
+															'rows' => '4',
+															'class' => 'form-control',
+															'label' => false
+														)) ?>
+													</td>
+												</tr>
+
+											</tbody>
+										</table>
+										<div class="profile-message-btn center-block text-right">
+											<button type="submit" class="btn btn-default pull-right">
+												<i class="fa fa-pencil"></i>
+												<?= __('Save') ?>
+											</button>
+										</div>
+										<?php echo $this->Form->end(); ?>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8 col-md-8 col-sm-12 maxW410">
+					<div class="main-box clearfix">
+						<header class="main-box-header clearfix">
+							<h2></h2>
+
+						</header>
+						<div class="main-box-body clearfix">
+							<div class="agent-profile-details">
+								<div class="table-responsive">
+									<?php echo $this->Form->create('Agent', array(
+										'action' => 'update',
+										'class' => 'form_agent_edit',
+										'inputDefaults' => array(
+											'div' => false,
+											)
+									)); ?>
+									<?php echo $this->Form->hidden('id'); ?>
+										<table class="table table-bordered table-hover">
+
+											<tbody>
 
 												<tr>
 													<td class="td_first_block">
@@ -260,7 +327,7 @@
 														<div class="row">
 															<div class="col-lg-12 col-md-12 col-sm-12">
 																<div class="form-group form-group-select2">
-																	<label for="AgentCommuneId">Commune</label>
+																	<label for="AgentCommuneId"><?= __('Commune')?></label>
 																	<?php echo $this->Form->input('commune_id', array(
 																		'label' => false,
 																		'type' => 'select',
@@ -282,7 +349,7 @@
 													</td>
 												</tr>
 												<tr>
-													<td rowspan="4">
+													<td rowspan="4" class="td_first_block">
 														<?= __('Contact') ?>
 													</td>
 													<td>
@@ -364,35 +431,6 @@
 														</div>
 													</td>
 												</tr>
-												<tr>
-													<td class="td_first_block">
-														<?= __('Sector') ?>
-													</td>
-													<td class="td_first_block">
-														<?php echo $this->Form->input('sector',array(
-															'label' => false,
-															'type' => 'select',
-															'options' => $option_sectors,
-															'selected' => explode(',', $this->request->data['Agent']['sector']),
-															'class' => "form-control sel_sector",
-															'multiple' => true,
-															'div' => false
-														)); ?>
-
-													</td>
-												</tr>
-												<tr>
-													<td class="td_first_block">
-														<?= __('Note') ?>
-													</td>
-													<td class="td_first_block">
-														<?php echo $this->Form->textarea('note',array(
-															'rows' => '4',
-															'class' => 'form-control',
-															'label' => false
-														)) ?>
-													</td>
-												</tr>
 
 											</tbody>
 										</table>
@@ -426,6 +464,7 @@
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 	$(document).ready(function() {
+		$('.alert').fadeOut(5000);
 			$('.sel_sector').select2({
 				placeholder: "<?= __('Select Sectors') ?>",
 				allowClear: false

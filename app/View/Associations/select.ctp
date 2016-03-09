@@ -14,7 +14,7 @@
 					</div>
 				</div>
 			</div>
-
+<?php echo $this->Session->flash() ?>
 			<div class="row">
 				<div class="col-lg-12 maxW700">
 					<div class="main-box clearfix">
@@ -91,7 +91,7 @@
 
 				<div class="center-block text-left" style="margin-bottom: 15px">
 				<?php echo $this->Html->link(
-					'<i class="fa fa-long-arrow-left fa-lg"></i> 前のページに戻る',
+					'<i class="fa fa-long-arrow-left fa-lg"></i> '.__('Back') ,
 					array('action' => 'profile', $this->request->data['Association']['id']),
 					array('escape' => false, 'class' => 'btn btn-default')
 				) ?>
@@ -107,6 +107,9 @@
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 
+	$(function(){
+		$('.alert').fadeOut(5000);
+	});
 
 	//書類選択処理
 	$(function(){

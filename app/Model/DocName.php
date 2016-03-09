@@ -9,6 +9,23 @@ App::uses('AppModel', 'Model');
  */
 class DocName extends AppModel {
 
+	public function getDocOptionAjax($folder_id, $sub_folder_id){
+		$option_documents = $this->find('all', array(
+				'conditions' => array(
+					'DocName.folder_id' => $folder_id,
+					'DocName.sub_folder_id' => $sub_folder_id,
+					'DocName.flag' => 0,
+					),
+				'fields' => array(
+					'DocName.id',
+					'DocName.name_jp',
+					'DocName.name_en',
+					),
+				'order' => array('DocName.id' => 'asc'),
+				'recursive' => -1
+				));
+		return $option_documents;
+	}
 
 
 	public function optionDocuments(){

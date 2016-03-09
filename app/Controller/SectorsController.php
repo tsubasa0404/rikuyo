@@ -24,10 +24,12 @@ class SectorsController extends AppController {
  * @return void
  */
 	public function index() {
+		$lang = $this->__setLang();
 		$this->Sector->recursive = 0;
 		$jobs = $this->Job->validJobs();
 		$sectors = $this->Sector->validSectors();
-		$this->set(compact('sectors','jobs'));
+		$option_sectors = $this->Sector->optionSectors($lang);
+		$this->set(compact('sectors','jobs', 'option_sectors'));
 	}
 
 /**
@@ -54,10 +56,10 @@ class SectorsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Sector->create();
 			if ($this->Sector->save($this->request->data)) {
-				$this->Session->setFlash(__('The sector has been saved.'));
+				$this->Session->setFlash(__('The sector has been saved.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The sector could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The sector could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 	}
@@ -91,7 +93,7 @@ class SectorsController extends AppController {
 			if($this->Sector->save($this->request->data)){
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('You cannot delete this.'));
+				$this->Session->setFlash(__('You cannot delete this.'), 'error_flash');
 			}
 		}
 	}
@@ -109,10 +111,10 @@ class SectorsController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Sector->save($this->request->data)) {
-				$this->Session->setFlash(__('The sector has been saved.'));
+				$this->Session->setFlash(__('The sector has been saved.'), 'success_flash');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The sector could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The sector could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('Sector.' . $this->Sector->primaryKey => $id));
@@ -134,9 +136,9 @@ class SectorsController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->Sector->delete()) {
-			$this->Session->setFlash(__('The sector has been deleted.'));
+			$this->Session->setFlash(__('The sector has been deleted.'), 'success_flash');
 		} else {
-			$this->Session->setFlash(__('The sector could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The sector could not be deleted. Please, try again.'), 'error_flash');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

@@ -13,13 +13,13 @@
 	</title>
 
 	<?php
-		echo $this->Html->css('bootstrap/bootstrap.min', array('inline' => true));
-		echo $this->Html->css('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', array('inline' => true));
-		echo $this->Html->css('libs/nanoscroller', array('inline' => true));
-		echo $this->Html->css('compiled/theme_styles', array('inline' => true));
-		echo $this->Html->css('libs/rikuyo_css/common', array('inline' => true));
-		echo $this->Html->css('//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300', array('inline' => true));
-		echo $this->Html->css('libs/nifty-component', array('inline' => true));
+		echo $this->Html->css('bootstrap/bootstrap.min', array('inline' => true,'media' => 'screen'));
+		echo $this->Html->css('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', array('inline' => true,'media' => 'screen'));
+		echo $this->Html->css('libs/nanoscroller', array('inline' => true,'media' => 'screen'));
+		echo $this->Html->css('compiled/theme_styles', array('inline' => true,'media' => 'screen'));
+		echo $this->Html->css('libs/rikuyo_css/common', array('inline' => true,'media' => 'screen'));
+		echo $this->Html->css('//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300', array('inline' => true,'media' => 'screen'));
+		echo $this->Html->css('libs/nifty-component', array('inline' => true,'media' => 'screen'));
 	?>
 	<!-- page-css array('inline' => false, 'block' => 'page-css') -->
 	<?php echo $this->fetch('page-css'); ?>
@@ -98,6 +98,17 @@
 						)
 				)) ?>
 				<div class="form-group">
+					<?php echo $this->Form->input('sector_id', array(
+						'label' => __('Sector'),
+						'type' => 'select',
+						'div' => false,
+						'class' => 'form-control',
+						'empty' => '',
+						'options' => $option_sectors,
+						'required' => true
+					)) ?>
+				</div>
+				<div class="form-group">
 					<?php echo $this->Form->input('job_jp', array(
 						'label' => __('Job_Japanese'),
 						'type' => 'text',
@@ -142,11 +153,11 @@
 					<div class="row" style="opacity: 1;">
 						<div class="col-lg-12">
 							<div class="row">
-								<div class="col-lg-12">
+								<div class="col-lg-12 no-print">
 
 										<div class="pull-left">
 											<ol class="breadcrumb">
-												<li><?php echo $this->Html->getCrumbs(' > ', 'Home') ?></li>
+												<li><?php echo $this->Html->getCrumbs(' > ', __('Home')) ?></li>
 											</ol>
 											<!-- Contents -->
 											<?php echo $this->fetch('content'); ?>
@@ -172,6 +183,7 @@
 		echo $this->Html->script('jquery.nanoscroller.min');
 		echo $this->Html->script('scripts');
 		echo $this->Html->script('pace.min');
+		echo $this->Html->script('rikuyo_js/myHalfFormat');
 	?>
 	<?php echo $this->fetch('script'); ?>
 

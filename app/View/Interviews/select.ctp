@@ -56,16 +56,16 @@
 													<?php echo $prof['Interview']['adoption_num']; ?>
 												</td>
 												<td>
-													<?= __($prof['Interview']['sex']) ?>
+													<?= $prof['Interview']['sex'] ?>
 												</td>
 												<td>
-													<?= __($prof['Interview']['age']) ?>
+													<?= $prof['Interview']['age'] ?>
 												</td>
 												<td>
-													<?= __($prof['Interview']['request']) ?>
+													<?= $prof['Interview']['request'] ?>
 												</td>
 												<td>
-													<?= __($prof['Interview']['interview_date']) ?>
+													<?= $prof['Interview']['interview_date'] ?>
 												</td>
 											</tr>
 										</tbody>
@@ -145,7 +145,7 @@
 													);?>
 												</td>
 												<td>
-													<?php echo __($trainee['Trainee']['sex'])?>
+													<?php echo $trainee['Trainee']['sex']?>
 												</td>
 												<td class="num">
 													<?php echo $this->Btn->calcAge($trainee['Trainee']['birthday'])?>
@@ -199,7 +199,7 @@
 														array('controller' => 'trainees', 'action' => 'profile', $can['CandidateTrainee']['id']),
 														array('escape' => false, 'target' => '_blank'));?>
 												</td>
-												<td><?php echo __($can['CandidateTrainee']['sex']);?></td>
+												<td><?php echo $can['CandidateTrainee']['sex'];?></td>
 												<td class="num"><?php echo $this->Btn->calcAge($can['CandidateTrainee']['birthday']);?></td>
 												<td>
 													<?php if($can['ProfImg']['trainee_id']){

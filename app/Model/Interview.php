@@ -9,6 +9,41 @@ App::uses('AppModel', 'Model');
  */
 class Interview extends AppModel {
 
+	//output_doc用interview prof取得
+	public function printProf($interview_id){
+		$options = array();
+		$options['conditions'] = array(
+			'Interview.id'=> $interview_id
+			);
+		$options['fields'] = array(
+			'Interview.id',
+			'Interview.company_id',
+			'Interview.job',
+			'Interview.agent_id',
+			'ComPrint.company_en',
+			'ComPrint.company_jp',
+			'Association.association_en',
+			'Association.association_jp',
+			);
+		$options['joins'][] = array(
+			'table' => 'companies',
+			'alias' => 'ComPrint',
+			'type' => 'LEFT',
+			'conditions' => array(
+					'Interview.company_id = ComPrint.id',
+				)
+			);
+		$options['joins'][] = array(
+			'table' => 'associations',
+			'alias' => 'Association',
+			'type' => 'LEFT',
+			'conditions' => array(
+					'ComPrint.association_id = Association.id'
+				)
+			);
+		$options['recursive'] = -1;
+		return $this->find('all', $options);
+	}
 
 	//interviewテーブル用取得
 	public function interviewList(){
@@ -166,6 +201,7 @@ class Interview extends AppModel {
 			);
 		return $this->find('first', $options);
 	}
+
 
 
 

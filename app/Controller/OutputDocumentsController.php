@@ -14,6 +14,15 @@ class OutputDocumentsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
+	public $uses = array(
+		'OutputDocument',
+		'DocName',
+		'Interview',
+		'Trainee',
+		'Association',
+		'Agent',
+		'Company',
+		);
 
 /**
  * index method
@@ -23,6 +32,22 @@ class OutputDocumentsController extends AppController {
 	public function index() {
 		$this->OutputDocument->recursive = 0;
 		$this->set('outputDocuments', $this->Paginator->paginate());
+	}
+
+	public function doc_list($interview_id ) {
+		$this->OutputDocument->recursive = -1;
+
+		$interview_prof = $this->Interview->printProf($interview_id);
+		$documents_list = $this->OutputDocument->find('all');
+
+		$this->set(compact('interview_prof', 'documents_list'));
+	}
+
+	public function printout($interview_id, $ctp_name){
+		$interview_prof = $this->Interview->printProf($interview_id);
+		$agent = $this->Agent->find('all', array('conditions' => array('Agent.id' => $interview_prof[0]['Interview']['agent_id'])));
+		$this->set(compact('interview_prof', 'agent'));
+		$this->render($ctp_name);
 	}
 
 /**

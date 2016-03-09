@@ -31,7 +31,7 @@
 													<thead>
 														<tr>
 															<th><a href="#"><?= __('Date') ?></a></th>
-															<th><a href="#" class="asc"><?= __('Company(Association)') ?></a></th>
+															<th><a href="#" class="asc"><?= __('Association(Company)') ?></a></th>
 															<th><a href="#" class="asc"><?= __('Candidates') ?></a></th>
 															<th><a href="#" class="asc"><?= __('Staff') ?></a></th>
 															<th><a href="#" class="asc"></a></th>
@@ -50,14 +50,14 @@
 																</td>
 																<td>
 																	<?php echo $this->Html->link(
-																		$this->Btn->switchLang($lang, $int['Company']['company_jp'], $int['Company']['company_en']),
-																		array('controller' => 'companies', 'action' => 'profile', $int['Company']['id']),
+																		$this->Btn->switchLang($lang, $int['Association']['association_jp'], $int['Association']['association_en']),
+																		array('controller' => 'associations', 'action' => 'profile', $int['Association']['id']),
 																		array('escape' => false)
 																		);?>
 																	(
-																	<?php echo $this->Html->link(
-																		$this->Btn->switchLang($lang, $int['Association']['association_jp'], $int['Association']['association_en']),
-																		array('controller' => 'associations', 'action' => 'profile', $int['Association']['id']),
+																		<?php echo $this->Html->link(
+																		$this->Btn->switchLang($lang, $int['Company']['company_jp'], $int['Company']['company_en']),
+																		array('controller' => 'companies', 'action' => 'profile', $int['Company']['id']),
 																		array('escape' => false)
 																		);?>
 																	)
@@ -163,7 +163,7 @@
 								</div>
 							</div>
 
-							<div class="row">
+							<!-- <div class="row">
 								<div class="col-lg-12">
 									<div class="main-box clearfix">
 										<header class="main-box-header clearfix">
@@ -182,7 +182,7 @@
 														<ul class="dropdown-menu" role="menu">
 															<li><a href="#tab-3" data-toggle="tab">提出済み</a></li>
 															<li><a href="#tab-9" data-toggle="tab">ID翻訳待ち</a></li>
-															<!-- <li class="divider"></li> -->
+															<li class="divider"></li>
 														</ul>
 													</li>
 													<li><a href="#tab-8" data-toggle="tab">その他</a></li>
@@ -671,7 +671,7 @@
 
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<div class="row">
 								<div class="col-lg-12 maxW800">
 									<div class="main-box clearfix">
@@ -703,6 +703,7 @@
 															<i class="fa fa-plus-circle fa-lg"></i> <?= __('Add') ?>
 														</button>
 											</div>
+											<hr>
 										</div>
 										<?php echo $this->Form->end(); ?>
 

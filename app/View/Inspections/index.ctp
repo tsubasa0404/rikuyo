@@ -5,7 +5,7 @@
 					</div>
 				</div>
 			</div>
-
+<?php echo $this->Session->flash(); ?>
 			<div class="row">
 				<div class="col-lg-12 maxW800">
 					<div class="main-box clearfix">
@@ -91,6 +91,7 @@
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 		$(document).ready(function() {
+			$('.alert').fadeOut(5000);
 			$('#interview-table').dataTable({
 				"bInfo":false
 			});

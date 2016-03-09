@@ -8,6 +8,7 @@
 				</div>
 			</div>
 
+<?php echo $this->Session->flash() ?>
 
 			<div class="row">
 				<div class="col-lg-8 col-md-10 col-sm-12 maxW500">
@@ -20,7 +21,7 @@
 									'div' => false
 									)
 							)); ?>
-								<h3><span>Basic Info</span></h3>
+								<h3><span><?= __('Basic Info')?></span></h3>
 								<div class="form-group">
 									<?php echo $this->Form->input('control_no', array(
 										'label' => __('Trainee ID'),
@@ -28,7 +29,7 @@
 										'class' => 'form-control maxW160',
 										'placeholder' => __('ex.T16030101'),
 										'required' => true,
-										'value' => "T".date("ymd")."_"
+										'value' => $control_no
 									)); ?>
 								</div>
 								<div class="row">
@@ -73,36 +74,39 @@
 								</div>
 								<div class="row">
 									<div class="form-group col-lg-4 col-md-4 col-sm-4">
-										<label>Sex</label>
+										<label><?= __('Sex')?></label>
 										<?php echo $this->Form->input('sex', array(
 												'legend' => false,
 												'before' => '<div class="radio">',
 												'separator' => '</div><div class="radio">',
 												'after' => '</div>',
 												'type' => 'radio',
-												'options' => array('male' =>__('Male'),'female' =>__('Female'))
+												'options' => array('male' =>__('Male'),'female' =>__('Female')),
+											'required' => true
 											)) ?>
 									</div>
 									<div class="form-group col-lg-4 col-md-4 col-sm-4">
-										<label>Handedness</label>
+										<label><?= __('Handedness')?></label>
 										<?php echo $this->Form->input('handed', array(
 												'legend' => false,
 												'before' => '<div class="radio">',
 												'separator' => '</div><div class="radio">',
 												'after' => '</div>',
 												'type' => 'radio',
-												'options' => array('right' =>__('Right'),'left' =>__('Left'))
+												'options' => array('right' =>__('Right'),'left' =>__('Left')),
+											'required' => true
 											)) ?>
 									</div>
 									<div class="form-group col-lg-4 col-md-4 col-sm-4">
-										<label>Marriage</label>
+										<label><?= __('Marriage')?></label>
 										<?php echo $this->Form->input('married', array(
 												'legend' => false,
 												'before' => '<div class="radio">',
 												'separator' => '</div><div class="radio">',
 												'after' => '</div>',
 												'type' => 'radio',
-												'options' => array('single' =>__('Single'),'married' =>__('Married'))
+												'options' => array('single' =>__('Single'),'married' =>__('Married')),
+											'required' => true
 											)) ?>
 									</div>
 								</div>
@@ -112,6 +116,7 @@
 										<?php echo $this->Form->date('birthday', array(
 											'label' => false,
 											'class' => 'form-control maxW160',
+											'required' => true
 										)) ?>
 									</div>
 								</div>
@@ -164,12 +169,12 @@
 									</div>
 								</div>
 
-								<h3><span>Current Address</span></h3>
+								<h3><span><?= __('Current Address')?></span></h3>
 								<div class="row">
 									<div class="col-lg-4 col-md-4 col-sm-4">
 										<div class="form-group form-group-select2">
 											<label for="TraineeProvinceId"><?= __('Province') ?></label>
-											<select  id="TraineeProvinceId" name="data[Trainee][province_id]" class="form-control cam_province_id">
+											<select  id="TraineeProvinceId" name="data[Trainee][province_id]" class="form-control cam_province_id" required="">
 												<option value=""></option>
 												<option value="1">Banteay Meanchey</option>
 												<option value="2">Battambang</option>
@@ -202,14 +207,14 @@
 									<div class="col-lg-4 col-md-4 col-sm-4">
 										<div class="form-group form-group-select2">
 											<label for="TraineeDistrictId"><?= __('District') ?></label>
-											<select id="TraineeDistrictId" name="data[Trainee][district_id]" class="form-control cam_district_id" >
+											<select id="TraineeDistrictId" name="data[Trainee][district_id]" class="form-control cam_district_id" required="">
 											</select>
 										</div>
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-4">
 										<div class="form-group form-group-select2">
-											<label for="TraineeCommuneId">Commune</label>
-											<select id="TraineeCommuneId" name="data[Trainee][commune_id]" class="form-control cam_commune_id" >
+											<label for="TraineeCommuneId"><?= __('Commune')?></label>
+											<select id="TraineeCommuneId" name="data[Trainee][commune_id]" class="form-control cam_commune_id" required="">
 											</select>
 										</div>
 									</div>
@@ -220,6 +225,7 @@
 										'label' => __('Address(No, Street, Village, Khmer)'),
 										'type' => 'text',
 										'class' => 'form-control maxW300',
+											'required' => true
 									)); ?>
 									</div>
 								</div>
@@ -229,6 +235,7 @@
 										'label' => __('Address(No, Street, Village, English)'),
 										'type' => 'text',
 										'class' => 'form-control maxW300',
+											'required' => true
 									)); ?>
 									</div>
 								</div>
@@ -294,13 +301,13 @@
 											<div class="form-group experience">
 												<div class="col-lg-6 col-md-6 col-sm-6">
 													<div class="hide toggle">
-														<label for="">From</label>
+														<label for=""><?= __('From')?></label>
 														<input type="month" name="data[Trainee][visit_jpn_from]" class="form-control maxW200" id="TraineeVisitJpnFromMonth">
 													</div>
 												</div>
 												<div class="col-lg-6 col-md-6 col-sm-6">
 													<div class="hide toggle">
-														<label for="">To</label>
+														<label for=""><?= __('To')?></label>
 														<input type="month" name="data[Trainee][visit_jpn_to]" class="form-control maxW200" id="TraineeVisitJpnToMonth">
 													</div>
 												</div>
@@ -315,6 +322,11 @@
 							<?php echo $this->Form->end(); ?>
 						</div>
 					</div>
+					<?php echo $this->Form->create('Trainee', array(
+						'action' => 'searchTraineeIdAjax',
+						'class' => 'hide search_trainee_id_form'
+					)) ?>
+					<?php echo $this->Form->end(); ?>
 	<?php
 		echo $this->Html->script('modernizr.custom', array('inline' => false, 'block' => 'modal-js'));
 		echo $this->Html->script('classie', array('inline' => false, 'block' => 'modal-js'));
@@ -325,9 +337,9 @@
 	 ?>
 	<!-- this page specific inline scripts -->
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
-	$(function($) {
 
-		//experience jp switch
+	//experience jp switch
+	$(function($) {
 		//yesが選択されたらhideをremove
 		$('#TraineeVisitJpnYes').on('click', function(){
 			$('.experience').find('.toggle').removeClass('hide');

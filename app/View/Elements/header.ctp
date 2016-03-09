@@ -1,4 +1,4 @@
-<header class="navbar" id="header-navbar">
+<header class="navbar no-print" id="header-navbar">
 	<div class="container">
 		<?php echo $this->Html->link(
 			$this->Html->image('logo.png', array('class'=>'normal-log logo-white')),
@@ -82,12 +82,12 @@
 
 				<li class="dropdown">
 					<a class="btn dropdown-toggle" data-toggle="dropdown">
-						<?= __('Languages') ?>
+						<?php echo $lang == 'ja' ? __('Japanese') : __('English'); ?>
 						<i class="fa fa-caret-down"></i>
 					</a>
 					<ul class="dropdown-menu">
 						<li class="item">
-							<?php echo $this->html->link(__('日本語', true), $this->action.DS.'lang:ja');?>
+							<?php echo $this->html->link(__('Japanese', true), $this->action.DS.'lang:ja');?>
 						</li>
 						<li class="item">
 							<?php echo $this->html->link(__('English', true), $this->action.DS.'lang:en');?>
