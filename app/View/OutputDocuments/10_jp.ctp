@@ -12,7 +12,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 maxW750">
+				<div class="col-lg-12 maxW700">
 					<div class="main-box clearfix">
 
 
@@ -21,13 +21,13 @@
 
 
 								<p align="right">
-									<span class="jitcoBox">JITCO書式10-24-33</span>
+									<span class="jitcoBox">JITCO書式10-24</span>
 									<p>
 									</p>
 								</p>
 								<p align="center" class="header_1">
 									<strong>
-										Summary of Sending Organization
+										送出し機関概要書
 										<p>
 										</p>
 									</strong>
@@ -42,7 +42,7 @@
 											<tr>
 												<td width="137">
 													<p align="center">
-														Name of Organization
+														機関名
 														<p>
 														</p>
 													</p>
@@ -60,12 +60,12 @@
 											<tr>
 												<td width="137">
 													<p align="center">
-														Name of manager
+														経営者名
 														<p>
 														</p>
 													</p>
 													<p align="center">
-														(Representative)
+														(代表者名)
 														<p>
 														</p>
 													</p>
@@ -85,7 +85,7 @@
 														</p>
 													</p>
 													<p align="center">
-														Address
+														所在地
 														<p>
 														</p>
 													</p>
@@ -121,14 +121,14 @@
 											<tr>
 												<td width="137">
 													<p align="center">
-														Date established
+														設立年月日
 														<p>
 														</p>
 													</p>
 												</td>
 												<td width="536" colspan="5">
 													<p align="center">
-														<input type="text" value="<?php echo date('F dS, Y',strtotime($agent[0]['Agent']['establish_date']));?>" style="width: 100%;text-align: center">
+														<input type="text" value="<?php echo date('Y年m月d日', strtotime($agent[0]['Agent']['establish_date']));?>" style="width: 100%;text-align: center">
 														<p>
 														</p>
 													</p>
@@ -137,90 +137,56 @@
 											<tr>
 												<td width="137">
 													<p align="center">
-														Relation to
+														実習実施機関との関係
 														<p>
 														</p>
 													</p>
-													<p align="center">
-														organization
-														<p>
-														</p>
-													</p>
-													<p align="center">
-														providing
-														<p>
-														</p>
-													</p>
-													<p align="center">
-														internship training
-														<p>
-														</p>
-													</p>
+
 												</td>
 												<td width="536" colspan="5" class="pBoth10">
 													<p>
-														●For Technical training A:
+														●技能実習イの場合
 														<p>
 														</p>
 													</p>
 													<p>
-														□Branch/Subsidiary (equity: %)
+														□支店・子会社（出資率　　　　％）
 														<p>
 														</p>
 													</p>
 													<p>
-														□Trading –partner company
+														□取引会社（年間取引額　　　　　取引期間　　　　　　） □ その他 (　　　　　 )
+														<p>
+														</p>
+													</p>
+
+													<p>
+														●技能実習ロの場合
 														<p>
 														</p>
 													</p>
 													<p>
-														(annual transaction amount: Transaction period: ) □ Other (　　　　　 )
+														□送出し機関（外国の所属機関）
 														<p>
 														</p>
 													</p>
 													<p>
-														●For technical training B:
+														☑送出し機関（その他技能実習の準備に関与する外国の機関）
 														<p>
 														</p>
 													</p>
-													<p>
-														☑Sending organization (Oversea organization belonged to)
-														<p>
-														</p>
-													</p>
-													<p>
-														□Sending organization
-														<p>
-														</p>
-													</p>
-													<p>
-														　 (other overseas organization taking part in preparation for　technical training)
-														<p>
-														</p>
-													</p>
+
 												</td>
 											</tr>
 											<tr>
 												<td width="137">
 													<p align="center">
-														Type of business
-														<p>
-														</p>
-													</p>
-													<p align="center">
-														Main products
-														<p>
-														</p>
-													</p>
-													<p align="center">
-														Main businesses
-														<p>
-														</p>
+														業種<br>主要製品<br>主要業務
 													</p>
 												</td>
 												<td width="536" colspan="5">
 													<p align="left">
-														Technical intern trainee<br> Human Resource Development<br> Technical and professional education
+														外国への労働者派遣サービス
 														<p>
 														</p>
 													</p>
@@ -229,21 +195,21 @@
 											<tr>
 												<td width="213" colspan="2">
 													<p align="center">
-														Capital
+														資本金
 														<p>
 														</p>
 													</p>
 												</td>
 												<td width="227" colspan="3">
 													<p align="center">
-														Net sale (most recent fiscal year)
+														売上げ（直近年度）
 														<p>
 														</p>
 													</p>
 												</td>
 												<td width="233">
 													<p align="center">
-														Number of full-time employee
+														常勤職員数
 														<p>
 														</p>
 													</p>
@@ -252,23 +218,23 @@
 											<tr>
 												<td width="213" colspan="2">
 													<p align="center">
-														<input type="text" value="<?php echo number_format(intval($agent[0]['Agent']['capital_riel'])/4000) ;?> USD" style="width: 100%;text-align: center"><br>
-														<span>(</span><input type="text" value="<?php echo number_format(intval($agent[0]['Agent']['capital_jpy']));?> Yen" style="width: 90%;text-align: center"><span>)</span>
+														<input type="text" value="<?php echo number_format(intval($agent[0]['Agent']['capital_riel'])/4000) ;?> ドル" style="width: 100%;text-align: center"><br>
+														<span>(</span><input type="text" value="約 <?php echo number_format(intval($agent[0]['Agent']['capital_jpy']));?> 円" style="width: 90%;text-align: center"><span>)</span>
 														<p>
 														</p>
 													</p>
 												</td>
 												<td width="227" colspan="3">
 													<p align="center">
-														<input type="text" value="<?php echo number_format(intval($agent[0]['Agent']['sales_riel'])/4000);?> USD" style="width: 100%;text-align: center"><br>
-														<span>(</span><input type="text" value="<?php echo number_format(intval($agent[0]['Agent']['sales_jpy']));?> Yen" style="width: 90%;text-align: center"><span>)</span>
+														<input type="text" value="<?php echo number_format(intval($agent[0]['Agent']['sales_riel'])/4000);?> ドル" style="width: 100%;text-align: center"><br>
+														<span>(</span><input type="text" value="約 <?php echo number_format(intval($agent[0]['Agent']['sales_jpy']));?> 円" style="width: 90%;text-align: center"><span>)</span>
 														<p>
 														</p>
 													</p>
 												</td>
 												<td width="233">
 													<p align="center">
-														<input type="text" value="<?php echo $agent[0]['Agent']['employee_num'] ?> People" style="width: 100%;text-align: center">
+														<input type="text" value="<?php echo $agent[0]['Agent']['employee_num'] ?> 人" style="width: 100%;text-align: center">
 														<p>
 														</p>
 													</p>
@@ -277,24 +243,19 @@
 											<tr>
 												<td width="137" rowspan="2">
 													<p align="center">
-														Main trading
+														主要貿易
 														<p>
 														</p>
 													</p>
 													<p align="center">
-														(transaction)
-														<p>
-														</p>
-													</p>
-													<p align="center">
-														Partner businesses
+														(取引)相手国
 														<p>
 														</p>
 													</p>
 												</td>
 												<td width="536" colspan="5">
 													<p>
-														Exports<input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['export_en'] ?>" style="text-align: center;width: 430px">
+														輸出先<input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['export_jp'] ?>" style="text-align: center">
 														<p>
 														</p>
 													</p>
@@ -303,7 +264,7 @@
 											<tr>
 												<td width="536" colspan="5">
 													<p>
-														Imports<input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['import_en'] ?>" style="text-align: center;width: 430px">
+														輸入先<input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['import_jp'] ?>" style="text-align: center">
 														<p>
 														</p>
 													</p>
@@ -312,12 +273,12 @@
 											<tr>
 												<td width="137">
 													<p align="center">
-														Name of Manager
+														管理者名
 														<p>
 														</p>
 													</p>
 													<p align="center">
-														(Person responsible)
+														(責任者名)
 														<p>
 														</p>
 													</p>
@@ -331,7 +292,7 @@
 												</td>
 												<td width="321" colspan="3">
 													<p align="center">
-														Position: <input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['rep_position_en'] ?>" style="text-align: center">
+														役職 <input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['rep_position_en'] ?>" style="text-align: center">
 														<p>
 														</p>
 													</p>
@@ -339,11 +300,8 @@
 											</tr>
 											<tr>
 												<td width="673" colspan="6" class="pBoth10">
-													<p>
-														1. Has any deposit money been collected, any money or other property been placed under management under any other title, or contact
-														been concluded planning improper transfer of any money or other property, including a contract establishing damages for failure to
-														perform the terms of the employment contract, with the applicant or his or her spouse, direct relation, or family members living with
-														him or her until conclusion of the technical internship?　　　　　　　　　　　　　　　　　　 Y / <span class="circle">N</span>
+													<p style="font-size: 14px">
+														1. 申請人又はその配偶者、直径若しくは同居の親族等との間で、当該技能実習が終了するまでに、保証金を徴収すること、その他名目のいかんを問わず金銭その他の財産を管理すること、労働契約の不履行に係る違約金を定める契約その他不当に金銭その他の財産の移転を予定する契約することの有無<br> <span class="">あり</span> ・ <span class="circle">なし</span>
 														<p>
 														</p>
 													</p>
@@ -351,10 +309,8 @@
 											</tr>
 											<tr>
 												<td width="673" colspan="6" class="pBoth10">
-													<p>
-														2. Has any contract been concluded planning improper transfer of any money or other property, including a contract establishing damages
-														for failure to perform the terms of the employment contract, with the internship training organization until conclusion of the
-														technical internship?　　　　　　　 Y / <span class="circle">N</span>
+													<p style="font-size: 14px">
+														2. 実習実施機関との間で、当該技能実習が終了するまでに、労働契約の不履行に係る違約金を定める契約その他不当に金銭その他の財産の移転を予定する契約を締結することの有無<br> <span class="">あり</span> ・ <span class="circle">なし</span>
 														<p>
 														</p>
 													</p>
@@ -362,10 +318,8 @@
 											</tr>
 											<tr>
 												<td width="673" colspan="6" class="pBoth10">
-													<p>
-														3. Have any forger or falsified documents or drawings or documents or drawings containing misrepresentation been used or provided for
-														the purpose of obtaining improper authorization for entry or residence of a foreigner or of concealing the facts of improper behavior
-														related to the training or technical or technical internship for a foreigner?　　　　　　　　 Y / <span class="circle">N</span>
+													<p style="font-size: 14px">
+														3. 外国人に不正に入国・在留に係る許可を受けさせ、又は外国人の研修・技能実習に係る不正行為に関する事実を隠蔽する目的で、偽変造の文書・図画若しくは虚偽の文書・図画の行使・提供を行ったことの有無<br> <span class="">あり</span> ・ <span class="circle">なし</span>
 														<p>
 														</p>
 													</p>
@@ -376,14 +330,14 @@
 													<p>
 														<strong>
 															<u>
-																Fill out if the answer to any of the questions 1-3 above is “Y”
+																上記１～３において、「あり」に該当する場合に記載
 																<p>
 																</p>
 															</u>
 														</strong>
 													</p>
 													<p>
-														Timing:
+														時期
 														<strong>
 															<u>
 																<p>
@@ -393,16 +347,29 @@
 													</p>
 												</td>
 											</tr>
-											<tr style="border-bottom: 1px solid #333;">
+											<tr>
 												<td width="673" colspan="6" class="pBoth10">
 													<p>
-														Content
+														内容
 														<p>
 														</p>
 													</p>
 												</td>
 											</tr>
-
+											<tr height="0">
+												<td width="137">
+												</td>
+												<td width="76">
+												</td>
+												<td width="139">
+												</td>
+												<td width="41">
+												</td>
+												<td width="47">
+												</td>
+												<td width="233">
+												</td>
+											</tr>
 										</tbody>
 									</table>
 									<div style="width:673px">
@@ -410,16 +377,31 @@
 											<p>
 											</p>
 										</p>
-										<p style="margin-top: 5px;margin-bottom: 0">
-											Date prepared (D/M/Y): <input type="text" value="" style="text-align: center">
+										<p>
+											<input type="text" value="" style="text-align: center;width: 50px">年<input type="text" value="" style="text-align: center;width: 50px">月<input type="text" value="" style="text-align: center;width: 50px">日 作成
+											<p>
+											</p>
 										</p>
-										<p style="margin-top: 5px;margin-bottom: 0;text-align: right">
-											Name of sending organization: <input type="text" value="<?php echo $agent[0]['Agent']['agent_en'] ?>" style="text-align: center;width:50%">
+										<p>
+											送出し機関名 <input type="text" value="<?php echo $agent[0]['Agent']['agent_en'] ?>" style="text-align: center;width:50%">
+											<p>
+											</p>
 										</p>
-										<p style="margin-top: 5px;margin-bottom: 0;text-align: right">
-											Position and name of person responsible: <input type="text" value="<?php echo $agent[0]['Agent']['rep_position_en'] ?>" style="width: 25%;text-align: center"><input type="text" value="<?php echo $agent[0]['Agent']['rep_given_name_en']." ".$agent[0]['Agent']['rep_family_name_en']; ?>" style="width: 25%;text-align: center"> (seal)
+										<p>
+											<p>
+											</p>
 										</p>
-										<p style="margin-top: 1px;border-bottom: 1px solid #333;margin-left: 60px;"></p>
+										<p>
+											<p>
+											</p>
+										</p>
+										<p>
+											責任者 役職・氏名<input type="text" value="<?php echo $agent[0]['Agent']['rep_position_en'] ?>" style="width: 25%;text-align: center"><input type="text" value="<?php echo $agent[0]['Agent']['rep_given_name_en']." ".$agent[0]['Agent']['rep_family_name_en']; ?>" style="width: 25%;text-align: center"> <span class="circle">印</span>
+											<u>
+												<p>
+												</p>
+											</u>
+										</p>
 								</div>
 							</div>
 

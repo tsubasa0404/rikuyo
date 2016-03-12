@@ -12,7 +12,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 maxW750">
+				<div class="col-lg-12 maxW700">
 					<div class="main-box clearfix">
 
 
@@ -21,7 +21,7 @@
 
 
 								<p align="right">
-									<span class="jitcoBox">JITCO書式10-24-33</span>
+									<span class="jitcoBox">JITCO書式10-24-3</span>
 									<p>
 									</p>
 								</p>
@@ -294,7 +294,7 @@
 												</td>
 												<td width="536" colspan="5">
 													<p>
-														Exports<input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['export_en'] ?>" style="text-align: center;width: 430px">
+														Exports<input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['export_en'] ?>" style="text-align: center">
 														<p>
 														</p>
 													</p>
@@ -303,7 +303,7 @@
 											<tr>
 												<td width="536" colspan="5">
 													<p>
-														Imports<input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['import_en'] ?>" style="text-align: center;width: 430px">
+														Imports<input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['import_en'] ?>" style="text-align: center">
 														<p>
 														</p>
 													</p>
@@ -343,7 +343,7 @@
 														1. Has any deposit money been collected, any money or other property been placed under management under any other title, or contact
 														been concluded planning improper transfer of any money or other property, including a contract establishing damages for failure to
 														perform the terms of the employment contract, with the applicant or his or her spouse, direct relation, or family members living with
-														him or her until conclusion of the technical internship?　　　　　　　　　　　　　　　　　　 Y / <span class="circle">N</span>
+														him or her until conclusion of the technical internship?　　　　　　　　　　　　　　　　　　 <span class="circle">Y</span> / N
 														<p>
 														</p>
 													</p>
@@ -354,7 +354,7 @@
 													<p>
 														2. Has any contract been concluded planning improper transfer of any money or other property, including a contract establishing damages
 														for failure to perform the terms of the employment contract, with the internship training organization until conclusion of the
-														technical internship?　　　　　　　 Y / <span class="circle">N</span>
+														technical internship?　　　　　　　 <span class="circle">Y</span> / N
 														<p>
 														</p>
 													</p>
@@ -365,7 +365,7 @@
 													<p>
 														3. Have any forger or falsified documents or drawings or documents or drawings containing misrepresentation been used or provided for
 														the purpose of obtaining improper authorization for entry or residence of a foreigner or of concealing the facts of improper behavior
-														related to the training or technical or technical internship for a foreigner?　　　　　　　　 Y / <span class="circle">N</span>
+														related to the training or technical or technical internship for a foreigner?　　　　　　　　 <span class="circle">Y</span> / N
 														<p>
 														</p>
 													</p>
@@ -393,7 +393,7 @@
 													</p>
 												</td>
 											</tr>
-											<tr style="border-bottom: 1px solid #333;">
+											<tr>
 												<td width="673" colspan="6" class="pBoth10">
 													<p>
 														Content
@@ -402,7 +402,20 @@
 													</p>
 												</td>
 											</tr>
-
+											<tr height="0">
+												<td width="137">
+												</td>
+												<td width="76">
+												</td>
+												<td width="139">
+												</td>
+												<td width="41">
+												</td>
+												<td width="47">
+												</td>
+												<td width="233">
+												</td>
+											</tr>
 										</tbody>
 									</table>
 									<div style="width:673px">
@@ -410,16 +423,31 @@
 											<p>
 											</p>
 										</p>
-										<p style="margin-top: 5px;margin-bottom: 0">
+										<p>
 											Date prepared (D/M/Y): <input type="text" value="" style="text-align: center">
+											<p>
+											</p>
 										</p>
-										<p style="margin-top: 5px;margin-bottom: 0;text-align: right">
+										<p>
 											Name of sending organization: <input type="text" value="<?php echo $agent[0]['Agent']['agent_en'] ?>" style="text-align: center;width:50%">
+											<p>
+											</p>
 										</p>
-										<p style="margin-top: 5px;margin-bottom: 0;text-align: right">
+										<p>
+											<p>
+											</p>
+										</p>
+										<p>
+											<p>
+											</p>
+										</p>
+										<p>
 											Position and name of person responsible: <input type="text" value="<?php echo $agent[0]['Agent']['rep_position_en'] ?>" style="width: 25%;text-align: center"><input type="text" value="<?php echo $agent[0]['Agent']['rep_given_name_en']." ".$agent[0]['Agent']['rep_family_name_en']; ?>" style="width: 25%;text-align: center"> (seal)
+											<u>
+												<p>
+												</p>
+											</u>
 										</p>
-										<p style="margin-top: 1px;border-bottom: 1px solid #333;margin-left: 60px;"></p>
 								</div>
 							</div>
 

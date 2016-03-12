@@ -2,14 +2,14 @@
 <?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->addCrumb(__('Interviews'), '/interviews'); ?>
-<?php $this->Html->addCrumb(__('Interview Profile'), '/interviews/'.$interview_prof[0]['Interview']['id']); ?>
+<?php $this->Html->addCrumb(__('Interview Profile'), '/interviews/profile/'.$interview_prof[0]['Interview']['id']); ?>
 <?php $this->Html->addCrumb(__('Documents List')); ?>
 					<h1><?= __('Documents List') ?></h1>
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 maxW500">
+				<div class="col-lg-12 maxW600">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2>
@@ -43,7 +43,7 @@
 															<?php echo $this->Html->link(
 																'<i class="fa fa-print"></i> JP',
 																array('controller' => 'output_documents', 'action' => 'printout',$interview_prof[0]['Interview']['id'], $doc['OutputDocument']['id']."_jp"),
-																array('escape' => false, 'class' => 'white')
+																array('escape' => false, 'class' => 'white', 'target' => '_blanc')
 															) ?>
 														</button>
 													<?php endif; ?>
@@ -52,7 +52,7 @@
 															<?php echo $this->Html->link(
 																'<i class="fa fa-print"></i> EN',
 																array('controller' => 'output_documents', 'action' => 'printout',$interview_prof[0]['Interview']['id'],$doc['OutputDocument']['id']."_en"),
-																array('escape' => false, 'class' => 'white')
+																array('escape' => false, 'class' => 'white', 'target' => '_blanc')
 															) ?>
 														</button>
 													<?php endif; ?>
@@ -61,7 +61,7 @@
 															<?php echo $this->Html->link(
 																'<i class="fa fa-print"></i> KH',
 																array('controller' => 'output_documents', 'action' => 'printout',$interview_prof[0]['Interview']['id'],$doc['OutputDocument']['id']."_kh"),
-																array('escape' => false, 'class' => 'white')
+																array('escape' => false, 'class' => 'white', 'target' => '_blanc')
 															) ?>
 														</button>
 													<?php endif; ?>

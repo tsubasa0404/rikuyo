@@ -9,6 +9,15 @@ App::uses('AppModel', 'Model');
  */
 class InterviewCandidate extends AppModel {
 
+	//printout用合格者一覧取得
+	public function successTrainees($interview_id){
+		$options = array();
+		$options['conditions'] = array(
+			'InterviewCandidate.interview_id'=> $interview_id,
+			'InterviewCandidate.interview_result_id' => 2 //合格者2
+			);
+		return $this->find('all', $options);
+	}
 
 	//Profileページ用候補者一覧取得
 	//Selectページ用候補者一覧取得

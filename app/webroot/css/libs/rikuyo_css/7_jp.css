@@ -1,0 +1,11 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print{
+  table > tbody > td > p{margin-bottom: 0;margin-top: 0}
+  tbody {border:solid 2px;}
+}
+@media screen{
+  table > tbody > td > p{margin-bottom: 0;margin-top: 0}
+}

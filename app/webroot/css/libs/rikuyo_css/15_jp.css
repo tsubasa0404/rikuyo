@@ -1,0 +1,11 @@
+@media screen{
+  .box-15{
+    width: 960px;
+  }
+}
+@media print{
+  .box-15{
+    width: 950px;
+
+  }
+}

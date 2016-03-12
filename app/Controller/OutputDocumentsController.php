@@ -18,10 +18,12 @@ class OutputDocumentsController extends AppController {
 		'OutputDocument',
 		'DocName',
 		'Interview',
+		'InterviewCandidate',
 		'Trainee',
 		'Association',
 		'Agent',
 		'Company',
+		'Job',
 		);
 
 /**
@@ -44,11 +46,28 @@ class OutputDocumentsController extends AppController {
 	}
 
 	public function printout($interview_id, $ctp_name){
+
 		$interview_prof = $this->Interview->printProf($interview_id);
 		$agent = $this->Agent->find('all', array('conditions' => array('Agent.id' => $interview_prof[0]['Interview']['agent_id'])));
-		$this->set(compact('interview_prof', 'agent'));
+		$trainees = $this->InterviewCandidate->successTrainees($interview_id);
+		$option_agents = $this->Agent->find('list', array('fields' => array('id', 'agent_en')));
+		$jobs = $this->_getJobArr($interview_prof[0]['Interview']['job']);
+
+		$this->set(compact('interview_prof', 'agent', 'trainees', 'option_agents', 'jobs'));
 		$this->render($ctp_name);
 	}
+
+	public function _getJobArr($jobs_id){
+		$jobs_arr = explode(',', $jobs_id);
+		$jobs = array();
+		foreach ($jobs_arr as $job_id) {
+			$job = $this->Job->find('all', array('conditions'=>array('id'=>$job_id), 'fields' => array('id', 'job_en', 'job_jp'), 'recursive'=> -1));
+			array_push($jobs, $job);
+		}
+		return $jobs;
+	}
+
+
 
 /**
  * view method

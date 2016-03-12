@@ -1,7 +1,8 @@
 @media print{
 input[type="text"]{border: 0;outline:0;box-shadow:none;transition:none;}
+.select2-container--default{border: none;outline:0;box-shadow:none;transition:none; }
+select, textarea{border: none;outline:0;box-shadow:none;transition:none;appearance:none;-webkit-appearance:none;-moz-appearance:none;resize:none;}
 
-}
 body{font-family: "Times New Roman";font-size: 14px;}
 table.table.jitco > tbody p{margin: 3px 0}
 /*.pBoth10{padding-left: 10px;padding-right: 10px;}*/
@@ -9,3 +10,9 @@ p{padding-left: 10px;padding-right: 10px;}
 table{border: thin;border-right: solid thin}
 .inputW80{width:80%;}
 .header_1{font-size: 18px;}
+}
+.print-area{font-family: "Times New Roman"}
+.table tbody > tr > td:first-child{
+  font-size: inherit;
+  font-weight: inherit;
+}

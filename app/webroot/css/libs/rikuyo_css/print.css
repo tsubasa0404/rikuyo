@@ -3,7 +3,7 @@
   margin: 0;
 }
 @media print{
-  #new-page{
+  #new-page,.new-page{
     page-break-before:always;
   }
   .no-print{
@@ -31,5 +31,21 @@
   -o-border-radius: 50%;
   -ms-border-radius: 50%;
     border:solid 1px #000000;
+  }
+
+  strong{
+    font-weight: bold
+  }
+
+  .pmB30 p{
+    margin-bottom: 30px;
+  }
+
+  input, textarea{
+    font-family: 'Times New Roman','ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN'
+  }
+  div.att > p{
+    padding-left:1em;
+    text-indent: -1em;
   }
 }

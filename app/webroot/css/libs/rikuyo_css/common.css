@@ -190,6 +190,7 @@ button.print_btn{
     border:solid 1px #000000;
   }
 
+
 .error-message{color:red;}
 .white{color:white !important;}
 .btn{font-size: 12px;}
@@ -201,6 +202,8 @@ button.print_btn{
 .mB5{margin-bottom:5px !important;}
 .mR5{margin-right: 5px !important;}
 .mL5{margin-left:5px !important;}
+.mL10{margin-left:10px !important;}
+.mL20{margin-left:20px !important;}
 .maxW50{max-width: 50px !important;}
 .maxW60{max-width: 60px !important;}
 .maxW70{max-width: 70px !important;}
@@ -224,6 +227,7 @@ button.print_btn{
 .maxW850{max-width: 850px !important;}
 .maxW900{max-width: 900px !important;}
 .maxW960{max-width: 960px !important;}
+.maxW1000{max-width: 1000px !important;}
 .maxW1200{max-width: 1200px !important;}
 
 /* end module*/
