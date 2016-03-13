@@ -6,7 +6,7 @@
 <?php $this->Html->css('libs/rikuyo_css/4_en', array('inline'=>false, 'block'=>'page-css'),array('media' => 'screen'));?>
 <?php $this->Html->addCrumb(__('Interviews'), '/interviews'); ?>
 <?php $this->Html->addCrumb(__('Interview Profile'), '/interviews/profile/'.$interview_prof[0]['Interview']['id']); ?>
-<?php $this->Html->addCrumb(__('Documents List'), 'output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
+<?php $this->Html->addCrumb(__('Documents List'), '/output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
 <?php $this->Html->addCrumb(__('List of Dispatch Trainees to Japan')); ?>
 					<h1><?= __('List of Dispatch Trainees to Japan') ?></h1>
 					</div>
@@ -26,14 +26,14 @@
 								</p>
 								<div style="padding-left: 80px;margin-top: 100px;margin-bottom: 50px; font-size: 18px">
 									<p>
-									    Sending Organization<span style="padding-left: 45px">：</span>HUMAN POWER Co., Ltd.
+									    Sending Organization<span style="padding-left: 45px">：</span><input type="text" name="" value="HUMAN POWER Co., Ltd." style="width:400px;font-size: 18px;font-family: 'Times New Roman' ">
 									</p>
 									<p>
 									    Supervising Organization　：<input type="text" name="" value="<?php echo $interview_prof[0]['Association']['association_en'] ?>" style="width:400px;font-size: 18px;font-family: 'Times New Roman' ">
 									</p>
 								</div>
-								<div align="center">
-									<table border="1" cellspacing="0" cellpadding="0" width="718">
+								<div align="center" style="padding-left: 20px;padding-right: 20px;">
+									<table border="1" cellspacing="0" cellpadding="0" width="680">
 									    <tbody>
 									        <tr>
 									            <td width="30" nowrap="">
@@ -41,12 +41,12 @@
 									                    No
 									                </p>
 									            </td>
-									            <td width="189">
+									            <td width="160">
 									                <p align="center">
 									                    Name (Japanese)
 									                </p>
 									            </td>
-									            <td width="170">
+									            <td width="160">
 									                <p align="center">
 									                    Name (Alphabet)
 									                </p>
@@ -75,12 +75,12 @@
 									                    <?php echo $i++ ?>
 									                </p>
 									            </td>
-									            <td width="189" nowrap="">
+									            <td width="160" nowrap="">
 									                <p align="center">
 																		<?php echo $trainee['Trainee']['family_name_jp']." ".$trainee['Trainee']['given_name_jp'] ?>
 									                </p>
 									            </td>
-									            <td width="170" nowrap="">
+									            <td width="160" nowrap="">
 									                <p align="center">
 									                    <?php echo $trainee['Trainee']['family_name_en']." ".$trainee['Trainee']['given_name_en'] ?>
 									                </p>

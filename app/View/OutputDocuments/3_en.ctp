@@ -5,7 +5,7 @@
 <?php $this->Html->css('libs/rikuyo_css/1_en', array('inline'=>false, 'block'=>'page-css'),array('media' => 'print'));?>
 <?php $this->Html->addCrumb(__('Interviews'), '/interviews'); ?>
 <?php $this->Html->addCrumb(__('Interview Profile'), '/interviews/profile/'.$interview_prof[0]['Interview']['id']); ?>
-<?php $this->Html->addCrumb(__('Documents List'), 'output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
+<?php $this->Html->addCrumb(__('Documents List'), '/output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
 <?php $this->Html->addCrumb(__('Letter of Recommendation')); ?>
 					<h1><?= __('Letter of Recommendation') ?></h1>
 					</div>
@@ -21,7 +21,7 @@
 
 
 								<p align="right">
-								    <span class="jitcoBox">JITCO書式10－23－33</span>
+								    <span class="jitcoBox">JITCO書式10-23-3</span>
 								</p>
 								<p align="center" style="font-size: 20px">
 								    Letter of Recommendation
@@ -57,10 +57,10 @@
 								</p>
 								<div style="margin-left: 10px">
 									<p>
-									    1. Name of sending organization 　　　　 <input type="text" name="" value="HUMAN POWER Co.,Ltd." placeholder="">
+									    1. Name of sending organization 　　　　 <input type="text" name="" value="HUMAN POWER Co.,Ltd." style="width: 400px">
 									</p>
 									<p>
-									    2. Name of representative 　　　　 <input type="text" name="" value="Ms.Leng Vichheka" placeholder="">
+									    2. Name of representative 　　　　 <input type="text" name="" value="Ms.Leng Vichheka" style="width: 200px">
 									</p>
 									<p>
 									    3. Address of sending organization

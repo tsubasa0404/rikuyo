@@ -8,6 +8,42 @@ App::uses('AppHelper', 'View/Helper');
 class ForeachHelper extends AppHelper
 {
 
+  //output document jobsの配列を連結して表示
+  public function associate_jobs_en($jobs){
+    $job_arr = array();
+    foreach ($jobs as $job) {
+      $job = $job[0]['Job']['job_en'];
+      array_push($job_arr, $job);
+    }
+    return implode(', ', $job_arr);
+  }
+  public function associate_jobs_jp($jobs){
+    $job_arr = array();
+    foreach ($jobs as $job) {
+      $job = $job[0]['Job']['job_jp'];
+      array_push($job_arr, $job);
+    }
+    return implode('、 ', $job_arr);
+  }
+
+  //output document sectorsの配列を連結して表示
+  public function associate_sectors_en($sectors){
+    $sector_arr = array();
+    foreach ($sectors as $sector) {
+      $sector = $sector[0]['Sector']['sector_en']." Department";
+      array_push($sector_arr, $sector);
+    }
+    return implode(', ', $sector_arr);
+  }
+  public function associate_sectors_jp($sectors){
+    $sector_arr = array();
+    foreach ($sectors as $sector) {
+      $sector = $sector[0]['Sector']['sector_jp']."部門";
+      array_push($sector_arr, $sector);
+    }
+    return implode('、 ', $sector_arr);
+  }
+
   //interview index past_interviewsテーブル用 提出済み書類数取得
   public function completed_document_count($interview_id){
     $this->InterviewDocStatusList = ClassRegistry::init('InterviewDocStatusList');

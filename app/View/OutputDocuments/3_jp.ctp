@@ -5,7 +5,7 @@
 <?php $this->Html->css('libs/rikuyo_css/1_en', array('inline'=>false, 'block'=>'page-css'),array('media' => 'print'));?>
 <?php $this->Html->addCrumb(__('Interviews'), '/interviews'); ?>
 <?php $this->Html->addCrumb(__('Interview Profile'), '/interviews/profile/'.$interview_prof[0]['Interview']['id']); ?>
-<?php $this->Html->addCrumb(__('Documents List'), 'output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
+<?php $this->Html->addCrumb(__('Documents List'), '/output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
 <?php $this->Html->addCrumb(__('Letter of Recommendation')); ?>
 					<h1><?= __('Letter of Recommendation') ?></h1>
 					</div>
@@ -21,7 +21,7 @@
 
 
 								<p align="right">
-								    　　<span class="jitcoBox">JITCO書式10－233</span>　
+								    　　<span class="jitcoBox">JITCO書式10-23</span>　
 								</p>
 								<p align="center" style="font-size: 22px">
 								    推　薦　状
@@ -36,16 +36,16 @@
 									<p>
 									    　　　　　　　　　　　　　（技能実習生名）　　　　　　　（人数）
 									</p>
-									<p>
+									<p style="margin-bottom: 0">
 									    （別添名簿のとおり）が、日本国　  <input type="text" name="" value="<?php echo $interview_prof[0]['Association']['association_jp'] ?>" style="width:240px;text-align: center;">  　に
 									</p>
-									<p>
+									<p style="margin-top: 0">
 									    　　　　　　　　　　　　　　　　　　　　　（監理団体名）　
 									</p>
-									<p>
-									    受け入れられて<strong>、　　<u>　　　　　　　　　　　　</u>　　　</strong>に関する
+									<p style="margin-bottom: 0">
+									    受け入れられて、<strong><input type="text" name="" value="<?php echo $this->Foreach->associate_jobs_jp($jobs) ?>" style="width: 300px"></strong>に関する
 									</p>
-									<p>
+									<p style="margin-top: 0">
 									    　　　　　　　　　　　　　　（職種）
 									</p>
 									<p>
@@ -64,16 +64,16 @@
 								</p>
 								<div style="padding-left: 80px">
 									<p>
-									    1．送出し機関名 HUMAN POWER Co.,Ltd.
+									    1．送出し機関名 <input type="text" name="" value="HUMAN POWER Co.,Ltd." style="width: 400px">
 									</p>
 									<p>
-									    2．代表者の氏名 Ms. Leng Vichheka
+									    2．代表者の氏名 <input type="text" name="" value="Ms. Leng Vichheka" style="width: 200px">
 									</p>
 									<p>
 									    3．送出し機関の所在地
 									</p>
 									<p>
-									    Nº.115D, Street 18 , Tuol Sangke Commune, Russey Keo Distrct ,Phnom Penh Cambodia
+									    <input type="text" name="" value="Nº.115D, Street 18 , Tuol Sangke Commune, Russey Keo Distrct ,Phnom Penh Cambodia" style="width: 500px">
 									</p>
 									<p align="center">
 									   <input type="text" name="" value="" style="width:50px;text-align: center">

@@ -42,7 +42,7 @@
   }
 
   input, textarea{
-    font-family: 'Times New Roman','ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN'
+    font-family: 'Times New Roman','游明朝', 'YuMincho', 'ヒラギノ明朝 ProN W3','ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN'
   }
   div.att > p{
     padding-left:1em;

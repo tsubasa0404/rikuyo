@@ -13,7 +13,7 @@ class OutputDocumentsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'RequestHandler');
 	public $uses = array(
 		'OutputDocument',
 		'DocName',
@@ -24,6 +24,7 @@ class OutputDocumentsController extends AppController {
 		'Agent',
 		'Company',
 		'Job',
+		'Sector',
 		);
 
 /**
@@ -52,8 +53,9 @@ class OutputDocumentsController extends AppController {
 		$trainees = $this->InterviewCandidate->successTrainees($interview_id);
 		$option_agents = $this->Agent->find('list', array('fields' => array('id', 'agent_en')));
 		$jobs = $this->_getJobArr($interview_prof[0]['Interview']['job']);
+		$sectors = $this->_getSectorArr($interview_prof[0]['Association']['sector']);
 
-		$this->set(compact('interview_prof', 'agent', 'trainees', 'option_agents', 'jobs'));
+		$this->set(compact('interview_prof', 'agent', 'trainees', 'option_agents', 'jobs', 'sectors'));
 		$this->render($ctp_name);
 	}
 
@@ -65,6 +67,28 @@ class OutputDocumentsController extends AppController {
 			array_push($jobs, $job);
 		}
 		return $jobs;
+	}
+
+	public function _getSectorArr($sectors_id){
+		$sectors_arr = explode(',', $sectors_id);
+		$sectors = array();
+		foreach ($sectors_arr as $sector_id) {
+			$sector = $this->Sector->find('all', array('conditions'=>array('id'=>$sector_id), 'fields' => array('id', 'sector_en', 'sector_jp'), 'recursive'=> -1));
+			array_push($sectors, $sector);
+		}
+		return $sectors;
+	}
+
+	public function getTraineeAjax(){
+		$this->autoRender = false;
+		if($this->RequestHandler->isAjax()){
+			Configure::write('debug', 0);
+
+			$trainee_id = $_GET['trainee_id'];
+			$trainee_info = $this->Trainee->getTraineeAjax($trainee_id);
+			echo json_encode($trainee_info, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+
+		}
 	}
 
 

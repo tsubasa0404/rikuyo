@@ -208,140 +208,137 @@
 				</div><!-- /Selected Document -->
 				<div class="col-lg-6 col-md-6 col-sm-6 maxW600">
 					<div class="main-box-body clearfix">
-						<div class="col-lg-12 col-md-12 col-sm-12">
-							<div class="col-lg-12 col-md-12 col-sm-12 ">
-								<div class="main-box">
-									<header class="main-box-header clearfix">
-										<h2><?= __('Management Expenses') ?></h2>
-									</header>
-									<div class="main-box-body clearfix">
-										<?php
-											echo $this->Form->create('AssociationExpense', array(
-											'action' => 'add',
-											'class' => 'form_add_expense'
-											));
-										?>
-										<?php echo $this->Form->hidden('association_id', array('value' => $this->request->data['Association']['id'])) ?>
-										<div class="form-group">
-											<label for="payDate"><?= __('Pay Date') ?></label>
-											<div class="input-group">
-												<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-												<input type="date" name='data[AssociationExpense][pay_date]' class="form-control maxW200 expense_pay_date" id="" required="" >
-											</div>
+
+							<div class="main-box">
+								<header class="main-box-header clearfix">
+									<h2><?= __('Management Expenses') ?></h2>
+								</header>
+								<div class="main-box-body clearfix">
+									<?php
+										echo $this->Form->create('AssociationExpense', array(
+										'action' => 'add',
+										'class' => 'form_add_expense'
+										));
+									?>
+									<?php echo $this->Form->hidden('association_id', array('value' => $this->request->data['Association']['id'])) ?>
+									<div class="form-group">
+										<label for="payDate"><?= __('Pay Date') ?></label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+											<input type="date" name='data[AssociationExpense][pay_date]' class="form-control maxW200 expense_pay_date" id="" required="" >
 										</div>
-										<div class="form-group">
-											<label for="payAmount"><?= __('Price') ?></label>
-											<div class="input-group">
-												<span class="input-group-addon">&yen;</span>
-												<input type="number" name='data[AssociationExpense][pay_price]' class="form-control maxW200 expense_pay_price" id="paySheduleAmount" size="5" min="0" required="">
-											</div>
-										</div>
-										<div class="form-group">
-											<?php echo $this->Form->input('note', array(
-												'class' => 'form-control maxW300',
-												'rows' => 3
-											)) ?>
-										</div>
-										<button type="submit" class="btn btn-primary add_expense_btn"><?= __('Add') ?></button>
-										<?php echo $this->Form->end(); ?>
 									</div>
-									<hr>
-									<div class="main-box-body clearfix">
-										<div class="table-responsive col-lg-12 col-md-12 col-sm-12 maxW800">
-											<table class="table table-bordered finance">
-												<thead>
-													<tr>
-														<th class="text-center"><span><?= __('Pay Date') ?></span></th>
-														<th class="text-center"><span><?= __('Price') ?></span></th>
-														<th class="text-center"><span><?= __('Note') ?></span></th>
-														<th class="text-center"><span></span></th>
-													</tr>
-												</thead>
-												<tbody class="expense-table">
-													<?php if($expenses): ?>
-														<?php foreach ($expenses as $expense) : ?>
-															<tr class="expense-<?php echo $expense['AssociationExpense']['id']?>" data-expense-id="<?php $expense['AssociationExpense']['id'];?> ">
-																<td class="text-center td_first_block">
-																	<?php echo $expense['AssociationExpense']['pay_date'];?>
-																</td>
-																<td class="text-center">
-																<?php echo "&yen; ".$expense['AssociationExpense']['pay_price'];?>
-																</td>
-																<td>
-																	<?php echo $expense['AssociationExpense']['note'] ?>
-																</td>
-																<td class="text-center">
-																<?php echo $this->Form->postlink(
-																	'<i class="fa fa-pencil"></i>',
-																	array('controller' => 'association_expenses', 'action' => 'edit',$expense['AssociationExpense']['id']),
-																	array('escape' => false, 'class' => 'table-link')
-																);
-																echo $this->Form->postlink(
-																	'<i class="fa fa-trash-o"></i>',
-																	array('controller' => 'association_expenses', 'action' => 'delete',$expense['AssociationExpense']['id']),
-																	array('confirm' => __('Are you sure you want to delete # %s?',$expense['AssociationExpense']['id']),'escape' => false, 'class' => 'table-link red' )
-																);?>
-																</td>
-															</tr>
-														<?php endforeach; ?>
-													<?php endif; ?>
-													<tr data-expense-id="" class="hide tmp_expense_add">
-														<td class="expected_date td_first_block text-center">
-														</td>
-														<td class="expected_price text-center">
-														</td>
-														<td>
-															<div class="row">
-																<div class="col-lg-4 col-md-4 col-sm-4">
-																	<label><?= __('Pay Date')?></label>
-																	<input name="data[AssociationExpense][pay_date]" class="form-control maxW200 chk pay_date "  type="date" data-expense-id="" data-column="pay_date">
-																</div>
-																<div class="col-lg-3 col-md-3 col-sm-3">
-																	<label><?= __('Price($)');?></label>
-																	<input name="data[AssociationExpense][pay_price]" class="form-control maxW100 chk pay_price"  type="number" data-expense-id="" data-column="pay_price">
-																</div>
-																<div class="col-lg-4 col-md-4 col-sm-4">
-																	<label for=""><?= __('Note') ?></label>
-																	<input name="data[AssociationExpense][note]" class="form-control note chk"  maxlength="255" type="text" data-expense-id="" data-column="note">
-																</div>
+									<div class="form-group">
+										<label for="payAmount"><?= __('Price') ?></label>
+										<div class="input-group">
+											<span class="input-group-addon">&yen;</span>
+											<input type="number" name='data[AssociationExpense][pay_price]' class="form-control maxW200 expense_pay_price" id="paySheduleAmount" size="5" min="0" required="">
+										</div>
+									</div>
+									<div class="form-group">
+										<?php echo $this->Form->input('note', array(
+											'class' => 'form-control maxW300',
+											'rows' => 3
+										)) ?>
+									</div>
+									<button type="submit" class="btn btn-primary add_expense_btn"><?= __('Add') ?></button>
+									<?php echo $this->Form->end(); ?>
+								</div>
+								<hr>
+								<div class="main-box-body clearfix">
+									<div class="table-responsive col-lg-12 col-md-12 col-sm-12 maxW800">
+										<table class="table table-bordered finance">
+											<thead>
+												<tr>
+													<th class="text-center"><span><?= __('Pay Date') ?></span></th>
+													<th class="text-center"><span><?= __('Price') ?></span></th>
+													<th class="text-center"><span><?= __('Note') ?></span></th>
+													<th class="text-center"><span></span></th>
+												</tr>
+											</thead>
+											<tbody class="expense-table">
+												<?php if($expenses): ?>
+													<?php foreach ($expenses as $expense) : ?>
+														<tr class="expense-<?php echo $expense['AssociationExpense']['id']?>" data-expense-id="<?php $expense['AssociationExpense']['id'];?> ">
+															<td class="text-center td_first_block">
+																<?php echo $expense['AssociationExpense']['pay_date'];?>
+															</td>
+															<td class="text-center">
+															<?php echo "&yen; ".$expense['AssociationExpense']['pay_price'];?>
+															</td>
+															<td>
+																<?php echo $expense['AssociationExpense']['note'] ?>
+															</td>
+															<td class="text-center">
+															<?php echo $this->Form->postlink(
+																'<i class="fa fa-pencil"></i>',
+																array('controller' => 'association_expenses', 'action' => 'edit',$expense['AssociationExpense']['id']),
+																array('escape' => false, 'class' => 'table-link')
+															);
+															echo $this->Form->postlink(
+																'<i class="fa fa-trash-o"></i>',
+																array('controller' => 'association_expenses', 'action' => 'delete',$expense['AssociationExpense']['id']),
+																array('confirm' => __('Are you sure you want to delete # %s?',$expense['AssociationExpense']['id']),'escape' => false, 'class' => 'table-link red' )
+															);?>
+															</td>
+														</tr>
+													<?php endforeach; ?>
+												<?php endif; ?>
+												<tr data-expense-id="" class="hide tmp_expense_add">
+													<td class="expected_date td_first_block text-center">
+													</td>
+													<td class="expected_price text-center">
+													</td>
+													<td>
+														<div class="row">
+															<div class="col-lg-4 col-md-4 col-sm-4">
+																<label><?= __('Pay Date')?></label>
+																<input name="data[AssociationExpense][pay_date]" class="form-control maxW200 chk pay_date "  type="date" data-expense-id="" data-column="pay_date">
 															</div>
-														</td>
-														<td>
-															<div class="actions text-center">
-																<a href="" class="table-link edit"><i class="fa fa-pencil"></i></a>
-																<form action="" name="" id="" style="display:none;" method="post" class="delete"><input type="hidden" name="_method" value="POST"></form>
-																<a href="#" class="table-link red delete" onclick=""><i class="fa fa-trash-o"></i></a>
+															<div class="col-lg-3 col-md-3 col-sm-3">
+																<label><?= __('Price($)');?></label>
+																<input name="data[AssociationExpense][pay_price]" class="form-control maxW100 chk pay_price"  type="number" data-expense-id="" data-column="pay_price">
 															</div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-											<div class="hide">
-												<?php echo $this->Form->create('AssociationExpense', array(
-														'action' => 'edit',
-														'class' => 'hide expense-edit-link'
-													)) ?>
-													<?php echo $this->Form->end(); ?>
-													<?php echo $this->Form->create('AssociationExpense', array(
-														'action' => 'delete',
-														'class' => 'hide expense-delete-link'
-													)) ?>
-												<?php echo $this->Form->end(); ?>
-											</div>
-
-
+															<div class="col-lg-4 col-md-4 col-sm-4">
+																<label for=""><?= __('Note') ?></label>
+																<input name="data[AssociationExpense][note]" class="form-control note chk"  maxlength="255" type="text" data-expense-id="" data-column="note">
+															</div>
+														</div>
+													</td>
+													<td>
+														<div class="actions text-center">
+															<a href="" class="table-link edit"><i class="fa fa-pencil"></i></a>
+															<form action="" name="" id="" style="display:none;" method="post" class="delete"><input type="hidden" name="_method" value="POST"></form>
+															<a href="#" class="table-link red delete" onclick=""><i class="fa fa-trash-o"></i></a>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="hide">
 											<?php echo $this->Form->create('AssociationExpense', array(
-												 'controller' => 'association_expenses', 'action' => 'updateAjax',
-												'class' => 'hide form_expense_update'
-											)); ?>
+													'action' => 'edit',
+													'class' => 'hide expense-edit-link'
+												)) ?>
+												<?php echo $this->Form->end(); ?>
+												<?php echo $this->Form->create('AssociationExpense', array(
+													'action' => 'delete',
+													'class' => 'hide expense-delete-link'
+												)) ?>
 											<?php echo $this->Form->end(); ?>
 										</div>
 
+
+										<?php echo $this->Form->create('AssociationExpense', array(
+											 'controller' => 'association_expenses', 'action' => 'updateAjax',
+											'class' => 'hide form_expense_update'
+										)); ?>
+										<?php echo $this->Form->end(); ?>
 									</div>
+
 								</div>
 							</div>
 
-						</div>
 					</div>
 				</div>
 

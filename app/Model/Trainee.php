@@ -3,6 +3,108 @@ App::uses('AppModel', 'Model');
 
 class Trainee extends AppModel {
 
+	//output documentページ Trainee情報取得Ajax
+	public function getTraineeAjax($trainee_id){
+		$options = array();
+		$options['conditions'] = array(
+			'Trainee.id'=> $trainee_id
+			);
+		$options['fields'] = array(
+			'id',
+			'family_name_en',
+			'family_name_jp',
+			'given_name_en',
+			'given_name_jp',
+			'sex',
+			'birthday',
+			'Province.province_en',
+			'Province.province_jp',
+			'OutputDistrict.district_en',
+			'OutputCommune.commune_en',
+			'address_en',
+			'address_jp',
+			'married',
+			'phone',
+			'academic1_en',
+			'academic2_en',
+			'academic3_en',
+			'academic4_en',
+			'academic1_jp',
+			'academic2_jp',
+			'academic3_jp',
+			'academic4_jp',
+			'academic1_from',
+			'academic2_from',
+			'academic3_from',
+			'academic4_from',
+			'academic1_to',
+			'academic2_to',
+			'academic3_to',
+			'academic4_to',
+			'employ1_en',
+			'employ2_en',
+			'employ3_en',
+			'employ4_en',
+			'employ5_en',
+			'employ1_jp',
+			'employ2_jp',
+			'employ3_jp',
+			'employ4_jp',
+			'employ5_jp',
+			'employ1_from',
+			'employ2_from',
+			'employ3_from',
+			'employ4_from',
+			'employ5_from',
+			'employ1_to',
+			'employ2_to',
+			'employ3_to',
+			'employ4_to',
+			'employ5_to',
+			'job1_id',
+			'Job1.job_jp',
+			'Job1.job_en',
+			'job1_term',
+			'job2_id',
+			'job2.job_jp',
+			'job2.job_en',
+			'job2_term',
+			'english',
+			'lang_others_en',
+			'lang_others_jp',
+			'visit_jpn',
+			'visit_jpn_from',
+			'visit_jpn_to'
+		);
+		$options['recursive'] =0;
+		$options['joins'][] = array(
+		'table' => 'districts',
+		'alias' => 'OutputDistrict',
+		'type' => 'LEFT',
+		'conditions' => 'Trainee.district_id = OutputDistrict.id'
+		);
+		$options['joins'][] = array(
+		'table' => 'communes',
+		'alias' => 'OutputCommune',
+		'type' => 'LEFT',
+		'conditions' => 'Trainee.commune_id = OutputCommune.id'
+		);
+		$options['joins'][] = array(
+		'table' => 'jobs',
+		'alias' => 'Job1',
+		'type' => 'LEFT',
+		'conditions' => 'Trainee.job1_id = Job1.id'
+		);
+		$options['joins'][] = array(
+		'table' => 'jobs',
+		'alias' => 'Job2',
+		'type' => 'LEFT',
+		'conditions' => 'Trainee.job2_id = Job2.id'
+		);
+
+		return $this->find('first', $options);
+	}
+
 	//index 学生一覧ページテーブル用データ
 	public function traineeList(){
 		$options = array('conditions' => array(

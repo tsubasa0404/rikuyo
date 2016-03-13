@@ -5,14 +5,14 @@
 <?php $this->Html->css('libs/rikuyo_css/1_en', array('inline'=>false, 'block'=>'page-css'),array('media' => 'print'));?>
 <?php $this->Html->addCrumb(__('Interviews'), '/interviews'); ?>
 <?php $this->Html->addCrumb(__('Interview Profile'), '/interviews/profile/'.$interview_prof[0]['Interview']['id']); ?>
-<?php $this->Html->addCrumb(__('Documents List'), 'output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
+<?php $this->Html->addCrumb(__('Documents List'), '/output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
 <?php $this->Html->addCrumb(__('Summary of Sending Organization')); ?>
 					<h1><?= __('Summary of Sending Organization') ?></h1>
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 maxW700">
+				<div class="col-lg-12 maxW750">
 					<div class="main-box clearfix">
 
 
@@ -72,7 +72,7 @@
 												</td>
 												<td width="536" colspan="5">
 													<p align="center">
-														<input type="text" value="<?php echo $agent[0]['Agent']['rep_given_name_en']." ".$agent[0]['Agent']['rep_family_name_en']; ?>" style="width: 100%;text-align: center">
+														<input type="text" value="<?php echo $agent[0]['Agent']['rep_family_name_en']." ".$agent[0]['Agent']['rep_given_name_en']; ?>" style="width: 100%;text-align: center">
 														<p>
 														</p>
 													</p>
@@ -255,7 +255,7 @@
 												</td>
 												<td width="536" colspan="5">
 													<p>
-														輸出先<input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['export_jp'] ?>" style="text-align: center">
+														輸出先<input type="text" class="" value="<?php echo $agent[0]['Agent']['export_jp'] ?>" style="text-align: center;width: 400px">
 														<p>
 														</p>
 													</p>
@@ -264,7 +264,7 @@
 											<tr>
 												<td width="536" colspan="5">
 													<p>
-														輸入先<input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['import_jp'] ?>" style="text-align: center">
+														輸入先<input type="text" class="" value="<?php echo $agent[0]['Agent']['import_jp'] ?>" style="text-align: center;width: 400px">
 														<p>
 														</p>
 													</p>
@@ -285,7 +285,7 @@
 												</td>
 												<td width="214" colspan="2">
 													<p align="center">
-														<input type="text" value="<?php echo $agent[0]['Agent']['rep_given_name_en']." ".$agent[0]['Agent']['rep_family_name_en']; ?>" style="width: 100%;text-align: center">
+														<input type="text" value="<?php echo $agent[0]['Agent']['rep_family_name_en']." ".$agent[0]['Agent']['rep_given_name_en']; ?>" style="width: 100%;text-align: center">
 														<p>
 														</p>
 													</p>
@@ -301,7 +301,7 @@
 											<tr>
 												<td width="673" colspan="6" class="pBoth10">
 													<p style="font-size: 14px">
-														1. 申請人又はその配偶者、直径若しくは同居の親族等との間で、当該技能実習が終了するまでに、保証金を徴収すること、その他名目のいかんを問わず金銭その他の財産を管理すること、労働契約の不履行に係る違約金を定める契約その他不当に金銭その他の財産の移転を予定する契約することの有無<br> <span class="">あり</span> ・ <span class="circle">なし</span>
+														1. 申請人又はその配偶者、直径若しくは同居の親族等との間で、当該技能実習が終了するまでに、保証金を徴収すること、その他名目のいかんを問わず金銭その他の財産を管理すること、労働契約の不履行に係る違約金を定める契約その他不当に金銭その他の財産の移転を予定する契約することの有無<br> <span style="margin-left: 500px;" class="">あり</span> ・ <span class="circle">なし</span>
 														<p>
 														</p>
 													</p>
@@ -310,7 +310,7 @@
 											<tr>
 												<td width="673" colspan="6" class="pBoth10">
 													<p style="font-size: 14px">
-														2. 実習実施機関との間で、当該技能実習が終了するまでに、労働契約の不履行に係る違約金を定める契約その他不当に金銭その他の財産の移転を予定する契約を締結することの有無<br> <span class="">あり</span> ・ <span class="circle">なし</span>
+														2. 実習実施機関との間で、当該技能実習が終了するまでに、労働契約の不履行に係る違約金を定める契約その他不当に金銭その他の財産の移転を予定する契約を締結することの有無<br> <span style="margin-left: 500px;" class="">あり</span> ・ <span class="circle">なし</span>
 														<p>
 														</p>
 													</p>
@@ -319,7 +319,7 @@
 											<tr>
 												<td width="673" colspan="6" class="pBoth10">
 													<p style="font-size: 14px">
-														3. 外国人に不正に入国・在留に係る許可を受けさせ、又は外国人の研修・技能実習に係る不正行為に関する事実を隠蔽する目的で、偽変造の文書・図画若しくは虚偽の文書・図画の行使・提供を行ったことの有無<br> <span class="">あり</span> ・ <span class="circle">なし</span>
+														3. 外国人に不正に入国・在留に係る許可を受けさせ、又は外国人の研修・技能実習に係る不正行為に関する事実を隠蔽する目的で、偽変造の文書・図画若しくは虚偽の文書・図画の行使・提供を行ったことの有無<br> <span style="margin-left: 500px;" class="">あり</span> ・ <span class="circle">なし</span>
 														<p>
 														</p>
 													</p>
@@ -356,52 +356,26 @@
 													</p>
 												</td>
 											</tr>
-											<tr height="0">
-												<td width="137">
-												</td>
-												<td width="76">
-												</td>
-												<td width="139">
-												</td>
-												<td width="41">
-												</td>
-												<td width="47">
-												</td>
-												<td width="233">
-												</td>
-											</tr>
+
 										</tbody>
 									</table>
 									<div style="width:673px">
 										<p>
-											<p>
-											</p>
+
 										</p>
 										<p>
 											<input type="text" value="" style="text-align: center;width: 50px">年<input type="text" value="" style="text-align: center;width: 50px">月<input type="text" value="" style="text-align: center;width: 50px">日 作成
-											<p>
-											</p>
+
 										</p>
 										<p>
 											送出し機関名 <input type="text" value="<?php echo $agent[0]['Agent']['agent_en'] ?>" style="text-align: center;width:50%">
-											<p>
-											</p>
+
 										</p>
-										<p>
-											<p>
-											</p>
+
+										<p style="text-align: right;margin-bottom: 0">
+											責任者 役職・氏名<input type="text" value="<?php echo $agent[0]['Agent']['rep_position_en'] ?>" style="width: 25%;text-align: center"><input type="text" value="<?php echo $agent[0]['Agent']['rep_family_name_en']." ".$agent[0]['Agent']['rep_given_name_en']; ?>" style="width: 25%;text-align: center"> ㊞
 										</p>
-										<p>
-											<p>
-											</p>
-										</p>
-										<p>
-											責任者 役職・氏名<input type="text" value="<?php echo $agent[0]['Agent']['rep_position_en'] ?>" style="width: 25%;text-align: center"><input type="text" value="<?php echo $agent[0]['Agent']['rep_given_name_en']." ".$agent[0]['Agent']['rep_family_name_en']; ?>" style="width: 25%;text-align: center"> <span class="circle">印</span>
-											<u>
-												<p>
-												</p>
-											</u>
-										</p>
+										<p style="margin-top: 1px;border-bottom: 1px solid #333;margin-left: 220px;"></p>
 								</div>
 							</div>
 

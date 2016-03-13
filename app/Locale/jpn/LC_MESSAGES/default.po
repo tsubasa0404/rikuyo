@@ -13,6 +13,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
+#: View/output_documents/printout
+msgid "Summary of Sending Organization"
+msgstr "送り出し機関概要書"
+
+msgid "Dispatch Contract"
+msgstr "派遣契約書"
+
+msgid "Letter of Recommendation"
+msgstr "推薦状"
+
+msgid "List of Dispatch Trainees to Japan"
+msgstr "推薦状名簿"
+
+msgid "Technical Intern Dispatch Notice"
+msgstr "技能実習生派遣状"
+
+msgid "Technical Intern Dispatch Notice:Attached List"
+msgstr ""
+
+msgid "Name List of Dispatch Notice"
+msgstr "派遣状名簿"
+
+msgid "Curriculum Vitae"
+msgstr "履歴書"
+
+msgid "CV for interview"
+msgstr "履歴書(面接用)"
+
+msgid "Agreement Concerning Technical Intern Training Program"
+msgstr "外国人技能実習事業に関する協定書"
+
+msgid "Advance Lecture Sheet ( Tentative )"
+msgstr "本邦外における講習・外部講習実施(予定)表"
+
+msgid "Certificate of Exterior Training Course"
+msgstr "本邦外における講習・外部講習修了証"
+
+msgid "Entrusted Agreement for Preliminary Training"
+msgstr "研修委託協議書"
+
+msgid "Employment conditions statement"
+msgstr "雇用条件書"
+
+msgid "Employment agreement"
+msgstr "技能実習生のための雇用契約書"
+
+msgid "Outsourcing contract KOKUSAI RYUTSU ONLY"
+msgstr "国際流通とHUMAN POWER JAPANESE TRAINING CENTERとの業務委託契約書"
+
+
 #: Controller/AgentsController.php:46;151;180
 msgid "Invalid agent"
 msgstr ""

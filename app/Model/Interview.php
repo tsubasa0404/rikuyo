@@ -37,6 +37,7 @@ class Interview extends AppModel {
 			'Association.rep_given_name_jp',
 			'Association.rep_family_name_en',
 			'Association.rep_given_name_en',
+			'Association.sector',
 			);
 		$options['joins'][] = array(
 			'table' => 'companies',

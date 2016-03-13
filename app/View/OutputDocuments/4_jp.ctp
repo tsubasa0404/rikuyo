@@ -5,9 +5,9 @@
 <?php $this->Html->css('libs/rikuyo_css/1_en', array('inline'=>false, 'block'=>'page-css'),array('media' => 'print'));?>
 <?php $this->Html->addCrumb(__('Interviews'), '/interviews'); ?>
 <?php $this->Html->addCrumb(__('Interview Profile'), '/interviews/profile/'.$interview_prof[0]['Interview']['id']); ?>
-<?php $this->Html->addCrumb(__('Documents List'), 'output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
-<?php $this->Html->addCrumb(__('Letter of Recommendation')); ?>
-					<h1><?= __('Letter of Recommendation') ?></h1>
+<?php $this->Html->addCrumb(__('Documents List'), '/output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
+<?php $this->Html->addCrumb(__('List of Dispatch Trainees to Japan')); ?>
+					<h1><?= __('List of Dispatch Trainees to Japan') ?></h1>
 					</div>
 				</div>
 			</div>
@@ -25,14 +25,14 @@
 								</p>
 								<div style="padding-left: 200px;margin-top: 50px;margin-bottom: 50px; font-size: 18px">
 									<p>
-									    送り出し機関 ：　HUMAN POWER Co., Ltd.
+									    <span style="letter-spacing: 4.5px;">送り出し機関</span> ：<span style="margin-left:17px; "><input type="text" name="" value="HUMAN POWER Co., Ltd." style="width:240px;text-align: left;font-size: 18px;"></span>
 									</p>
 									<p>
-									    受入れ監理団体 ：　 <input type="text" name="" value="<?php echo $interview_prof[0]['Association']['association_jp'] ?>" style="width:240px;text-align: center;font-size: 18px;">
+									    受入れ監理団体 ：<span style="margin-left:17px; "><input type="text" name="" value="<?php echo $interview_prof[0]['Association']['association_jp'] ?>" style="width:240px;text-align: left;font-size: 18px;"></span>
 									</p>
 								</div>
-								<div align="center">
-									<table border="1" cellspacing="0" cellpadding="0" width="718">
+								<div align="center" style="padding-left: 20px;padding-right: 20px;">
+									<table border="1" cellspacing="0" cellpadding="0" width="680">
 									    <tbody>
 									        <tr>
 									            <td width="30" nowrap="">
@@ -40,14 +40,14 @@
 									                    No
 									                </p>
 									            </td>
-									            <td width="189">
+									            <td width="160">
 									                <p align="center">
 									                    氏名
 									                    <br/>
 									                    （日本語）
 									                </p>
 									            </td>
-									            <td width="170">
+									            <td width="160">
 									                <p align="center">
 									                    氏名
 									                    <br/>
@@ -72,18 +72,18 @@
 									        </tr>
 									        <?php $i = 1;?>
 									        <?php foreach ($trainees as $trainee) : ?>
-									        	<tr>
+									        	<tr style="border-bottom: 1px solid #333;">
 									            <td width="38" nowrap="">
 									                <p align="center">
 									                    <?php echo $i++ ?>
 									                </p>
 									            </td>
-									            <td width="189" nowrap="">
+									            <td width="160" nowrap="">
 									                <p align="center">
 																		<?php echo $trainee['Trainee']['family_name_jp']." ".$trainee['Trainee']['given_name_jp'] ?>
 									                </p>
 									            </td>
-									            <td width="170" nowrap="">
+									            <td width="160" nowrap="">
 									                <p align="center">
 									                    <?php echo $trainee['Trainee']['family_name_en']." ".$trainee['Trainee']['given_name_en'] ?>
 									                </p>

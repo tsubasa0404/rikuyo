@@ -3,9 +3,10 @@
 <?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/rikuyo_css/print', array('inline'=>false, 'block'=>'page-css',array('media' => 'print')));?>
 <?php $this->Html->css('libs/rikuyo_css/1_en', array('inline'=>false, 'block'=>'page-css'),array('media' => 'print'));?>
+<?php $this->Html->css('libs/rikuyo_css/12_jp', array('inline'=>false, 'block'=>'page-css'),array('media' => 'print'));?>
 <?php $this->Html->addCrumb(__('Interviews'), '/interviews'); ?>
 <?php $this->Html->addCrumb(__('Interview Profile'), '/interviews/profile/'.$interview_prof[0]['Interview']['id']); ?>
-<?php $this->Html->addCrumb(__('Documents List'), 'output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
+<?php $this->Html->addCrumb(__('Documents List'), '/output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
 <?php $this->Html->addCrumb(__('Certificate of Exterior Training Course')); ?>
 					<h1><?= __('Certificate of Exterior Training Course') ?></h1>
 					</div>
@@ -82,72 +83,32 @@
 									                </p>
 									            </td>
 									        </tr>
-									        <tr>
-									            <td width="35" nowrap="">
-									                <p align="center">
-									                    1
-									                </p>
-									            </td>
-									            <td width="286" nowrap="">
-									                <p align="center">
-									                    SORY RIDA
-									                </p>
-									            </td>
-									            <td width="205" nowrap="">
-									                <p align="center">
-									                    25/10/1987
-									                </p>
-									            </td>
-									            <td width="69" nowrap="">
-									                <p align="center">
-									                    F
-									                </p>
-									            </td>
-									        </tr>
-									        <tr>
-									            <td width="35" nowrap="">
-									                <p align="center">
-									                    2
-									                </p>
-									            </td>
-									            <td width="286" nowrap="">
-									                <p align="center">
-									                    CHHAV SREY CHANN
-									                </p>
-									            </td>
-									            <td width="205" nowrap="">
-									                <p align="center">
-									                    22/06/1985
-									                </p>
-									            </td>
-									            <td width="69" nowrap="">
-									                <p align="center">
-									                    F
-									                </p>
-									            </td>
-									        </tr>
-									        <tr>
-									            <td width="35" nowrap="">
-									                <p align="center">
-									                    3
-									                </p>
-									            </td>
-									            <td width="286" nowrap="">
-									                <p align="center">
-									                    SAING SAM OL
-									                </p>
-									            </td>
-									            <td width="205" nowrap="">
-									                <p align="center">
-									                    05/10/1979
-									                </p>
-									            </td>
-									            <td width="69" nowrap="">
-									                <p align="center">
-									                    F
-									                </p>
-									            </td>
-									        </tr>
+									        <?php $i=0; ?>
+								        <?php foreach ($trainees as $trainee) : ?>
+
+								        <tr>
+								            <td width="41" nowrap="">
+								                <p align="center">
+								                    <?php echo ++$i ?>
+								                </p>
+								            </td>
+								            <td width="274" nowrap="">
+								                <p align="center">
+								                    <?php echo $trainee['Trainee']['family_name_en']." ".$trainee['Trainee']['given_name_en'] ?>
+								                </p>
+								            </td>
+								            <td width="217" nowrap="">
+								                <p align="center">
+								                    <?php echo date('d/m/Y', strtotime($trainee['Trainee']['birthday'])); ?>
+								                </p>
+								            </td>
+								            <td width="95" nowrap="">
+								                <p align="center">
+								                    <?php if($trainee['Trainee']['sex']=='male'){echo 'M' ;}else{echo 'F';} ?>
+								                </p>
+								            </td>
+								        </tr>
+								        <?php endforeach; ?>
 									    </tbody>
 									</table>
 									<p style="margin-top: 40px">

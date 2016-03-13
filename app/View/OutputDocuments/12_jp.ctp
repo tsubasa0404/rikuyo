@@ -6,7 +6,7 @@
 <?php $this->Html->css('libs/rikuyo_css/12_jp', array('inline'=>false, 'block'=>'page-css'),array('media' => 'print'));?>
 <?php $this->Html->addCrumb(__('Interviews'), '/interviews'); ?>
 <?php $this->Html->addCrumb(__('Interview Profile'), '/interviews/profile/'.$interview_prof[0]['Interview']['id']); ?>
-<?php $this->Html->addCrumb(__('Documents List'), 'output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
+<?php $this->Html->addCrumb(__('Documents List'), '/output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
 <?php $this->Html->addCrumb(__('Certificate of Exterior Training Course')); ?>
 					<h1><?= __('Certificate of Exterior Training Course') ?></h1>
 					</div>
@@ -77,94 +77,33 @@
 								                </p>
 								            </td>
 								        </tr>
+								        <?php $i=0; ?>
+								        <?php foreach ($trainees as $trainee) : ?>
+
 								        <tr>
 								            <td width="41" nowrap="">
 								                <p align="center">
-								                    1
+								                    <?php echo ++$i ?>
 								                </p>
 								            </td>
 								            <td width="274" nowrap="">
 								                <p align="center">
-								                    CHIN SOKHA
+								                    <?php echo $trainee['Trainee']['family_name_en']." ".$trainee['Trainee']['given_name_en'] ?>
 								                </p>
 								            </td>
 								            <td width="217" nowrap="">
 								                <p align="center">
-								                    1980年9月13日
+								                    <?php echo date('Y年m月d日', strtotime($trainee['Trainee']['birthday'])); ?>
 								                </p>
 								            </td>
 								            <td width="95" nowrap="">
 								                <p align="center">
-								                    女性
+								                    <?php if($trainee['Trainee']['sex']=='male'){echo '男性' ;}else{echo '女性';} ?>
 								                </p>
 								            </td>
 								        </tr>
-								        <tr>
-								            <td width="41" nowrap="">
-								                <p align="center">
-								                    2
-								                </p>
-								            </td>
-								            <td width="274" nowrap="">
-								                <p align="center">
-								                    OEURN KANHA
-								                </p>
-								            </td>
-								            <td width="217" nowrap="">
-								                <p align="center">
-								                    1988年9月5日
-								                </p>
-								            </td>
-								            <td width="95" nowrap="">
-								                <p align="center">
-								                    女性
-								                </p>
-								            </td>
-								        </tr>
-								        <tr>
-								            <td width="41" nowrap="">
-								                <p align="center">
-								                    3
-								                </p>
-								            </td>
-								            <td width="274" nowrap="">
-								                <p align="center">
-								                    LORN SOPHAL
-								                </p>
-								            </td>
-								            <td width="217" nowrap="">
-								                <p align="center">
-								                    1993年10月2日
-								                </p>
-								            </td>
-								            <td width="95" nowrap="">
-								                <p align="center">
-								                    女性
-								                </p>
-								            </td>
-								        </tr>
-								        <tr>
-								            <td width="41" nowrap="">
-								                <p align="center">
-								                    4
-								                </p>
-								            </td>
-								            <td width="274" nowrap="">
-								                <p align="center">
-								                    PROM SOKUNTHEAR
-								                </p>
-								            </td>
-								            <td width="217" nowrap="">
-								                <p align="center">
-								                    1983年3月18日
-								                </p>
-								            </td>
-								            <td width="95" nowrap="">
-								                <p align="center">
-								                    女性
-								                </p>
-								            </td>
-								        </tr>
+								        <?php endforeach; ?>
+
 								    </tbody>
 								</table>
 								<p style="margin-top: 40px">

@@ -523,7 +523,7 @@
 																				<div class="col-lg-12 col-md-12 col-sm-12">
 																					<?php echo $this->Form->date('birthday',array(
 																						'label' => false,
-																						'class' => 'form-control maxW160 birthday',
+																						'class' => 'form-control maxW200 birthday',
 																					)) ?>
 																				</div>
 																			</div>

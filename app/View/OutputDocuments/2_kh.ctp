@@ -6,7 +6,7 @@
 <?php $this->Html->css('libs/rikuyo_css/2_kh', array('inline'=>false, 'block'=>'page-css'),array('media' => 'print'));?>
 <?php $this->Html->addCrumb(__('Interviews'), '/interviews'); ?>
 <?php $this->Html->addCrumb(__('Interview Profile'), '/interviews/profile/'.$interview_prof[0]['Interview']['id']); ?>
-<?php $this->Html->addCrumb(__('Documents List'), 'output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
+<?php $this->Html->addCrumb(__('Documents List'), '/output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
 <?php $this->Html->addCrumb(__('Dispatch Contract')); ?>
 					<h1><?= __('Dispatch Contract') ?></h1>
 					</div>
@@ -32,13 +32,13 @@
 									    ភាគី “ក”​ : <input type="text" value="Human Power Co.,Ltd" style="width: 300px;"><br>
 									    អាស័យដ្ឋាន : <input type="text" value="#115D, ផ្លូវលេខ 18, សង្កាត់ ទួលសង្កែ ខ័ណ្ឌ ឬស្សីកែវ រាជធានីភ្នំពេញ" style="width: 500px;height: 25px;"><br>
 									    លេខទូរស័ព្ទ : <input type="text" value="012 266 996" style="width: 200px;"><br>
-									    ភាគី “ខ”​ :​ <input type="text" value="SAING SAM OL誰？" style="width: 300px;"><br>
-									    អាស័យដ្ឋាន​ :<input type="text" value="PH.PREKTAONG3 KH.PEAMOKGNAONG SR.LAVEAEM 何の住所？" style="width: 500px;"><br>
-									    អត្តសញ្ញាណប័ណ្ណ :​ <input type="text" value="020301918誰の？" style="width: 200px">
+									    ភាគី “ខ”​ :​ <input class="trainee_name" type="text" value="" style="width: 300px;"><br>
+									    អាស័យដ្ឋាន​ : <input class="trainee_address" type="text" value="" style="width: 500px;"><br>
+									    អត្តសញ្ញាណប័ណ្ណ :​ <input class="trainee_phone" type="text" value="" style="width: 200px">
 									</p>
-									<p>    ក្រុមហ៊ុន <input type="text" value="Human Power Co.,Ltd" style="width: 200px;">(ហៅកាត់ ភាគី “ក”​) និង សិក្ខាកាម (ហៅកាត់ ភាគី “ខ”​)
+									<p>    ក្រុមហ៊ុន <input type="text" value="Human Power Co.,Ltd" style="width: 200px;text-align: center">(ហៅកាត់ ភាគី “ក”​) និង សិក្ខាកាម (ហៅកាត់ ភាគី “ខ”​)
 									    បានយោងលើកិច្ចសហប្រតិបត្តិការការងារបរទេសនិងបទដ្ឋានឧស្សាហកម្មដែលពាក់ព័ន្ធរបស់ប្រទេសកម្ពុជា ព្រមទាំងកិច្ចសន្យាការងារ “ស្តីពីការសិក្សាបន្ត និង
-									    អនុវត្តជំនាញជាក់ស្តែង” ដែលភាគី “ក”​ បានចុះជាមួយនឹងភាគីជប៉ុន <input type="text" name="" value="" style="width: 300px;">(ហៅកាត់
+									    អនុវត្តជំនាញជាក់ស្តែង” ដែលភាគី “ក”​ បានចុះជាមួយនឹងភាគីជប៉ុន <input type="text" name="" value="<?php echo $interview_prof[0]['Association']['association_en']; ?>" style="width: 300px;text-align: center">(ហៅកាត់
 									    “ស្ថាប័នត្រួតពិនិត្យ”​) ភាគី “ក”​ និង ភាគី “ខ” ​បានឯកភាពគ្នាចុះកិច្ចសន្យា “សិក្សាបន្ត និង អនុវត្តជំនាញជាក
 									    ស្តែង” នៅប្រទេសជប៉ុនដោយគ្មានការបង្ខិតបង្ខំអ្វីឡើយ។
 									</p>
@@ -58,7 +58,8 @@
 									    អនុវត្តជំនាញជាក់ស្តែងនៅប្រទេសជប៉ុន។
 									</p>
 									<p style="margin-top: 5px;margin-bottom: 0">
-									　　ប្រការ ៣ :<input type="text" value="" style="width: 300px">ដែល ភាគី “ខ” ត្រូវទៅអនុវត្តជំនាញជាក់ស្តែងនោះហៅកាត់ថា “ស្ថាប័នអនុវត្តជំនាញជាក់ស្តែង”​ ជំនាញដែលត្រូវធ្វើកម្មសិក្សានោះគឺ    <input type="text" value="" style="width: 300px;">។
+									　　ប្រការ ៣ :<input type="text" value="<?php echo $interview_prof[0]['ComPrint']['company_en'] ?>" style="width: 300px;text-align: center">ដែល ភាគី “ខ” ត្រូវទៅអនុវត្តជំនាញជាក់ស្តែងនោះហៅកាត់ថា “ស្ថាប័នអនុវត្តជំនាញជាក់ស្តែង”​ ជំនាញដែលត្រូវធ្វើកម្មសិក្សានោះគឺ
+									<input type="text" value="<?php echo $this->Foreach->associate_jobs_en($jobs); ?>" style="width: 400px;">។
 									</p>
 									<p style="margin-top: 5px;margin-bottom: 0">
 									    　　ប្រការ ៤ : សិទ្ធិស្នាក់នៅដែល ភាគី “ខ” ត្រូវទៅបំពេញការសិក្សាបន្ត និង អនុវត្តជំនាញជាក់ស្តែងនៅប្រទេសជប៉ុនបែងចែកជា ការអនុវត្តជំនាញជាក់ស្តែងទី១ (ឆ្នាំទី១),
@@ -350,6 +351,48 @@
 							</div>
 						</div>
 					</div>
+
+
+
+				<div class="col-lg-4 maxW400 no-print">
+					<div class="main-box clearfix">
+						<div class="main-box-body clearfix">
+							<header class="main-box-header clearfix">
+							<h2><?= __('Successful Trainees') ?>
+							</h2>
+						</header>
+
+						<div class="main-box-body clearfix">
+							<div class="table-responsive">
+								<table class="table table-products table-bordered">
+									<tbody>
+										<?php foreach ($trainees as $trainee) : ?>
+											<tr>
+												<td>
+													<div class="radio">
+														<input class="trainee_radio" type="radio" name="trainee_id" value="<?php echo $trainee['Trainee']['id']?>" id="<?php echo $trainee['Trainee']['control_no'] ?>" data-url="<?php echo $this->Html->url(array('controller' => 'output_documents', 'action' => 'getTraineeAjax')); ?>">
+														<label for="<?php echo $trainee['Trainee']['control_no'] ?>">
+															<?php echo $trainee['Trainee']['control_no']. " / " ?>
+															<?php echo $this->Html->link($trainee['Trainee']['given_name_en']." " .$trainee['Trainee']['family_name_en'],
+																array('controller' => 'trainees', 'action' => 'profile', $trainee['Trainee']['id']),
+																array('escape' => false, 'target' => '_blank'));
+															?>
+														</label>
+													</div>
+												</td>
+											</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						</div>
+					</div>
+					<!-- /trainees -->
+			</div>
+
+
+	<?php echo $this->Html->script('rikuyo_js/2_kh', array('inline' => false, 'block' => 'page-js')); ?>
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 		$(function(){

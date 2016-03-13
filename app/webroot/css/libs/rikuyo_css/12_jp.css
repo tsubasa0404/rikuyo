@@ -1,6 +1,10 @@
 @media screen{
-
+  tbody > tr:last-child{
+  border-bottom: 1px solid #333;
+ }
 }
 @media print{
-
+ tbody > tr:last-child{
+  border-bottom: 1px solid #333;
+ }
 }
