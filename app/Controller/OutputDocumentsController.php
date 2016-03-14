@@ -47,15 +47,17 @@ class OutputDocumentsController extends AppController {
 	}
 
 	public function printout($interview_id, $ctp_name){
+		$lang = $this->__setLang();
 
 		$interview_prof = $this->Interview->printProf($interview_id);
 		$agent = $this->Agent->find('all', array('conditions' => array('Agent.id' => $interview_prof[0]['Interview']['agent_id'])));
+		$agents = $this->Agent->optionAgents($lang);
 		$trainees = $this->InterviewCandidate->successTrainees($interview_id);
 		$option_agents = $this->Agent->find('list', array('fields' => array('id', 'agent_en')));
 		$jobs = $this->_getJobArr($interview_prof[0]['Interview']['job']);
 		$sectors = $this->_getSectorArr($interview_prof[0]['Association']['sector']);
 
-		$this->set(compact('interview_prof', 'agent', 'trainees', 'option_agents', 'jobs', 'sectors'));
+		$this->set(compact('interview_prof', 'agent','agents', 'trainees', 'option_agents', 'jobs', 'sectors'));
 		$this->render($ctp_name);
 	}
 
@@ -88,6 +90,16 @@ class OutputDocumentsController extends AppController {
 			$trainee_info = $this->Trainee->getTraineeAjax($trainee_id);
 			echo json_encode($trainee_info, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
 
+		}
+	}
+	public function getAgentAjax(){
+		$this->autoRender = false;
+		if($this->RequestHandler->isAjax()){
+			Configure::write('debug', 0);
+
+			$agent_id = $_GET['agent_id'];
+			$agent_info = $this->Agent->getAgentAjax($agent_id);
+			echo json_encode($agent_info, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
 		}
 	}
 

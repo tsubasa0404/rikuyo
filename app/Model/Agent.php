@@ -9,6 +9,34 @@ App::uses('AppModel', 'Model');
  */
 class Agent extends AppModel {
 
+	//output documentページ
+	public function getAgentAjax($agent_id){
+		$options = array();
+		$options['conditions'] = array(
+			'Agent.id'=> $agent_id
+			);
+		$options['joins'][] = array(
+			'table' => 'provinces',
+			'alias' => 'OutputProvince',
+			'type' => 'LEFT',
+			'conditions' => 'OutputProvince.id = Agent.province_id'
+			);
+		$options['joins'][] = array(
+			'table' => 'districts',
+			'alias' => 'OutputDistrict',
+			'type' => 'LEFT',
+			'conditions' => 'OutputDistrict.id = Agent.district_id'
+			);
+		$options['joins'][] = array(
+			'table' => 'communes',
+			'alias' => 'OutputCommune',
+			'type' => 'LEFT',
+			'conditions' => 'OutputCommune.id = Agent.commune_id'
+			);
+
+		return $this->find('first', $options);
+	}
+
 	//interview profileページ
 	public function optionAgents($lang){
 			$options = array(

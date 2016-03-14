@@ -14,6 +14,9 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: View/output_documents/printout
+mdgid "Successful Trainees"
+msgstr "合格者一覧"
+
 msgid "Summary of Sending Organization"
 msgstr "送り出し機関概要書"
 

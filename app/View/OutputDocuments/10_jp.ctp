@@ -15,7 +15,6 @@
 				<div class="col-lg-12 maxW750">
 					<div class="main-box clearfix">
 
-
 						<div class="main-box-body clearfix">
 							<div class="print-area">
 
@@ -49,7 +48,7 @@
 												</td>
 												<td width="536" colspan="5">
 													<p align="center">
-														<input type="text" value="<?php echo $agent[0]['Agent']['agent_en']; ?>" style="width: 100%;text-align: center">
+														<input type="text" class="agent_name" value="" style="width: 100%;text-align: center">
 														<strong>
 															<p>
 															</p>
@@ -72,7 +71,7 @@
 												</td>
 												<td width="536" colspan="5">
 													<p align="center">
-														<input type="text" value="<?php echo $agent[0]['Agent']['rep_family_name_en']." ".$agent[0]['Agent']['rep_given_name_en']; ?>" style="width: 100%;text-align: center">
+														<input type="text" class="agent_rep_name" value="" style="width: 100%;text-align: center">
 														<p>
 														</p>
 													</p>
@@ -96,7 +95,7 @@
 												</td>
 												<td width="536" colspan="5">
 													<p align="center">
-														<input type="text" value="<?php echo $agent[0]['Agent']['address_en'].", Sangkat ".$agent[0]['Commune']['commune_en'].", Khan ".$agent[0]['District']['district_en'].", ".$agent[0]['Province']['province_en']  ; ?>" style="width: 100%;text-align: center">
+														<input type="text" class="agent_address" value="" style="width: 100%;text-align: center">
 														<p>
 														</p>
 													</p>
@@ -105,7 +104,7 @@
 											<tr>
 												<td width="255" colspan="3">
 													<p>
-														TEL:<input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['phone1'];?>" style="text-align: center">
+														TEL:<input type="text" class="agent_phone" value="" style="text-align: center">
 														<p>
 														</p>
 													</p>
@@ -128,7 +127,7 @@
 												</td>
 												<td width="536" colspan="5">
 													<p align="center">
-														<input type="text" value="<?php echo date('Y年m月d日', strtotime($agent[0]['Agent']['establish_date']));?>" style="width: 100%;text-align: center">
+														<input type="text" class="agent_establish_date" value="" style="width: 100%;text-align: center">
 														<p>
 														</p>
 													</p>
@@ -218,23 +217,23 @@
 											<tr>
 												<td width="213" colspan="2">
 													<p align="center">
-														<input type="text" value="<?php echo number_format(intval($agent[0]['Agent']['capital_riel'])/4000) ;?> ドル" style="width: 100%;text-align: center"><br>
-														<span>(</span><input type="text" value="約 <?php echo number_format(intval($agent[0]['Agent']['capital_jpy']));?> 円" style="width: 90%;text-align: center"><span>)</span>
+														<input type="text" class="agent_capital_riel" value="" style="width: 100%;text-align: center"><br>
+														<span>(</span><input type="text" class="agent_capital_jpy" value="" style="width: 90%;text-align: center"><span>)</span>
 														<p>
 														</p>
 													</p>
 												</td>
 												<td width="227" colspan="3">
 													<p align="center">
-														<input type="text" value="<?php echo number_format(intval($agent[0]['Agent']['sales_riel'])/4000);?> ドル" style="width: 100%;text-align: center"><br>
-														<span>(</span><input type="text" value="約 <?php echo number_format(intval($agent[0]['Agent']['sales_jpy']));?> 円" style="width: 90%;text-align: center"><span>)</span>
+														<input type="text" class="agent_sales_riel" value="" style="width: 100%;text-align: center"><br>
+														<span>(</span><input type="text" class="agent_sales_jpy" value="" style="width: 90%;text-align: center"><span>)</span>
 														<p>
 														</p>
 													</p>
 												</td>
 												<td width="233">
 													<p align="center">
-														<input type="text" value="<?php echo $agent[0]['Agent']['employee_num'] ?> 人" style="width: 100%;text-align: center">
+														<input type="text" class="agent_employee_num" value="" style="width: 100%;text-align: center">
 														<p>
 														</p>
 													</p>
@@ -255,7 +254,7 @@
 												</td>
 												<td width="536" colspan="5">
 													<p>
-														輸出先<input type="text" class="" value="<?php echo $agent[0]['Agent']['export_jp'] ?>" style="text-align: center;width: 400px">
+														輸出先<input type="text" class="agent_export_jp" value="" style="text-align: center;width: 400px">
 														<p>
 														</p>
 													</p>
@@ -264,7 +263,7 @@
 											<tr>
 												<td width="536" colspan="5">
 													<p>
-														輸入先<input type="text" class="" value="<?php echo $agent[0]['Agent']['import_jp'] ?>" style="text-align: center;width: 400px">
+														輸入先<input type="text" class="agent_import_jp" value="" style="text-align: center;width: 400px">
 														<p>
 														</p>
 													</p>
@@ -285,14 +284,14 @@
 												</td>
 												<td width="214" colspan="2">
 													<p align="center">
-														<input type="text" value="<?php echo $agent[0]['Agent']['rep_family_name_en']." ".$agent[0]['Agent']['rep_given_name_en']; ?>" style="width: 100%;text-align: center">
+														<input type="text" class="agent_rep_name" value="" style="width: 100%;text-align: center">
 														<p>
 														</p>
 													</p>
 												</td>
 												<td width="321" colspan="3">
 													<p align="center">
-														役職 <input type="text" class="inputW80" value="<?php echo $agent[0]['Agent']['rep_position_en'] ?>" style="text-align: center">
+														役職 <input type="text" class="inputW80 agent_rep_position" value="" style="text-align: center;width: 160px">
 														<p>
 														</p>
 													</p>
@@ -368,24 +367,56 @@
 
 										</p>
 										<p>
-											送出し機関名 <input type="text" value="<?php echo $agent[0]['Agent']['agent_en'] ?>" style="text-align: center;width:50%">
+											送出し機関名 <input type="text" class="agent_name" value="" style="text-align: center;width:50%">
 
 										</p>
 
 										<p style="text-align: right;margin-bottom: 0">
-											責任者 役職・氏名<input type="text" value="<?php echo $agent[0]['Agent']['rep_position_en'] ?>" style="width: 25%;text-align: center"><input type="text" value="<?php echo $agent[0]['Agent']['rep_family_name_en']." ".$agent[0]['Agent']['rep_given_name_en']; ?>" style="width: 25%;text-align: center"> ㊞
+											責任者 役職・氏名<input type="text" class="agent_rep_position" value="" style="width: 25%;text-align: center"><input type="text" class="agent_rep_name" value="" style="width: 25%;text-align: center"> ㊞
 										</p>
 										<p style="margin-top: 1px;border-bottom: 1px solid #333;margin-left: 220px;"></p>
-								</div>
-							</div>
 
+
+
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
+
+
+				<div class="col-lg-4 maxW400 no-print">
+					<div class="main-box clearfix">
+						<div class="main-box-body clearfix">
+							<header class="main-box-header clearfix">
+							<h2><?= __('Agent(Organization)') ?>
+							</h2>
+						</header>
+
+						<div class="main-box-body clearfix">
+							<?php echo $this->Form->input('agent', array(
+								'label' => false,
+								'name' => 'agent_id',
+								'data-url' => $this->Html->url(array('controller' => 'output_documents', 'action' => 'getAgentAjax')),
+								'type' => 'select',
+								'options' => $agents,
+								'empty' => true,
+								'class' => 'form-control sel_agent'
+							)) ?>
+						</div>
+					</div>
+				</div>
+				<!-- /trainees -->
+			</div>
+
+
+	<?php echo $this->Html->script('select2.min', array('inline' => false, 'block' => 'page-js'));?>
+	<?php echo $this->Html->script('rikuyo_js/10_jp', array('inline' => false, 'block' => 'page-js')); ?>
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 		$(function(){
 			$('.md-modal').remove();
+			$('.sel_agent').select2();
 		});
 	<?php $this->Html->scriptEnd(); ?>

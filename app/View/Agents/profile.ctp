@@ -268,7 +268,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-8 col-md-8 col-sm-12 maxW410">
+				<div class="col-lg-8 col-md-8 col-sm-12 maxW500">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2></h2>
@@ -460,6 +460,7 @@
 		echo $this->Html->script('modalEffects', array('inline' => false, 'block' => 'modal-js'));
 		echo $this->Html->script('rikuyo_js/myModal', array('inline' => false, 'block' => 'modal-js'));
 		echo $this->Html->script('select2.min', array('inline' => false, 'block' => 'page-js'));
+		echo $this->Html->script('rikuyo_js/autoFormatRikuyo', array('inline' => false, 'block' => 'page-js'));
 	 ?>
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
