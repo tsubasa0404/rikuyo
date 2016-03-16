@@ -39,7 +39,7 @@
 								<div class="col-xs-12">
 									<header id="login-header">
 										<div id="login-logo">
-											Rikuyo Co.,Ltd.
+											RST CENTER
 										</div>
 									</header>
 									<div id="login-box-inner">
@@ -79,13 +79,7 @@
 								</div>
 							</div>
 						</div>
-						<div id="login-box-footer">
-							<div class="row">
-								<div class="col-xs-12">
-									<?php echo $this->Html->link('Create Account', 'add') ?>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>
