@@ -8,6 +8,41 @@ App::uses('AppHelper', 'View/Helper');
 class ForeachHelper extends AppHelper
 {
 
+  //output document, 6_jp,6_en別添名簿用 企業名取得
+  public function printout_company($company_id, $lang){
+    $this->Company = ClassRegistry::init('Company');
+    $company_name = $this->Company->find('first', array(
+      'conditions' => array('id' => $company_id),
+      'fields' => array('id', 'company_jp', 'company_en'),
+      'recursive' => -1
+      ));
+    if($lang=='jp'){
+      return $company_name['Company']['company_jp'];
+    } else {
+      return$company_name['Company']['company_en'];
+    }
+  }
+
+  public function trainees_job($job_ids, $lang){
+    $this->Job = ClassRegistry::init('Job');
+
+    $job_arr = array();
+    foreach($job_ids as $job_id){
+      $job = $this->Job->find('first', array(
+        'conditions' => array('id' => $job_id),
+        'fields' => array('id', 'job_jp', 'job_en'),
+        'recursive' => -1
+        ));
+      if($lang=='jp'){
+        $job = $job['Job']['job_jp'];
+      } else {
+        $job = $job['Job']['job_en'];
+      }
+      array_push($job_arr, $job);
+    }
+    return implode('、', $job_arr);
+  }
+
   //output document jobsの配列を連結して表示
   public function associate_jobs_en($jobs){
     $job_arr = array();

@@ -71,7 +71,9 @@
 									            </td>
 									        </tr>
 									        <?php $i = 1;?>
-									        <?php foreach ($trainees as $trainee) : ?>
+									        <?php if(isset($formated_trainees_array)) : ?>
+
+									        <?php foreach ($formated_trainees_array as $trainee) : ?>
 									        	<tr style="border-bottom: 1px solid #333;">
 									            <td width="38" nowrap="">
 									                <p align="center">
@@ -105,11 +107,12 @@
 									            </td>
 									        </tr>
 									        <?php endforeach; ?>
+										      <?php endif; ?>
 									    </tbody>
 									</table>
 								</div>
 								<p>
-								    以上 <input type="text" style="width: 50px;text-align: center" value="<?php echo count($trainees) ?>" placeholder=""> 名を上記受入れ監理団体に、技能実習生として推薦いたします。
+								    以上 <input type="text" style="width: 50px;text-align: center" value="<?php if(isset($formated_trainees_array)){echo count($formated_trainees_array);} ?>" placeholder=""> 名を上記受入れ監理団体に、技能実習生として推薦いたします。
 								</p>
 
 
@@ -119,8 +122,52 @@
 							</div>
 						</div>
 
+				<div class="col-lg-4 maxW400 no-print">
+					<div class="main-box clearfix">
+						<div class="main-box-body clearfix">
+							<header class="main-box-header clearfix">
+								<h2><?= __('Select interviews to merge info') ?>
+								</h2>
+							</header>
+
+							<div class="main-box-body clearfix">
+								<ul id="interview_list" class="widget-todo">
+									<?php echo $this->Form->create('OutputDocument', array(
+										'type' => 'post',
+										'action' => 'printout/'. $interview_prof[0]['Interview']['id']. '/4_jp',
+										'class' => 'get_interviews_form'
+									))  ?>
+									<?php foreach ($same_association_interviews as $interview) : ?>
+										<li class="clearfix">
+											<div class="name">
+												<div class="checkbox-nice">
+													<input type="checkbox" id="interview_id_<?php echo $interview['Interview']['id'] ?>" class="" value="<?php echo $interview['Interview']['id'] ?>" name="interview_id[]" <?php if(isset($interview_ids)){if(in_array($interview['Interview']['id'], $interview_ids)){echo 'checked';};} ?>/>
+													<label for="interview_id_<?php echo $interview['Interview']['id'] ?>" style="text-decoration: blink;"><?php echo  $interview['Company']['company_jp']."(".$interview['Interview']['interview_date'] .")" ?>
+													</label>
+												</div>
+											</div>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+								<button type="submit" class="btn btn-default right get_interviews_btn"><?= __('Refresh') ?></button>
+								<?php echo $this->Form->end(); ?>
+							</div>
+						</div>
+					</div>
+					<!-- /interviews -->
+				</div>
+
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 		$(function(){
 			$('.md-modal').remove();
+		});
+		$(function(){
+			var this_interview_id = '<?php echo $interview_prof[0]['Interview']['id']; ?>';
+	    $('#interview_list input[type=checkbox]').each(function(){
+				if($(this).val()==this_interview_id){
+					$(this).attr('checked', 'checked');
+					$(this).next().addClass('red');
+				}
+	    });
 		});
 	<?php $this->Html->scriptEnd(); ?>

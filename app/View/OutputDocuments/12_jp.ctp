@@ -13,7 +13,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 maxW700">
+				<div class="col-lg-12 maxW750">
 					<div class="main-box clearfix">
 
 
@@ -53,10 +53,10 @@
 								<p>
 								    　　　　　　　　　合計　176時間
 								</p>
-								<p>
+								<p style="margin-left: 20px;">
 								    受講者名
 								</p>
-								<table border="1" cellspacing="0" cellpadding="0" width="626" style="margin-left: 20px;">
+								<table border="1" cellspacing="0" cellpadding="0" width="626" style="margin-left: 40px;">
 								    <tbody>
 								        <tr>
 								            <td width="41" nowrap="">
@@ -78,31 +78,33 @@
 								            </td>
 								        </tr>
 								        <?php $i=0; ?>
-								        <?php foreach ($trainees as $trainee) : ?>
+								        <?php if(isset($formated_trainees_array)): ?>
+								        <?php foreach ($formated_trainees_array as $trainee) : ?>
 
 								        <tr>
 								            <td width="41" nowrap="">
-								                <p align="center">
+								                <p align="center" style="margin-top: 5px;margin-bottom: 5px">
 								                    <?php echo ++$i ?>
 								                </p>
 								            </td>
 								            <td width="274" nowrap="">
-								                <p align="center">
+								                <p align="center" style="margin-top: 5px;margin-bottom: 5px">
 								                    <?php echo $trainee['Trainee']['family_name_en']." ".$trainee['Trainee']['given_name_en'] ?>
 								                </p>
 								            </td>
 								            <td width="217" nowrap="">
-								                <p align="center">
+								                <p align="center" style="margin-top: 5px;margin-bottom: 5px">
 								                    <?php echo date('Y年m月d日', strtotime($trainee['Trainee']['birthday'])); ?>
 								                </p>
 								            </td>
 								            <td width="95" nowrap="">
-								                <p align="center">
+								                <p align="center" style="margin-top: 5px;margin-bottom: 5px">
 								                    <?php if($trainee['Trainee']['sex']=='male'){echo '男性' ;}else{echo '女性';} ?>
 								                </p>
 								            </td>
 								        </tr>
 								        <?php endforeach; ?>
+									      <?php endif; ?>
 
 								    </tbody>
 								</table>
@@ -131,8 +133,53 @@
 							</div>
 						</div>
 
+				<div class="col-lg-4 maxW400 no-print">
+					<div class="main-box clearfix">
+						<div class="main-box-body clearfix">
+							<header class="main-box-header clearfix">
+								<h2><?= __('Select interviews to merge info') ?>
+								</h2>
+							</header>
+
+							<div class="main-box-body clearfix">
+								<ul id="interview_list" class="widget-todo">
+									<?php echo $this->Form->create('OutputDocument', array(
+										'type' => 'post',
+										'action' => 'printout/'. $interview_prof[0]['Interview']['id']. '/12_jp',
+										'class' => 'get_interviews_form'
+									))  ?>
+									<?php foreach ($same_association_interviews as $interview) : ?>
+										<li class="clearfix">
+											<div class="name">
+												<div class="checkbox-nice">
+													<input type="checkbox" id="interview_id_<?php echo $interview['Interview']['id'] ?>" class="" value="<?php echo $interview['Interview']['id'] ?>" name="interview_id[]" <?php if(isset($interview_ids)){if(in_array($interview['Interview']['id'], $interview_ids)){echo 'checked';};} ?>/>
+													<label for="interview_id_<?php echo $interview['Interview']['id'] ?>" style="text-decoration: blink;"><?php echo  $interview['Company']['company_jp']."(".$interview['Interview']['interview_date'] .")" ?>
+													</label>
+												</div>
+											</div>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+								<button type="submit" class="btn btn-default right get_interviews_btn"><?= __('Refresh') ?></button>
+								<?php echo $this->Form->end(); ?>
+							</div>
+						</div>
+					</div>
+					<!-- /interviews -->
+				</div>
+
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 		$(function(){
 			$('.md-modal').remove();
+		});
+
+		$(function(){
+			var this_interview_id = '<?php echo $interview_prof[0]['Interview']['id']; ?>';
+	    $('#interview_list input[type=checkbox]').each(function(){
+				if($(this).val()==this_interview_id){
+					$(this).attr('checked', 'checked');
+					$(this).next().addClass('red');
+				}
+	    });
 		});
 	<?php $this->Html->scriptEnd(); ?>

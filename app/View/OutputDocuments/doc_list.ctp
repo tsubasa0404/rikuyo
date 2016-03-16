@@ -43,7 +43,7 @@
 															<?php echo $this->Html->link(
 																'<i class="fa fa-print"></i> JP',
 																array('controller' => 'output_documents', 'action' => 'printout',$interview_prof[0]['Interview']['id'], $doc['OutputDocument']['id']."_jp"),
-																array('escape' => false, 'class' => 'white', 'target' => '_blanc')
+																array('escape' => false, 'class' => 'white', 'target' => '_blank')
 															) ?>
 														</button>
 													<?php endif; ?>
@@ -52,7 +52,7 @@
 															<?php echo $this->Html->link(
 																'<i class="fa fa-print"></i> EN',
 																array('controller' => 'output_documents', 'action' => 'printout',$interview_prof[0]['Interview']['id'],$doc['OutputDocument']['id']."_en"),
-																array('escape' => false, 'class' => 'white', 'target' => '_blanc')
+																array('escape' => false, 'class' => 'white', 'target' => '_blank')
 															) ?>
 														</button>
 													<?php endif; ?>
@@ -61,7 +61,7 @@
 															<?php echo $this->Html->link(
 																'<i class="fa fa-print"></i> KH',
 																array('controller' => 'output_documents', 'action' => 'printout',$interview_prof[0]['Interview']['id'],$doc['OutputDocument']['id']."_kh"),
-																array('escape' => false, 'class' => 'white', 'target' => '_blanc')
+																array('escape' => false, 'class' => 'white', 'target' => '_blank')
 															) ?>
 														</button>
 													<?php endif; ?>

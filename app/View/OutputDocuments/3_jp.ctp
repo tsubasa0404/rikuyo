@@ -28,12 +28,12 @@
 								</p>
 								<div class="pmB30" style="padding-left: 80px">
 									<p class="mL20">
-									    下記の機関は、日本国向けに技能実習生の派遣を適正に行っていると認められる
+									    　下記の機関は、日本国向けに技能実習生の派遣を適正に行っていると認められる
 									</p>
-									<p>
-									    ので、同機関が派遣する　　　<input type="text" style="text-align: center" value="<?php echo $trainees[0]['Trainee']['given_name_en']." ".$trainees[0]['Trainee']['family_name_en'] ?>" >他　　<strong><input type="text" name="" value="<?php echo count($trainees)-1 ?>" style="width: 20px;text-align: center;"></strong>　名
+									<p style="margin-bottom: 0">
+									    ので、同機関が派遣する　　　<input type="text" style="text-align: center" value="<?php echo $trainees[0]['Trainee']['given_name_en']." ".$trainees[0]['Trainee']['family_name_en'] ?>" >他　　<strong><input type="text" name="" value="<?php if(isset($formated_trainees_array)){echo count($formated_trainees_array)-1;} ?>" style="width: 20px;text-align: center;"></strong>　名
 									</p>
-									<p>
+									<p style="margin-top: 0">
 									    　　　　　　　　　　　　　（技能実習生名）　　　　　　　（人数）
 									</p>
 									<p style="margin-bottom: 0">
@@ -43,7 +43,7 @@
 									    　　　　　　　　　　　　　　　　　　　　　（監理団体名）　
 									</p>
 									<p style="margin-bottom: 0">
-									    受け入れられて、<strong><input type="text" name="" value="<?php echo $this->Foreach->associate_jobs_jp($jobs) ?>" style="width: 300px"></strong>に関する
+									    受け入れられて、<strong><input type="text" name="" value="<?php if(isset($selected_interview_jobs)) {echo $this->Foreach->associate_jobs_jp($selected_interview_jobs);} ?>" style="width: 300px;text-align: center"></strong>に関する
 									</p>
 									<p style="margin-top: 0">
 									    　　　　　　　　　　　　　　（職種）
@@ -97,8 +97,54 @@
 							</div>
 						</div>
 
+				<div class="col-lg-4 maxW400 no-print">
+					<div class="main-box clearfix">
+						<div class="main-box-body clearfix">
+							<header class="main-box-header clearfix">
+								<h2><?= __('Select interviews to merge info') ?>
+								</h2>
+							</header>
+
+							<div class="main-box-body clearfix">
+								<ul id="interview_list" class="widget-todo">
+									<?php echo $this->Form->create('OutputDocument', array(
+										'type' => 'post',
+										'action' => 'printout/'. $interview_prof[0]['Interview']['id']. '/3_jp',
+										'class' => 'get_interviews_form'
+									))  ?>
+									<?php foreach ($same_association_interviews as $interview) : ?>
+										<li class="clearfix">
+											<div class="name">
+												<div class="checkbox-nice">
+													<input type="checkbox" id="interview_id_<?php echo $interview['Interview']['id'] ?>" class="" value="<?php echo $interview['Interview']['id'] ?>" name="interview_id[]" <?php if(isset($interview_ids)){if(in_array($interview['Interview']['id'], $interview_ids)){echo 'checked';};} ?>/>
+													<label for="interview_id_<?php echo $interview['Interview']['id'] ?>" style="text-decoration: blink;"><?php echo  $interview['Company']['company_jp']."(".$interview['Interview']['interview_date'] .")" ?>
+													</label>
+												</div>
+											</div>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+								<button type="submit" class="btn btn-default right get_interviews_btn"><?= __('Refresh') ?></button>
+								<?php echo $this->Form->end(); ?>
+							</div>
+						</div>
+					</div>
+					<!-- /interviews -->
+				</div>
+
+
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 		$(function(){
 			$('.md-modal').remove();
+		});
+
+		$(function(){
+			var this_interview_id = '<?php echo $interview_prof[0]['Interview']['id']; ?>';
+	    $('#interview_list input[type=checkbox]').each(function(){
+				if($(this).val()==this_interview_id){
+					$(this).attr('checked', 'checked');
+					$(this).next().addClass('red');
+				}
+	    });
 		});
 	<?php $this->Html->scriptEnd(); ?>

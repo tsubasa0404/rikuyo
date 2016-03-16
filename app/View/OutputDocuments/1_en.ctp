@@ -89,7 +89,7 @@
 												</td>
 												<td width="536" colspan="5">
 													<p align="center">
-														<input type="text" value="<?php echo $agent[0]['Agent']['address_en'].", Sangkat ".$agent[0]['Commune']['commune_en'].", Khan ".$agent[0]['District']['district_en'].", ".$agent[0]['Province']['province_en']  ; ?>" style="width: 100%;text-align: center">
+														<textarea type="text" value="" style="width: 100%;text-align: center"><?php echo $agent[0]['Agent']['address_en'].", Sangkat ".$agent[0]['Commune']['commune_en'].", Khan ".$agent[0]['District']['district_en'].", ".$agent[0]['Province']['province_en']  ; ?></textarea>
 
 													</p>
 												</td>
@@ -206,7 +206,7 @@
 													</p>
 												</td>
 												<td width="227" colspan="3">
-													<p align="center">
+													<p align="center" style="font-size: 11px;">
 														Net sale (most recent fiscal year)
 
 													</p>

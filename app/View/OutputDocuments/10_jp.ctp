@@ -346,7 +346,7 @@
 													</p>
 												</td>
 											</tr>
-											<tr>
+											<tr style="border-bottom: 1px solid #333">
 												<td width="673" colspan="6" class="pBoth10">
 													<p>
 														内容

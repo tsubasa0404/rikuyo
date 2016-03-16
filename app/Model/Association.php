@@ -9,6 +9,7 @@ App::uses('AppModel', 'Model');
  */
 class Association extends AppModel {
 
+
 	public function validAssociations(){
 		$options = array();
 		$options['conditions'] = array(

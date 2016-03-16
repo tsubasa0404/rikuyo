@@ -85,7 +85,8 @@
 								            </thead>
 								        <tbody>
 								            <?php $i = 1;?>
-									        	<?php foreach ($trainees as $trainee) : ?>
+								            <?php if(isset($formated_trainees_array)): ?>
+									        	<?php foreach ($formated_trainees_array as $trainee) : ?>
 								            <tr>
 								                <td  class="w20">
 								                    <p class="w20" align="center" style="margin-bottom: 0;margin-top: 5px;padding-left: 1px;padding-right: 1px;">
@@ -94,17 +95,17 @@
 								                </td>
 								                <td >
 								                    <p class="sFont" align="center" style="margin-bottom: 0;margin-top: 5px;">
-								                        <textarea type="text" rows="2" value=""  style="text-align: center;width: 99%"><?php echo $this->Foreach->associate_sectors_en($sectors) ?></textarea>
+								                        <textarea type="text" rows="2" value=""  style="text-align: center;width: 98%"><?php echo $this->Foreach->associate_sectors_en($sectors) ?></textarea>
 								                    </p>
 								                </td>
 								                <td>
 								                    <p class="sFont" align="center" style="margin-bottom: 0;margin-top: 5px;">
-								                        <textarea type="text" rows="2" value="" style="text-align: center;width: 99%"><?php echo $this->Foreach->associate_jobs_en($jobs) ?></textarea>
+								                        <textarea type="text" rows="2" value="" style="text-align: center;width: 98%"><?php $job_ids=explode(',',$trainee['Interview']['job']); echo $this->Foreach->trainees_job($job_ids, 'en') ?></textarea>
 								                    </p>
 								                </td>
 								                <td >
 								                    <p align="center" style="margin-bottom: 0;margin-top: 5px;">
-								                        <input type="text" value="<?php echo $trainee['Trainee']['family_name_en']." ".$trainee['Trainee']['given_name_en'] ?>" style="width: 99%;text-align: center">
+								                        <input type="text" value="<?php echo $trainee['Trainee']['family_name_en']." ".$trainee['Trainee']['given_name_en'] ?>" style="width: 98%;text-align: center">
 								                    </p>
 								                </td>
 								                <td>
@@ -119,16 +120,17 @@
 								                </td>
 								                <td>
 								                    <p class="sFont" align="center" style="margin-bottom: 0;margin-top: 5px;">
-								                        <textarea type="text" rows="2" style="width: 99%;text-align: center"><?php echo $interview_prof[0]['ComPrint']['company_en']; ?></textarea>
+								                        <textarea type="text" rows="2" style="width: 98%;text-align: center"><?php $company_id=$trainee['Interview']['company_id']; echo $this->Foreach->printout_company($company_id, 'en'); ?></textarea>
 								                    </p>
 								                </td>
 								                <td>
 								                    <p class="sFont" align="center" style="margin-bottom: 0;margin-top: 5px;">
-								                       <textarea type="text" rows="2" style="text-align: center;width: 99%;"><?php echo $this->Foreach->associate_jobs_en($jobs) ?></textarea>
+								                       <textarea type="text" rows="2" style="text-align: center;width: 98%;"><?php $job_ids=explode(',',$trainee['Interview']['job']); echo $this->Foreach->trainees_job($job_ids, 'en') ?></textarea>
 								                    </p>
 								                </td>
 								            </tr>
 								          	<?php endforeach; ?>
+									          <?php endif; ?>
 
 								        </tbody>
 								    </table>
@@ -141,8 +143,54 @@
 							</div>
 						</div>
 
+				<div class="col-lg-4 maxW400 no-print">
+					<div class="main-box clearfix">
+						<div class="main-box-body clearfix">
+							<header class="main-box-header clearfix">
+								<h2><?= __('Select interviews to merge info') ?>
+								</h2>
+							</header>
+
+							<div class="main-box-body clearfix">
+								<ul id="interview_list" class="widget-todo">
+									<?php echo $this->Form->create('OutputDocument', array(
+										'type' => 'post',
+										'action' => 'printout/'. $interview_prof[0]['Interview']['id']. '/6_en',
+										'class' => 'get_interviews_form'
+									))  ?>
+									<?php foreach ($same_association_interviews as $interview) : ?>
+										<li class="clearfix">
+											<div class="name">
+												<div class="checkbox-nice">
+													<input type="checkbox" id="interview_id_<?php echo $interview['Interview']['id'] ?>" class="" value="<?php echo $interview['Interview']['id'] ?>" name="interview_id[]" <?php if(isset($interview_ids)){if(in_array($interview['Interview']['id'], $interview_ids)){echo 'checked';};} ?>/>
+													<label for="interview_id_<?php echo $interview['Interview']['id'] ?>" style="text-decoration: blink;"><?php echo  $interview['Company']['company_jp']."(".$interview['Interview']['interview_date'] .")" ?>
+													</label>
+												</div>
+											</div>
+										</li>
+									<?php endforeach; ?>
+								</ul>
+								<button type="submit" class="btn btn-default right get_interviews_btn"><?= __('Refresh') ?></button>
+								<?php echo $this->Form->end(); ?>
+							</div>
+						</div>
+					</div>
+					<!-- /interviews -->
+				</div>
+
+
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
 		$(function(){
 			$('.md-modal').remove();
+		});
+
+		$(function(){
+			var this_interview_id = '<?php echo $interview_prof[0]['Interview']['id']; ?>';
+	    $('#interview_list input[type=checkbox]').each(function(){
+				if($(this).val()==this_interview_id){
+					$(this).attr('checked', 'checked');
+					$(this).next().addClass('red');
+				}
+	    });
 		});
 	<?php $this->Html->scriptEnd(); ?>

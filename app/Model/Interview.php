@@ -9,6 +9,33 @@ App::uses('AppModel', 'Model');
  */
 class Interview extends AppModel {
 
+	//output_doc用 選択されたインタビューの情報を取得
+	public function selected_interview($interview_id){
+		$options = array();
+		$options['conditions'] = array(
+			'Interview.id'=> $interview_id
+			);
+		$options['fields'] = array(
+			);
+		return $this->find('all', $options);
+	}
+
+	//output_doc用 同一組合内企業のインタビュー取得
+	public function same_association_interviews($company_ids){
+
+		//同一組合企業のインタビューのうち、
+		//インタビューStatusが1(完了)のものを表示
+		$options = array();
+		$options['conditions'] = array(
+			'Interview.company_id'=> $company_ids,
+			'Interview.status' => 1,
+			);
+		$options['fields'] = array(
+			);
+		$options['order'] = array('interview_date'=>'desc');
+		return $this->find('all', $options);
+	}
+
 	//output_doc用interview prof取得
 	public function printProf($interview_id){
 		$options = array();
@@ -27,6 +54,7 @@ class Interview extends AppModel {
 			'ComPrint.phone1',
 			'ComPrint.rep_family_name_jp',
 			'ComPrint.rep_given_name_jp',
+			'Association.id',
 			'Association.association_en',
 			'Association.association_jp',
 			'Association.province',

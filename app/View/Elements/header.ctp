@@ -35,18 +35,18 @@
 							<li class="item">
 								<?php echo $this->Html->link(
 									'<i class="fa fa-tasks"></i><p class="content">'.$task['Task']['task'].'</p><span class="time"><i class="fa fa-clock-o"></i>'.date('m/d', strtotime($task['Task']['expected_date'])).'</span>',
-									array('controller' => 'tasks', 'action' => 'index'),
+									array('controller' => 'pages', 'action' => 'home'),
 									array('escape' => false, 'class' => '')
 								) ?>
 							</li>
 						<?php endforeach; ?>
-						<li class="item-footer">
-							<?php echo $this->Html->link(
-								__('View All notifications'),
-								array('controller' => 'tasks', 'action' => 'index'),
-								array('escape' => false, 'class' => '')
-							) ?>
-						</li>
+						<!-- <li class="item-footer">
+							<?php // echo $this->Html->link(
+								//__('View All notifications'),
+								//array('controller' => 'tasks', 'action' => 'index'),
+								//array('escape' => false, 'class' => '')
+							//) ?>
+						</li> -->
 					</ul>
 				</li>
 				<li class="dropdown">
@@ -70,13 +70,13 @@
 								) ?>
 							</li>
 						<?php endforeach; ?>
-						<li class="item-footer">
-							<?php echo $this->Html->link(
-								__('View All notifications'),
-								array('controller' => 'tasks', 'action' => 'index'),
-								array('escape' => false, 'class' => '')
-							) ?>
-						</li>
+						<!-- <li class="item-footer">
+							<?php // echo $this->Html->link(
+								//__('View All notifications'),
+								//array('controller' => 'tasks', 'action' => 'index'),
+								//array('escape' => false, 'class' => '')
+							//) ?>
+						</li> -->
 					</ul>
 				</li>
 

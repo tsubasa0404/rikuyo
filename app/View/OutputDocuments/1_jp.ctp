@@ -89,7 +89,7 @@
 												</td>
 												<td width="536" colspan="5">
 													<p align="center">
-														<input type="text" value="<?php echo $agent[0]['Agent']['address_en'].", Sangkat ".$agent[0]['Commune']['commune_en'].", Khan ".$agent[0]['District']['district_en'].", ".$agent[0]['Province']['province_en']  ; ?>" style="width: 100%;text-align: center">
+														<textarea type="text" value="" style="width: 100%;text-align: center"><?php echo $agent[0]['Agent']['address_en'].", Sangkat ".$agent[0]['Commune']['commune_en'].", Khan ".$agent[0]['District']['district_en'].", ".$agent[0]['Province']['province_en']  ; ?></textarea>
 
 													</p>
 												</td>
@@ -267,24 +267,27 @@
 											<tr>
 												<td width="673" colspan="6" class="pBoth10">
 													<p style="font-size: 14px">
-														1. 申請人又はその配偶者、直径若しくは同居の親族等との間で、当該技能実習が終了するまでに、保証金を徴収すること、その他名目のいかんを問わず金銭その他の財産を管理すること、労働契約の不履行に係る違約金を定める契約その他不当に金銭その他の財産の移転を予定する契約することの有無<br> <span class="">あり</span> ・ なし
-
+														1. 申請人又はその配偶者、直径若しくは同居の親族等との間で、当該技能実習が終了するまでに、保証金を徴収すること、その他名目のいかんを問わず金銭その他の財産を管理すること、労働契約の不履行に係る違約金を定める契約その他不当に金銭その他の財産の移転を予定する契約することの有無<br> <span style="margin-left: 500px;" class="">あり</span> ・ <span class="circle">なし</span>
+														<p>
+														</p>
 													</p>
 												</td>
 											</tr>
 											<tr>
 												<td width="673" colspan="6" class="pBoth10">
 													<p style="font-size: 14px">
-														2. 実習実施機関との間で、当該技能実習が終了するまでに、労働契約の不履行に係る違約金を定める契約その他不当に金銭その他の財産の移転を予定する契約を締結することの有無<br> <span class="">あり</span> ・ なし
-
+														2. 実習実施機関との間で、当該技能実習が終了するまでに、労働契約の不履行に係る違約金を定める契約その他不当に金銭その他の財産の移転を予定する契約を締結することの有無<br> <span style="margin-left: 500px;" class="">あり</span> ・ <span class="circle">なし</span>
+														<p>
+														</p>
 													</p>
 												</td>
 											</tr>
 											<tr>
 												<td width="673" colspan="6" class="pBoth10">
 													<p style="font-size: 14px">
-														3. 外国人に不正に入国・在留に係る許可を受けさせ、又は外国人の研修・技能実習に係る不正行為に関する事実を隠蔽する目的で、偽変造の文書・図画若しくは虚偽の文書・図画の行使・提供を行ったことの有無<br> <span class="">あり</span> ・ なし
-
+														3. 外国人に不正に入国・在留に係る許可を受けさせ、又は外国人の研修・技能実習に係る不正行為に関する事実を隠蔽する目的で、偽変造の文書・図画若しくは虚偽の文書・図画の行使・提供を行ったことの有無<br> <span style="margin-left: 500px;" class="">あり</span> ・ <span class="circle">なし</span>
+														<p>
+														</p>
 													</p>
 												</td>
 											</tr>

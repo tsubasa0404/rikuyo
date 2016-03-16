@@ -347,7 +347,7 @@
 													</p>
 												</td>
 											</tr>
-											<tr>
+											<tr style="border-bottom: 1px solid #333">
 												<td width="673" colspan="6" class="pBoth10">
 													<p>
 														Content
@@ -359,14 +359,11 @@
 										</tbody>
 									</table>
 									<div style="width:673px">
-										<p>
-
-										</p>
-										<p>
+										<p style="margin-bottom: 0;margin-top: 5px;">
 											Date prepared (D/M/Y): <input type="text" value="" style="text-align: center">
 
 										</p>
-										<p>
+										<p style="margin-top: 0;margin-bottom: 0">
 											Name of sending organization: <input type="text" class="agent_name"  style="text-align: center;width:50%">
 
 										</p>

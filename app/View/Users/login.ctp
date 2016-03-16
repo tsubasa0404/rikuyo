@@ -29,7 +29,7 @@
 
 </head>
 <body id="login-page-full" class="fixed-header theme-white">
-	<div id="login-full-wrapper">
+	<div id="login">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">

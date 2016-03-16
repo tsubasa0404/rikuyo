@@ -13,7 +13,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
+
 #: View/output_documents/printout
+mdgid "Select interviews to merge info"
+msgstr "同一組合の面接を選択"
+
 mdgid "Successful Trainees"
 msgstr "合格者一覧"
 
