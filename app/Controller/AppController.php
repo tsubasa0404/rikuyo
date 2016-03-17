@@ -38,14 +38,16 @@ class AppController extends Controller {
 		'DebugKit.Toolbar',
 		'Auth' => array(
 			'authorize' => array(
-				// 'Actions' => array('actionPath' => 'controllers'); ACLまわりのやつくさい
+				 'Actions' => array('actionPath' => 'controllers') //ACLまわりのやつくさい
 				)
 			),
+		'Acl'
 		);
 
 	public $helpers = array('Session','Html','Form');
 
 	public function beforeFilter(){
+		// $this->Auth->allow();
 		$this->Auth->allow('login');
     $this->Auth->loginAction 		= array('controller' => 'users', 'action' => 'login');
     $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');

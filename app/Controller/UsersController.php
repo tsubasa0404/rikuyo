@@ -133,6 +133,52 @@ class UsersController extends AppController {
 	public function logout() {
 		$this->redirect($this->Auth->logout());
 	}
+
+	//ACL作成用のアクション
+	public function acl_add($id=null){
+		if($this->request->is('post')){
+			$aro=$this->User->Role;
+			$aro->id=$this->request->data['Acl']['role_id'];
+			$aco=$this->request->data['Acl']['aco'];
+			$create=$this->request->data['Acl']['create'];
+			$read=$this->request->data['Acl']['read'];
+			$update=$this->request->data['Acl']['update'];
+			$delete=$this->request->data['Acl']['delete'];
+
+			//パーミッションの設定
+			$this->Acl->$create($aro,$aco,'create');
+			$this->Acl->$read($aro,$aco,'read');
+			$this->Acl->$update($aro,$aco,'update');
+			$this->Acl->$delete($aro,$aco,'delete');
+			//リストAclに移動
+			$this->redirect('../arosacos/index');
+		}
+		$roles = $this->User->Role->find('list');
+		$this->set(compact('roles'));
+	}
+
+	//ACL編集用のアクション
+	public function acl_edit($id=null){
+		if($this->request->is('post')){
+			$aro=$this->User->Role;
+			$aro->id=$this->request->data['ArosAco']['aro_id'];
+			$aco=$this->request->data['ArosAco']['aco_id'];
+			$create=$this->request->data['ArosAco']['create'];
+			$read=$this->request->data['ArosAco']['read'];
+			$update=$this->request->data['ArosAco']['update'];
+			$delete=$this->request->data['ArosAco']['delete'];
+
+			//パーミッションの設定
+			$this->Acl->$create($aro,$aco,'create');
+			$this->Acl->$read($aro,$aco,'read');
+			$this->Acl->$update($aro,$aco,'update');
+			$this->Acl->$delete($aro,$aco,'delete');
+			//リストAclに移動
+			$this->redirect('../arosacos/index');
+		}
+		$roles = $this->User->Role->find('list');
+		$this->set(compact('roles'));
+	}
 }
 
 

@@ -7,6 +7,10 @@ App::uses('AppModel', 'Model');
  */
 class Role extends AppModel {
 
+	public $actsAs = array('Acl' => array('type' => 'requester'));
+	public function parentNode() {
+	  return null;
+}
 
 	public $validate = array(
 		'role' => array(

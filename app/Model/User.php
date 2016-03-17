@@ -8,6 +8,23 @@ App::uses('AuthComponent', 'Controller/Component');
  */
 class User extends AppModel {
 
+	public $actsAs = array('Acl' => array('type' => 'requester'));
+	public function parentNode() {
+		if (!$this->id && empty($this->data)) {
+		   return null;
+		}
+		if (isset($this->data['User']['role_id'])) {
+		   $roleId = $this->data['User']['role_id'];
+		} else {
+		   $roleId = $this->field('role_id');
+		}
+		if (!$roleId) {
+		   return null;
+		} else {
+		   return array('Role' => array('id' => $roleId));
+		}
+   }
+
 /**
  * Validation rules
  *
