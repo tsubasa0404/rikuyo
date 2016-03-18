@@ -6,8 +6,8 @@
 <?php $this->Html->addCrumb(__('Interviews'), '/interviews'); ?>
 <?php $this->Html->addCrumb(__('Interview Profile'), '/interviews/profile/'.$interview_prof[0]['Interview']['id']); ?>
 <?php $this->Html->addCrumb(__('Documents List'), '/output_documents/doc_list/'.$interview_prof[0]['Interview']['id']); ?>
-<?php $this->Html->addCrumb(__('Summary of Sending Organization')); ?>
-					<h1><?= __('Summary of Sending Organization') ?></h1>
+<?php $this->Html->addCrumb(__('Summary of Sending Company')); ?>
+					<h1><?= __('Summary of Sending Company') ?></h1>
 					</div>
 				</div>
 			</div>

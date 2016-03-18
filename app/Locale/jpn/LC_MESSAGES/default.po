@@ -24,6 +24,9 @@ msgstr "合格者一覧"
 msgid "Summary of Sending Organization"
 msgstr "送り出し機関概要書"
 
+msgid "Summary of Sending Company"
+msgstr "所属機関概要書"
+
 msgid "Dispatch Contract"
 msgstr "派遣契約書"
 
