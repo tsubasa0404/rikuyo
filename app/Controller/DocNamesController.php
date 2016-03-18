@@ -81,15 +81,12 @@ class DocNamesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->DocName->create();
 			if ($this->DocName->save($this->request->data)) {
-				$this->Session->setFlash(__('The doc name has been saved.'));
+				$this->Session->setFlash(__('The doc name has been saved.'), 'success_flash');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The doc name could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The doc name could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
-		//$folders = $this->DocName->Folder->find('list');
-		//$subFolders = $this->DocName->SubFolder->find('list');
-		//$this->set(compact('folders', 'subFolders'));
 	}
 
 /**
@@ -105,10 +102,10 @@ class DocNamesController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->DocName->save($this->request->data)) {
-				$this->Session->setFlash(__('The doc name has been saved.'));
+				$this->Session->setFlash(__('The doc name has been saved.'), 'success_flash');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The doc name could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The doc name could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('DocName.' . $this->DocName->primaryKey => $id));
@@ -133,16 +130,16 @@ class DocNamesController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->DocName->delete()) {
-			$this->Session->setFlash(__('The doc name has been deleted.'));
+			$this->Session->setFlash(__('The doc name has been deleted.'), 'success_flash');
 		} else {
-			$this->Session->setFlash(__('The doc name could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The doc name could not be deleted. Please, try again.'), 'error_flash');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
 
 	public function update_delete_flag($id = null){
 		if(!$this->DocName->exists($id)){
-			throw new NotFoundException(__('You cannot delete this'));
+			throw new NotFoundException(__('You cannot delete this'), 'error_flash');
 		}
 		if($this->request->is(array('post', 'put'))){
 			$this->request->data = array(
@@ -152,7 +149,7 @@ class DocNamesController extends AppController {
 			if($this->DocName->save($this->request->data)){
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('You cannot delete this.'));
+				$this->Session->setFlash(__('You cannot delete this.'), 'error_flash');
 			}
 		}
 	}

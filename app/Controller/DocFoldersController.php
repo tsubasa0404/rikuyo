@@ -58,10 +58,10 @@ class DocFoldersController extends AppController {
 		if ($this->request->is('post')) {
 			$this->DocFolder->create();
 			if ($this->DocFolder->save($this->request->data)) {
-				$this->Session->setFlash(__('The doc folder has been saved.'));
+				$this->Session->setFlash(__('The doc folder has been saved.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The doc folder could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The doc folder could not be saved. Please, try again.'),'error_flash');
 			}
 		}
 	}
@@ -79,10 +79,10 @@ class DocFoldersController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->DocFolder->save($this->request->data)) {
-				$this->Session->setFlash(__('The doc folder has been saved.'));
+				$this->Session->setFlash(__('The doc folder has been saved.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The doc folder could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The doc folder could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('DocFolder.' . $this->DocFolder->primaryKey => $id));

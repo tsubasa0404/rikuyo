@@ -60,10 +60,10 @@ class DocTemplatesController extends AppController {
 
 			$this->DocTemplate->create();
 			if ($this->DocTemplate->save($this->request->data)) {
-				$this->Session->setFlash(__('The doc template has been saved.'));
+				$this->Session->setFlash(__('The doc template has been saved.'), 'success_flash');
 				return $this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The doc template could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The doc template could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 		$documentNames = $this->DocTemplate->DocumentName->find('list');
@@ -83,10 +83,10 @@ class DocTemplatesController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->DocTemplate->save($this->request->data)) {
-				$this->Session->setFlash(__('The doc template has been saved.'));
+				$this->Session->setFlash(__('The doc template has been saved.'), 'success_flash');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The doc template could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The doc template could not be saved. Please, try again.'), 'error_flash');
 			}
 		} else {
 			$options = array('conditions' => array('DocTemplate.' . $this->DocTemplate->primaryKey => $id));
@@ -106,13 +106,13 @@ class DocTemplatesController extends AppController {
 	public function delete($id = null) {
 		$this->DocTemplate->id = $id;
 		if (!$this->DocTemplate->exists()) {
-			throw new NotFoundException(__('Invalid doc template'));
+			throw new NotFoundException(__('Invalid doc template'), 'error_flash');
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->DocTemplate->delete()) {
-			$this->Session->setFlash(__('The doc template has been deleted.'));
+			$this->Session->setFlash(__('The doc template has been deleted.'), 'success_flash');
 		} else {
-			$this->Session->setFlash(__('The doc template could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The doc template could not be deleted. Please, try again.'), 'error_flash');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
