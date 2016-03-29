@@ -9,7 +9,7 @@
 			</div>
 <?php echo $this->Session->flash() ?>
 			<div class="row" id="company-profile">
-				<div class="col-lg-6 col-md-6 col-sm-6 maxW400">
+				<div class="col-lg-6 col-md-6 col-sm-6 maxW500">
 					<div class="main-box">
 						<header class="main-box-header clearfix">
 							<h2><?= __('Basic Information') ?></h2>
@@ -34,12 +34,12 @@
 													<td>
 														<?php echo $this->Form->input('association_jp',array(
 															'label' => false,
-															'class' => 'form-control maxW200',
+															'class' => 'form-control maxW360',
 															'required' => true
 														)) ?><br>
 														<?php echo $this->Form->input('association_en',array(
 															'label' => false,
-															'class' => 'form-control maxW200',
+															'class' => 'form-control maxW360',
 															'required' => true
 														)) ?>
 													</td>
@@ -344,7 +344,7 @@
 
 			</div>
 			<div class="row">
-				<div class="col-lg-6 col-md-8 col-sm-8 maxW400">
+				<div class="col-lg-6 col-md-8 col-sm-8 maxW500">
 					<div class="main-box">
 						<header class="main-box-header clearfix">
 							<h2><?= __('Select Sectors') ?></h2>
@@ -396,7 +396,7 @@
 				</div><!-- /Sector -->
 			</div>
 			<div class="row">
-				<div class="col-lg-6 col-md-8 col-sm-8 maxW400">
+				<div class="col-lg-6 col-md-8 col-sm-8 maxW500">
 					<div class="main-box">
 						<header class="main-box-header clearfix">
 							<h2><?= __('Contact List') ?></h2>

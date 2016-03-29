@@ -61,8 +61,7 @@
 											'label' => __('Representative_Family Name'),
 											'type' => 'text',
 											'class' => 'form-control maxW200',
-											'placeholder' => __('Enter in Japanese'),
-										'required' => true
+											'placeholder' => __('Enter in Japanese')
 										)); ?>
 									</div>
 									<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -70,13 +69,12 @@
 											'label' => __('Representative_Given Name'),
 											'type' => 'text',
 											'class' => 'form-control maxW200',
-											'placeholder' => __('Enter in Japanese'),
-										'required' => true
+											'placeholder' => __('Enter in Japanese')
 										)); ?>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="post-code_1">郵便番号</label>
+									<label for="post-code_1"><?= __('Postcode') ?></label>
 									<div class="input-group">
 										<span class="input-group-addon">〒</span>
 										<?php echo $this->Form->input('postcode', array(
@@ -84,7 +82,8 @@
 											'type' => 'text',
 											'class' => 'form-control maxW160',
 											'size' => "7",
-											'id' => 'postcode'
+											'id' => 'postcode',
+											'required' => false
 										)); ?>
 									</div>
 									<span class="help-block"><?= __('Enter Postcode') ?><br><a href="http://www.post.japanpost.jp/zipcode/" target="_blank" ><?= __('Click here if you want to search for postcode.')?></a> </span>
@@ -95,7 +94,6 @@
 										'label' => __('Address_Province'),
 										'type' => 'text',
 										'class' => 'form-control maxW100',
-										'required' => true,
 										'id' => 'province'
 									)); ?>
 								</div>
@@ -104,7 +102,6 @@
 										'label' => __('Address_Japanese'),
 										'type' => 'text',
 										'class' => 'form-control maxW400',
-										'required' => true,
 										'placeholder' => __('Enter Address in Japanese without Province'),
 										'id' => 'address_jp'
 									)) ;?>
@@ -114,7 +111,6 @@
 										'label' => __('Address_English'),
 										'type' => 'text',
 										'class' => 'form-control maxW400',
-										'required' => true,
 										'placeholder' => __('Enter Full Address in English Including Province')
 									)); ?>
 								</div>

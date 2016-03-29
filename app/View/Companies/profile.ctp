@@ -9,7 +9,7 @@
 			</div>
 <?php echo $this->Session->flash(); ?>
 			<div class="row" id="company-profile">
-				<div class="col-lg-8 col-md-8 col-sm-12 maxW410">
+				<div class="col-lg-8 col-md-8 col-sm-12 maxW500">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2><?php echo $this->request->data['Company']['company_jp']."(".$this->request->data['Company']['company_en'].")" ?></h2>
@@ -18,7 +18,7 @@
 						<div class="main-box-body clearfix">
 
 							<div class="company-profile-details">
-								<div class="table-responsive" style="width: 355px">
+								<div class="table-responsive">
 									<?php echo $this->Form->create('Company', array(
 										'action' => 'update',
 										'class' => 'form_company_edit',
@@ -144,7 +144,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-8 col-md-8 col-sm-12 maxW410">
+				<div class="col-lg-8 col-md-8 col-sm-12 maxW500">
 					<div class="main-box clearfix">
 						<div class="main-box-body clearfix">
 							<header class="main-box-header clearfix">

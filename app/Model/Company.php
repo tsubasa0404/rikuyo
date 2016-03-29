@@ -116,20 +116,18 @@ class Company extends AppModel {
 	}
 
 	public $validate = array(
-    'company_en' => array(
-      'alphaNumeric' => array(
-        'rule' => 'alphaNumeric', //半角英数字のみ
-        'message' => 'Only Alphabet and Number is valid'
-        )
-     	),
     'postcode' => array(
       'numeric' => array(
         'rule' => 'numeric', //数字のみ
+        'required' => false,
         'message' => 'Only number is valid. If using "-", please remove it', //数字のみ
+        'allowEmpty' => true
         ),
       'custom' => array(
       	'rule' => array('custom', "/^[0-9]+$/"),
-      	'message' => 'Only number is valid.'
+        'required' => false,
+      	'message' => 'Only number is valid.',
+        'allowEmpty' => true
       	)
     	)
   );

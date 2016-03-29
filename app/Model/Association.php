@@ -65,10 +65,6 @@ class Association extends AppModel {
         )
       ),
     'association_en' => array(
-      'alphaNumeric' => array(
-        'rule' => 'alphaNumeric', //半角英数字のみ
-        'message' => 'Only Alphabet and Number is valid'
-        ),
       'isUnique' => array(
         'rule' => 'isUnique',
         'message' => 'The association already exists.'

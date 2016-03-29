@@ -47,8 +47,7 @@
 											'label' => __('Representative_Family Name'),
 											'type' => 'text',
 											'class' => 'form-control maxW200',
-											'placeholder' => __('Family Name in Japanese'),
-										'required' => true
+											'placeholder' => __('Family Name in Japanese')
 										)); ?>
 									</div>
 									<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -56,8 +55,7 @@
 											'label' => __('Representative_Given Name'),
 											'type' => 'text',
 											'class' => 'form-control maxW200',
-											'placeholder' => __('Given Name in Japanese'),
-										'required' => true
+											'placeholder' => __('Given Name in Japanese')
 										)); ?>
 									</div>
 								</div>
