@@ -8,7 +8,7 @@
 			</div>
 <?php echo $this->Session->flash(); ?>
 			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-6 maxW500">
+				<div class="col-lg-4 col-md-6 col-sm-6 maxW500">
 					<div class="main-box">
 						<header class="main-box-header clearfix">
 							<h2><?= __('Sector List') ?>
@@ -91,7 +91,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="col-lg-8 col-md-6 col-sm-6">
 					<div class="main-box">
 						<header class="main-box-header clearfix">
 							<h2><?= __('Job List') ?>
@@ -103,9 +103,9 @@
 								<table id="table-job-db" class="table table-bordered table-hover ">
 									<thead>
 										<tr>
-											<th><?= __('Sector') ?></th>
-											<th><?= __('Japanese') ?></th>
-											<th><?= __('English') ?></th>
+											<th style="width: 20%"><?= __('Sector') ?></th>
+											<th style="width: 30%"><?= __('Japanese') ?></th>
+											<th style="width: 50%"><?= __('English') ?></th>
 											<th></th>
 										</tr>
 									</thead>

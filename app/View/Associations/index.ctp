@@ -8,7 +8,7 @@
 			</div>
 <?php echo $this->Session->flash(); ?>
 			<div class="row">
-				<div class="col-lg-12 maxW900">
+				<div class="col-lg-12 ">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2 class="pull-left"><?= __('Association List') ?></h2>
