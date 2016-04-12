@@ -49,6 +49,7 @@ class AppController extends Controller {
 	public function beforeFilter(){
 		// $this->Auth->allow();
 		$this->Auth->allow('login');
+		$this->Auth->allow('acl_add');
     $this->Auth->loginAction 		= array('controller' => 'users', 'action' => 'login');
     $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
     $this->Auth->loginRedirect 	= array('controller' => 'pages', 'action' => 'display');
