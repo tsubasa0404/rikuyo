@@ -61,6 +61,9 @@ class AppController extends Controller {
 		//通知用データ取得
 		$this->__taskNotification();
 		$this->__expenseNotification();
+		$user = $this->Auth->user();
+		$this->set(compact('user'));
+
 	}
 
 

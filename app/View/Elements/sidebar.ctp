@@ -83,6 +83,8 @@
 							array('escape' => false, 'class' => '')
 						) ?>
 					</li>
+					<?php if ($user['role_id']==1) : ?>
+
 					<li>
 						<?php echo $this->Html->link(
 							'<i class="fa fa-user"></i><span>'.__('Users').'</span>',
@@ -90,6 +92,7 @@
 							array('escape' => false, 'class' => '')
 						) ?>
 					</li>
+					<?php endif; ?>
 				</ul>
 			</div>
 		</div>
