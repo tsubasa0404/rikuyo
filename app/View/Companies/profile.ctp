@@ -63,7 +63,7 @@
 											</tr>
 											<tr>
 												<td class="td_first_block">
-													<?= __('Representative') ?>
+													<?= __('The person in charge') ?>
 												</td>
 												<td>
 													<div class="form-group">

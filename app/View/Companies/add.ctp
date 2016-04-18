@@ -58,7 +58,7 @@
 								<div class="row">
 									<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
 										<?php echo $this->Form->input('rep_family_name_jp', array(
-											'label' => __('Representative_Family Name'),
+											'label' => __('The person in charge_Family Name'),
 											'type' => 'text',
 											'class' => 'form-control maxW200',
 											'placeholder' => __('Enter in Japanese')
@@ -66,7 +66,7 @@
 									</div>
 									<div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
 										<?php echo $this->Form->input('rep_given_name_jp', array(
-											'label' => __('Representative_Given Name'),
+											'label' => __('The person in charge_Given Name'),
 											'type' => 'text',
 											'class' => 'form-control maxW200',
 											'placeholder' => __('Enter in Japanese')

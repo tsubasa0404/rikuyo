@@ -900,6 +900,9 @@ msgstr "送り出し機関名を日本語で入力"
 msgid "Representative"
 msgstr "代表者"
 
+msgid "The person in charge"
+msgstr "担当者"
+
 #: View/Agents/add.ctp:59
 #: View/Agents/profile.ctp:62
 #: View/Associations/profile.ctp:85
@@ -2353,8 +2356,8 @@ msgstr "組合名(英語)"
 
 #: View/Associations/add.ctp:47
 #: View/Companies/add.ctp:61
-msgid "Representative_Family Name"
-msgstr "代表者 名字"
+msgid "The person in charge_Family Name"
+msgstr "担当者 名字"
 
 #: View/Associations/add.ctp:50
 msgid "Family Name in Japanese"
@@ -2362,8 +2365,8 @@ msgstr "名字(日本語)"
 
 #: View/Associations/add.ctp:56
 #: View/Companies/add.ctp:70
-msgid "Representative_Given Name"
-msgstr "代表者 名前"
+msgid "The person in charge_Given Name"
+msgstr "担当者 名前"
 
 #: View/Associations/add.ctp:59
 msgid "Given Name in Japanese"
@@ -2502,6 +2505,9 @@ msgstr "住所(英語*都道府県から入力)"
 #: View/OutputDocuments/doc_list.ctp:6;7;16
 msgid "Documents List"
 msgstr "書類一覧"
+
+msgid "Required Documents List"
+msgstr "提出書類一覧"
 
 #: View/Associations/profile.ctp:174
 msgid "Select Document"

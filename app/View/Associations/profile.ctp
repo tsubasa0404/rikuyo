@@ -60,7 +60,7 @@
 												</tr>
 												<tr>
 													<td>
-														<?= __('Representative') ?>
+														<?= __('The person in charge') ?>
 													</td>
 													<td>
 														<div class="form-group">
@@ -169,7 +169,7 @@
 				<div class="col-lg-6 col-md-6 col-sm-6 maxW600">
 					<div class="main-box">
 						<header class="main-box-header clearfix">
-							<h2 class="pull-left"><?= __('Documents List') ?></h2>
+							<h2 class="pull-left"><?= __('Required Documents List') ?></h2>
 							<?php echo $this->Html->link(
 								'<i class="fa fa-lg fa-plus-circle"></i> '. __('Select Document') ,
 								array('controller' => 'associations', 'action' => 'select', $this->request->data['Association']['id']),
@@ -188,18 +188,20 @@
 										</tr>
 									</thead>
 									<tbody>
-										<?php foreach ($folders as $folder) : ?>
+										<!-- <?php // foreach ($folders as $folder) : ?>
 											<tr class="warning">
-												<th colspan="3"><span><?php echo $folder['DocFolder']['folder_jp']."(".$folder['DocFolder']['folder_en'].")" ?></span></th>
-											</tr>
-												<?php foreach($this->Foreach->association_documents($folder['DocFolder']['id']) as $doc): ?>
+												<th colspan="3"><span>
+													<?php // echo $folder['DocFolder']['folder_jp']."(".$folder['DocFolder']['folder_en'].")" ?>
+													</span></th>
+											</tr> -->
+												<?php foreach($documents as $doc): ?>
 													<tr>
 														<td class="td_first_block"><?php echo $doc['DocName']['name_jp']."<br>".$doc['DocName']['name_en'] ;?></td>
 														<td><?php if($doc['DocName']['lang_jpn'] == 1){echo __('Japanese').", ";}if($doc['DocName']['lang_eng'] == 1){echo __('English').", ";}if($doc['DocName']['lang_khm'] == 1){echo __('Khmer');} ?></td>
-														<td><?php echo $doc['DocName']['note']."<br>". $doc['AssociationDocument'][0]['note']; ?></td>
+														<td><?php echo $doc['DocName']['note']."<br>". $doc['AssociationDocument']['note']; ?></td>
 													</tr>
 												<?php endforeach; ?>
-											<?php endforeach; ?>
+											<!-- <?php // endforeach; ?> -->
 									</tbody>
 								</table>
 							</div>
