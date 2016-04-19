@@ -31,7 +31,6 @@
 										'id' => 'sel_association',
 										'value' => '',
 										'options' => $option_associations,
-
 										'empty' => true,
 										'required' => true
 									)) ?>
@@ -52,7 +51,7 @@
 										'type' => 'text',
 										'class' => 'form-control maxW400',
 										'placeholder' => __('Company Name in English'),
-										'required' => true
+										'required' => false
 									)); ?>
 								</div>
 								<div class="row">

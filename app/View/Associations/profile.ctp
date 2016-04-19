@@ -40,7 +40,7 @@
 														<?php echo $this->Form->input('association_en',array(
 															'label' => false,
 															'class' => 'form-control maxW360',
-															'required' => true
+															'required' => false
 														)) ?>
 													</td>
 												</tr>

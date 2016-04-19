@@ -38,7 +38,7 @@
 										'type' => 'text',
 										'class' => 'form-control maxW400',
 										'placeholder' => __('Association Name in English'),
-										'required' => true
+										'required' => false
 									)); ?>
 								</div>
 								<div class="row">
@@ -79,7 +79,6 @@
 										'label' => __('Address_Province'),
 										'type' => 'text',
 										'class' => 'form-control maxW100',
-										'required' => true,
 										'id' => 'province'
 									)); ?>
 								</div>
@@ -88,7 +87,6 @@
 										'label' => __('Address_Japanese'),
 										'type' => 'text',
 										'class' => 'form-control maxW400',
-										'required' => true,
 										'id' => 'address_jp'
 									)) ;?>
 								</div>
@@ -97,7 +95,6 @@
 										'label' => __('Address_English'),
 										'type' => 'text',
 										'class' => 'form-control maxW400',
-										'required' => true
 									)); ?>
 								</div>
 
