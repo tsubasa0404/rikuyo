@@ -2081,8 +2081,12 @@
 																				<?php echo $doc['DocImg']['doc_name_jp']."<br>".$doc['DocImg']['doc_name_en'];?>
 																			</td>
 																			<td class="text-center">
-																				<a href="/dev/img/trainee_documents/<?php echo $doc['DocImg']['img_file_name']?>" class="table-link popup" alt="Show Image"><i class="fa fa-eye fa-lg"></i>
-																				</a>
+																				<?php echo $this->Html->link('<i class="fa fa-eye fa-lg"></i>',
+																					'/img/trainee_documents/'.$doc["DocImg"]["img_file_name"],
+																					array('class' => 'table-link popup', 'alt' => 'Show Image', 'escape' => false)
+																				) ?>
+																				<!-- <a href="<?php //$_SERVER["HTTP_HOST"]; ?>/dev/img/trainee_documents/<?php //echo $doc['DocImg']['img_file_name']?>" class="table-link popup" alt="Show Image"><i class="fa fa-eye fa-lg"></i>
+																				</a> -->
 																				<?php echo $this->Html->link(
 																					'<i class="fa fa-pencil"></i>',
 																					array(
@@ -2431,9 +2435,13 @@
 																											<?php echo $image['TraineeMicrofinanceImage']['title'];?>
 																										</td>
 																										<td class="text-center">
-																											<a href="/dev/img/trainee_microfinance_images/original/<?php echo $image['TraineeMicrofinanceImage']['img_file_name'];?>" class="table-link popup" alt="Show Image">
+																											<?php echo $this->Html->link('<i class="fa fa-eye fa-lg"></i>',
+																												'/img/trainee_microfinance_images/original/'.$image['TraineeMicrofinanceImage']['img_file_name'],
+																												array('class' => 'table-link popup', 'alt' => 'Show Image', 'escape' => false)
+																											) ?>
+																											<!-- <a href="/dev/img/trainee_microfinance_images/original/<?php // echo $image['TraineeMicrofinanceImage']['img_file_name'];?>" class="table-link popup" alt="Show Image">
 																												<i class="fa fa-eye fa-lg"></i>
-																											</a>
+																											</a> -->
 																										<?php echo $this->Form->postlink(
 																											'<i class="fa fa-trash-o"></i>',
 																											array(
