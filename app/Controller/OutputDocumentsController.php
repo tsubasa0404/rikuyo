@@ -54,6 +54,7 @@ class OutputDocumentsController extends AppController {
 		$agents         = $this->Agent->optionAgents($lang);
 		$option_agents  = $this->Agent->find('list', array('fields' => array('id', 'agent_en')));
     $trainees       = $this->InterviewCandidate->successTrainees($interview_id);
+    $candidates     = $this->InterviewCandidate->candidateList($interview_id);
     $jobs           = $this->_getJobArr($interview_prof[0]['Interview']['job']);
     $sectors        = $this->_getSectorArr($interview_prof[0]['Association']['sector']);
 
@@ -101,7 +102,7 @@ class OutputDocumentsController extends AppController {
 
 
 		$this->set(compact(
-			'interview_prof', 'agent','agents', 'trainees', 'option_agents', 'jobs', 'sectors',
+			'interview_prof', 'agent','agents', 'trainees','candidates', 'option_agents', 'jobs', 'sectors',
 			 'same_association_companies', 'company_ids', 'same_association_interviews'));
 		$this->render($ctp_name);
 	}
