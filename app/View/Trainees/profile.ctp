@@ -623,26 +623,30 @@
 																		</td>
 																		<td>
 																			<div class="row">
-																				<div class="form-group">
-																					<div class="col-lg-12 col-md-12 col-sm-12">
+																				<div class="col-lg-12 col-md-12 col-sm-12">
+																					<div class="form-group">
 																							<?php echo $province_en['CamPlaceDic']['place_jp']." 県 "; ?>
 																							<?php echo $district_en['CamPlaceDic']['place_jp']." 市 "; ?>
 																							<?php echo $commune_en['CamPlaceDic']['place_jp']." 地区"; ?>
 																					</div>
 																				</div>
-																				<div class="col-lg-8 col-md-8 col-sm-8">
-																					<?php echo $this->Form->input('address_jp',array(
-																						'label' => false,
-																						'class' => 'form-control address_jp',
-																						'placeholder' => '住所(地区以下、通り、番号、建物)'
-																					)) ?>
+																				<div class="col-lg-12 col-md-12 col-sm-12">
+																					<div class="form-group">
+																						<?php echo $this->Form->input('address_jp',array(
+																							'label' => false,
+																							'class' => 'form-control address_jp',
+																							'placeholder' => '住所(地区以下、通り、番号、建物)'
+																						)) ?>
+																					</div>
 																				</div>
-																				<div class="col-lg-4 col-md-4 col-sm-4">
-																					<?php echo $this->Form->input('district_part_jp',array(
-																						'label' => false,
-																						'class' => 'form-control maxW100 district_part_jp',
-																						'placeholder' => '北部、中部、南部など'
-																					)) ?>
+																				<div class="col-lg-6 col-md-6 col-sm-6">
+																					<div class="form-group">
+																						<?php echo $this->Form->input('district_part_jp',array(
+																							'label' => false,
+																							'class' => 'form-control district_part_jp',
+																							'placeholder' => '北部、中部、南部など'
+																						)) ?>
+																					</div>
 																				</div>
 																			</div>
 																		</td>
@@ -692,7 +696,7 @@
 																				</div>
 																			</div>
 																			<div class="row">
-																				<div class="col-lg-6 col-md-6 col-sm-6">
+																				<div class="col-lg-12 col-md-12 col-sm-12">
 																					<div class="form-group">
 																						<label for="addressEn">Address(No, Street, Village, English)</label>
 																						<?php echo $this->Form->input('address_en',array(
@@ -706,7 +710,7 @@
 																						<label for="district_part">District Area</label>
 																						<?php echo $this->Form->input('district_part_en',array(
 																							'label' => false,
-																							'class' => 'form-control maxW100 district_part_en'
+																							'class' => 'form-control district_part_en'
 																						)) ?>
 																					</div>
 																				</div>
