@@ -76,9 +76,11 @@
           } else {
             $('.trainee_married').html('有・<span class="circle">無</span>');
           }
+          if(birthday != "0000-00-00"){
+            $('input.trainee_birthday').val(format_date(birthday));
+          }
+          $('.trainee_address').val(chkNullToBlanc(address_en)+", Sangkat "+chkNullToBlanc(commune_en)+", Khan "+chkNullToBlanc(district_en)+", "+chkNullToBlanc(province_en));
 
-          $('input.trainee_birthday').val(format_date(birthday));
-          $('.trainee_address').val(address_en+", Sangkat "+commune_en+", Khan "+district_en+", "+province_en);
           $('input.trainee_academic1_from').val(format_month(academic1_from));
           $('input.trainee_academic2_from').val(format_month(academic2_from));
           $('input.trainee_academic3_from').val(format_month(academic3_from));
@@ -101,11 +103,13 @@
           $('input.trainee_employ3_to').val(format_month(employ3_to));
           $('input.trainee_employ4_to').val(format_month(employ4_to));
           $('input.trainee_employ5_to').val(format_month(employ5_to));
+console.log(employ1_to);
           $('input.trainee_employ1_jp').val(employ1_jp);
           $('input.trainee_employ2_jp').val(employ2_jp);
           $('input.trainee_employ3_jp').val(employ3_jp);
           $('input.trainee_employ4_jp').val(employ4_jp);
           $('input.trainee_employ5_jp').val(employ5_jp);
+
           $('input.trainee_job1_jp').val(job1_jp);
           $('input.trainee_job1_term').val(job1_term);
           $('input.trainee_job2_jp').val(job2_jp);
@@ -124,6 +128,14 @@
           }
           $('input.trainee_visit_jpn').val(visit_jpn);
 
+          function chkNullToBlanc(val){
+            if(val==null){
+              return "";
+            } else {
+              return val;
+            }
+          }
+
           function format_date(date){
             if(date==""){
               return ;
@@ -132,9 +144,10 @@
             var format_date = date_obj.getFullYear() +' 年 ' + (date_obj.getMonth() + 1) + ' 月 ' +  date_obj.getDate() + ' 日';
             return format_date;
           }
+
           function format_month(month){
-            if(month==""){
-              return ;
+            if(month==null||month==""){
+              return "";
             } else if(month=="現在"){
               return "現在";
             }

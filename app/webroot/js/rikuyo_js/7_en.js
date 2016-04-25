@@ -78,9 +78,11 @@
           } else {
             $('.trainee_married').html('Y/<span class="circle">N</span>');
           }
+          if(birthday != "0000-00-00"){
+            $('input.trainee_birthday').val(format_date(birthday));
+          }
+          $('.trainee_address').val(chkNullToBlanc(address_en)+", Sangkat "+chkNullToBlanc(commune_en)+", Khan "+chkNullToBlanc(district_en)+", "+chkNullToBlanc(province_en));
 
-          $('input.trainee_birthday').val(format_date(birthday));
-          $('.trainee_address').val(address_en+", Sangkat "+commune_en+", Khan "+district_en+", "+province_en);
           $('input.trainee_academic1_from').val(format_month(academic1_from));
           $('input.trainee_academic2_from').val(format_month(academic2_from));
           $('input.trainee_academic3_from').val(format_month(academic3_from));
@@ -127,6 +129,14 @@
           $('input.trainee_visit_jpn_from').val(format_month(visit_jpn_from));
           $('input.trainee_visit_jpn_to').val(format_month(visit_jpn_to));
 
+          function chkNullToBlanc(val){
+            if(val==null){
+              return "";
+            } else {
+              return val;
+            }
+          }
+
           function format_date(date){
             if(date==""){
               return ;
@@ -136,8 +146,8 @@
             return format_date;
           }
           function format_month(month){
-            if(month==""){
-              return ;
+            if(month==null||month==""){
+              return "";
             } else if(month=="Present"){
               return "Present";
             }

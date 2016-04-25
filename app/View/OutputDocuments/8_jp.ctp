@@ -355,7 +355,7 @@
 						<div class="main-box clearfix">
 							<div class="main-box-body clearfix">
 								<header class="main-box-header clearfix">
-								<h2><?= __('Successful Trainees') ?>
+								<h2><?= __('Candidates') ?>
 								</h2>
 							</header>
 
@@ -363,15 +363,15 @@
 								<div class="table-responsive">
 									<table class="table table-products table-bordered">
 										<tbody>
-											<?php foreach ($trainees as $trainee) : ?>
+											<?php foreach ($candidates as $trainee) : ?>
 												<tr>
 													<td>
 														<div class="radio">
-															<input class="trainee_radio" type="radio" name="trainee_id" value="<?php echo $trainee['Trainee']['id']?>" id="<?php echo $trainee['Trainee']['control_no'] ?>" data-url="<?php echo $this->Html->url(array('controller' => 'output_documents', 'action' => 'getTraineeAjax')); ?>">
-															<label for="<?php echo $trainee['Trainee']['control_no'] ?>">
-																<?php echo $trainee['Trainee']['control_no']. " / " ?>
-																<?php echo $this->Html->link($trainee['Trainee']['given_name_en']." " .$trainee['Trainee']['family_name_en'],
-																	array('controller' => 'trainees', 'action' => 'profile', $trainee['Trainee']['id']),
+															<input class="trainee_radio" type="radio" name="trainee_id" value="<?php echo $trainee['CandidateTrainee']['id']?>" id="<?php echo $trainee['CandidateTrainee']['control_no'] ?>" data-url="<?php echo $this->Html->url(array('controller' => 'output_documents', 'action' => 'getTraineeAjax')); ?>">
+															<label for="<?php echo $trainee['CandidateTrainee']['control_no'] ?>">
+																<?php echo $trainee['CandidateTrainee']['control_no']. " / " ?>
+																<?php echo $this->Html->link($trainee['CandidateTrainee']['given_name_en']." " .$trainee['CandidateTrainee']['family_name_en'],
+																	array('controller' => 'trainees', 'action' => 'profile', $trainee['CandidateTrainee']['id']),
 																	array('escape' => false, 'target' => '_blank'));
 																?>
 															</label>
