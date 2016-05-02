@@ -6360,6 +6360,9 @@ msgstr "出国状況"
 msgid "Already"
 msgstr "完了"
 
+msgid "Run Away"
+msgstr "失踪"
+
 #: View/Trainees/profile.ctp:109
 #: View/Trainees/view.ctp:609
 msgid "Return Status"

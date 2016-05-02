@@ -111,7 +111,7 @@
 															<?php echo $this->Form->input('return_status_id',array(
 																'label' => false,
 																'type' => 'select',
-																'options' => array('0'=> __('Not Yet'),'1'=> __('Already')),
+																'options' => array('0'=> __('Not Yet'),'1'=> __('Already'), '2'=>__('Run Away')),
 																'class' => "form-control maxW160 return_status",
 																'div' => false
 															)); ?>
@@ -316,6 +316,56 @@
 																		'label' => false,
 																		'placeholder' => __('Note'),
 																		'class' => 'form-control labor_ministry_note'
+																	)) ?>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="td_first_block"><?= __('Bank') ?></td>
+													<td>
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-4 col-md-4 col-sm-4">
+																	<?php echo $this->Form->input('bank_status_id',array(
+																			'label' => false,
+																			'type' => 'select',
+																			'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																			'class' => "form-control maxW100 bank_status_id",
+																			'div' => false
+																		)); ?>
+																</div>
+																<div class="col-lg-8 col-md-8 col-sm-8">
+																	<?php echo $this->Form->input('bank_note',array(
+																		'label' => false,
+																		'placeholder' => __('Note'),
+																		'class' => 'form-control bank_note'
+																	)) ?>
+																</div>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td class="td_first_block"><?= __('Sign') ?></td>
+													<td>
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-4 col-md-4 col-sm-4">
+																	<?php echo $this->Form->input('sign_status_id',array(
+																			'label' => false,
+																			'type' => 'select',
+																			'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																			'class' => "form-control maxW100 sign_status_id",
+																			'div' => false
+																		)); ?>
+																</div>
+																<div class="col-lg-8 col-md-8 col-sm-8">
+																	<?php echo $this->Form->input('sign_note',array(
+																		'label' => false,
+																		'placeholder' => __('Note'),
+																		'class' => 'form-control sign_note'
 																	)) ?>
 																</div>
 															</div>
@@ -1349,7 +1399,7 @@
 																			</div>
 																			<?php echo $this->Form->input('academic1_en',array(
 																				'label' => 'Shool',
-																				'class' => 'form-control maxW250 academic1_en'
+																				'class' => 'form-control academic1_en'
 																			)) ?>
 																		</td>
 																	</tr>
@@ -1357,7 +1407,7 @@
 																		<td class="td_first_block">
 																			<?php echo $this->Form->input('academic2_jp',array(
 																				'label' => '学校名',
-																				'class' => 'form-control maxW250 academic2_jp'
+																				'class' => 'form-control academic2_jp'
 																			)) ?>
 																		</td>
 																		<td>
@@ -1375,7 +1425,7 @@
 																			</div>
 																			<?php echo $this->Form->input('academic2_en',array(
 																				'label' => 'Shool',
-																				'class' => 'form-control maxW250 academic2_en'
+																				'class' => 'form-control academic2_en'
 																			)) ?>
 																		</td>
 																	</tr>
@@ -1383,7 +1433,7 @@
 																		<td class="td_first_block">
 																			<?php echo $this->Form->input('academic3_jp',array(
 																				'label' => '学校名',
-																				'class' => 'form-control maxW250 academic3_jp'
+																				'class' => 'form-control academic3_jp'
 																			)) ?>
 																		</td>
 																		<td>
@@ -1401,7 +1451,7 @@
 																			</div>
 																			<?php echo $this->Form->input('academic3_en',array(
 																				'label' => 'Shool',
-																				'class' => 'form-control maxW250 academic3_en'
+																				'class' => 'form-control academic3_en'
 																			)) ?>
 																		</td>
 																	</tr>
@@ -1409,7 +1459,7 @@
 																		<td class="td_first_block">
 																			<?php echo $this->Form->input('academic4_jp',array(
 																				'label' => '学校名',
-																				'class' => 'form-control maxW250 academic4_jp'
+																				'class' => 'form-control academic4_jp'
 																			)) ?>
 																		</td>
 																		<td>
@@ -1427,7 +1477,7 @@
 																			</div>
 																			<?php echo $this->Form->input('academic4_en',array(
 																				'label' => 'Shool',
-																				'class' => 'form-control maxW250 academic4_en'
+																				'class' => 'form-control academic4_en'
 																			)) ?>
 																		</td>
 																	</tr>
@@ -1488,7 +1538,7 @@
 																					<div class="col-lg-12 col-md-12 col-sm-12">
 																						<?php echo $this->Form->input('employ1_en',array(
 																							'label' => 'Company',
-																							'class' => 'form-control maxW250 employ1_en'
+																							'class' => 'form-control employ1_en'
 																						)) ?>
 																					</div>
 																				</div>
@@ -1549,7 +1599,7 @@
 																					<div class="col-lg-12 col-md-12 col-sm-12">
 																			<?php echo $this->Form->input('employ2_en',array(
 																				'label' => 'Company',
-																				'class' => 'form-control maxW250 employ2_en'
+																				'class' => 'form-control employ2_en'
 																			)) ?>
 																			</div>
 																			</div>
@@ -1610,7 +1660,7 @@
 																					<div class="col-lg-12 col-md-12 col-sm-12">
 																			<?php echo $this->Form->input('employ3_en',array(
 																				'label' => 'Company',
-																				'class' => 'form-control maxW250 employ3_en'
+																				'class' => 'form-control employ3_en'
 																			)) ?>
 																			</div>
 																			</div>
@@ -1671,7 +1721,7 @@
 																					<div class="col-lg-12 col-md-12 col-sm-12">
 																			<?php echo $this->Form->input('employ4_en',array(
 																				'label' => 'Company',
-																				'class' => 'form-control maxW250 employ4_en'
+																				'class' => 'form-control employ4_en'
 																			)) ?>
 																			</div>
 																			</div>
@@ -1732,7 +1782,7 @@
 																					<div class="col-lg-12 col-md-12 col-sm-12">
 																			<?php echo $this->Form->input('employ5_en',array(
 																				'label' => 'Company',
-																				'class' => 'form-control maxW250 employ5_en'
+																				'class' => 'form-control employ5_en'
 																			)) ?>
 																			</div>
 																			</div>
@@ -2754,6 +2804,10 @@
         var immigration_note          = $('.immigration_note').val();
         var labor_ministry_status_id  = $('.labor_ministry_status_id').val();
         var labor_ministry_note       = $('.labor_ministry_note').val();
+        var bank_status_id            = $('.bank_status_id').val();
+        var bank_note                 = $('.bank_note').val();
+        var sign_status_id            = $('.sign_status_id').val();
+        var sign_note                 = $('.sign_note').val();
 
 
 				$.ajax({
@@ -2777,6 +2831,10 @@
 						immigration_note:immigration_note,
 						labor_ministry_status_id:labor_ministry_status_id,
 						labor_ministry_note:labor_ministry_note,
+						bank_status_id:bank_status_id,
+						bank_note:bank_note,
+						sign_status_id:sign_status_id,
+						sign_note:sign_note,
 					}, success:function(){
 						swal("<?= __('Saved!') ?>", "", "success")
 					}, error:function(){

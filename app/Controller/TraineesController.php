@@ -221,6 +221,10 @@ class TraineesController extends AppController {
 		    $this->request->data['Trainee']['immigration_note'] = $_POST['immigration_note'];
 		    $this->request->data['Trainee']['labor_ministry_status_id'] = $_POST['labor_ministry_status_id'];
 		    $this->request->data['Trainee']['labor_ministry_note'] = $_POST['labor_ministry_note'];
+        $this->request->data['Trainee']['bank_status_id'] = $_POST['bank_status_id'];
+        $this->request->data['Trainee']['bank_note'] = $_POST['bank_note'];
+        $this->request->data['Trainee']['sign_status_id'] = $_POST['sign_status_id'];
+        $this->request->data['Trainee']['sign_note'] = $_POST['sign_note'];
 
 		    if ($this->Trainee->save($this->request->data)) {
 		    	return true; //戻り値を空にするとエラーでる。
