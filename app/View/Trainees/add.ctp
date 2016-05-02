@@ -155,14 +155,14 @@
 								<div class="row">
 									<div class="form-group col-lg-6 col-md-6 col-sm-6">
 										<?php echo $this->Form->input('face_feature_kh', array(
-										'label' => __('Face Feature in Khmer'),
+										'label' => __('Face Feature in Khmer(*)Optional'),
 										'type' => 'text',
 										'class' => 'form-control maxW200',
 									)); ?>
 									</div>
 									<div class="form-group col-lg-6 col-md-6 col-sm-6">
 										<?php echo $this->Form->input('face_feature_en', array(
-										'label' => __('Face feature in English'),
+										'label' => __('Face feature in English(*)Optional'),
 										'type' => 'text',
 										'class' => 'form-control maxW200',
 									)); ?>
@@ -248,7 +248,7 @@
 								</div>
 
 								<div class="form-group">
-									<label for=""><?= __('Facebook User ID') ?></label>
+									<label for=""><?= __('Facebook User ID(*)Optional') ?></label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
 										<input name="data[Trainee][facebook]" class="form-control maxW160" maxlength="255" type="text" id="TraineeFacebook">
@@ -256,7 +256,7 @@
 									<span class="help-block">http://www.facebook.com/<span class="red">user-id</span></span>
 								</div>
 								<div class="form-group">
-									<label for=""><?= __('Mail') ?></label>
+									<label for=""><?= __('Mail(*)Optional') ?></label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
 										<input name="data[Trainee][mail]" class="form-control maxW200" maxlength="255" type="text" id="TraineeMail">

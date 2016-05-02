@@ -6229,12 +6229,12 @@ msgid "Shoe Size(cm)"
 msgstr "靴のサイズ(cm)"
 
 #: View/Trainees/add.ctp:158
-msgid "Face Feature in Khmer"
-msgstr "顔の特徴(クメール語)"
+msgid "Face Feature in Khmer(*)Optional"
+msgstr "顔の特徴(クメール語)(*)未入力可"
 
 #: View/Trainees/add.ctp:165
-msgid "Face feature in English"
-msgstr "顔の特徴(英語)"
+msgid "Face feature in English(*)Optional"
+msgstr "顔の特徴(英語)(*)未入力可"
 
 #: View/Trainees/add.ctp:225
 #: View/Trainees/profile.ctp:722
@@ -6251,12 +6251,15 @@ msgstr "住所(No, 通り, 村 英語)"
 msgid "Facebook User ID"
 msgstr "Facebook ユーザーID"
 
+msgid "Facebook User ID(*)Optional"
+msgstr "Facebook ユーザーID(*)未入力可"
+
 msgid "Enter Facebook User ID"
 msgstr "Facebook ユーザーID"
 
 #: View/Trainees/add.ctp:259
-msgid "Mail"
-msgstr "メール"
+msgid "Mail(*)Optional"
+msgstr "メール(*)未入力可"
 
 #: View/Trainees/add.ctp:278
 msgid "Other languages"
@@ -6391,7 +6394,7 @@ msgid "Finance"
 msgstr "ファイナンス"
 
 #: View/Trainees/profile.ctp:344
-msgid "Voice"
+msgid "Customer Care"
 msgstr "実習生の声"
 
 #: View/Trainees/profile.ctp:352

@@ -26,7 +26,7 @@
 
 
 	<!-- Favicon -->
-	<link type="image/x-icon" href="favicon.png" rel="shortcut icon">
+	<!-- <link type="image/x-icon" href="favicon.png" rel="shortcut icon"> -->
 	<!--[if lt IE 9]>
 		<script src="js/html5shiv.js"></script>
 		<script src="js/respond.min.js"></script>

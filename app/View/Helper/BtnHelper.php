@@ -35,6 +35,9 @@ class BtnHelper extends AppHelper
 			case 'en':
 				return $en;
 				break;
+
+				default :
+					return $en;
 		}
 	}
 

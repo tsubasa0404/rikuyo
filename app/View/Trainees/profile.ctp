@@ -341,7 +341,7 @@
 								<li><a href="#tab-documents" data-toggle="tab"><?= __('Document') ?></a></li>
 								<li><a href="#tab-interview" data-toggle="tab"><?= __('Interview') ?></a></li>
 								<li><a href="#tab-finance" data-toggle="tab"><?= __('Finance') ?></a></li>
-								<li><a href="#tab-chat" data-toggle="tab"><?= __('Voice') ?></a></li>
+								<li><a href="#tab-chat" data-toggle="tab"><?= __('Customer Care') ?></a></li>
 							</ul>
 
 							<div class="tab-content">
@@ -748,7 +748,7 @@
 																		<td>
 																			<?php echo $this->Form->input('phone',array(
 																							'label' => false,
-																							'class' => 'form-control maxW160 phone'
+																							'class' => 'form-control  phone'
 																						)) ?>
 																		</td>
 																		<td>
@@ -2126,7 +2126,7 @@
 
 								<div class="tab-pane fade" id="tab-interview">
 
-										<div class="table-responsive maxW600">
+										<div class="table-responsive maxW800">
 											<table class="table table-bordered">
 												<thead>
 													<tr>
@@ -2136,7 +2136,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<?php if($int_results[0]['Interview']['id']):?>
+													<?php if(isset($int_results)):?>
 														<?php foreach ($int_results as $res) : ?>
 															<tr>
 																<td class="td_first_block">
@@ -2148,7 +2148,18 @@
 																	);?>
 																</td>
 																<td>
-																	<?php echo $this->Btn->switchLang($lang, $res['Company']['company_jp'], $res['Company']['company_en']) . " (" . $this->Btn->switchLang($lang, $res['Association']['association_jp'], $res['Association']['association_en']) . " )";?>
+																	<?php echo $this->Html->link(
+																		$this->Btn->switchLang($lang, $res['Company']['company_jp'], $res['Company']['company_en']),
+																		array('controller' => 'companies', 'action' => 'profile', $res['Company']['id']),
+																		array('target' => '_blank')
+																	);?>
+																	(
+																	<?php echo $this->Html->link(
+																		$this->Btn->switchLang($lang, $res['Association']['association_jp'], $res['Association']['association_en']),
+																		array('controller' => 'associations', 'action' => 'profile', $res['Association']['id']),
+																		array('target' => '_blank')
+																	);?>
+																	)
 																</td>
 																<td>
 																	<?php echo $this->Btn->switchLang($lang, $res['InterviewResultAlias']['result_jp'],$res['InterviewResultAlias']['result_en']);?>

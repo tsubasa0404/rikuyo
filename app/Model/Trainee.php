@@ -345,8 +345,10 @@ class Trainee extends AppModel {
 			'Interview.id',
 			'Interview.interview_date',
 			'Interview.interview_time',
+			'Company.id',
 			'Company.company_jp',
 			'Company.company_en',
+			'Association.id',
 			'Association.association_jp',
 			'Association.association_en',
 			);
