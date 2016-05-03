@@ -20,10 +20,17 @@
 							array('escape' => false, 'class' => 'home')
 						) ?>
 					</li>
-					<li>
+					<li class="sidebar_trainees">
 						<?php echo $this->Html->link(
 							'<i class="fa fa-child"></i><span>'.__('Trainees').'</span>',
 							array('controller' => 'trainees', 'action' => 'index'),
+							array('escape' => false, 'class' => '')
+						) ?>
+					</li>
+					<li class="remaining_return">
+						<?php echo $this->Html->link(
+							'<i class="fa fa-calendar"></i><span>'.__('Remaining Return').'</span>',
+							array('controller' => 'trainees', 'action' => 'remaining_return'),
 							array('escape' => false, 'class' => '')
 						) ?>
 					</li>

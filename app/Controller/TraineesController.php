@@ -46,10 +46,10 @@ class TraineesController extends AppController {
  *
  * @return void
  */
-  public function student_list() {
+  public function remaining_return() {
 
-    $students = $this->Trainee->studentList();
-    $this->set(compact('students'));
+    $remaining_return_trainees = $this->Trainee->remaining_return_trainees();
+    $this->set(compact('remaining_return_trainees'));
   }
 
 

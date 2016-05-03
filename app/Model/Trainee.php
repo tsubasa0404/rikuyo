@@ -71,6 +71,54 @@ class Trainee extends AppModel {
 	}
 
 /**
+ * Remaining Return
+ */
+	public function remaining_return_trainees(){
+		$options = array();
+		$options['conditions'] = array(
+			'Trainee.departure_status_id '=> 1, //出国状況が、完了である
+			'Trainee.return_status_id !='=> 1 //帰国状況が、完了ではない
+			);
+		$options['fields'] = array(
+			'Trainee.id',
+			'Trainee.control_no',
+			'Trainee.family_name_en',
+			'Trainee.given_name_en',
+			'Trainee.return_date',
+			'Trainee.return_status_id',
+			'Trainee.company_id',
+			'RemainingReturnCom.company_en',
+			'RemainingReturnCom.company_jp',
+			'RemainingReturnCom.association_id',
+			'RemainingReturnAsso.association_en',
+			'RemainingReturnAsso.association_jp',
+			'RemainingReturnTraineeProfileImage.img_file_name'
+			);
+		$options['joins'][] = array(
+			'table' => 'companies',
+			'alias' => 'RemainingReturnCom',
+			'type' => 'LEFT',
+			'conditions' => 'RemainingReturnCom.id = Trainee.company_id'
+			);
+		$options['joins'][] = array(
+		'table' => 'associations',
+		'alias' => 'RemainingReturnAsso',
+		'type' => 'LEFT',
+		'conditions' => 'RemainingReturnAsso.id = RemainingReturnCom.association_id'
+		);
+		$options['joins'][] = array(
+		'table' => 'trainee_profile_images',
+		'alias' => 'RemainingReturnTraineeProfileImage',
+		'type' => 'LEFT',
+		'conditions' => 'Trainee.id = RemainingReturnTraineeProfileImage.trainee_id'
+		);
+		$options['recursive'] = -1;
+		$options['order'] = array('Trainee.return_date' => 'asc');
+		return $this->find('all', $options);
+	}
+
+
+/**
  * output documentページ
  */
 	//output documentページ Trainee情報取得Ajax
