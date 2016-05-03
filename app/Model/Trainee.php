@@ -108,7 +108,8 @@ class Trainee extends AppModel {
 	//index 学生一覧ページテーブル用データ
 	public function traineeList(){
 		$options = array('conditions' => array(
-			'Trainee.flag' => 0
+			'Trainee.flag' => 0,
+			'Trainee.student_status_id' => 4
 			),
 			'fields' => array(
 				'Trainee.id',
@@ -124,6 +125,7 @@ class Trainee extends AppModel {
 				'Trainee.coe_status_id',
 				'Trainee.immigration_status_id',
 				'Trainee.labor_ministry_status_id',
+				'Trainee.student_status_id',
 				'Trainee.departure_status_id',
 				'Trainee.departure_note',
 				'Trainee.departure_date',
@@ -133,6 +135,45 @@ class Trainee extends AppModel {
 				),
 			'order' => array('Trainee.control_no' => 'asc')
 		);
+		return $this->find('all', $options);
+	}
+
+	//student list 学生一覧ページテーブル用データ
+	public function studentList(){
+		$options = array();
+		$options = array('conditions' => array(
+			'Trainee.flag' => 0,
+			'Trainee.student_status_id !=' => 4 //interviewがPassedでない学生
+			),
+			'fields' => array(
+				'Trainee.id',
+				'Trainee.control_no',
+				'Trainee.date_in',
+				'Trainee.family_name_en',
+				'Trainee.given_name_en',
+				'Trainee.birthplace_province_id',
+				'Trainee.birthday',
+				'Trainee.phone',
+				'Trainee.student_status_id',
+				'TraineeProfileImage.img_file_name',
+				'BirthplaceProvince.province_en',
+				'BirthplaceProvince.province_jp'
+				),
+			'order' => array('Trainee.control_no' => 'asc'),
+		);
+		$options['joins'][] = array(
+		'table' => 'provinces',
+		'alias' => 'BirthplaceProvince',
+		'type' => 'LEFT',
+		'conditions' => 'Trainee.birthplace_province_id = BirthplaceProvince.id'
+		);
+		$options['joins'][] = array(
+		'table' => 'trainee_profile_images',
+		'alias' => 'TraineeProfileImage',
+		'type' => 'LEFT',
+		'conditions' => 'Trainee.id = TraineeProfileImage.trainee_id'
+		);
+		$options['recursive'] = -1;
 		return $this->find('all', $options);
 	}
 

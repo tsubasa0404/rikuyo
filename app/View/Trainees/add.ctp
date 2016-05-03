@@ -33,6 +33,16 @@
 									)); ?>
 								</div>
 								<div class="row">
+									<div class="form-group col-lg-12 col-md-12 col-sm-12">
+										<label><?= __('Date In') ?></label>
+										<?php echo $this->Form->date('date_in', array(
+											'label' => false,
+											'class' => 'form-control maxW160',
+											'required' => true
+										)) ?>
+									</div>
+								</div>
+								<div class="row">
 									<div class="form-group col-lg-6 col-md-6 col-sm-6">
 										<?php echo $this->Form->input('family_name_kh', array(
 											'label' => __('Famly Name in Khmer'),

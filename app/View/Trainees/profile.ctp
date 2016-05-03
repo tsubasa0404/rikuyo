@@ -77,6 +77,19 @@
 											<table class="table table-bordered table-hover">
 												<tbody>
 													<tr>
+														<td class="td_first_block"><?= __('Interview Status') ?></td>
+														<td>
+															<?php echo $this->Form->input('student_status_id',array(
+															'label' => false,
+															'type' => 'select',
+															'options' => array('0'=> __('Not Yet'),'1'=> __('Unavailable'), '2' => __('Cancel'), '3' => __('Delayed'), '4' => __('Passed')),
+															'class' => "form-control maxW160 student_status",
+															'div' => false
+														)); ?>
+														</td>
+
+													</tr>
+													<tr>
 														<td class="td_first_block"><?= __('Departure Date') ?></td>
 														<td>
 															<?php echo $this->Form->date('departure_date',array(
@@ -443,6 +456,26 @@
 																	</tr>
 																	<tr>
 																		<td class="td_first_block">
+																			<?= __('Date In') ?>
+																		</td>
+																		<td>
+																		</td>
+																		<td>
+																			<div class="row">
+																				<div class="col-lg-12 col-md-12 col-sm-12">
+																					<?php echo $this->Form->date('date_in',array(
+																						'label' => false,
+																						'class' => 'form-control maxW200 date_in',
+																					)) ?>
+																				</div>
+																			</div>
+																		</td>
+																		<td>
+
+																		</td>
+																	</tr>
+																	<tr>
+																		<td class="td_first_block">
 																			<?= __('ID Number') ?>
 																		</td>
 																		<td>
@@ -657,7 +690,8 @@
 																							'div' => false,
 																							'class' => 'form-control cam_province_id birthplace_province_id',
 																							'value' => $this->request->data['Trainee']['birthplace_province_id'],
-																							'options' => $option_provinces
+																							'options' => $option_provinces,
+																							'empty' => true
 																						)) ?>
 																					</div>
 																				</div>
@@ -2767,6 +2801,7 @@
         var departure_status_id = $('.departure_status').val();
         var return_date         = $('.return_date').val();
         var return_status_id    = $('.return_status').val();
+        var student_status_id    = $('.student_status').val();
 
 				$.ajax({
 					url:url,
@@ -2777,7 +2812,8 @@
 						departure_date:departure_date,
 						departure_status_id:departure_status_id,
 						return_date:return_date,
-						return_status_id:return_status_id
+						return_status_id:return_status_id,
+						student_status_id:student_status_id
 					}, success:function(){
 						swal("<?= __('Saved!') ?>", "", "success")
 					}, error:function(){
@@ -2847,6 +2883,7 @@
 			$('.update_basic_btn').on('click', function(){
         var url                    = $('.form_basic').attr('action');
         var id_number              = $('.id_number').val();
+        var date_in                = $('.date_in').val();
         var family_name_jp         = $('.family_name_jp').val();
         var given_name_jp          = $('.given_name_jp').val();
         var family_name_en         = $('.family_name_en').val();
@@ -2880,6 +2917,7 @@
 					data:{
             id:                     id,
             id_number:              id_number,
+            date_in:              date_in,
             family_name_jp:         family_name_jp,
             given_name_jp:          given_name_jp,
             family_name_en:         family_name_en,

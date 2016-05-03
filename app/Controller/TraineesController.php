@@ -40,6 +40,17 @@ class TraineesController extends AppController {
 		$this->set(compact('trainees'));
 	}
 
+/**
+ * index method
+ *
+ * @return void
+ */
+  public function student_list() {
+
+    $students = $this->Trainee->studentList();
+    $this->set(compact('students'));
+  }
+
 
 
 /**
@@ -190,7 +201,8 @@ class TraineesController extends AppController {
 		    $this->request->data['Trainee']['departure_date'] = $_POST['departure_date'];
 		    $this->request->data['Trainee']['departure_status_id'] = $_POST['departure_status_id'];
 		    $this->request->data['Trainee']['return_date'] = $_POST['return_date'];
-		    $this->request->data['Trainee']['return_status_id'] = $_POST['return_status_id'];
+        $this->request->data['Trainee']['return_status_id'] = $_POST['return_status_id'];
+		    $this->request->data['Trainee']['student_status_id'] = $_POST['student_status_id'];
 		    if ($this->Trainee->save($this->request->data)) {
 		    	return true; //戻り値を空にするとエラーでる。
 		    } else {
@@ -240,34 +252,35 @@ class TraineesController extends AppController {
 		    Configure::write('debug', 0);
 		   }
 		  if($this->request->is('ajax')){
-		    $this->request->data['Trainee']['id'] = $id;
-		    $this->request->data['Trainee']['id_number'] = $_POST['id_number'];
-		    $this->request->data['Trainee']['family_name_jp'] = $_POST['family_name_jp'];
-		    $this->request->data['Trainee']['family_name_en'] = $_POST['family_name_en'];
-		    $this->request->data['Trainee']['given_name_en'] = $_POST['given_name_en'];
-		    $this->request->data['Trainee']['given_name_jp'] = $_POST['given_name_jp'];
-		    $this->request->data['Trainee']['family_name_kh'] = $_POST['family_name_kh'];
-		    $this->request->data['Trainee']['given_name_kh'] = $_POST['given_name_kh'];
-		    $this->request->data['Trainee']['introduced_from'] = $_POST['introduced_from'];
-		    $this->request->data['Trainee']['sex'] = $_POST['sex'];
-		    $this->request->data['Trainee']['birthday'] = $_POST['birthday'];
-		    $this->request->data['Trainee']['married'] = $_POST['married'];
-		    $this->request->data['Trainee']['brother_cnt'] = $_POST['brother_cnt'];
-		    $this->request->data['Trainee']['brother_index'] = $_POST['brother_index'];
-		    $this->request->data['Trainee']['birthplace_province_id'] = $_POST['birthplace_province_id'];
-		    $this->request->data['Trainee']['address_jp'] = $_POST['address_jp'];
-		    $this->request->data['Trainee']['district_part_jp'] = $_POST['district_part_jp'];
-		    $this->request->data['Trainee']['province_id'] = $_POST['province_id'];
-		    $this->request->data['Trainee']['district_id'] = $_POST['district_id'];
-		    $this->request->data['Trainee']['commune_id'] = $_POST['commune_id'];
-		    $this->request->data['Trainee']['address_en'] = $_POST['address_en'];
-		    $this->request->data['Trainee']['district_part_en'] = $_POST['district_part_en'];
-		    $this->request->data['Trainee']['address_kh'] = $_POST['address_kh'];
-		    $this->request->data['Trainee']['phone'] = $_POST['phone'];
-		    $this->request->data['Trainee']['lang_others_jp'] = $_POST['lang_others_jp'];
-		    $this->request->data['Trainee']['english'] = $_POST['english'];
-		    $this->request->data['Trainee']['lang_others_en'] = $_POST['lang_others_en'];
-		    $this->request->data['Trainee']['facebook'] = $_POST['facebook'];
+        $this->request->data['Trainee']['id']                     = $id;
+        $this->request->data['Trainee']['id_number']              = $_POST['id_number'];
+        $this->request->data['Trainee']['date_in']                = $_POST['date_in'];
+        $this->request->data['Trainee']['family_name_jp']         = $_POST['family_name_jp'];
+        $this->request->data['Trainee']['family_name_en']         = $_POST['family_name_en'];
+        $this->request->data['Trainee']['given_name_en']          = $_POST['given_name_en'];
+        $this->request->data['Trainee']['given_name_jp']          = $_POST['given_name_jp'];
+        $this->request->data['Trainee']['family_name_kh']         = $_POST['family_name_kh'];
+        $this->request->data['Trainee']['given_name_kh']          = $_POST['given_name_kh'];
+        $this->request->data['Trainee']['introduced_from']        = $_POST['introduced_from'];
+        $this->request->data['Trainee']['sex']                    = $_POST['sex'];
+        $this->request->data['Trainee']['birthday']               = $_POST['birthday'];
+        $this->request->data['Trainee']['married']                = $_POST['married'];
+        $this->request->data['Trainee']['brother_cnt']            = $_POST['brother_cnt'];
+        $this->request->data['Trainee']['brother_index']          = $_POST['brother_index'];
+        $this->request->data['Trainee']['birthplace_province_id'] = $_POST['birthplace_province_id'];
+        $this->request->data['Trainee']['address_jp']             = $_POST['address_jp'];
+        $this->request->data['Trainee']['district_part_jp']       = $_POST['district_part_jp'];
+        $this->request->data['Trainee']['province_id']            = $_POST['province_id'];
+        $this->request->data['Trainee']['district_id']            = $_POST['district_id'];
+        $this->request->data['Trainee']['commune_id']             = $_POST['commune_id'];
+        $this->request->data['Trainee']['address_en']             = $_POST['address_en'];
+        $this->request->data['Trainee']['district_part_en']       = $_POST['district_part_en'];
+        $this->request->data['Trainee']['address_kh']             = $_POST['address_kh'];
+        $this->request->data['Trainee']['phone']                  = $_POST['phone'];
+        $this->request->data['Trainee']['lang_others_jp']         = $_POST['lang_others_jp'];
+        $this->request->data['Trainee']['english']                = $_POST['english'];
+        $this->request->data['Trainee']['lang_others_en']         = $_POST['lang_others_en'];
+        $this->request->data['Trainee']['facebook']               = $_POST['facebook'];
 
 		    if ($this->Trainee->save($this->request->data)) {
 		    	return true; //戻り値を空にするとエラーでる。

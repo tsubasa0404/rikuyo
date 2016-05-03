@@ -26,6 +26,35 @@ class BtnHelper extends AppHelper
 		}
 	}
 
+	function studentStatusBtn($chk, $class = null){
+
+		switch ($chk) {
+			//未了のとき
+			case 0:
+				return '<span class="label label-default '.$class.'">Not Yet</span>';
+				break;
+
+			//Unavailableのとき
+			case 1:
+				return '<span class="label label-warning '.$class.'">Unavailable</span>';
+				break;
+
+			//Cancelのとき
+			case 2:
+				return '<span class="label label-danger '.$class.'">Cancel</span>';
+				break;
+
+			//Delayedのとき
+			case 3:
+				return '<span class="label label-info '.$class.'">Delayed</span>';
+				break;
+
+			default :
+				return '';
+				break;
+		}
+	}
+
 	function switchLang($lang, $ja, $en){
 		switch ($lang){
 			case 'ja':

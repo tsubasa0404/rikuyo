@@ -29,6 +29,13 @@
 					</li>
 					<li>
 						<?php echo $this->Html->link(
+							'<i class="fa fa-graduation-cap"></i><span>'.__('Students').'</span>',
+							array('controller' => 'students', 'action' => 'index'),
+							array('escape' => false, 'class' => '')
+						) ?>
+					</li>
+					<li>
+						<?php echo $this->Html->link(
 							'<i class="fa fa-institution"></i><span>'.__('Associations').'</span>',
 							array('controller' => 'associations', 'action' => 'index'),
 							array('escape' => false, 'class' => '')
