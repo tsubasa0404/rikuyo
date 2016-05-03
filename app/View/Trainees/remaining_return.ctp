@@ -18,7 +18,7 @@
 						<div class="main-box-body clearfix">
 							<div class="filter-block ">
 								<div class="form-group maxW200 ">
-									<input type="text" id="max" class="form-control" placeholder="Remaining month">
+									<input type="text" id="max" class="form-control" placeholder="<?= __('Remaining month'); ?>">
 								</div>
 							</div>
 							<table id="remaining_return_datatable" class="table toggle-circle-filled table-bordered table-striped" data-page-size="100" >

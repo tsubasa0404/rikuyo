@@ -2477,6 +2477,30 @@ msgstr "組合名"
 msgid "Companies"
 msgstr "企業"
 
+msgid "Remaining Return"
+msgstr "帰国予定"
+
+msgid "Remaining month"
+msgstr "残り期間"
+
+msgid "Month(s)"
+msgstr "ヶ月"
+
+msgid "Students"
+msgstr "学生"
+
+msgid "Student List"
+msgstr "学生一覧"
+
+msgid "Student ID"
+msgstr "学生ID"
+
+msgid "Place of Birth"
+msgstr "出生地"
+
+msgid "New Student"
+msgstr "学生新規登録"
+
 #: View/Associations/profile.ctp:70
 #: View/Companies/profile.ctp:73
 msgid "Family Name_Japanese"
@@ -5761,6 +5785,24 @@ msgstr ""
 #: View/Trainees/profile.ctp:9;10
 msgid "Trainee Profile"
 msgstr "実習生プロフィール"
+
+msgid "Unavailable"
+msgstr "不可"
+
+msgid "Delayed"
+msgstr "延期"
+
+msgid "Passed"
+msgstr "合格"
+
+msgid "Bank"
+msgstr "銀行口座"
+
+msgid "Sign"
+msgstr "サイン"
+
+msgid "Date In"
+msgstr "入学日"
 
 #: View/TraineeDocuments/edit.ctp:6;7;16
 #: View/TraineeDocuments/view.ctp:39
