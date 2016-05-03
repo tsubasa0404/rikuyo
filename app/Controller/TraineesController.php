@@ -26,7 +26,8 @@ class TraineesController extends AppController {
 		'Province',
 		'District',
 		'Commune',
-		'CambodiaPlaceDictionary'
+		'CambodiaPlaceDictionary',
+    'Company'
 		);
 
 /**
@@ -179,6 +180,9 @@ class TraineesController extends AppController {
 			$job1 = $this->Trainee->traineeJob1($id);
 			$job2 = $this->Trainee->traineeJob2($id);
 
+      //企業一覧取得
+      $option_companies = $this->Company->__optionComAso($lang);
+
 			//Voice取得
 			$voices = $this->TraineeVoice->find('all', array(
 				'fields' => array('id', 'trainee_id', 'title_en', 'voice_en', 'created'),
@@ -186,7 +190,7 @@ class TraineesController extends AppController {
 				));
 
 			$this->set(compact(
-				'option_jobs','option_provinces','option_districts', 'option_communes',
+				'option_jobs','option_provinces','option_districts', 'option_communes','option_companies',
 				 'trainee_families', 'lang', 'job1', 'job2', 'prof_img','doc_imgs', 'int_results', 'voices'));
 		}
 	}
@@ -197,12 +201,13 @@ class TraineesController extends AppController {
 		    Configure::write('debug', 0);
 		   }
 		  if($this->request->is('ajax')){
-		    $this->request->data['Trainee']['id'] = $id;
-		    $this->request->data['Trainee']['departure_date'] = $_POST['departure_date'];
-		    $this->request->data['Trainee']['departure_status_id'] = $_POST['departure_status_id'];
-		    $this->request->data['Trainee']['return_date'] = $_POST['return_date'];
-        $this->request->data['Trainee']['return_status_id'] = $_POST['return_status_id'];
-		    $this->request->data['Trainee']['student_status_id'] = $_POST['student_status_id'];
+        $this->request->data['Trainee']['id']                  = $id;
+        $this->request->data['Trainee']['departure_date']      = $_POST['departure_date'];
+        $this->request->data['Trainee']['departure_status_id'] = $_POST['departure_status_id'];
+        $this->request->data['Trainee']['return_date']         = $_POST['return_date'];
+        $this->request->data['Trainee']['return_status_id']    = $_POST['return_status_id'];
+        $this->request->data['Trainee']['student_status_id']   = $_POST['student_status_id'];
+        $this->request->data['Trainee']['company_id']          = $_POST['company_id'];
 		    if ($this->Trainee->save($this->request->data)) {
 		    	return true; //戻り値を空にするとエラーでる。
 		    } else {
@@ -217,26 +222,26 @@ class TraineesController extends AppController {
 		    Configure::write('debug', 0);
 		   }
 		  if($this->request->is('ajax')){
-		    $this->request->data['Trainee']['id'] = $id;
-		    $this->request->data['Trainee']['medicalchk_status_id'] = $_POST['medicalchk_status_id'];
-		    $this->request->data['Trainee']['medicalchk_note'] = $_POST['medicalchk_note'];
-		    $this->request->data['Trainee']['idcard_status_id'] = $_POST['idcard_status_id'];
-		    $this->request->data['Trainee']['idcard_note'] = $_POST['idcard_note'];
-		    $this->request->data['Trainee']['fb'] = $_POST['fb'];
-		    $this->request->data['Trainee']['rb'] = $_POST['rb'];
-		    $this->request->data['Trainee']['cb'] = $_POST['cb'];
-		    $this->request->data['Trainee']['passport_status_id'] = $_POST['passport_status_id'];
-		    $this->request->data['Trainee']['passport_note'] = $_POST['passport_note'];
-		    $this->request->data['Trainee']['coe_status_id'] = $_POST['coe_status_id'];
-		    $this->request->data['Trainee']['coe_note'] = $_POST['coe_note'];
-		    $this->request->data['Trainee']['immigration_status_id'] = $_POST['immigration_status_id'];
-		    $this->request->data['Trainee']['immigration_note'] = $_POST['immigration_note'];
-		    $this->request->data['Trainee']['labor_ministry_status_id'] = $_POST['labor_ministry_status_id'];
-		    $this->request->data['Trainee']['labor_ministry_note'] = $_POST['labor_ministry_note'];
-        $this->request->data['Trainee']['bank_status_id'] = $_POST['bank_status_id'];
-        $this->request->data['Trainee']['bank_note'] = $_POST['bank_note'];
-        $this->request->data['Trainee']['sign_status_id'] = $_POST['sign_status_id'];
-        $this->request->data['Trainee']['sign_note'] = $_POST['sign_note'];
+        $this->request->data['Trainee']['id']                       = $id;
+        $this->request->data['Trainee']['medicalchk_status_id']     = $_POST['medicalchk_status_id'];
+        $this->request->data['Trainee']['medicalchk_note']          = $_POST['medicalchk_note'];
+        $this->request->data['Trainee']['idcard_status_id']         = $_POST['idcard_status_id'];
+        $this->request->data['Trainee']['idcard_note']              = $_POST['idcard_note'];
+        $this->request->data['Trainee']['fb']                       = $_POST['fb'];
+        $this->request->data['Trainee']['rb']                       = $_POST['rb'];
+        $this->request->data['Trainee']['cb']                       = $_POST['cb'];
+        $this->request->data['Trainee']['passport_status_id']       = $_POST['passport_status_id'];
+        $this->request->data['Trainee']['passport_note']            = $_POST['passport_note'];
+        $this->request->data['Trainee']['coe_status_id']            = $_POST['coe_status_id'];
+        $this->request->data['Trainee']['coe_note']                 = $_POST['coe_note'];
+        $this->request->data['Trainee']['immigration_status_id']    = $_POST['immigration_status_id'];
+        $this->request->data['Trainee']['immigration_note']         = $_POST['immigration_note'];
+        $this->request->data['Trainee']['labor_ministry_status_id'] = $_POST['labor_ministry_status_id'];
+        $this->request->data['Trainee']['labor_ministry_note']      = $_POST['labor_ministry_note'];
+        $this->request->data['Trainee']['bank_status_id']           = $_POST['bank_status_id'];
+        $this->request->data['Trainee']['bank_note']                = $_POST['bank_note'];
+        $this->request->data['Trainee']['sign_status_id']           = $_POST['sign_status_id'];
+        $this->request->data['Trainee']['sign_note']                = $_POST['sign_note'];
 
 		    if ($this->Trainee->save($this->request->data)) {
 		    	return true; //戻り値を空にするとエラーでる。

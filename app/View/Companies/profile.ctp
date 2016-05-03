@@ -143,8 +143,6 @@
 
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-8 col-md-8 col-sm-12 maxW500">
 					<div class="main-box clearfix">
 						<div class="main-box-body clearfix">
 							<header class="main-box-header clearfix">
@@ -369,6 +367,124 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-lg-8 col-md-8 col-sm-12 maxW500">
+					<div class="main-box clearfix">
+						<div class="main-box-body clearfix">
+							<header class="main-box-header clearfix">
+								<h2><?= __('Staying in Japan') ?></h2>
+							</header>
+							<div class="">
+								<table class="table footable toggle-circle-filled table-bordered table-striped" data-page-size="100" data-filter="#filter" data-filter-text-only="false">
+								<thead>
+									<tr>
+										<th><?= __('Trainee ID') ?></th>
+										<th><?= __('') ?></th>
+										<th><?= __('Departure Date') ?></th>
+										<th><?= __('Status') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php foreach ($working_trainees as $trainee) : ?>
+										<tr>
+											<td>
+												<?php echo $this->Html->link(
+													$trainee['Trainee']['control_no'],
+													array('controller' => 'trainees', 'action' => 'profile', $trainee['Trainee']['id']),
+													array('escape' => false, 'class' => '', 'target' => '_blank')
+												);?>
+											</td>
+											<td>
+												<?php if($trainee['WorkingTraineeProfileImage']['img_file_name'] != null)
+													{
+														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage']['img_file_name'], array('style' => 'width:60px;height:60px;'));
+													} else {
+														echo $this->Html->image('trainee_profile_images/thumb/default.png', array('style' => 'width:60px;height:60px;'));
+													};?>
+													<br>
+												<?php echo $trainee['Trainee']['given_name_en']." ".$trainee['Trainee']['family_name_en'];?>
+											</td>
+											<td>
+												<?php echo $trainee['Trainee']['departure_date']; ?>
+
+											</td>
+											<td class="text-center">
+												<?php echo $this->Btn->workingStatusBtn($trainee['Trainee']['return_status_id']); ?>
+											</td>
+										</tr>
+									<?php endforeach; ?>
+								</tbody>
+							</table>
+							<ul class="pagination pull-right hide-if-no-paging"></ul>
+
+							</div>
+							<!-- <div class="center-block pull-left">
+                  <a href="interview-order-detail.html" class="btn btn-default">
+                    <i class="fa fa-long-arrow-left fa-lg"></i>
+                    前のページに戻る
+                  </a>
+              </div> -->
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8 col-md-8 col-sm-12 maxW500">
+					<div class="main-box clearfix">
+						<div class="main-box-body clearfix">
+							<header class="main-box-header clearfix">
+								<h2><?= __('Returned to Cambodia') ?></h2>
+							</header>
+							<div class="">
+								<table class="table footable toggle-circle-filled table-bordered table-striped" data-page-size="100" data-filter="#filter" data-filter-text-only="false">
+								<thead>
+									<tr>
+										<th><?= __('Trainee ID') ?></th>
+										<th><?= __('') ?></th>
+										<th><?= __('Returned Date') ?></th>
+										<th><?= __('Status') ?></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php foreach ($returned_trainees as $trainee) : ?>
+										<tr>
+											<td>
+												<?php echo $this->Html->link(
+													$trainee['Trainee']['control_no'],
+													array('controller' => 'trainees', 'action' => 'profile', $trainee['Trainee']['id']),
+													array('escape' => false, 'class' => '', 'target' => '_blank')
+												);?>
+											</td>
+											<td>
+												<?php if($trainee['ReturnedTraineeProfileImage']['img_file_name'] != null)
+													{
+														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage']['img_file_name'], array('style' => 'width:60px;height:60px;'));
+													} else {
+														echo $this->Html->image('trainee_profile_images/thumb/default.png', array('style' => 'width:60px;height:60px;'));
+													};?>
+													<br>
+												<?php echo $trainee['Trainee']['given_name_en']." ".$trainee['Trainee']['family_name_en'];?>
+											</td>
+											<td>
+												<?php echo $trainee['Trainee']['return_date']; ?>
+
+											</td>
+											<td class="text-center">
+												<?php echo $this->Btn->workingStatusBtn($trainee['Trainee']['return_status_id']); ?>
+											</td>
+										</tr>
+									<?php endforeach; ?>
+								</tbody>
+							</table>
+							<ul class="pagination pull-right hide-if-no-paging"></ul>
+
+							</div>
+							<!-- <div class="center-block pull-left">
+                  <a href="interview-order-detail.html" class="btn btn-default">
+                    <i class="fa fa-long-arrow-left fa-lg"></i>
+                    前のページに戻る
+                  </a>
+              </div> -->
+						</div>
+					</div>
+				</div>
 
 
 
@@ -379,6 +495,10 @@
 		echo $this->Html->script('rikuyo_js/myModal', array('inline' => false, 'block' => 'modal-js'));
 		echo $this->Html->script('select2.min', array('inline' => false, 'block' => 'page-js'));
 		echo $this->Html->script('jquery.jpostal', array('inline' => false, 'block' => 'page-js'));
+		echo $this->Html->script('footable', array('inline' => false, 'block' => 'table-js'));
+		echo $this->Html->script('footable.sort', array('inline' => false, 'block' => 'table-js'));
+		echo $this->Html->script('footable.paginate', array('inline' => false, 'block' => 'table-js'));
+		echo $this->Html->script('footable.filter', array('inline' => false, 'block' => 'table-js'));
 	 ?>
 
 	<?php $this->Html->scriptStart(array('inline' => false, 'block' => 'inline-script')); ?>
@@ -404,6 +524,8 @@
 					'#address1'  : '%4%5'
 				}
 			});
+
+			$('.footable').footable();
 		});
 
 	<?php $this->Html->scriptEnd(); ?>

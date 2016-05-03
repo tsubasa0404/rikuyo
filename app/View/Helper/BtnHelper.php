@@ -26,6 +26,32 @@ class BtnHelper extends AppHelper
 		}
 	}
 
+	//Company Profileページ
+	//実習生の就業状況(就業中または失踪中)でボタン切り替え
+	function workingStatusBtn($chk, $class = null){
+
+		switch ($chk) {
+			//未了のとき
+			case 0:
+				return '<span class="label label-default '.$class.'">Working</span>';
+				break;
+
+			//完了のとき
+			case 1:
+				return '<span class="label label-success '.$class.'">OK</span>';
+				break;
+
+			//失踪中のとき
+			case 2:
+				return '<span class="label label-danger '.$class.'">Run Away</span>';
+				break;
+
+			default :
+				return '';
+				break;
+		}
+	}
+
 	function studentStatusBtn($chk, $class = null){
 
 		switch ($chk) {

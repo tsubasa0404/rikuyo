@@ -13,7 +13,7 @@
 			</div>
 <?php echo $this->Session->flash(); ?>
 			<div class="row" id="user-profile">
-				<div class="col-lg-12 col-md-12 col-sm-12 maxW960">
+				<div class="col-lg-12 col-md-12 col-sm-12 maxW1200">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2><?php echo $this->request->data['Trainee']['family_name_en'] ." ". $this->request->data['Trainee']['given_name_en']  ?></h2>
@@ -21,7 +21,7 @@
 
 						<div class="main-box-body clearfix">
 							<div class="row">
-								<div class="col-lg-5 col-md-5 col-sm-5 maxW360">
+								<div class="col-lg-5 col-md-5 col-sm-5 maxW500">
 									<div class="trainee-profile-img maxW300">
 									<?php echo $this->Form->error('TraineeProfileImage.img'); ?>
 										<?php if($prof_img)
@@ -65,7 +65,7 @@
 									</div>
 
 									<div class="main-box-body clearfix">
-										<div class="table-responsive flight-schedule maxW300">
+										<div class="table-responsive flight-schedule maxW400">
 											<?php echo $this->Form->create('Trainee', array(
 												'class' => 'form_trainee_edit form_flight',
 												'action' => 'updateFlightAjax',
@@ -88,6 +88,23 @@
 														)); ?>
 														</td>
 
+													</tr>
+													<tr>
+														<td class="td_first_block"><?= __('Company') ?></td>
+														<td>
+															<div class="form-group form-group-select2">
+																<?php echo $this->Form->input('company_id', array(
+																	'label' => false,
+																	'type' => 'select',
+																	'div' => false,
+																	'class' => 'form-control sel_company',
+																	'value' => $this->request->data['Trainee']['company_id'],
+																	'options' => $option_companies,
+																	'style' => 'display:inline;width:100%',
+																	'empty' => true
+																)) ?>
+															</div>
+														</td>
 													</tr>
 													<tr>
 														<td class="td_first_block"><?= __('Departure Date') ?></td>
@@ -2802,6 +2819,7 @@
         var return_date         = $('.return_date').val();
         var return_status_id    = $('.return_status').val();
         var student_status_id    = $('.student_status').val();
+        var company_id    = $('.sel_company').val();
 
 				$.ajax({
 					url:url,
@@ -2813,7 +2831,8 @@
 						departure_status_id:departure_status_id,
 						return_date:return_date,
 						return_status_id:return_status_id,
-						student_status_id:student_status_id
+						student_status_id:student_status_id,
+						company_id:company_id
 					}, success:function(){
 						swal("<?= __('Saved!') ?>", "", "success")
 					}, error:function(){
@@ -3586,6 +3605,11 @@
 		$('.sel_job_family').select2({
 			placeholder: "<?= __('Select Job') ?>",
 			allowClear:false
+		});
+
+		$('.sel_company').select2({
+			placeholder: "<?= __('Select Company') ?>",
+			allowClear: false
 		});
 	});
 

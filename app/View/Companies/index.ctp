@@ -30,54 +30,63 @@
 														<th  data-hide="all" ><?= __('Address') ?></th>
 														<th class="maxW100" data-hide="" ><?= __('Phone') ?></th>
 														<th class="maxW300" data-hide="all" ><?= __('Affiliated Association') ?></th>
+														<th class="maxW50"><?= __('Trainees') ?></th>
 														<th class="maxW50"></th>
 													</tr>
 												</thead>
 												<tbody>
 													<?php foreach ($companies as $company) : ?>
-														<?php
-															echo "<tr><td>";
-															echo $this->Html->link(
-																$company['Company']['company_jp'],
-																array('action' => 'profile', $company['Company']['id']),
-																array('escape' => false, 'class' => '')
-															);
-															echo "<br>";
-															echo $this->Html->link(
-																$company['Company']['company_en'],
+														<tr>
+															<td>
+																<?php echo $this->Html->link(
+																	$company['Company']['company_jp'],
 																	array('action' => 'profile', $company['Company']['id']),
 																	array('escape' => false, 'class' => '')
-																);
-															echo "</td><td>";
-															echo $company['Company']['province'];
-															echo "</td><td>";
-															echo $company['Company']['address_jp'];
-															echo "<br>";
-															echo $company['Company']['address_en'];
-															echo "</td><td>";
-															echo $company['Company']['phone1'];
-															echo "</td><td>";
-															echo $this->Html->link(
-																$company['Association']['association_jp'],
-																array('controller' => 'associations','action' => 'profile', $company['Association']['id']),
-																array('escape' => false, 'class' => '')
-															);
-															echo "<br>";
-															echo $this->Html->link(
-																$company['Association']['association_en'],
-																	array('controller' => 'associations', 'action' => 'profile', $company['Association']['id']),
+																);?>
+																<br>
+																<?php echo $this->Html->link(
+																	$company['Company']['company_en'],
+																		array('action' => 'profile', $company['Company']['id']),
+																		array('escape' => false, 'class' => '')
+																	);?>
+															</td>
+															<td>
+																<?php echo $company['Company']['province'];?>
+															</td>
+															<td>
+																<?php echo $company['Company']['address_jp'];?>
+															<br>
+																<?php echo $company['Company']['address_en'];?>
+															</td>
+															<td>
+																<?php echo $company['Company']['phone1'];?>
+															</td>
+															<td>
+																<?php echo $this->Html->link(
+																	$company['Association']['association_jp'],
+																	array('controller' => 'associations','action' => 'profile', $company['Association']['id']),
 																	array('escape' => false, 'class' => '')
-																);
-															echo "</td>";
-															echo '<td><div class="actions">';
-															echo $this->Form->postlink(
-																'<i class="fa fa-trash-o"></i>',
-																array('controller' => 'companies', 'action' => 'update_delete_flag',$company['Company']['id']),
-																array('confirm' => __('Are you sure you want to delete # %s?', $company['Company']['id']),'escape' => false, 'class' => 'table-link red' )
-															);
-															echo '</div></td>';
-															echo "</tr>"
-														 ?>
+																);?>
+																<br>
+																<?php echo $this->Html->link(
+																	$company['Association']['association_en'],
+																		array('controller' => 'associations', 'action' => 'profile', $company['Association']['id']),
+																		array('escape' => false, 'class' => '')
+																);?>
+															</td>
+															<td class="text-center">
+																<?php echo $this->HlpCompany->countCom($company['Company']['id']); ?>
+															</td>
+															<td>
+																<div class="actions">
+																	<?php echo $this->Form->postlink(
+																		'<i class="fa fa-trash-o"></i>',
+																		array('controller' => 'companies', 'action' => 'update_delete_flag',$company['Company']['id']),
+																		array('confirm' => __('Are you sure you want to delete # %s?', $company['Company']['id']),'escape' => false, 'class' => 'table-link red' )
+																	);?>
+																</div>
+															</td>
+														</tr>
 													<?php endforeach; ?>
 												</tbody>
 											</table>

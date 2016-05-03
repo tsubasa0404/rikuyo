@@ -18,7 +18,8 @@ class CompaniesController extends AppController {
 	public $uses = array(
 		'Association',
 		'Company',
-		'Job'
+		'Job',
+		'Trainee'
 		);
 
 /**
@@ -84,15 +85,28 @@ class CompaniesController extends AppController {
 		$this->set(compact('associations','option_associations', 'option_jobs', 'lang'));
 	}
 
+
+
 	public function profile($id = null) {
 		$lang = $this->__setLang();
 		$option_associations = $this->Association->optionAssociations($lang);
 		$option_jobs = $this->Job->optionJobs($lang);
 		$this->set(compact('option_associations', 'option_jobs', 'lang'));
 
+		//就業中または失踪中実習生一覧を、
+		//出国日が早い順に取得
+		$working_trainees = $this->Trainee->working_trainees($id);
+
+		//帰国済み実習生一覧を、
+		//帰国日が早い順に取得
+		$returned_trainees = $this->Trainee->returned_trainees($id);
+
+		$this->set(compact('working_trainees', 'returned_trainees'));
+
 		if (!$this->Company->exists($id)) {
 			throw new NotFoundException(__('Invalid Company'));
 		}
+
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->Company->save($this->request->data)) {
 				$this->Session->setFlash(__('The Company has been saved.'));

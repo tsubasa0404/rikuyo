@@ -3,6 +3,76 @@ App::uses('AppModel', 'Model');
 
 class Trainee extends AppModel {
 
+/**
+ * Company Profileページ
+ * 就業中または失踪中実習生取得
+ */
+	public function working_trainees($company_id){
+		$options = array();
+		$options['conditions'] = array(
+			'Trainee.company_id'=> $company_id,
+			'Trainee.departure_status_id' => 1, //出国済み
+			'Trainee.return_status_id !=' => 1 //帰国状況、完了ではない
+			);
+		$options['fields'] = array(
+			'Trainee.id',
+			'Trainee.control_no',
+			'Trainee.family_name_en',
+			'Trainee.given_name_en',
+			'Trainee.family_name_jp',
+			'Trainee.given_name_jp',
+			'WorkingTraineeProfileImage.img_file_name',
+			'Trainee.departure_status_id',
+			'Trainee.departure_date',
+			'Trainee.return_status_id',
+			'Trainee.return_date'
+			);
+		$options['recursive'] = -1;
+		$options['joins'][] = array(
+		'table' => 'trainee_profile_images',
+		'alias' => 'WorkingTraineeProfileImage',
+		'type' => 'LEFT',
+		'conditions' => 'Trainee.id = WorkingTraineeProfileImage.trainee_id'
+		);
+
+		return $this->find('all', $options);
+	}
+
+	//帰国済み実習生取得
+	public function returned_trainees($company_id){
+		$options = array();
+		$options['conditions'] = array(
+			'Trainee.company_id'=> $company_id,
+			'Trainee.departure_status_id' => 1, //出国済み
+			'Trainee.return_status_id ' => 1 //帰国状況、完了
+			);
+		$options['fields'] = array(
+			'Trainee.id',
+			'Trainee.control_no',
+			'Trainee.family_name_en',
+			'Trainee.given_name_en',
+			'Trainee.family_name_jp',
+			'Trainee.given_name_jp',
+			'ReturnedTraineeProfileImage.img_file_name',
+			'Trainee.departure_status_id',
+			'Trainee.departure_date',
+			'Trainee.return_status_id',
+			'Trainee.return_date'
+			);
+		$options['recursive'] = -1;
+		$options['joins'][] = array(
+		'table' => 'trainee_profile_images',
+		'alias' => 'ReturnedTraineeProfileImage',
+		'type' => 'LEFT',
+		'conditions' => 'Trainee.id = ReturnedTraineeProfileImage.trainee_id'
+		);
+
+		return $this->find('all', $options);
+	}
+
+/**
+ * output documentページ
+ */
 	//output documentページ Trainee情報取得Ajax
 	public function getTraineeAjax($trainee_id){
 		$options = array();
@@ -105,6 +175,9 @@ class Trainee extends AppModel {
 		return $this->find('first', $options);
 	}
 
+/**
+ * Trainee Indexページ
+ */
 	//index 学生一覧ページテーブル用データ
 	public function traineeList(){
 		$options = array('conditions' => array(
@@ -138,6 +211,9 @@ class Trainee extends AppModel {
 		return $this->find('all', $options);
 	}
 
+/**
+ * Student Indexページ
+ */
 	//student list 学生一覧ページテーブル用データ
 	public function studentList(){
 		$options = array();
@@ -177,6 +253,9 @@ class Trainee extends AppModel {
 		return $this->find('all', $options);
 	}
 
+/**
+ * Trainee Addページ
+ */
 	//add TraineeID取得
 	public function getTraineeId($base_trainee_id){
 		$options = array();
@@ -188,6 +267,9 @@ class Trainee extends AppModel {
 		return $this->find('count', $options);
 	}
 
+/**
+ * Interview Candidate　Selectページ
+ */
 	//Interview Candidate用学生一覧
 	public function candidateTraineeList($interview_id){
 		$options = array();
@@ -229,6 +311,9 @@ class Trainee extends AppModel {
 		return $this->find('all', $options);
 	}
 
+/**
+ * プロフィールページ
+ */
 	//プロフィールページ用職業取得
 	public function traineeJob1($trainee_id){
 		$options = array();
