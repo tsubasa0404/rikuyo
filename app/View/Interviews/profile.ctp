@@ -1,4 +1,4 @@
-<?php $this->set('title_for_layout', 'Trainee Profile'); ?>
+<?php $this->set('title_for_layout', 'Interview Profile'); ?>
 <?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/sweetalert', array('inline'=>false, 'block'=>'page-css'));?>
@@ -575,14 +575,50 @@
 													<tr>
 														<td class="td_first_block">
 															<div class="checkbox-nice">
-																<input type="checkbox" id="doc_<?php echo $doc['AssociationDocument'][0]['id']; ?>" name="data[InterviewDocumentStatusList][status_id]" value="<?php if(!empty($doc['InterviewDocStatusList']['status_id'])) {echo $doc['InterviewDocStatusList']['status_id'];}else{echo 0;} ?>"  data-doc-status-id="<?php if(!empty($doc['InterviewDocStatusList'])) {echo $doc['InterviewDocStatusList']['id'];} ?>" data-interview-id="<?php echo $this->request->data['Interview']['id']; ?>" data-association-document-id="<?php echo $doc['AssociationDocument'][0]['id']; ?>" class="doc-chk">
-																<label for="doc_<?php echo $doc['AssociationDocument'][0]['id']; ?>">
+																<input type="checkbox" id="doc_<?php if (isset($doc['AssociationDocument'][0]['id'])) {
+																																				echo $doc['AssociationDocument'][0]['id'];
+																																			}
+																																?>"
+																	name="data[InterviewDocumentStatusList][status_id]"
+																	value="<?php if(!empty($doc['InterviewDocStatusList']['status_id'])) {
+																									echo $doc['InterviewDocStatusList']['status_id'];
+																								} else {
+																									echo 0;
+																								} ?>"
+																	data-doc-status-id="<?php if ( !empty($doc['InterviewDocStatusList'] ) ) {
+																															echo $doc['InterviewDocStatusList']['id'];
+																														} ?>"
+																	data-interview-id="<?php echo $this->request->data['Interview']['id']; ?>"
+																	data-association-document-id="<?php if ( isset($doc['AssociationDocument'][0]['id'] ) ) {
+																																				echo $doc['AssociationDocument'][0]['id'];
+																																			};
+																																?>"
+																	class="doc-chk">
+																<label for="doc_<?php if (isset($doc['AssociationDocument'][0]['id'])) {
+																													echo $doc['AssociationDocument'][0]['id'];}
+																								 ?>">
 																	<?php echo $doc['DocName']['name_jp']."<br>".$doc['DocName']['name_en'] ;?>
 																</label>
 															</div>
 														</td>
-														<td><?php if($doc['DocName']['lang_jpn'] == 1){echo __('Japanese').", ";}if($doc['DocName']['lang_eng'] == 1){echo __('English').", ";}if($doc['DocName']['lang_khm'] == 1){echo __('Khmer');} ?></td>
-														<td><?php echo $doc['DocName']['note']."<br>". $doc['AssociationDocument'][0]['note']; ?></td>
+														<td>
+															<?php if ( $doc['DocName']['lang_jpn'] == 1 ){
+																			echo __('Japanese').", ";
+																		} if ( $doc['DocName']['lang_eng'] == 1 ){
+																			echo __('English').", ";
+																		} if ( $doc['DocName']['lang_khm'] == 1 ){
+																			echo __('Khmer');
+																		};
+															?>
+														</td>
+														<td>
+															<?php echo $doc['DocName']['note'];?>
+															<br>
+															<?php if( isset ( $doc['AssociationDocument'][0]['note'] ) ) {
+																			echo $doc['AssociationDocument'][0]['note'];
+																		};
+															?>
+														</td>
 
 													</tr>
 												<?php endforeach; ?>

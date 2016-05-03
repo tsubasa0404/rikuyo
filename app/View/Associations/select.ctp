@@ -1,4 +1,4 @@
-<?php $this->set('title_for_layout', 'Select Candidates'); ?>
+<?php $this->set('title_for_layout', 'Select Documents'); ?>
 <?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/ns-default', array('inline'=>false, 'block'=>'page-css'));?>
@@ -47,7 +47,21 @@
 																<tr>
 																	<td>
 																		<div class="checkbox-nice">
-																			<input type="checkbox" id="doc_<?php echo $doc['DocName']['id']?>" name="data[AssociationDocument][id]" value="<?php if(empty($doc['AssociationDocument'])){echo "" ;}else{echo $doc['AssociationDocument'][0]['id'];}?>"  data-doc-id="<?php echo $doc['DocName']['id']?>" data-association-id="<?php echo $this->request->data['Association']['id'] ?>">
+																			<input
+																				type="checkbox"
+																				id="doc_<?php echo $doc['DocName']['id']?>"
+																				name="data[AssociationDocument][id]"
+																				value="<?php if ( empty ( $doc['AssociationDocument'] ) ) {
+																												echo "" ;
+																										 } elseif ( isset($doc['AssociationDocument'] ) && $doc['AssociationDocument'][0]['association_id'] != $this->request->data['Association']['id']) {
+																												echo "";
+																										 } elseif ( $doc['AssociationDocument'][0]['association_id'] == $this->request->data['Association']['id']) {
+																										 		echo $doc['AssociationDocument'][0]['association_id'];
+																										 }
+																							?>"
+																				data-doc-id="<?php echo $doc['DocName']['id']?>"
+																				data-association-id="<?php echo $this->request->data['Association']['id'] ?>"
+																			>
 																			<label for="doc_<?php echo $doc['DocName']['id']?>" >
 																				<?php echo $doc['DocName']['name_jp']."<br>".$doc['DocName']['name_en']; ?>
 																			</label>
@@ -55,7 +69,15 @@
 																	</td>
 
 																	<td>
-																		<?php if($doc['DocName']['lang_jpn'] == 1){echo __('Japanese').", ";}if($doc['DocName']['lang_eng'] == 1){echo __('English').", ";}if($doc['DocName']['lang_khm'] == 1){echo __('Khmer');} ?>
+																		<?php if ( $doc['DocName']['lang_jpn'] == 1 ) {
+																						echo __('Japanese').", ";
+																					}
+																					if ( $doc['DocName']['lang_eng'] == 1 ) {
+																						echo __('English').", ";
+																					} if ( $doc['DocName']['lang_khm'] == 1 ) {
+																						echo __('Khmer');
+																					}
+																		?>
 																	</td>
 																	<td class="text-center">
 																		<?php echo $doc['DocName']['note']; ?>
