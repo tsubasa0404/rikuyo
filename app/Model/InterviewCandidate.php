@@ -9,6 +9,34 @@ App::uses('AppModel', 'Model');
  */
 class InterviewCandidate extends AppModel {
 
+/**
+ * Report index page
+ */
+	//面接合格者人数を月毎に取得
+	public function passed_trainees_total_list($y){
+		$options = array();
+		$options['conditions'] = array(
+			'InterviewCandidate.interview_result_id'=> 2, //面接合格
+			'DATE_FORMAT(PassedTraineeTotalListInterview.interview_date,"%Y")' => $y
+			);
+		$options['fields'] = array(
+			'DATE_FORMAT(PassedTraineeTotalListInterview.interview_date, "%Y-%m") as YM',
+			'DATE_FORMAT(PassedTraineeTotalListInterview.interview_date, "%M") as month_en',
+			'DATE_FORMAT(PassedTraineeTotalListInterview.interview_date, "%m") as month',
+			'count(InterviewCandidate.id) as total'
+			);
+		$options['joins'][] = array(
+			'table' => 'interviews',
+			'alias' => 'PassedTraineeTotalListInterview',
+			'type' => 'LEFT',
+			'conditions' => 'PassedTraineeTotalListInterview.id = InterviewCandidate.interview_id'
+			);
+		$options['group'] = 'DATE_FORMAT(PassedTraineeTotalListInterview.interview_date,"%Y-%m" )';
+		$options['recursive'] = -1;
+		return $this->find('all', $options);
+	}
+
+
 	//printout用合格者一覧取得
 	public function successTrainees($interview_id){
 		$options = array();

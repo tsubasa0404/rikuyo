@@ -73,7 +73,7 @@
 												<?php echo $trainee['Trainee']['phone'];?>
 											</td>
 											<td class="text-center">
-												<?php echo $this->btn->studentStatusBtn($trainee['Trainee']['student_status_id']);?>
+												<?php echo $this->Btn->studentStatusBtn($trainee['Trainee']['student_status_id']);?>
 											</td>
 											<td>
 												<div class="actions">
