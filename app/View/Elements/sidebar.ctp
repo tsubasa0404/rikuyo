@@ -97,6 +97,13 @@
 							array('escape' => false, 'class' => '')
 						) ?>
 					</li>
+					<li>
+						<?php echo $this->Html->link(
+							'<i class="fa fa-file-text-o"></i><span>'.__('Report').'</span>',
+							array('controller' => 'reports', 'action' => 'passed_trainees'),
+							array('escape' => false, 'class' => '')
+						) ?>
+					</li>
 					<?php if ($user['role_id']==1) : ?>
 
 					<li>

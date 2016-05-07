@@ -29,18 +29,57 @@ class ReportsController extends AppController {
  *
  * @return void
  */
-	public function index() {
+	public function passed_trainees($y = null) {
+		if(isset($_GET['y'])){
+			$y = $_GET['y'];
+		}
+		if($y == null) { $y = date('Y');}
 
-
-		//現在の年に面接合格した人を月ごとに取得
-		$passed_trainees_total_list = $this->InterviewCandidate->passed_trainees_total_list(date('Y'));
-		//Hashで整形
-		$passed_trainees_total_list_format = Hash::combine($passed_trainees_total_list, '{n}.{n}.YM', '{n}.{n}');
-
-		//取得したデータから、年間の面接合格者数を計算するHelperを使用。
 		App::uses('HlpReportHelper', 'View/Helper');
 		$this->HlpReport = new HlpReportHelper(new View());
-		$sum_passed_trainees = $this->HlpReport->sum_passed_trainees($passed_trainees_total_list_format);
+
+		//purovince idとprovince enの配列をデータ用文字列に変換
+		$option_provinces = $this->Province->optionProvince();
+		$province_ticks = $this->HlpReport->option_to_str_for_graph_data($option_provinces);
+		$province_ticks_to_str = implode(',', $province_ticks);
+
+		/*
+		 * 面接に合格した人のデータ
+		 */
+		//現在の年に面接合格した人を月ごとに取得
+		$passed_trainees_total_list = $this->InterviewCandidate->passed_trainees_total_list($y);
+		//Hashで整形
+		//第2引数がキー、第3引数は取得する値
+		$passed_trainees_total_list_format = Hash::combine($passed_trainees_total_list, '{n}.{n}.YM', '{n}.{n}');
+
+		//現在の年に面接合格した人を男女別に取得
+		$passed_trainees_by_gender = $this->InterviewCandidate->passed_trainees_by_gender($y);
+		$passed_trainees_by_gender_list_format = Hash::combine($passed_trainees_by_gender, '{n}.PassedTraineeByGenderTrainee.sex', '{n}.0.total');
+
+		//現在の年に面接合格した人を出身地別に取得
+		$passed_trainees_by_homeland = $this->Province->passed_trainees_by_homeland($y);
+		$passed_trainees_by_homeland_list_format = Hash::combine($passed_trainees_by_homeland, '{n}.Province.province_en', '{n}.0.total');
+
+
+		//出身地別に取得したデータをグラフ用に整形
+		$passed_trainees_by_homeland_graph_data = $this->HlpReport->passed_trainees_by_homeland_graph_data($passed_trainees_by_homeland);
+		$passed_trainees_by_homeland_graph_data_to_str = implode(",", $passed_trainees_by_homeland_graph_data);
+
+
+
+		//面接合格した人を出国状況別に取得
+		$passed_trainees_by_departure_status = $this->InterviewCandidate->passed_trainees_by_departure_status($y);
+		$passed_trainees_by_departure_status_list_format = Hash::combine($passed_trainees_by_departure_status, '{n}.PassedTraineeByDepartureStatusTrainee.departure_status_id', '{n}.0.total');
+
+
+
+		//合格者数の合計を計算
+		//Helperを使用
+		$sum_passed_trainees = $this->HlpReport->sum_passed_trainees_dimensional_array($passed_trainees_total_list_format);
+		$sum_passed_trainees_by_gender = $this->HlpReport->sum_passed_trainees($passed_trainees_by_gender_list_format);
+		$sum_passed_trainees_by_homeland = $this->HlpReport->sum_passed_trainees($passed_trainees_by_homeland_list_format);
+		$sum_passed_trainees_by_departure_status = $this->HlpReport->sum_passed_trainees($passed_trainees_by_departure_status_list_format);
+
 
 		//グラフ用にデータを整形するHelperを使用
 		$passed_trainees_graph_data =
@@ -48,12 +87,93 @@ class ReportsController extends AppController {
 		//取得したグラフ用の配列を文字列に変換
 		$passed_trainees_graph_data_to_str = implode(",", $passed_trainees_graph_data);
 
-		//passed_trainees_graph_dataの配列を整形して、
-		//表用にデータを作る。
-		$passed_trainees_graph_data_to_list_format =
-			$this->HlpReport->graph_data_to_list_format($passed_trainees_graph_data);
 
-		$this->set(compact('passed_trainees_total_list', 'passed_trainees_total_list_format', 'sum_passed_trainees', 'passed_trainees_graph_data','passed_trainees_graph_data_to_str'));
+
+		$this->set(compact(
+			'y',
+			'passed_trainees_by_gender',
+			'passed_trainees_by_gender_list_format',
+			'passed_trainees_by_homeland',
+			'passed_trainees_by_homeland_list_format',
+			'passed_trainees_by_homeland_graph_data',
+			'passed_trainees_by_homeland_graph_data_to_str',
+			'passed_trainees_by_departure_status',
+			'passed_trainees_by_departure_status_list_format',
+			'province_ticks',
+			'province_ticks_to_str',
+			'passed_trainees_total_list',
+			'passed_trainees_total_list_format',
+			'sum_passed_trainees',
+			'sum_passed_trainees_by_homeland',
+			'sum_passed_trainees_by_gender',
+			'sum_passed_trainees_by_departure_status',
+			'passed_trainees_graph_data',
+			'passed_trainees_graph_data_to_str'));
+
+	}
+
+	public function departured_trainees($y = null) {
+		if(isset($_GET['y'])){
+			$y = $_GET['y'];
+		}
+		if($y == null) { $y = date('Y');}
+
+		App::uses('HlpReportHelper', 'View/Helper');
+		$this->HlpReport = new HlpReportHelper(new View());
+
+		//purovince idとprovince enの配列をデータ用文字列に変換
+		$option_provinces = $this->Province->optionProvince();
+		$province_ticks = $this->HlpReport->option_to_str_for_graph_data($option_provinces);
+		$province_ticks_to_str = implode(',', $province_ticks);
+
+			/*
+			 * 出国済みの人のデータ
+			 */
+			//現在の年に出国した人を月ごとに取得
+			$departured_trainees_total_list = $this->InterviewCandidate->departured_trainees_total_list($y);
+			$departured_trainees_total_list_format = Hash::combine($departured_trainees_total_list, '{n}.{n}.YM', '{n}.{n}');
+
+			//出国者を男女別に取得
+			$departured_trainees_by_gender = $this->InterviewCandidate->departured_trainees_by_gender($y);
+			$departured_trainees_by_gender_list_format = Hash::combine($departured_trainees_by_gender, '{n}.DeparturedTraineeByGenderTrainee.sex', '{n}.0.total');
+
+			//出国者を出身地別に取得
+			$departured_trainees_by_homeland = $this->Province->departured_trainees_by_homeland($y);
+			$departured_trainees_by_homeland_list_format = Hash::combine($departured_trainees_by_homeland, '{n}.Province.province_en', '{n}.0.total');
+
+			//出身地別に取得したデータをグラフ用に整形
+			$departured_trainees_by_homeland_graph_data = $this->HlpReport->departured_trainees_by_homeland_graph_data($departured_trainees_by_homeland);
+			$departured_trainees_by_homeland_graph_data_to_str = implode(",", $departured_trainees_by_homeland_graph_data);
+
+
+			//取得したデータから、年間の面接合格者数を計算するHelperを使用。
+			$sum_departured_trainees = $this->HlpReport->sum_departured_trainees($departured_trainees_total_list_format);
+
+			//グラフ用にデータを整形するHelperを使用
+			$departured_trainees_graph_data =
+				$this->HlpReport->departured_trainees_graph_data($departured_trainees_total_list_format);
+			//取得したグラフ用の配列を文字列に変換
+			$departured_trainees_graph_data_to_str = implode(",", $departured_trainees_graph_data);
+
+
+
+			$this->set(compact(
+				'y',
+				'departured_trainees_by_gender',
+				'departured_trainees_by_gender_list_format',
+				'departured_trainees_by_homeland',
+				'departured_trainees_by_homeland_list_format',
+				'departured_trainees_by_homeland_graph_data',
+				'departured_trainees_by_homeland_graph_data_to_str',
+				'departured_trainees_total_list',
+				'departured_trainees_total_list_format',
+				'sum_departured_trainees',
+				'departured_trainees_graph_data',
+				'departured_trainees_graph_data_to_str',
+				'province_ticks',
+				'province_ticks_to_str'));
+
+
 	}
 
 

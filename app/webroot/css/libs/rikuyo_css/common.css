@@ -133,7 +133,9 @@ td.td_first_block:first-child{
 /*end Form */
 
 /* table */
-
+.table.pTB2 tbody > tr > td{
+  padding: 2px 8px !important;
+}
 
 /* end table */
 
@@ -197,6 +199,8 @@ button.print_btn{
 .btn{font-size: 12px;}
 .left{float:left !important;}
 .right{float:right !important;}
+.pT0{padding-top: 0px !important;}
+.pB0{padding-bottom: 0px !important;}
 .mT20{margin-top: 20px !important;}
 .mT15{margin-top: 15px !important;}
 .mT10{margin-top: 10px !important;}
