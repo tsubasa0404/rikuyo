@@ -84,7 +84,8 @@
 															'type' => 'select',
 															'options' => array('0'=> __('Not Yet'),'1'=> __('Unavailable'), '2' => __('Cancel'), '3' => __('Delayed'), '4' => __('Passed')),
 															'class' => "form-control maxW160 student_status",
-															'div' => false
+															'div' => false,
+															'selected' => $this->request->data['Trainee']['student_status_id']
 														)); ?>
 														</td>
 
@@ -98,10 +99,10 @@
 																	'type' => 'select',
 																	'div' => false,
 																	'class' => 'form-control sel_company',
-																	'value' => $this->request->data['Trainee']['company_id'],
+																	'selected' => $this->request->data['Trainee']['company_id'],
 																	'options' => $option_companies,
 																	'style' => 'display:inline;width:100%',
-																	'empty' => true
+																	'empty' => '-- select --'
 																)) ?>
 															</div>
 														</td>

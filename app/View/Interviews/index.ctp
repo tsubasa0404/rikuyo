@@ -24,7 +24,7 @@
 							<table id="interview-table" class="table  toggle-circle-filled table-striped table-bordered" >
 								<thead>
 									<tr>
-										<th><a href="#"><?= __('Date') ?></a></th>
+										<th><a href="#" ><?= __('Date') ?></a></th>
 										<th><a href="#" class="asc"><?= __('Association(Company)') ?></a></th>
 										<th><a href="#" class="asc"><?= __('Candidates') ?></a></th>
 										<th><a href="#" class="asc"><?= __('Staff') ?></a></th>
@@ -98,7 +98,7 @@
 								<table id="past-interview-table" class="table toggle-circle-filled table-striped table-bordered">
 									<thead>
 										<tr>
-											<th><a href="#"><?= __('Date') ?></a></th>
+											<th><a href="#" class="desc"><?= __('Date') ?></a></th>
 											<th><a href="#"><?= __('Association(Company)') ?></a></th>
 											<th><a href="#"><?= __('Documents Status') ?></a></th>
 										</tr>
@@ -169,7 +169,7 @@
 			});
 			$('#past-interview-table').dataTable({
 				"bInfo":false,
-				"order":[0,'desc']
+				"order":[0,'asc']
 			});
 			$('.footable').footable();
 		});

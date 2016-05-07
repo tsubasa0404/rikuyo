@@ -53,9 +53,9 @@
 												);?>
 											</td>
 											<td>
-												<?php if($trainee['TraineeProfileImage'])
+												<?php if($trainee['TraineeProfileImage']['img_file_name'] != null)
 													{
-														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage'][0]['img_file_name'], array('style' => 'width:60px;height:60px;'));
+														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage']['img_file_name'], array('style' => 'width:60px;height:60px;'));
 													} else {
 														echo $this->Html->image('trainee_profile_images/thumb/default.png', array('style' => 'width:60px;height:60px;'));
 													};?>

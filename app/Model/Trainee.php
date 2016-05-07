@@ -226,8 +226,9 @@ class Trainee extends AppModel {
 /**
  * Trainee Indexページ
  */
-	//index 学生一覧ページテーブル用データ
+	//index Trainee一覧ページテーブル用データ
 	public function traineeList(){
+		$options = array();
 		$options = array('conditions' => array(
 			'Trainee.flag' => 0,
 			'Trainee.student_status_id' => 4
@@ -252,9 +253,18 @@ class Trainee extends AppModel {
 				'Trainee.departure_date',
 				'Trainee.return_status_id',
 				'Trainee.return_note',
-				'Trainee.return_date'
+				'Trainee.return_date',
+				'Trainee.birthplace_province_id',
+				'TraineeProfileImage.img_file_name'
 				),
-			'order' => array('Trainee.control_no' => 'asc')
+			'order' => array('Trainee.control_no' => 'asc'),
+			'recursive' => -1
+		);
+		$options['joins'][] = array(
+		'table' => 'trainee_profile_images',
+		'alias' => 'TraineeProfileImage',
+		'type' => 'LEFT',
+		'conditions' => 'Trainee.id = TraineeProfileImage.trainee_id'
 		);
 		return $this->find('all', $options);
 	}
