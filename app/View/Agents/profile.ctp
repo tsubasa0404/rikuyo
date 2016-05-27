@@ -235,7 +235,8 @@
 															'selected' => explode(',', $this->request->data['Agent']['sector']),
 															'class' => "form-control sel_sector",
 															'multiple' => true,
-															'div' => false
+															'div' => false,
+															'empty' => __('--Select Sector--')
 														)); ?>
 
 													</td>
@@ -256,10 +257,13 @@
 											</tbody>
 										</table>
 										<div class="profile-message-btn center-block text-right">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 											<button type="submit" class="btn btn-default pull-right">
 												<i class="fa fa-pencil"></i>
 												<?= __('Save') ?>
 											</button>
+<?php };?>
 										</div>
 										<?php echo $this->Form->end(); ?>
 								</div>
@@ -435,20 +439,18 @@
 											</tbody>
 										</table>
 										<div class="profile-message-btn center-block text-right">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 											<button type="submit" class="btn btn-default pull-right">
 												<i class="fa fa-pencil"></i>
 												<?= __('Save') ?>
 											</button>
+<?php };?>
 										</div>
 										<?php echo $this->Form->end(); ?>
 								</div>
 							</div>
-							<!-- <div class="center-block pull-left">
-                  <a href="agent-db.html" class="btn btn-default">
-                    <i class="fa fa-long-arrow-left fa-lg"></i>
-                    前のページに戻る
-                  </a>
-              </div> -->
+
 						</div>
 					</div>
 				</div>
@@ -467,8 +469,6 @@
 	$(document).ready(function() {
 		$('.alert').fadeOut(5000);
 			$('.sel_sector').select2({
-				placeholder: "<?= __('Select Sectors') ?>",
-				allowClear: false
 			});
 	});
 

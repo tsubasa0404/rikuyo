@@ -125,13 +125,14 @@
 											<th class="image"></th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody class="select_trainee_table_tbody">
 										<?php foreach ($trainees as $trainee) : ?>
-											<?php if($trainee['Candidate']['interview_id'] == $this->request->data['Interview']['id'] || $trainee['Candidate']['interview_result_id'] == 2){continue;} ;?>
-											<tr id="select_trainee_table_<?php echo $trainee['Trainee']['id']?>">
+											<?php if($trainee['Candidate']['interview_id'] == $this->request->data['Interview']['id'] || $trainee['Candidate']['interview_result_id'] == 2){
+												} else { ;?>
+												<?php echo '<tr class="select_trainee_table_'.$trainee['Trainee']['id'].'">';?>
 												<td>
 													<div class="checkbox-nice">
-														<input type="checkbox" id="trainee_<?php echo $trainee['Trainee']['id']?>" class="chk_selected_trainee <?php echo $trainee['Trainee']['control_no']?>" name="trainee_id" value="" data-trainee-id="<?php echo $trainee['Trainee']['id']?>" data-trainee-control-no="<?php echo $trainee['Trainee']['control_no']?>" data-interview-candidate-id="">
+														<input type="checkbox" id="trainee_<?php echo $trainee['Trainee']['id'];?>" class="chk_select_trainee <?php echo $trainee['Trainee']['control_no']?>" name="trainee_id" value="" data-trainee-id="<?php echo $trainee['Trainee']['id']?>" data-trainee-control-no="<?php echo $trainee['Trainee']['control_no']?>" data-interview-candidate-id="">
 														<label for="trainee_<?php echo $trainee['Trainee']['id']?>">
 															<?php echo $trainee['Trainee']['control_no']?>
 														</label>
@@ -158,6 +159,11 @@
 														};?>
 												</td>
 											</tr>
+
+
+
+											<?php	} ;?>
+
 										<?php endforeach; ?>
 									</tbody>
 								</table>
@@ -183,9 +189,9 @@
 											<th class=""></th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody class="selected_trainee_table_tbody">
 										<?php foreach ($candidates as $can) : ?>
-											<tr id="selected_trainee_table_<?php echo $can['CandidateTrainee']['id'];?>">
+											<tr class="selected_trainee_table_<?php echo $can['CandidateTrainee']['id'];?>">
 												<td>
 													<div class="checkbox-nice">
 														<input type="checkbox" id="selected_trainee_<?php echo $can['CandidateTrainee']['id'];?>" class="chk_selected_trainee <?php echo $can['CandidateTrainee']['control_no'];?>" value="<?php echo $can['CandidateTrainee']['id'];?>" data-trainee-id="<?php echo $can['CandidateTrainee']['id'];?>" data-trainee-control-no="<?php echo $can['CandidateTrainee']['control_no'];?>" checked="" data-interview-candidate-id="<?php echo $can['InterviewCandidate']['id'];?>">
@@ -266,27 +272,12 @@
 			$('.footable').footable();
 		});
 
-
-		$(function(){
-			var trainee_id;
-			var $trainee_tr;
-			var trainee_control_no;
-			var interview_candidate_id;
-			var interview_id = "<?php echo $this->request->data['Interview']['id']; ?>";
-			var url;
-			var url_delete;
-			var id;
-
-
-			$('#select_trainee_table').on('click', '.chk_selected_trainee', function(){
-
-				trainee_id = $(this).data('trainee-id');
-				$trainee_tr = $('#select_trainee_table_'+trainee_id);
-				trainee_control_no = $(this).data('trainee-control-no');
-				interview_candidate_id = $(this).data('interview-candidate-id');
-				interview_id = <?php echo $this->request->data['Interview']['id'] ?>;
-				url = $('.select_candidate_form').attr('action');
-
+		$(document).ready(function($) {
+			//もしTrainee Listのchk_select_traineeがクリックされたら、
+			$('#select_trainee_table').on('click', '.chk_select_trainee', function(){
+				var this_obj = $(this);
+				console.log(this_obj);
+				//Swalを表示して、YesかCancelを選択。
 				swal({
 					title: "<?= __('Do you register this trainee as Candidate?') ?>",
 					text: "",
@@ -297,8 +288,18 @@
 					confirmButtonText: "<?= __('Yes') ?>",
 					closeOnConfirm: false
 					},
-					function(isConfirm){
+				function(isConfirm){
+				//もしYesだったら、
 						if(isConfirm){
+							var id;
+							var interview_id = <?php echo $this->request->data['Interview']['id'];?>;
+							var trainee_id = this_obj.attr('data-trainee-id');
+							var $this_tr = $('.select_trainee_table_'+trainee_id);
+							var interview_result_id = 0;
+							var note = "";
+							var url = $('.select_candidate_form').attr('action');
+							//Ajaxで、InterviewCandidateに、
+							//interview_id, trainee_id, interview_result_id=0, note=""を投げる。
 							$.ajax({
 								url: url,
 								type: 'POST',
@@ -307,15 +308,24 @@
 									id:id,
 									interview_id: interview_id,
 									trainee_id: trainee_id,
-									interview_result_id: 0,
-									note: ""
+									interview_result_id: interview_result_id,
+									note: note
 								},
+								//Ajax処理が通ったら、
 								success: function(rs){
-									$trainee_tr.attr('id', 'selected_trainee_table_'+trainee_id);
-									$trainee_tr.find('.chk_selected_trainee').attr('data-interview-candidate-id', rs);
-									$('#selected_trainee_table').prepend($trainee_tr.fadeIn());
-									swal("<?= __('OK') ?>", "", "success");
 
+								//TrのコピーをCandidates ListにPrependTo()
+								$this_tr.clone().prependTo('tbody.selected_trainee_table_tbody')
+									.removeClass('select_trainee_table_'+trainee_id)
+									.addClass('selected_trainee_table_'+trainee_id)
+									.find('.chk_select_trainee')
+									.removeClass('chk_select_trainee')
+									.addClass('chk_selected_trainee')
+									.attr('data-interview-candidate-id', rs);
+								$this_tr.hide();
+								swal("<?= __('OK') ?>", "", "success");
+
+								this_obj.remove(); //※ここでクリック時のthisを破棄。
 								},
 								error: function(exception){
 									alert('Exception:'+exception);
@@ -327,65 +337,249 @@
 									});
 								}
 							});
-						} else {
-							$('.'+trainee_control_no).prop('checked', false)
-							return ;
+						}
+
+				//もしCancelだったら
+				else {
+				//チェックボックスをオフにして終了
+							this_obj.prop('checked', false);
 						}
 					}
 				);//swal
 			});
 		});
 
-		$('#selected_trainee_table').on('click', '.chk_selected_trainee', function(){
-			trainee_id = $(this).data('trainee-id');
-			$trainee_tr = $('#selected_trainee_table_'+trainee_id);
-			trainee_control_no = $(this).data('trainee-control-no');
-			interview_candidate_id = $(this).data('interview-candidate-id');
-			interview_id = <?php echo $this->request->data['Interview']['id'] ?>;
-			url_delete = $('.delete_candidate_form').attr('action');
+		$(document).ready(function($) {
+			//もしCandidates Listのチェックボックスがクリックされたら
+			$('.selected_trainee_table_tbody').on('click', '.chk_selected_trainee', function(){
+				var selected_trainee_obj = $(this);
+				console.log(selected_trainee_obj);
+				//Swalを表示して、
+				swal({
+								title: "<?= __('Do you remove this trainee from Candidate List?') ?>",
+								text: "",
+								type: "info",
+								showCancelButton: true,
+								cancelButtonText: "<?= __('Cancel') ?>",
+								confirmButtonColor: "#DD6B55",
+								confirmButtonText: "<?= __('Yes') ?>",
+								closeOnConfirm: false
+							},
+					function(isConfirm){
 
-				console.log(trainee_id);
-				console.log($trainee_tr);
-				console.log(trainee_control_no);
-				console.log(interview_candidate_id);
-				console.log(interview_id);
-				console.log(url_delete);
+				//Yesがクリックされたら
+						if(isConfirm){
+							//checkbox内のinterview_candidatesのidを取得
+							var id;
+              var interview_id          = <?php echo $this->request->data['Interview']['id'];?>;
+              var trainee_id            = selected_trainee_obj.attr('data-trainee-id');
+              var interview_candidate_id= selected_trainee_obj.attr('data-interview-candidate-id');
+              var $this_tr              = $('.selected_trainee_table_'+trainee_id);
+              var selected_url_delete = $('.delete_candidate_form').attr('action');
 
-			swal({
-							title: "<?= __('Do you remove this trainee from Candidate List?') ?>",
-							text: "",
-							type: "info",
-							showCancelButton: true,
-							cancelButtonText: "<?= __('Cancel') ?>",
-							confirmButtonColor: "#DD6B55",
-							confirmButtonText: "<?= __('Yes') ?>",
-							closeOnConfirm: false
-						},
-						function(isConfirm){
-							if(isConfirm){
-								$.ajax({
-									url: url_delete,
-									type: 'POST',
-									dataType: 'json',
-									data: {
-										id : interview_candidate_id
-									}, success:function(){
-										$trainee_tr.attr('id', 'select_trainee_table_'+trainee_id);
-										$trainee_tr.find('.chk_selected_trainee').attr('data-interview-candidate-id', "");
-										$('#select_trainee_table.select_trainee').prepend($trainee_tr.fadeIn());
-									swal("<?= __('Removed') ?>", "", "success");
-									}, error: function(exception){
-										//alert(exception);
-									}
-								});
+							//Ajaxで削除処理
+							$.ajax({
+								url: selected_url_delete,
+								type: 'POST',
+								dataType: 'json',
+								data: {
+									id : interview_candidate_id
+								},
+							//削除処理が上手くいったら
+							success:function(){
+								//TrのコピーをTrainees ListにPrependTo()
+								$this_tr.clone().prependTo('tbody.select_trainee_table_tbody')
+									.removeClass('selected_trainee_table_'+trainee_id)
+									.addClass('select_trainee_table_'+trainee_id)
+									.find('.chk_selected_trainee')
+									.removeClass('chk_selected_trainee')
+									.addClass('chk_select_trainee')
+									.attr('data-interview-candidate-id', "");
+								$this_tr.hide();
+								swal("<?= __('Removed') ?>", "", "success");
 
-							} else {
-								$trainee_tr.find('.chk_selected_trainee').prop('checked', true)
-								return ;
-							}
-						});//swal
-
+								},
+						//エラーが発生した場合
+							error: function(exception){
+								}
+							});
+						}　
+					//Cancelがクリックされたら
+						else {
+							selected_trainee_obj.prop('checked', true);
+						}
+					});
+				});//swal
 		});
+
+
+// $(function(){
+		// 	$('#select_trainee_table').on('click', '.chk_select_trainee', function(){
+		//       var trainee_id              = $(this).data('trainee-id');
+  	//       var $trainee_tr             = $('#select_trainee_table_'+trainee_id);
+  	//       var trainee_control_no      = $(this).data('trainee-control-no');
+  	//       var interview_candidate_id  = $(this).data('interview-candidate-id');
+  	//       var interview_id            = <?php //echo $this->request->data['Interview']['id'] ?>;
+		// 		var url= $('.select_candidate_form').attr('action');
+		// 		var id;
+
+		// 		swal({
+		// 			title: "<?= __('Do you register this trainee as Candidate?') ?>",
+		// 			text: "",
+		// 			type: "info",
+		// 			showCancelButton: true,
+		// 			cancelButtonText: "<?= __('Cancel') ?>",
+		// 			confirmButtonColor: "#03a9f4",
+		// 			confirmButtonText: "<?= __('Yes') ?>",
+		// 			closeOnConfirm: false
+		// 			},
+		// 			function(isConfirm){
+		// 				if(isConfirm){
+		// 					$.ajax({
+		// 						url: url,
+		// 						type: 'POST',
+		// 						dataType: 'json',
+		// 						data: {
+		// 							id:id,
+		// 							interview_id: interview_id,
+		// 							trainee_id: trainee_id,
+		// 							interview_result_id: 0,
+		// 							note: ""
+		// 						},
+		// 						success: function(rs){
+		// 							$trainee_tr.attr('id', 'selected_trainee_table_'+trainee_id);
+		// 							$trainee_tr.find('.chk_selected_trainee').attr('data-interview-candidate-id', rs);
+		// 							$trainee_tr.find('.chk_selected_trainee').attr('id', "selected_trainee_" + trainee_id);
+		// 							$trainee_tr.find('.chk_selected_trainee').attr('value', trainee_id);
+		// 							$trainee_tr.find('.chk_selected_trainee').attr('checked', "");
+		// 							$('#selected_trainee_table').prepend($trainee_tr.fadeIn());
+		// 							swal("<?= __('OK') ?>", "", "success");
+
+		// 							trainee_id = "";
+		// 							$trainee_tr = "";
+		// 							trainee_control_no = "";
+		// 							interview_candidate_id = "";
+		// 							interview_id = "";
+		// 							url = "";
+		// 							url_delete = "";
+		// 							id = "";
+
+		// 						},
+		// 						error: function(exception){
+		// 							alert('Exception:'+exception);
+		// 							swal({
+		// 								title: "Oops...",
+		// 								text: "Please try it again.",
+		// 								type:"error",
+		// 								confirmButtonText:"OK"
+		// 							});
+
+		// 							trainee_id = "";
+		// 							$trainee_tr = "";
+		// 							trainee_control_no = "";
+		// 							interview_candidate_id = "";
+		// 							interview_id = "";
+		// 							url = "";
+		// 							url_delete = "";
+		// 							id = "";
+		// 						}
+		// 					});
+		// 				} else {
+		// 					$('.'+trainee_control_no).prop('checked', false);
+		// 						trainee_id = "";
+		// 						$trainee_tr = "";
+		// 						trainee_control_no = "";
+		// 						interview_candidate_id = "";
+		// 						interview_id = "";
+		// 						url = "";
+		// 						url_delete = "";
+		// 						id = "";
+		// 				}
+		// 			}
+		// 		);//swal
+		// 	});
+// });
+
+// $(function(){
+		// 	$('#selected_trainee_table').on('click', '.chk_selected_trainee', function(){
+	 //      var selected_trainee_id              = $(this).data('trainee-id');
+	 //      var $selected_trainee_tr             = $('#selected_trainee_table_'+selected_trainee_id);
+	 //      var selected_trainee_control_no      = $(this).data('trainee-control-no');
+	 //      var selected_interview_candidate_id  = $(this).data('interview-candidate-id');
+	 //      var selected_interview_id            = <?php //echo $this->request->data['Interview']['id'] ?>;
+	 //      var selected_url_delete              = $('.delete_candidate_form').attr('action');
+
+		// 		var what_is_this						= $(this);
+
+
+		// 			console.log(what_is_this);
+		// 			console.log("selected_trainee_id: "+selected_trainee_id);
+		// 			console.log( $selected_trainee_tr);
+		// 			console.log("selected_trainee_control_no: " + selected_trainee_control_no);
+		// 			console.log("selected_interview_candidate_id: " + selected_interview_candidate_id);
+		// 			console.log("selected_interview_id: " + selected_interview_id);
+		// 			console.log("selected_url_delete: " + selected_url_delete);
+
+		// 		swal({
+		// 						title: "<?= __('Do you remove this trainee from Candidate List?') ?>",
+		// 						text: "",
+		// 						type: "info",
+		// 						showCancelButton: true,
+		// 						cancelButtonText: "<?= __('Cancel') ?>",
+		// 						confirmButtonColor: "#DD6B55",
+		// 						confirmButtonText: "<?= __('Yes') ?>",
+		// 						closeOnConfirm: false
+		// 					},
+		// 					function(isConfirm){
+		// 						if(isConfirm){
+		// 							$.ajax({
+		// 								url: selected_url_delete,
+		// 								type: 'POST',
+		// 								dataType: 'json',
+		// 								data: {
+		// 									selected_interview_candidate_id : selected_interview_candidate_id
+		// 								},
+
+		// 								success:function(){
+		// 									$selected_trainee_tr.attr('id', 'select_trainee_table_'+selected_trainee_id);
+		// 									$selected_trainee_tr.find('.chk_selected_trainee').attr('data-interview-candidate-id', "");
+		// 									$('#select_trainee_table.select_trainee').prepend($selected_trainee_tr.fadeIn());
+
+		// 								swal("<?= __('Removed') ?>", "", "success");
+
+		// 								selected_trainee_id = "";
+		// 								$selected_trainee_tr = "";
+		// 								selected_trainee_control_no = "";
+		// 								selected_interview_candidate_id = "";
+		// 								selected_interview_id = "";
+		// 								selected_url_delete = "";
+		// 								what_is_this = ""
+
+		// 								}, error: function(exception){
+		// 									selected_trainee_id = "";
+		// 									$selected_trainee_tr = "";
+		// 									selected_trainee_control_no = "";
+		// 									selected_interview_candidate_id = "";
+		// 									selected_interview_id = "";
+		// 									selected_url_delete = "";
+		// 									what_is_this = ""
+		// 								}
+		// 							});
+
+
+		// 						} else {
+		// 							$selected_trainee_tr.find('.chk_selected_trainee').prop('checked', true);
+		// 							selected_trainee_id = "";
+		// 									$selected_trainee_tr = "";
+		// 									selected_trainee_control_no = "";
+		// 									selected_interview_candidate_id = "";
+		// 									selected_interview_id = "";
+		// 									selected_url_delete = "";
+		// 									what_is_this = ""
+		// 						}
+		// 					});
+		// 		});//swal
+// });
 
 
 	<?php $this->Html->scriptEnd(); ?>

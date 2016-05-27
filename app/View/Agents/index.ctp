@@ -13,11 +13,14 @@
 							<h2 class="pull-left"><?= __('Agent List') ?></h2>
 
 							<div class="filter-block pull-right">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 								<?php echo $this->Html->link(
 									'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Agent'),
 									array('controller' => 'agents', 'action' => 'add'),
 									array('escape' => false, 'class' => 'btn btn-primary pull right')
 								) ?>
+<?php };?>
 							</div>
 						</header>
 
@@ -34,33 +37,39 @@
 								</thead>
 								<tbody>
 									<?php foreach ($agents as $agent) : ?>
-										<?php
-											echo "<tr><td>";
-											echo $this->Html->link(
+										<tr>
+											<td>
+											<?php echo $this->Html->link(
 												$agent['Agent']['agent_jp'],
 												array('action' => 'profile', $agent['Agent']['id']),
 												array('escape' => false, 'class' => '')
-											);
-											echo "<br>";
-											echo $this->Html->link(
+											);?>
+											<br>
+											<?php echo $this->Html->link(
 												$agent['Agent']['agent_en'],
 												array('action' => 'profile', $agent['Agent']['id']),
 												array('escape' => false, 'class' => '')
-											);
-											echo "</td><td>";
-											echo $agent['Agent']['address_en'];
-											echo "</td><td>";
-											echo $agent['Agent']['phone1'];
-											echo "</td>";
-											echo '<td><div class="actions">';
-											echo $this->Form->postlink(
-												'<i class="fa fa-trash-o"></i>',
-												array('controller' => 'agents', 'action' => 'update_delete_flag',$agent['Agent']['id']),
-												array('confirm' => __('Are you sure you want to delete # %s?', $agent['Agent']['id']),'escape' => false, 'class' => 'table-link red' )
-											);
-											echo '</div></td>';
-											echo "</tr>"
-										 ?>
+											);?>
+											</td>
+											<td>
+											<?php echo $agent['Agent']['address_en'];?>
+											</td>
+											<td>
+											<?php echo $agent['Agent']['phone1'];?>
+											</td>
+											<td>
+												<div class="actions">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
+												<?php echo $this->Form->postlink(
+													'<i class="fa fa-trash-o"></i>',
+													array('controller' => 'agents', 'action' => 'update_delete_flag',$agent['Agent']['id']),
+													array('confirm' => __('Are you sure you want to delete # %s?', $agent['Agent']['id']),'escape' => false, 'class' => 'table-link red' )
+												);?>
+<?php };?>
+												</div>
+											</td>
+										</tr>
 									<?php endforeach; ?>
 								</tbody>
 							</table>

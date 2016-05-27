@@ -134,25 +134,23 @@ class InterviewCandidatesController extends AppController {
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->InterviewCandidate->delete()) {
-			$this->Session->setFlash(__('The interview candidate has been deleted.'));
+			$this->Session->setFlash(__('The interview candidate has been deleted.'), 'success_flash');
 		} else {
-			$this->Session->setFlash(__('The interview candidate could not be deleted. Please, try again.'));
+			$this->Session->setFlash(__('The interview candidate could not be deleted. Please, try again.'), 'error_flash');
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect($this->referer());
 	}
 
 	public function deleteAjax() {
 		$this->autoRender = false;
 		if($this->RequestHandler->isAjax()){
 			Configure::write('debug', 0);
-		 }
+		}
 		if($this->request->is('ajax')){
-
-
-		$id = $_POST['id']; //404エラーのポイント。request-dataで取れてないことを疑え。
-		$this->InterviewCandidate->id = $id;
-	}
-		if (!$this->InterviewCandidate->exists()) {
+			$id = $_POST['id']; //404エラーのポイント。request-dataで取れてないことを疑え。
+			$this->InterviewCandidate->id = $id;
+		}
+		if (!$this->InterviewCandidate->exists($id)) {
 			throw new NotFoundException(__('Invalid Interview Candidate'));
 		}
 		$this->request->allowMethod('post', 'delete');

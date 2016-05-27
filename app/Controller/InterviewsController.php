@@ -198,8 +198,9 @@ class InterviewsController extends AppController {
 			$prof = $this->Interview->prof($id);
 			$this->set(compact('lang', 'prof'));
 
-			//面接候補者
+			//面接候補者リスト(まだ面接に設定されていない)
 			$trainees = $this->Trainee->candidateTraineeList($id);
+			//面接予定者(面接予定)
 			$candidates = $this->InterviewCandidate->candidateList($id);
 			$this->set(compact('candidates', 'trainees'));
 

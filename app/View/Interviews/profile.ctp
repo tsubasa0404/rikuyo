@@ -30,12 +30,22 @@
 									<?php echo $this->Form->hidden('id', array(
 										'value' => $this->request->data['Interview']['id']
 									)) ?>
+									<?php if($user['role_id'] == 1 || $user['role_id'] == 2 ){ ;?>
 									<?php echo $this->Form->input('status', array(
 										'class' => 'form-control',
 										'options' => array('0' => __('Not Yet'), '1' => __('Finished')),
 										'value' => $this->request->data['Interview']['status'],
 										'label' => false
 									)) ?>
+									<?php } else {;?>
+										<?php echo $this->Form->input('status', array(
+										'class' => 'form-control',
+										'options' => array('0' => __('Not Yet'), '1' => __('Finished')),
+										'value' => $this->request->data['Interview']['status'],
+										'label' => false,
+										'disabled' => true
+									)) ?>
+									<?php } ;?>
 									<?php echo $this->Form->end(); ?>
 								</div>
 							</h2>
@@ -146,12 +156,14 @@
 										</tbody>
 									</table>
 
+						<?php if($user['role_id'] == 1 || $user['role_id'] == 2 ){ ;?>
 							<div class="profile-message-btn center-block text-right">
 								<button type="submit" class="btn btn-default">
 									<i class="fa fa-pencil"></i>
 									<?= __('Save') ?>
 								</button>
 							</div>
+						<?php };?>
 							<?php echo $this->Form->end(); ?>
 							</div>
 						</div>
@@ -187,12 +199,14 @@
 											</tr>
 										</tbody>
 									</table>
+								<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 									<div class="profile-message-btn center-block text-right">
 										<button type="submit" class="btn btn-default">
 											<i class="fa fa-pencil"></i>
 											<?= __('Save') ?>
 										</button>
 									</div>
+								<?php };?>
 								<?php echo $this->Form->end(); ?>
 							</div>
 						</div>
@@ -227,12 +241,14 @@
 											</tr>
 										</tbody>
 									</table>
+								<?php if($user['role_id'] == 1 || $user['role_id'] == 2 ){ ;?>
 									<div class="profile-message-btn center-block text-right">
 										<button type="submit" class="btn btn-default">
 											<i class="fa fa-pencil"></i>
 											<?= __('Save') ?>
 										</button>
 									</div>
+								<?php };?>
 								<?php echo $this->Form->end(); ?>
 							</div>
 						</div>
@@ -464,13 +480,14 @@
 
 										</tbody>
 									</table>
-
+								<?php if($user['role_id'] == 1 || $user['role_id'] == 2 ){ ;?>
 									<div class="profile-message-btn center-block text-right">
 										<button type="submit" class="btn btn-default">
 											<i class="fa fa-pencil"></i>
 											<?= __('Save') ?>
 										</button>
 									</div>
+								<?php };?>
 								<?php echo $this->Form->end(); ?>
 							</div>
 						</div>
@@ -481,11 +498,14 @@
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2><?= __('Candidates List') ?>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2 || $user['role_id'] == 5){ ;?>
+
 								<?php echo $this->Html->link(
 									'<i class="fa fa-plus-circle fa-lg"></i> '.__('Select Candidates'),
 									array( 'action' => 'select', $prof['Interview']['id']),
 									array('escape' => false, 'class' => 'btn btn-primary pull-right')
 								) ?>
+<?php };?>
 							</h2>
 						</header>
 
@@ -507,9 +527,15 @@
 											<tr>
 												<td>
 													<?php if($can['ProfImg']['img_file_name']){
-														echo $this->Html->image('trainee_profile_images/thumb/'.$can['ProfImg']['img_file_name'], array('width' => '60px', 'height' => '60px'));
+														echo $this->Html->link(
+															$this->Html->image('trainee_profile_images/thumb/'.$can['ProfImg']['img_file_name'], array('width' => '60px', 'height' => '60px')),
+															array('controller' => 'trainees', 'action' => 'profile/'.$can['CandidateTrainee']['id']),
+															array('escape' => false, 'target' => '_blank'));
 													} else {
-														echo $this->Html->image('trainee_profile_images/thumb/default.png', array('width' => '60px', 'height' => '60px'));
+														echo $this->Html->link(
+															$this->Html->image('trainee_profile_images/thumb/default.png', array('width' => '60px', 'height' => '60px')),
+															array('controller' => 'trainees', 'action' => 'profile/'.$can['CandidateTrainee']['id']),
+															array('escape' => false, 'target' => '_blank'));
 													}?>
 												</td>
 												<td>
@@ -520,6 +546,7 @@
 															array('escape' => false, 'target' => '_blank'));
 														?>
 													</span>
+													<?php if($user['role_id'] == 1 || $user['role_id'] == 2 ){ ;?>
 														<?php echo $this->Form->input('interview_result_id',array(
 															'label' => false,
 															'class' => "form-control maxW160 interview_result_btn",
@@ -529,6 +556,29 @@
 															'data-interview-candidate-id' => $can['InterviewCandidate']['id'],
 															'data-trainee-id' => $can['CandidateTrainee']['id']
 														)); ?>
+													<?php } else {;?>
+														<?php echo $this->Form->input('interview_result_id',array(
+															'label' => false,
+															'class' => "form-control maxW160 interview_result_btn",
+															'type' => 'select',
+															'options' => $option_results,
+															'value' => $can['InterviewCandidate']['interview_result_id'],
+															'data-interview-candidate-id' => $can['InterviewCandidate']['id'],
+															'data-trainee-id' => $can['CandidateTrainee']['id'],
+															'disabled' => true
+														)); ?>
+													<?php };?>
+												</td>
+												<td>
+													<div class="actions">
+													<?php if($user['role_id'] == 1 || $user['role_id'] == 2 ){ ;?>
+														<?php echo $this->Form->postlink(
+															'<i class="fa fa-trash-o"></i>',
+															array('controller' => 'interview_candidates', 'action' => 'delete',$can['InterviewCandidate']['id']),
+															array('confirm' => __('Are you sure you want to delete # %s?', $can['CandidateTrainee']['control_no']),'escape' => false, 'class' => 'table-link red' )
+														);?>
+													<?php };?>
+													</div>
 												</td>
 											</tr>
 										<?php endforeach; ?>
@@ -575,6 +625,8 @@
 													<tr>
 														<td class="td_first_block">
 															<div class="checkbox-nice">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2 || $user['role_id'] == 6){ ;?>
+
 																<input type="checkbox" id="doc_<?php if (isset($doc['AssociationDocument'][0]['id'])) {
 																																				echo $doc['AssociationDocument'][0]['id'];
 																																			}
@@ -594,6 +646,28 @@
 																																			};
 																																?>"
 																	class="doc-chk">
+<?php } else {;?>
+																<input type="checkbox" id="doc_<?php if (isset($doc['AssociationDocument'][0]['id'])) {
+																																				echo $doc['AssociationDocument'][0]['id'];
+																																			}
+																																?>"
+																	name="data[InterviewDocumentStatusList][status_id]"
+																	value="<?php if(!empty($doc['InterviewDocStatusList']['status_id'])) {
+																									echo $doc['InterviewDocStatusList']['status_id'];
+																								} else {
+																									echo 0;
+																								} ?>"
+																	data-doc-status-id="<?php if ( !empty($doc['InterviewDocStatusList'] ) ) {
+																															echo $doc['InterviewDocStatusList']['id'];
+																														} ?>"
+																	data-interview-id="<?php echo $this->request->data['Interview']['id']; ?>"
+																	data-association-document-id="<?php if ( isset($doc['AssociationDocument'][0]['id'] ) ) {
+																																				echo $doc['AssociationDocument'][0]['id'];
+																																			};
+																																?>"
+																	class="doc-chk"
+																	disabled>
+<?php };?>
 																<label for="doc_<?php if (isset($doc['AssociationDocument'][0]['id'])) {
 																													echo $doc['AssociationDocument'][0]['id'];}
 																								 ?>">

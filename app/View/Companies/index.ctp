@@ -12,6 +12,7 @@
 										<header class="main-box-header clearfix">
 											<h2 class="pull-left"><?= __('Company List') ?></h2>
 
+										<?php if($user['role_id'] == 1 ||$user['role_id'] == 2){ ;?>
 											<div class="filter-block pull-right">
 												<?php echo $this->Html->link(
 													'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Company'),
@@ -19,6 +20,7 @@
 													array('escape' => false, 'class' => 'btn btn-primary pull right')
 												) ?>
 											</div>
+										<?php };?>
 										</header>
 
 										<div class="main-box-body clearfix">
@@ -78,6 +80,7 @@
 																<?php echo $this->HlpCompany->countCom($company['Company']['id']); ?>
 															</td>
 															<td>
+															<?php if($user['role_id'] == 1 ||$user['role_id'] == 2){ ;?>
 																<div class="actions">
 																	<?php echo $this->Form->postlink(
 																		'<i class="fa fa-trash-o"></i>',
@@ -85,6 +88,7 @@
 																		array('confirm' => __('Are you sure you want to delete # %s?', $company['Company']['id']),'escape' => false, 'class' => 'table-link red' )
 																	);?>
 																</div>
+															<?php }?>
 															</td>
 														</tr>
 													<?php endforeach; ?>

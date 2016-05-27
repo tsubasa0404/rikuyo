@@ -1,9 +1,9 @@
-<?php $this->set('title_for_layout', 'Add Trainee'); ?>
+<?php $this->set('title_for_layout', 'Add Student'); ?>
 <?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
-<?php $this->Html->addCrumb(__('Trainee List'), '/trainees'); ?>
-<?php $this->Html->addCrumb(__('Add Trainee'), ''); ?>
-					<h1><?= __('Add Trainee') ?></h1>
+<?php $this->Html->addCrumb(__('Student List'), '/students'); ?>
+<?php $this->Html->addCrumb(__('Add Student'), ''); ?>
+					<h1><?= __('Add Student') ?></h1>
 					</div>
 				</div>
 			</div>
@@ -24,7 +24,7 @@
 								<h3><span><?= __('Basic Info')?></span></h3>
 								<div class="form-group">
 									<?php echo $this->Form->input('control_no', array(
-										'label' => __('Trainee ID'),
+										'label' => __('Student ID'),
 										'type' => 'text',
 										'class' => 'form-control maxW160',
 										'placeholder' => __('ex.T16030101'),
@@ -261,7 +261,7 @@
 									<label for=""><?= __('Facebook User ID(*)Optional') ?></label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-facebook-square"></i></span>
-										<input name="data[Trainee][facebook]" class="form-control maxW160" maxlength="255" type="text" id="TraineeFacebook">
+										<textarea name="data[Trainee][facebook]" class="form-control" id="TraineeFacebook"></textarea>
 									</div>
 									<span class="help-block">http://www.facebook.com/<span class="red">user-id</span></span>
 								</div>
@@ -326,12 +326,13 @@
 								</div>
 								<div class="btn_register">
 									<button type="submit" class="pull-right btn btn-default btn_register">
-										<i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Trainee') ?>
+										<i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Student') ?>
 									</button>
 								</div>
 							<?php echo $this->Form->end(); ?>
 						</div>
 					</div>
+				</div>
 					<?php echo $this->Form->create('Trainee', array(
 						'action' => 'searchTraineeIdAjax',
 						'class' => 'hide search_trainee_id_form'

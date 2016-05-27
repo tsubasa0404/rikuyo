@@ -38,8 +38,8 @@
 											}
 										?>
 									</div>
-
 									<div class="main-box-body clearfix center-block " style="padding-bottom: 10px !important;" >
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 										<?php
 											echo $this->Form->create('TraineeProfileImage', array(
 											'action' => 'add',
@@ -55,12 +55,13 @@
 										<div class="form-group">
 											<?php echo $this->Form->file('TraineeProfileImage.img', array(
 												'style'=>'cursor:pointer',
-												'class' => ' validate[checkFileType[jpg|jpeg|gif|png]]')); ?>
+												'class' => ' validate[checkFileType[JPG|JPEG|GIF|PNG|jpg|jpeg|gif|png]]')); ?>
 										</div>
 										<button type="submit" class="btn btn-success">
 											<i class="fa fa-cloud-upload"></i>
 											<?= __('Upload Profile Image') ?>
 										</button>
+<?php }; ?>
 										<?php echo $this->Form->end(); ?>
 									</div>
 
@@ -102,7 +103,7 @@
 																	'selected' => $this->request->data['Trainee']['company_id'],
 																	'options' => $option_companies,
 																	'style' => 'display:inline;width:100%',
-																	'empty' => '-- select --'
+																	'empty' => '-- Select Company --'
 																)) ?>
 															</div>
 														</td>
@@ -150,7 +151,9 @@
 													</tr>
 												</tbody>
 											</table>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 											<button type="button" class="btn btn-default pull-right update_flight_btn" style="margin-top:-15px;"><span class=" fa fa-plane"></span> <?= __('Save') ?></button>
+<?php };?>
 											<?php echo $this->Form->end(); ?>
 										</div>
 									</div>
@@ -405,7 +408,9 @@
 												</tr>
 											</tbody>
 										</table>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 										<button type="button" class="btn btn-default pull-right update_doc_chk_btn" style="margin-top:-15px;"><span class=" fa fa-file"></span> <?= __('Save') ?></button>
+<?php };?>
 										<?php echo $this->Form->end(); ?>
 									</div>
 								</div>
@@ -703,13 +708,13 @@
 																					<div class="col-lg-12 col-md-12 col-sm-12">
 																						<label for="TraineeBirthplaceProvinceId">Province</label>
 																						<?php echo $this->Form->input('birthplace_province_id', array(
-																							'label' => false,
-																							'type' => 'select',
-																							'div' => false,
-																							'class' => 'form-control cam_province_id birthplace_province_id',
-																							'value' => $this->request->data['Trainee']['birthplace_province_id'],
-																							'options' => $option_provinces,
-																							'empty' => true
+                                              'label'     => false,
+                                              'type'      => 'select',
+                                              'div'       => false,
+                                              'class'     => 'form-control cam_province_id birthplace_province_id',
+                                              'value'     => $this->request->data['Trainee']['birthplace_province_id'],
+                                              'options'   => $option_provinces,
+                                              'empty'     => __('--Select Province--')
 																						)) ?>
 																					</div>
 																				</div>
@@ -758,12 +763,13 @@
 																					<div class="form-group ">
 																						<label for="TraineeProvinceId">Province</label>
 																						<?php echo $this->Form->input('province_id', array(
-																							'label' => false,
-																							'type' => 'select',
-																							'div' => false,
-																							'class' => 'form-control cam_province_id province_id',
-																							'value' => $this->request->data['Trainee']['province_id'],
-																							'options' => $option_provinces
+                                              'label'     => false,
+                                              'type'      => 'select',
+                                              'div'       => false,
+                                              'class'     => 'form-control cam_province_id province_id',
+                                              'value'     => $this->request->data['Trainee']['province_id'],
+                                              'options'   => $option_provinces,
+                                              'empty'     => __('--Select Province--')
 																						)) ?>
 																					</div>
 																				</div>
@@ -773,12 +779,13 @@
 																					<div class="form-group ">
 																						<label for="TraineeDistrictId">District</label>
 																						<?php echo $this->Form->input('district_id', array(
-																							'label' => false,
-																							'type' => 'select',
-																							'div' => false,
-																							'class' => 'form-control cam_district_id district_id',
-																							'value' => $this->request->data['Trainee']['district_id'],
-																							'options' => $option_districts
+                                              'label'     => false,
+                                              'type'      => 'select',
+                                              'div'       => false,
+                                              'class'     => 'form-control cam_district_id district_id',
+                                              'value'     => $this->request->data['Trainee']['district_id'],
+                                              'options'   => $option_districts,
+                                              'empty'     => __('--Select District--')
 																						)) ?>
 																					</div>
 																				</div>
@@ -786,12 +793,13 @@
 																					<div class="form-group ">
 																						<label for="TraineeCommuneId">Commune</label>
 																						<?php echo $this->Form->input('commune_id', array(
-																							'label' => false,
-																							'type' => 'select',
-																							'div' => false,
-																							'class' => 'form-control cam_commune_id commune_id',
-																							'value' => $this->request->data['Trainee']['commune_id'],
-																							'options' => $option_communes
+                                              'label'     => false,
+                                              'type'      => 'select',
+                                              'div'       => false,
+                                              'class'     => 'form-control cam_commune_id commune_id',
+                                              'value'     => $this->request->data['Trainee']['commune_id'],
+                                              'options'   => $option_communes,
+                                              'empty'     => __('--Select Commune--')
 																						)) ?>
 																						</select>
 																					</div>
@@ -896,12 +904,12 @@
 																			<?= __('Facebook User ID') ?>
 																		</td>
 																		<td>
-																			<a href="http://facebook.com/<?php echo $this->request->data['Trainee']['facebook'] ?>" target="_blank" ><?php echo $this->request->data['Trainee']['facebook'] ?></a>
+																			<!-- <a href="http://facebook.com/<?php //echo $this->request->data['Trainee']['facebook'] ?>" target="_blank" ><?php // echo $this->request->data['Trainee']['facebook'] ?></a> -->
 																		</td>
 																		<td>
 																			<?php echo $this->Form->input('facebook',array(
 																				'label' => false,
-																				'class' => 'form-control maxW200 facebook',
+																				'class' => 'form-control facebook',
 																				'placeholder' => __('Enter Facebook User ID')
 																			)) ?>
 																		</td>
@@ -911,10 +919,12 @@
 																</tbody>
 															</table>
 															<div class="profile-message-btn center-block text-right">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 																<button type="button" class="btn btn-default update_basic_btn">
 																	<i class="fa fa-pencil"></i>
 																	<?= __('Save') ?>
 																</button>
+<?php };?>
 															</div>
 														<?php echo $this->Form->end(); ?>
 													</div>
@@ -966,7 +976,8 @@
 																				'label' => __('Handedness'),
 																				'class' => 'form-control maxW100 handed',
 																				'type' => 'select',
-																				'options' => array('right' => __('Right'), 'left' => __('Left'))
+																				'options' => array('right' => __('Right'), 'left' => __('Left')),
+																				'empty' => true
 																			)) ?>
 																		</td>
 																		<td style="width:100px">
@@ -1002,7 +1013,8 @@
 																				'label' => __('Blood Type'),
 																				'class' => 'form-control maxW100 blood_type',
 																				'type' => 'select',
-																				'options' => array('a' => __('A'), 'b' => __('B'), 'o' => __('O'), 'ab' => __('AB'))
+																				'options' => array('a' => __('A'), 'b' => __('B'), 'o' => __('O'), 'ab' => __('AB')),
+																				'empty' => true
 																			)) ?>
 																		</td>
 																		<td>
@@ -1040,10 +1052,12 @@
 																		</td>
 																		<td>
 																			<div class="profile-message-btn center-block text-center">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 																				<button type="button" class="btn btn-default update_personality_btn">
 																					<i class="fa fa-pencil"></i>
 																					<?= __('Save') ?>
 																				</button>
+<?php };?>
 																			</div>
 																		</td>
 																	</tr>
@@ -1213,10 +1227,12 @@
 																</tbody>
 															</table>
 															<div class="profile-message-btn center-block text-right">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 																<button type="button" class="btn btn-default update_personality_2_btn">
 																	<i class="fa fa-pencil"></i>
 																	<?= __('Save') ?>
 																</button>
+<?php };?>
 															</div>
 														<?php echo $this->Form->end(); ?>
 													</div>
@@ -1225,6 +1241,7 @@
 												<div class="tab-pane fade" id="tab-profile-family">
 													<div class="row">
 														<div class="col-lg-12 col-md-12 col-sm-12 maxW550">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 															<div class="main-box">
 																<header class="main-box-header clearfix">
 																	<h2><?= __('Add Family') ?></h2>
@@ -1276,7 +1293,8 @@
 																						'niece'					=>	__('Niece')
 																						 ),
 																					'class' => "form-control maxW160 family_relationship",
-																					'required' =>true
+																					'required' =>true,
+																					'empty' => true
 																				)); ?>
 																			</div>
 																			<div class="form-group col-lg-4 col-md-4 col-sm-4">
@@ -1305,7 +1323,7 @@
 																						'label' => __('Job'),
 																						'type' => 'select',
 																						'value' => '',
-																						'empty' => true,
+																						'empty' => __('--Select Job--'),
 																						'options' => $option_jobs,
 																						'class' => "form-control sel_job_family family_job_id",
 																						'div' => false,
@@ -1321,6 +1339,7 @@
 																	<?php echo $this->Form->end(); ?>
 																</div>
 															</div>
+<?php };?>
 														</div>
 													</div>
 
@@ -1340,7 +1359,7 @@
 																	</thead>
 																	<tbody class="family_table">
 																		<?php foreach ($trainee_families as $family) : ?>
-																			<tr data-family-id="'.$family['TraineeFamily']['id'].'">
+																			<tr data-family-id="<?php echo $family['TraineeFamily']['id']; ?>">
 																				<td class="td_first_block">
 																					<?php echo $family['TraineeFamily']['name'];?>
 																				</td>
@@ -1358,6 +1377,7 @@
 																				</td>
 																				<td>
 																					<div class="actions text-center">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 																						<?php echo $this->Html->link(
 																							'<i class="fa fa-pencil"></i>',
 																							array('controller' => 'trainee_families', 'action' => 'edit',$family['TraineeFamily']['id']),
@@ -1368,6 +1388,7 @@
 																							array('controller' => 'trainee_families', 'action' => 'delete',$family['TraineeFamily']['id']),
 																							array('confirm' => __('Are you sure you want to delete # %s?', $family['TraineeFamily']['id']),'escape' => false, 'class' => 'table-link red' )
 																						);?>
+<?php };?>
 																					</div>
 																				</td>
 																			</tr>
@@ -1563,7 +1584,7 @@
 																								'div' => false,
 																								'class' => 'form-control sel_job employ1_job',
 																								'options' => $option_jobs,
-																								'empty' => true,
+																								'empty' => __('--Select Job--'),
 																								'value' => $this->request->data['Trainee']['employ1_job'],
 																								'style' => 'width:100%'
 																							)) ?>
@@ -1624,7 +1645,7 @@
 																								'div' => false,
 																								'class' => 'form-control sel_job employ2_job',
 																								'options' => $option_jobs,
-																								'empty' => true,
+																								'empty' => __('--Select Job--'),
 																								'value' => $this->request->data['Trainee']['employ2_job'],
 																								'style' => 'width:100% employ2_job'
 																							)) ?>
@@ -1685,7 +1706,7 @@
 																								'div' => false,
 																								'class' => 'form-control sel_job employ3_job',
 																								'options' => $option_jobs,
-																								'empty' => true,
+																								'empty' => __('--Select Job--'),
 																								'value' => $this->request->data['Trainee']['employ3_job'],
 																								'style' => 'width:100%'
 																							)) ?>
@@ -1746,7 +1767,7 @@
 																								'div' => false,
 																								'class' => 'form-control sel_job employ4_job',
 																								'options' => $option_jobs,
-																								'empty' => true,
+																								'empty' => __('--Select Job--'),
 																								'value' => $this->request->data['Trainee']['employ4_job'],
 																								'style' => 'width:100%'
 																							)) ?>
@@ -1807,7 +1828,7 @@
 																								'div' => false,
 																								'class' => 'form-control sel_job employ5_job',
 																								'options' => $option_jobs,
-																								'empty' => true,
+																								'empty' => __('--Select Job--'),
 																								'value' => $this->request->data['Trainee']['employ5_job'],
 																								'style' => 'width:100%'
 																							)) ?>
@@ -1857,7 +1878,7 @@
 																							'div' => false,
 																							'class' => 'form-control sel_job job1_id',
 																							'options' => $option_jobs,
-																							'empty' => true,
+																							'empty' => __('--Select Job--'),
 																							'value' => $this->request->data['Trainee']['job1_id'],
 																							'style' => 'width:100%'
 																						)) ?>
@@ -1886,7 +1907,7 @@
 																							'div' => false,
 																							'class' => 'form-control sel_job job2_id',
 																							'options' => $option_jobs,
-																							'empty' => true,
+																							'empty' => __('--Select Job--'),
 																							'value' => $this->request->data['Trainee']['job2_id'],
 																							'style' => 'width:100%'
 																						)) ?>
@@ -1950,10 +1971,12 @@
 																</tbody>
 															</table>
 															<div class="profile-message-btn center-block text-right">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 																<button type="button" class="btn btn-default update_career_btn">
 																	<i class="fa fa-pencil"></i>
 																	<?= __('Save') ?>
 																</button>
+<?php };?>
 															</div>
 														<?php echo $this->Form->end(); ?>
 													</div>
@@ -2100,10 +2123,12 @@
 																</tbody>
 															</table>
 															<div class="profile-message-btn center-block text-right">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 																<button type="button" class="btn btn-default update_others_btn">
 																	<i class="fa fa-pencil"></i>
 																	<?= __('Save') ?>
 																</button>
+<?php };?>
 															</div>
 
 														<?php echo $this->Form->end(); ?>
@@ -2118,6 +2143,7 @@
 									<div id="documents">
 
 										<div class="row">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 											<div class="col-lg-6 col-md-6 col-sm-6 maxW360">
 												<div class="main-box clearfix">
 													<header class="main-box-header clearfix">
@@ -2140,7 +2166,7 @@
 																<?php echo $this->Form->file('TraineeDocument.img', array(
 																		'required' => true,
 																		'style'=>'cursor:pointer',
-																		'class' => 'validate[checkFileType[jpg|jpeg|gif|png|pdf]]'
+																		'class' => 'validate[checkFileType[JPG|JPEG|GIF|PNG|PDF|jpg|jpeg|gif|png|pdf]]'
 																));?>
 																<?php echo $this->Form->error('Image.img') ?>
 															</div>
@@ -2167,6 +2193,7 @@
 													</div>
 												</div>
 											</div>
+<?php };?>
 
 											<div class="col-lg-6 col-md-6 col-sm-6 maxW500">
 												<div class="main-box clearfix">
@@ -2191,8 +2218,7 @@
 																					'/img/trainee_documents/'.$doc["DocImg"]["img_file_name"],
 																					array('class' => 'table-link popup', 'alt' => 'Show Image', 'escape' => false)
 																				) ?>
-																				<!-- <a href="<?php //$_SERVER["HTTP_HOST"]; ?>/dev/img/trainee_documents/<?php //echo $doc['DocImg']['img_file_name']?>" class="table-link popup" alt="Show Image"><i class="fa fa-eye fa-lg"></i>
-																				</a> -->
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 																				<?php echo $this->Html->link(
 																					'<i class="fa fa-pencil"></i>',
 																					array(
@@ -2211,6 +2237,7 @@
 																					'confirm' => __('Are you sure you want to delete # %s?', $doc['DocImg']['id']),'escape' => false, 'class' => 'table-link red'
 																					)
 																				);?>
+<?php };?>
 																			</td>
 																		</tr>
 																	<?php endforeach; ?>
@@ -2238,7 +2265,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<?php if(isset($int_results)):?>
+													<?php if(isset($int_results[0]['Interview']['id'])):?>
 														<?php foreach ($int_results as $res) : ?>
 															<tr>
 																<td class="td_first_block">
@@ -2285,6 +2312,7 @@
 												<div class="tab-pane fade in active" id="tab-school">
 													<div class="main-box-body clearfix">
 														<div class="col-lg-12 col-md-12 col-sm-12">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 															<div class="col-lg-6 col-md-6 col-sm-6 maxW300">
 																<div class="main-box">
 																	<header class="main-box-header clearfix">
@@ -2317,8 +2345,8 @@
 																	</div>
 																</div>
 															</div>
-
-															<div class="table-responsive col-lg-12 col-md-12 col-sm-12 maxW800">
+<?php };?>
+															<div class="table-responsive col-lg-12 col-md-12 col-sm-12">
 																<table class="table table-bordered finance">
 																	<thead>
 																		<tr>
@@ -2338,13 +2366,14 @@
 																					<td class="text-center">
 																					<?php echo "$ ".$expense['TraineeExpense']['expected_price'];?>
 																					</td>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 																					<td>
 																						<div class="row">
 																							<div class="col-lg-4 col-md-4 col-sm-4">
 																								<label><?= __('Pay Date')?></label>
 																								<?php echo $this->Form->date('TraineeExpense.pay_date', array(
 																									'label' => false,
-																									'class' => 'form-control maxW200 chk ',
+																									'class' => 'form-control maxW250 chk ',
 																									'value' => $expense['TraineeExpense']['pay_date'],
 																									'data-expense-id' => $expense['TraineeExpense']['id'],
 																									'data-column' => 'pay_date'
@@ -2371,7 +2400,46 @@
 																							</div>
 																						</div>
 																					</td>
+<?php } else {;?>
+																					<td>
+																						<div class="row">
+																							<div class="col-lg-4 col-md-4 col-sm-4">
+																								<label><?= __('Pay Date')?></label>
+																								<?php echo $this->Form->date('TraineeExpense.pay_date', array(
+																									'label' => false,
+																									'class' => 'form-control maxW250 chk ',
+																									'value' => $expense['TraineeExpense']['pay_date'],
+																									'data-expense-id' => $expense['TraineeExpense']['id'],
+																									'data-column' => 'pay_date',
+																									'disabled' => true
+																									));?>
+																							</div>
+																							<div class="col-lg-3 col-md-3 col-sm-3">
+																								<?php echo $this->Form->input('TraineeExpense.pay_price', array(
+																									'label' => __('Price($)'),
+																									'type' => 'number',
+																									'class' => 'form-control maxW100 chk',
+																									'value' => $expense['TraineeExpense']['pay_price'],
+																									'data-expense-id' => $expense['TraineeExpense']['id'],
+																									'data-column' => 'pay_price',
+																									'disabled' => true
+																									));?>
+																							</div>
+																							<div class="col-lg-4 col-md-4 col-sm-4">
+																							<?php echo $this->Form->input('TraineeExpense.note', array(
+																								'label' => __('Note'),
+																								'class' => 'form-control chk',
+																								'value' => $expense['TraineeExpense']['note'],
+																								'data-expense-id' => $expense['TraineeExpense']['id'],
+																								'data-column' => 'note',
+																								'disabled' => true
+																								));?>
+																							</div>
+																						</div>
+																					</td>
+<?php };?>
 																					<td class="text-center">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 																					<?php echo $this->Form->postlink(
 																						'<i class="fa fa-pencil"></i>',
 																						array('controller' => 'trainee_expenses', 'action' => 'edit',$expense['TraineeExpense']['id']),
@@ -2382,6 +2450,7 @@
 																						array('controller' => 'trainee_expenses', 'action' => 'delete',$expense['TraineeExpense']['id']),
 																						array('confirm' => __('Are you sure you want to delete # %s?',$expense['TraineeExpense']['id']),'escape' => false, 'class' => 'table-link red' )
 																					);?>
+<?php };?>
 																					</td>
 																				</tr>
 																			<?php endforeach; ?>
@@ -2444,6 +2513,8 @@
 													<div class="main-box-body clearfix">
 														<div class="row">
 															<div class="col-lg-12 col-md-12 col-sm-12">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 																<div class="col-lg-4 col-md-4 col-sm-4 maxW250">
 																	<div class="main-box">
 																		<header class="main-box-header clearfix">
@@ -2488,9 +2559,10 @@
 																		</div>
 																	</div>
 																</div>
-
+<?php };?>
 																<div class="col-lg-8 col-md-8 col-sm-8">
 																	<div class="row">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 																		<div class="col-lg-6 col-md-6 col-sm-6 maxW300">
 																			<div class="main-box">
 																				<header class="main-box-header clearfix">
@@ -2513,7 +2585,7 @@
 																							array(
 																								'required' => true,
 																								'style'=>'cursor:pointer',
-																								'class' => ' validate[checkFileType[jpg|jpeg|gif|png|pdf]]'));
+																								'class' => ' validate[checkFileType[JPG|JPEG|GIF|PNG|PDF|jpg|jpeg|gif|png|pdf]]'));
 																						?>
 																					</div>
 																					<div class="form-group">
@@ -2532,7 +2604,7 @@
 																				</div>
 																			</div>
 																		</div>
-
+<?php };?>
 																		<div class="col-lg-6 col-md-6 col-sm-6">
 																			<div class="main-box">
 																				<div class="main-box-body clearfix">
@@ -2556,9 +2628,8 @@
 																												'/img/trainee_microfinance_images/original/'.$image['TraineeMicrofinanceImage']['img_file_name'],
 																												array('class' => 'table-link popup', 'alt' => 'Show Image', 'escape' => false)
 																											) ?>
-																											<!-- <a href="/dev/img/trainee_microfinance_images/original/<?php // echo $image['TraineeMicrofinanceImage']['img_file_name'];?>" class="table-link popup" alt="Show Image">
-																												<i class="fa fa-eye fa-lg"></i>
-																											</a> -->
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 																										<?php echo $this->Form->postlink(
 																											'<i class="fa fa-trash-o"></i>',
 																											array(
@@ -2568,6 +2639,7 @@
 																												'confirm' => __('Are you sure you want to delete # %s?', $image['TraineeMicrofinanceImage']['id']),'escape' => false, 'class' => 'table-link red'
 																												)
 																											);?>
+<?php };?>
 																										</td>
 																									</tr>
 																								<?php endforeach; ?>
@@ -2606,6 +2678,8 @@
 																							<div class="row">
 																								<div class="col-lg-4 col-md-4 col-sm-4 maxW160">
 																									<label><?= __('Status'); ?></label>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 																										<?php echo $this->form->input('TraineeMicrofinanceRecord.status_id', array(
 																											'label' => false,
 																											'class' => 'form-control maxW120 microfinance-'.$record['TraineeMicrofinanceRecord']['id'],
@@ -2613,17 +2687,39 @@
 																											'type' => 'select',
 																											'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
 																											));?>
+<?php } else {;?>
+																										<?php echo $this->form->input('TraineeMicrofinanceRecord.status_id', array(
+																											'label' => false,
+																											'class' => 'form-control maxW120 microfinance-'.$record['TraineeMicrofinanceRecord']['id'],
+																											'value' => $record['TraineeMicrofinanceRecord']['status_id'],
+																											'type' => 'select',
+																											'options' => array('0'=> __('Not Yet'),'1'=> __('OK')),
+																											'disabled' => true
+																											));?>
+<?php };?>
 																								</div>
 																								<div class="col-lg-8 col-md-8 col-sm-8">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 																									<?php echo $this->Form->input('TraineeMicrofinanceRecord.note', array(
 																										'label' => __('Note'),
 																										'class' => 'form-control microfinance-'.$record['TraineeMicrofinanceRecord']['id'],
 																										'value' => $record['TraineeMicrofinanceRecord']['note']
 																										));?>
+<?php } else { ;?>
+																									<?php echo $this->Form->input('TraineeMicrofinanceRecord.note', array(
+																										'label' => __('Note'),
+																										'class' => 'form-control microfinance-'.$record['TraineeMicrofinanceRecord']['id'],
+																										'value' => $record['TraineeMicrofinanceRecord']['note'],
+																										'disabled' => true
+																										));?>
+<?php };?>
 																								</div>
 																							</div>
 																						</td>
 																						<td class="text-center">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 																							<?php echo $this->Form->postlink(
 																								'<i class="fa fa-pencil"></i>',
 																								array('controller' => 'trainee_microfinance_records', 'action' => 'edit',$record['TraineeMicrofinanceRecord']['id']),
@@ -2634,6 +2730,7 @@
 																								array('controller' => 'trainee_microfinance_records', 'action' => 'delete',$record['TraineeMicrofinanceRecord']['id']),
 																								array('confirm' => __('Are you sure you want to delete # %s?',$record['TraineeMicrofinanceRecord']['id']),'escape' => false, 'class' => 'table-link red' )
 																							);?>
+<?php };?>
 																						</td>
 																					</tr>
 																				<?php endforeach; ?>
@@ -2746,6 +2843,8 @@
 																	</div>
 																	<div class="time hidden-xs">
 																		<?php echo $voice['TraineeVoice']['created']; ?>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 																		<?php echo $this->Html->link(
 																			'<i class="fa fa-pencil"></i>',
 																			array('controller' => 'trainee_voices', 'action' => 'edit',$voice['TraineeVoice']['id']),
@@ -2756,6 +2855,7 @@
 																			array('controller' => 'trainee_voices', 'action' => 'delete',$voice['TraineeVoice']['id']),
 																			array('confirm' => __('Are you sure you want to delete # %s?', $voice['TraineeVoice']['id']),'escape' => false, 'class' => 'table-link red' )
 																		);?>
+<?php };?>
 																	</div>
 																	<div class="text">
 																		<?php echo $voice['TraineeVoice']['voice_en']; ?>
@@ -3252,8 +3352,8 @@
             job_id:       job_id,
 
 					}, success:function(rs){
-						$tmp = $('tr.tmp_family_add').clone();
-						$tmp = $('tr.tmp_family_add').removeClass('hide');
+
+						$tmp = $('tr.tmp_family_add').clone().prependTo(".family_table").removeClass('hide').removeClass('tmp_family_add').attr('data-family-id', rs);
             var edit_url    = $('#tab-profile-family').find('.family-edit-link').attr('action');
             var delete_url  = $('#tab-profile-family').find('.family-delete-link').attr('action');
 						$tmp.find('td.name').text(name);
@@ -3268,8 +3368,12 @@
 						$tmp.find('a.delete').attr(
 							'onclick',
 							'if (confirm("Are you sure you want to delete")) {document.post_'+rs+'.submit();} event.returnValue = false; return false;');
-						$('tbody.family_table').prepend($tmp);
 						swal("<?= __('Saved!') ?>", "", "success");
+						$('.family_name').val("");
+						$('.family_relationship').val("");
+						$('.family_birthday').val("");
+						$('.family_phone').val("");
+						$('#select2-TraineeFamilyJobId-container').text("");
 
 					}, error:function(){
 						swal("<?= __('Error!') ?>", "", "error");
@@ -3533,60 +3637,13 @@
 	$(function($){
 		//nice select boxes( address Province)
 		$('.cam_province_id').select2();
-		$('.cam_province_id').change(function(){
-			var province_id = $(this).select2('val');
-			$(this).val(province_id);
-		});
 
 		//nice select boxes( address District)
 		$('.cam_district_id').select2();
-		$('.cam_district_id').change(function(){
-			var district_id = $(this).select2('val');
-			$(this).val(district_id);
-		});
 
 		//nice select boxes( address District)
 		$commune_id = $('.cam_commune_id');
 		$commune_id.select2();
-		$commune_id.change(function(){
-			var commune_id = $commune_id.select2('val');
-			$commune_id.val(commune_id);
-		});
-
-
-			function setDistrictSelect(s){
-				$('.cam_district_id').find('option').remove();
-				$('.cam_district_id').append('<option value=""></option>');
-				$(districts).each(function(i){
-					if(districts[i].province_id == s){
-						$('.cam_district_id').append($('<option></option>')
-							.attr('province', districts[i].province)
-							.val(districts[i].district_id)
-							.text(districts[i].district));
-						}
-					}
-				);
-			}
-			//setDistrictSelect(<?php $this->request->data['Trainee']['province_id']; ?>);
-
-
-
-			function setCommuneSelect(s){
-				$('.cam_commune_id').find('option').remove();
-				$('.cam_commune_id').append('<option value=""></option>');
-				$(communes).each(function(i){
-					if(communes[i].district_id == s){
-						$('.cam_commune_id').append($('<option></option>')
-							.attr('district', communes[i].district)
-							.val(communes[i].commune_id)
-							.text(communes[i].commune));
-						}
-					}
-				);
-			}
-			//setCommuneSelect('');
-		var communes = <?php echo $communes = json_encode($communes, JSON_HEX_APOS); ?>;
-		var districts = <?php echo $districts = json_encode($districts, JSON_HEX_APOS); ?>;
 	});
 
 	//初期設定 select 2
@@ -3599,18 +3656,12 @@
 			$(this).val(han);
 		});
 		$('.sel_job').select2({
-			placeholder: "<?= __('Select Job') ?>",
-			allowClear:false
 		});
 
 		$('.sel_job_family').select2({
-			placeholder: "<?= __('Select Job') ?>",
-			allowClear:false
 		});
 
 		$('.sel_company').select2({
-			placeholder: "<?= __('Select Company') ?>",
-			allowClear: false
 		});
 	});
 

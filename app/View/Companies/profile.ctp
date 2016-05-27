@@ -41,7 +41,8 @@
 															'div' => false,
 															'class' => 'form-control sel_association',
 															'value' => $this->request->data['Company']['association_id'],
-															'options' => $option_associations
+															'options' => $option_associations,
+															'empty' => __('--Select Association--')
 														)) ?>
 													</div>
 												</td>
@@ -111,8 +112,8 @@
 														'selected' => explode(',', $this->request->data['Company']['job']),
 														'class' => "form-control sel_job",
 														'multiple' => true,
-														'style' => array("width:200px"),
-														'div' => false
+														'div' => false,
+														'empty' => __('--Select Job--')
 													)); ?>
 
 												</td>
@@ -131,12 +132,14 @@
 											</tr>
 										</tbody>
 									</table>
+								<?php if($user['role_id'] == 1 ||$user['role_id'] == 2 ){ ;?>
 									<div class="profile-message-btn center-block text-right">
 										<button type="submit" class="btn btn-default pull-right">
 											<i class="fa fa-pencil"></i>
 											<?= __('Save') ?>
 										</button>
 									</div>
+								<?php };?>
 									<?php echo $this->Form->end(); ?>
 								</div>
 							</div>
@@ -349,12 +352,15 @@
 											</tr>
 										</tbody>
 									</table>
+
+									<?php if($user['role_id'] == 1 ||$user['role_id'] == 2 ){ ;?>
 									<div class="profile-message-btn center-block text-right">
 										<button type="submit" class="btn btn-default pull-right">
 											<i class="fa fa-pencil"></i>
 											<?= __('Save') ?>
 										</button>
 									</div>
+									<?php };?>
 									<?php echo $this->Form->end(); ?>
 								</div>
 							</div>
@@ -396,7 +402,7 @@
 											<td>
 												<?php if($trainee['WorkingTraineeProfileImage']['img_file_name'] != null)
 													{
-														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage']['img_file_name'], array('style' => 'width:60px;height:60px;'));
+														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['WorkingTraineeProfileImage']['img_file_name'], array('style' => 'width:60px;height:60px;'));
 													} else {
 														echo $this->Html->image('trainee_profile_images/thumb/default.png', array('style' => 'width:60px;height:60px;'));
 													};?>
@@ -455,7 +461,7 @@
 											<td>
 												<?php if($trainee['ReturnedTraineeProfileImage']['img_file_name'] != null)
 													{
-														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage']['img_file_name'], array('style' => 'width:60px;height:60px;'));
+														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['ReturnedTraineeProfileImage']['img_file_name'], array('style' => 'width:60px;height:60px;'));
 													} else {
 														echo $this->Html->image('trainee_profile_images/thumb/default.png', array('style' => 'width:60px;height:60px;'));
 													};?>
@@ -505,13 +511,9 @@
 		$(document).ready(function() {
 
 			$('.sel_association').select2({
-            placeholder: '所属組合を選択してください',
-            allowClear: false
         });
 
 			$('.sel_job').select2({
-				placeholder: '職種を選択してください',
-				allowClear: false
 			});
 
 			//住所自動入力

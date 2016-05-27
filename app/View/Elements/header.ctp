@@ -40,13 +40,7 @@
 								) ?>
 							</li>
 						<?php endforeach; ?>
-						<!-- <li class="item-footer">
-							<?php // echo $this->Html->link(
-								//__('View All notifications'),
-								//array('controller' => 'tasks', 'action' => 'index'),
-								//array('escape' => false, 'class' => '')
-							//) ?>
-						</li> -->
+
 					</ul>
 				</li>
 				<li class="dropdown">
@@ -70,13 +64,7 @@
 								) ?>
 							</li>
 						<?php endforeach; ?>
-						<!-- <li class="item-footer">
-							<?php // echo $this->Html->link(
-								//__('View All notifications'),
-								//array('controller' => 'tasks', 'action' => 'index'),
-								//array('escape' => false, 'class' => '')
-							//) ?>
-						</li> -->
+
 					</ul>
 				</li>
 
@@ -99,6 +87,7 @@
 
 		<div class="nav-no-collapse pull-right" id="header-nav">
 			<ul class="nav navbar-nav pull-right">
+				<li style="color:white;padding-top: 18px"><?php echo "I'm " . $user['Role']['role']; ?></li>
 				<li class="hidden-xxs">
 					<?php echo $this->Html->link(
 						__('Logout'),

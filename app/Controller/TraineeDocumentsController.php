@@ -49,8 +49,11 @@ class TraineeDocumentsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->TraineeDocument->create();
 
-      $doc_name             = $this->request->data['TraineeDocument']['doc_name_en'];
       $trainee_control_no   = $this->request->data['TraineeDocument']['trainee_control_no'];
+      $doc_name             = $this->request->data['TraineeDocument']['doc_name_en'];
+      if(!preg_match("/^[a-zA-Z0-9]+$/", $doc_name)){
+      	$doc_name = rand(1000,10000);
+      }
       $org_img_file_name    = $this->request->data['TraineeDocument']['img']['name'];
       $ext                  = pathinfo($org_img_file_name, PATHINFO_EXTENSION);
       $new_img_file_name    = $trainee_control_no . "_" . $doc_name ."_". date('Ymdhis')."." . $ext;

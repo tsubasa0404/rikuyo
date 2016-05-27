@@ -860,6 +860,12 @@ msgstr ""
 msgid "The user could not be changed. Please, try again."
 msgstr ""
 
+msgid "Roles List"
+msgstr "権限一覧"
+
+msgid "Report"
+msgstr "レポート"
+
 #: View/Agents/add.ctp:4
 #: View/Agents/index.ctp:2;3;13
 #: View/Agents/profile.ctp:4
@@ -1543,7 +1549,7 @@ msgstr ""
 #: View/Scaffolds/index.ctp:52
 #: View/Scaffolds/view.ctp:55;176
 msgid "Are you sure you want to delete # %s?"
-msgstr "削除しますか？"
+msgstr "%sを本当に削除してよろしいですか？"
 
 #: View/Agents/edit.ctp:51
 #: View/Agents/view.ctp:191
@@ -5508,7 +5514,7 @@ msgstr ""
 #: View/Roles/edit.ctp:4
 #: View/Roles/view.ctp:29
 msgid "Edit Role"
-msgstr ""
+msgstr "権限を編集"
 
 #: View/Roles/index.ctp:2
 #: View/Users/index.ctp:104

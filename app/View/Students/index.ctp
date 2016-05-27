@@ -14,16 +14,19 @@
 						<header class="main-box-header clearfix">
 							<h2 class="pull-left"><?= __('Student List') ?></h2>
 
+
 							<div class="filter-block pull-right">
 								<div class="form-group pull-left">
 									<input type="text" id="filter" class="form-control" placeholder="Search...">
 									<i class="fa fa-search search-icon"></i>
 								</div>
+							<?php if($user['role_id'] == 1 ||$user['role_id'] == 2  ||$user['role_id'] == 5){ ;?>
 								<?php echo $this->Html->link(
 									'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Student'),
 									array('controller' => 'trainees', 'action' => 'add'),
 									array('escape' => false, 'class' => 'btn btn-primary pull-right')
 								) ?>
+							<?php };?>
 							</div>
 						</header>
 
@@ -55,9 +58,15 @@
 											<td>
 												<?php if($trainee['TraineeProfileImage']['img_file_name'] != null)
 													{
-														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage']['img_file_name'], array('style' => 'width:60px;height:60px;'));
+														echo $this->Html->link(
+															$this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage']['img_file_name'], array('style' => 'width:60px;height:60px;')),
+															array('controller' => 'trainees', 'action' => 'profile/'.$trainee['Trainee']['id']),
+															array('escape' => false));
 													} else {
-														echo $this->Html->image('trainee_profile_images/thumb/default.png', array('style' => 'width:60px;height:60px;'));
+														echo $this->Html->link(
+															$this->Html->image('trainee_profile_images/thumb/default.png', array('style' => 'width:60px;height:60px;')),
+															array('controller' => 'trainees', 'action' => 'profile/'.$trainee['Trainee']['id']),
+															array('escape' => false));
 													};?>
 													<br>
 												<?php echo $trainee['Trainee']['given_name_en']." ".$trainee['Trainee']['family_name_en'];?>
@@ -76,6 +85,7 @@
 												<?php echo $this->Btn->studentStatusBtn($trainee['Trainee']['student_status_id']);?>
 											</td>
 											<td>
+											<?php if($user['role_id'] == 1 ||$user['role_id'] == 2 ){ ;?>
 												<div class="actions">
 													<?php echo $this->Form->postlink(
 														'<i class="fa fa-trash-o"></i>',
@@ -83,6 +93,7 @@
 														array('confirm' => __('Are you sure you want to delete # %s?', $trainee['Trainee']['id']),'escape' => false, 'class' => 'table-link red' )
 													);?>
 												</div>
+											<?php }; ?>
 											</td>
 										</tr>
 									<?php endforeach; ?>

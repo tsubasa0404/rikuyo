@@ -153,7 +153,9 @@ class UsersController extends AppController {
 			//リストAclに移動
 			$this->redirect('../arosacos/index');
 		}
-		$roles = $this->User->Role->find('list');
+		$roles = $this->User->Role->find('list', array(
+			'fields' => array('id', 'role'),
+			'order' => array('id' => 'asc')));
 		$this->set(compact('roles'));
 	}
 
@@ -167,6 +169,14 @@ class UsersController extends AppController {
 			$read=$this->request->data['ArosAco']['read'];
 			$update=$this->request->data['ArosAco']['update'];
 			$delete=$this->request->data['ArosAco']['delete'];
+
+			//var_dump($aro);
+			var_dump($aco);
+			var_dump($create);
+			var_dump($read);
+			var_dump($update);
+			var_dump($delete);
+			die();
 
 			//パーミッションの設定
 			$this->Acl->$create($aro,$aco,'create');

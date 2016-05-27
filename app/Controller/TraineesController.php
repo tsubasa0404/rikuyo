@@ -89,7 +89,7 @@ class TraineesController extends AppController {
 			if ($this->Trainee->save($this->request->data)) {
 
 				$this->Session->setFlash(__('The trainee has been saved.'), 'success_flash');
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'students', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The trainee could not be saved. Please, try again.'), 'error_flash');
 			}
@@ -104,6 +104,8 @@ class TraineesController extends AppController {
 	}
 
 	public function profile($id = null) {
+    $user = $this->Auth->user();
+
 		if (!$this->Trainee->exists($id)) {
 			throw new NotFoundException(__('Invalid Trainee'));
 		}
@@ -152,47 +154,75 @@ class TraineesController extends AppController {
 				$microfinances = $this->Trainee->microfinances($id);
 				//マイクロファイナンス画像取得
 				$microfinance_images = $this->Trainee->microfinance_images($id);
-				$this->set(compact('expenses', 'microfinances', 'microfinance_images'));
 
-			//各Form用オプション取得
-			//$langに応じて出力切り替え
-			//職業一覧
-			$option_jobs = $this->Job->optionJobs($lang);
-			//住所用一覧
+
+      //各Form用オプション取得
+      //$langに応じて出力切り替え
+      //職業一覧
+      $option_jobs = $this->Job->optionJobs($lang);
+
+
+      //住所用一覧
       $option_provinces = $this->Province->optionProvince();
       $option_districts = $this->District->optionDistrict();
       $option_communes  = $this->Commune->optionCommune();
       $province_en      = $this->Trainee->dicProvince($this->request->data['Trainee']['province_id']);
       $district_en      = $this->Trainee->dicDistrict($this->request->data['Trainee']['district_id']);
       $commune_en       = $this->Trainee->dicCommune($this->request->data['Trainee']['commune_id']);
-      $this->set(compact('province_en', 'district_en', 'commune_en'));
-			//Select2用住所リスト
-			$districts = $this->Commune->formatPlacesToJson('district');
-			$communes = $this->Commune->formatPlacesToJson('commune');
-			$this->set('_serialize', 'districts');
-			$this->set('_serialize', 'communes');
-			$this->set(compact('districts', 'communes'));
+      //Select2用住所リスト
+      $districts = $this->Commune->formatPlacesToJson('district');
+      $communes = $this->Commune->formatPlacesToJson('commune');
+      $this->set('_serialize', 'districts');
+      $this->set('_serialize', 'communes');
 
-			//TraineeFamily取得
-			$trainee_families = $this->TraineeFamily->traineeFamilyList($id);
+      //TraineeFamily取得
+      $trainee_families = $this->TraineeFamily->traineeFamilyList($id);
 
-			//職業取得
-			$job1 = $this->Trainee->traineeJob1($id);
-			$job2 = $this->Trainee->traineeJob2($id);
+      //職業取得
+      $job1 = $this->Trainee->traineeJob1($id);
+      $job2 = $this->Trainee->traineeJob2($id);
 
       //企業一覧取得
       $option_companies = $this->Company->__optionComAso($lang);
 
-			//Voice取得
-			$voices = $this->TraineeVoice->find('all', array(
-				'fields' => array('id', 'trainee_id', 'title_en', 'voice_en', 'created'),
-				'order' => array('created' => 'asc')
-				));
+      //Voice取得
+      $voices = $this->TraineeVoice->find('all', array(
+        'fields' => array('id', 'trainee_id', 'title_en', 'voice_en', 'created'),
+        'order' => array('created' => 'asc')
+        ));
 
-			$this->set(compact(
-				'option_jobs','option_provinces','option_districts', 'option_communes','option_companies',
-				 'trainee_families', 'lang', 'job1', 'job2', 'prof_img','doc_imgs', 'int_results', 'voices'));
+      if($user['role_id'] == 1 || $user['role_id'] == 2 || $user['role_id'] == 3){
+
+      $this->set(compact('expenses', 'microfinances', 'microfinance_images'));
+      $this->set(compact('province_en', 'district_en', 'commune_en'));
+      $this->set(compact(
+        'option_jobs','option_provinces','option_districts', 'option_communes','option_companies',
+         'trainee_families', 'lang', 'job1', 'job2', 'prof_img','doc_imgs', 'int_results', 'voices'));
+      }
+
+      if($user['role_id'] == 4){ //finance
+
+        $this->set(compact('expenses', 'microfinances', 'microfinance_images', 'lang', 'prof_img', 'voices'));
+        $this->render('profile_finance');
+
+      } else if($user['role_id'] == 5){ //receptionist
+
+        $this->set(compact('province_en', 'district_en', 'commune_en',
+          'option_jobs', 'option_provinces','option_districts', 'option_communes','option_companies',
+          'trainee_families', 'lang', 'job1', 'job2', 'prof_img','doc_imgs', 'int_results', 'voices'));
+        $this->render('profile_receptionist');
+
+      } else if($user['role_id'] == 6){ //processor
+
+        $this->set(compact('lang', 'prof_img', 'doc_imgs', 'voices'));
+        $this->render('profile_processor');
+
+      }
+
+
 		}
+
+
 	}
 
 	public function updateFlightAjax($id=null){

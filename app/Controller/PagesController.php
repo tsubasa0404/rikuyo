@@ -49,6 +49,7 @@ class PagesController extends AppController {
  *	or MissingViewException in debug mode.
  */
 	public function display() {
+		$user = $this->Auth->user();
 		$path = func_get_args();
 
 		$count = count($path);
@@ -80,6 +81,8 @@ class PagesController extends AppController {
 		$this->Task->recursive = -1;
 		$tasks = $this->Task->find('all');
 		$this->set(compact('tasks'));
+
+
 
 		try {
 			$this->render(implode('/', $path));

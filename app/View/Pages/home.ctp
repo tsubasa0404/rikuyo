@@ -5,6 +5,7 @@
 									</div>
 								</div>
 							</div>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2 || $user['role_id'] == 3 || $user['role_id'] == 5 ){ ;?>
 
 							<div class="row">
 								<div class="col-lg-12 maxW800">
@@ -12,11 +13,13 @@
 										<header class="main-box-header clearfix">
 											<h2 class="pull-left"><?= __('Interview Schedule') ?></h2>
 											<div class="filter-block pull-right">
+										<?php if($user['role_id'] == 1 || $user['role_id'] == 2 ){ ;?>
 												<?php echo $this->Html->link(
 													'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Interview'),
 													array('controller' => 'interviews', 'action' => 'add'),
 													array('escape' => false, 'class' => 'btn btn-primary pull right')
 												) ?>
+										<?php };?>
 
 												<?php echo $this->Html->link(
 													'<i class="fa fa-eye fa-lg"></i> '.__('Interview List'),
@@ -70,11 +73,14 @@
 																</td>
 																<td>
 																	<div class="actions">
+																	<?php if($user['role_id'] == 1 || $user['role_id'] == 2 ){ ;?>
+
 																		<?php echo $this->Form->postlink(
 																			'<i class="fa fa-trash-o"></i>',
 																			array('controller' => 'interviews', 'action' => 'delete',$int['Interview']['id']),
 																			array('confirm' => __('Are you sure you want to delete # %s?', $int['Interview']['id']),'escape' => false, 'class' => 'table-link red' )
 																		);?>
+																	<?php };?>
 																	</div>
 																</td>
 															</tr>
@@ -86,19 +92,21 @@
 									</div>
 								</div>
 							</div>
-
+<?php };?>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2 || $user['role_id'] == 3 || $user['role_id'] == 5 ){ ;?>
 							<div class="row">
 								<div class="col-lg-12 maxW800">
 									<div class="main-box clearfix">
 										<header class="main-box-header clearfix">
 											<h2 class="pull-left"><?= __('Inspections') ?></h2>
 											<div class="filter-block pull-right">
+											<?php if($user['role_id'] == 1 || $user['role_id'] == 2 ){ ;?>
 												<?php echo $this->Html->link(
 													'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Inspection'),
 													array('controller' => 'inspections', 'action' => 'add'),
 													array('escape' => false, 'class' => 'btn btn-primary pull right')
 												) ?>
-
+											<?php };?>
 												<?php echo $this->Html->link(
 													'<i class="fa fa-eye fa-lg"></i> '.__('Inspections List'),
 													array('controller' => 'inspections', 'action' => 'index'),
@@ -145,11 +153,13 @@
 																	<td><?php echo $inspection['Inspection']['staff'] ?></td>
 																	<td><?php echo $inspection['Inspection']['note'] ?></td>
 																	<td>
+																		<?php if($user['role_id'] == 1 || $user['role_id'] == 2 ){ ;?>
 																		<?php echo $this->Form->postlink(
 																			'<i class="fa fa-trash-o"></i>',
 																			array('controller' => 'inspections', 'action' => 'delete',$inspection['Inspection']['id']),
 																			array('confirm' => __('Are you sure you want to delete # %s?', $inspection['Inspection']['id']),'escape' => false, 'class' => 'table-link red' )
 																		); ?>
+																		<?php };?>
 																	</td>
 																</tr>
 															<?php endforeach; ?>
@@ -162,7 +172,7 @@
 									</div>
 								</div>
 							</div>
-
+<?php };?>
 							<div class="row">
 								<div class="col-lg-12 maxW800">
 									<div class="main-box clearfix">
@@ -218,11 +228,13 @@
 																array('escape' => false, 'class' => '')
 															) ?>
 															<!-- jquery用にdelete_todoクラスを準備 -->
+														<?php if($user['role_id'] == 1 || $user['role_id'] == 2 ){ ;?>
 															<?php echo $this->Form->postlink(
 																'<i class="fa fa-trash-o"></i>',
 																array('controller' => 'tasks', 'action' => 'delete', $task['Task']['id']),
 																array('confirm' => __('Are you sure you want to delete?', $task['Task']['id']),'escape' => false, 'class' => 'table-link red' )
 															) ?>
+														<?php };?>
 														</div>
 														<div class="actions">
 															<span class="label label-danger "><?php echo $task['Task']['expected_date'] ?></span>
@@ -247,6 +259,7 @@
 																array('escape' => false, 'class' => 'edit_todo')
 															) ?>
 															<!-- jquery用にdelete_todoクラスを準備 -->
+
 															<?php echo $this->Form->postlink(
 																'<i class="fa fa-trash-o"></i>',
 																array('controller' => 'tasks', 'action' => 'delete'),

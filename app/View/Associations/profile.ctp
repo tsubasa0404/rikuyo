@@ -154,12 +154,14 @@
 												</tr>
 											</tbody>
 										</table>
+									<?php if($user['role_id'] == 1 ||$user['role_id'] == 2 ){ ;?>
 										<div class="profile-message-btn center-block text-right">
 											<button type="submit" class="btn btn-default pull-right">
 												<i class="fa fa-pencil"></i>
 												<?= __('Save') ?>
 											</button>
 										</div>
+									<?php };?>
 									</div>
 								</div>
 								<?php echo $this->Form->end(); ?>
@@ -170,11 +172,14 @@
 					<div class="main-box">
 						<header class="main-box-header clearfix">
 							<h2 class="pull-left"><?= __('Required Documents List') ?></h2>
+
+						<?php if($user['role_id'] == 1 ||$user['role_id'] == 2 ){ ;?>
 							<?php echo $this->Html->link(
 								'<i class="fa fa-lg fa-plus-circle"></i> '. __('Select Document') ,
 								array('controller' => 'associations', 'action' => 'select', $this->request->data['Association']['id']),
 								array('escape' => false, 'class' => 'btn btn-primary pull-right')
 							) ?>
+						<?php };?>
 						</header>
 						<div class="main-box-body clearfix">
 							<div class="table-responsive">
@@ -208,6 +213,8 @@
 						</div>
 					</div>
 				</div><!-- /Selected Document -->
+
+				<?php if($user['role_id'] == 1 ||$user['role_id'] == 2 ){ ;?>
 				<div class="col-lg-6 col-md-6 col-sm-6 maxW600">
 					<div class="main-box-body clearfix">
 
@@ -343,6 +350,7 @@
 
 					</div>
 				</div>
+				<?php }; ?>
 
 			</div>
 			<div class="row">
@@ -376,7 +384,8 @@
 															'selected' => explode(',', $this->request->data['Association']['sector']),
 															'class' => "form-control sel_sector",
 															'multiple' => true,
-															'div' => false
+															'div' => false,
+															'empty' => __('--Select Sector--')
 														)); ?>
 
 													</td>
@@ -384,12 +393,14 @@
 
 											</tbody>
 										</table>
+									<?php if($user['role_id'] == 1 ||$user['role_id'] == 2 ){ ;?>
 										<div class="profile-message-btn center-block text-right">
 											<button type="submit" class="btn btn-default pull-right">
 												<i class="fa fa-pencil"></i>
 												<?= __('Save') ?>
 											</button>
 										</div>
+									<?php };?>
 									</div>
 								</div>
 								<?php echo $this->Form->end(); ?>
@@ -561,12 +572,15 @@
 
 											</tbody>
 										</table>
+
+									<?php if($user['role_id'] == 1 ||$user['role_id'] == 2 ){ ;?>
 										<div class="profile-message-btn center-block text-right">
 											<button type="submit" class="btn btn-default pull-right">
 												<i class="fa fa-pencil"></i>
 												<?= __('Save') ?>
 											</button>
 										</div>
+									<?php };?>
 									</div>
 								</div>
 								<?php echo $this->Form->end(); ?>
@@ -590,8 +604,6 @@
 		$(document).ready(function() {
 			$('.alert').fadeOut(5000);
 			$('.sel_sector').select2({
-				placeholder: "<?= __('Select Sectors') ?>",
-				allowClear: false
 			});
 
 

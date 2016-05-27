@@ -102,7 +102,6 @@ class TasksController extends AppController {
 			$options = array('conditions' => array('Task.' . $this->Task->primaryKey => $id));
 			$this->request->data = $this->Task->find('first', $options);
 		}
-		$statuses = $this->Task->Status->find('list');
 		$this->set(compact('statuses'));
 	}
 

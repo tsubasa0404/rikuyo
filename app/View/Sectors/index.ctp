@@ -12,7 +12,10 @@
 					<div class="main-box">
 						<header class="main-box-header clearfix">
 							<h2><?= __('Sector List') ?>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 								<button id="" class="md-trigger btn btn-primary pull-right" data-modal="modal-sector"><i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Sector') ?></button>
+<?php };?>
 							</h2>
 						</header>
 						<div class="main-box-body clearfix">
@@ -28,7 +31,9 @@
 									<tbody>
 										<?php foreach ($sectors as $sector) : ?>
 											<tr id="<?php echo $sector['Sector']['id'];?>" data-id="<?php echo $sector['Sector']['id'];?>">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
 												<td class="td_first_block">
+
 													<?php echo $this->Form->input('sector_jp', array(
 														'value' => $sector['Sector']['sector_jp'],
 														'class' => "on_change_input form-control jp-".$sector['Sector']['id'],
@@ -52,13 +57,45 @@
 														'id' => 'sector_en_'. $sector['Sector']['id']
 													));?>
 												</td>
+<?php } else {;?>
+												<td class="td_first_block">
+
+													<?php echo $this->Form->input('sector_jp', array(
+														'value' => $sector['Sector']['sector_jp'],
+														'class' => "on_change_input form-control jp-".$sector['Sector']['id'],
+														'data-id' => $sector['Sector']['id'],
+														'data-type' => 'sector',
+														'data-lang' => 'sector_jp',
+														'data-alias' => $sector['Sector']['sector_en'],
+														'label' => false,
+														'id' => 'sector_jp_'. $sector['Sector']['id'],
+														'disabled' => true
+													));?>
+												</td>
+												<td>
+													<?php echo $this->Form->input('sector_en', array(
+														'value' => $sector['Sector']['sector_en'],
+														'class' => "on_change_input form-control en-".$sector['Sector']['id'],
+														'data-id' => $sector['Sector']['id'],
+														'data-type' => 'sector',
+														'data-lang' => 'sector_en',
+														'data-alias' => $sector['Sector']['sector_jp'],
+														'label' => false,
+														'id' => 'sector_en_'. $sector['Sector']['id'],
+														'disabled' => true
+													));?>
+												</td>
+<?php };?>
 												<td>
 													<div class="actions text-center">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 														<?php echo $this->Form->postlink(
 															'<i class="fa fa-trash-o"></i>',
 															array('controller' => 'sectors', 'action' => 'update_delete_flag',$sector['Sector']['id']),
 															array('confirm' => __('Are you sure you want to delete # %s?', $sector['Sector']['id']),'escape' => false, 'class' => 'table-link red' )
 														);?>
+<?php };?>
 													</div>
 												</td>
 											</tr>
@@ -95,7 +132,10 @@
 					<div class="main-box">
 						<header class="main-box-header clearfix">
 							<h2><?= __('Job List') ?>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 								<button id="" class="md-trigger btn btn-primary pull-right" data-modal="modal-job"><i class="fa fa-plus-circle fa-lg"></i> <?= __('Add Job') ?></button>
+<?php };?>
 							</h2>
 						</header>
 						<div class="main-box-body clearfix">
@@ -115,6 +155,8 @@
 												<td class="td_first_block text-center">
 													<?php echo $this->Btn->switchLang($lang, $job['Sector']['sector_jp'], $job['Sector']['sector_en']) ?>
 												</td>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 												<td>
 													<?php echo $this->Form->input('job_jp', array(
 														'value' => $job['Job']['job_jp'],
@@ -137,13 +179,42 @@
 														'label' => false
 													));?>
 												</td>
+<?php } else {;?>
+												<td>
+													<?php echo $this->Form->input('job_jp', array(
+														'value' => $job['Job']['job_jp'],
+														'class' => "on_change_input form-control jp-".$job['Job']['id'],
+														'data-id' => $job['Job']['id'],
+														'data-type' => 'job',
+														'data-lang' => 'job_jp',
+														'data-alias' => $job['Job']['job_en'],
+														'label' => false,
+														'disabled' => true
+														));?>
+												</td>
+												<td>
+													<?php echo $this->Form->input('job_en', array(
+														'value' => $job['Job']['job_en'],
+														'class' => "on_change_input form-control en-".$job['Job']['id'],
+														'data-id' => $job['Job']['id'],
+														'data-type' => 'job',
+														'data-lang' => 'job_en',
+														'data-alias' => $job['Job']['job_jp'],
+														'label' => false,
+														'disabled' => true
+													));?>
+												</td>
+<?php };?>
 												<td>
 													<div class="actions  text-center">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 														<?php echo $this->Form->postlink(
 															'<i class="fa fa-trash-o"></i>',
 															array('controller' => 'jobs', 'action' => 'update_delete_flag',$job['Job']['id']),
 															array('confirm' => __('Are you sure you want to delete # %s?', $job['Job']['id']),'escape' => false, 'class' => 'table-link red' )
 														);?>
+<?php };?>
 													</div>
 												</td>
 											</tr>

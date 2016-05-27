@@ -1,4 +1,4 @@
-<?php $this->set('title_for_layout', 'Interviews'); ?>
+<?php $this->set('title_for_layout', 'Inspections'); ?>
 <?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->addCrumb(__('Inspection List')); ?>
 					<h1><?= __('Inspection List') ?></h1>
@@ -12,11 +12,13 @@
 						<header class="main-box-header clearfix">
 							<h2 class="pull-left"><?= __('Inspections') ?></h2>
 							<div class="filter-block pull-right">
+							<?php if($user['role_id'] == 1 || $user['role_id'] == 2 || $user['role_id'] == 5){ ;?>
 								<?php echo $this->Html->link(
 									'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Inspection'),
 									array('controller' => 'inspections', 'action' => 'add'),
 									array('escape' => false, 'class' => 'btn btn-primary pull right')
 								) ?>
+							<?php };?>
 
 							</div>
 						</header>
@@ -42,6 +44,7 @@
 														<?php echo $inspection['Inspection']['inspection_from'] ." ~ ".$inspection['Inspection']['inspection_from'] ;?>
 													</td>
 													<td>
+
 														<?php echo $this->Html->link(
 															$this->Btn->switchLang($lang, $inspection['Company']['company_jp'], $inspection['Company']['company_en']),
 															array('controller' => 'companies', 'action' => 'profile', $inspection['Inspection']['company_id']),
@@ -60,6 +63,7 @@
 													<td><?php echo $inspection['Inspection']['note'] ?></td>
 													<td class="text-center">
 														<div class="action">
+														<?php if($user['role_id'] == 1 || $user['role_id'] == 2 || $user['role_id'] == 5){ ;?>
 															<?php echo $this->Html->link(
 																'<i class="fa fa-pencil"></i>',
 																array('controller' => 'inspections', 'action' => 'profile', $inspection['Inspection']['id']),
@@ -70,6 +74,7 @@
 																array('controller' => 'inspections', 'action' => 'delete',$inspection['Inspection']['id']),
 																array('confirm' => __('Are you sure you want to delete # %s?', $inspection['Inspection']['id']),'escape' => false, 'class' => 'table-link red' )
 															); ?>
+														<?php };?>
 														</div>
 													</td>
 												</tr>

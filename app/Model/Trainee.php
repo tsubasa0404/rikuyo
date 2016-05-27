@@ -329,11 +329,13 @@ class Trainee extends AppModel {
  * Interview Candidate　Selectページ
  */
 	//Interview Candidate用学生一覧
+	//まだ面接予定者になっていない学生
 	public function candidateTraineeList($interview_id){
 		$options = array();
 		$options['conditions'] = array(
 			'Trainee.flag'=> 0,
 			'Trainee.departure_status_id' => 0,
+			'Trainee.student_status_id !=' => 4, //面接状況がPassedでない
 			);
 		$options['fields'] = array(
 			'Trainee.id',
@@ -363,6 +365,7 @@ class Trainee extends AppModel {
 			'type' => 'LEFT',
 			'conditions' => array(
 				'Candidate.trainee_id = Trainee.id',
+				'Candidate.interview_id' => $interview_id
 				)
 			);
 		$options['group'] = array('Trainee.id');

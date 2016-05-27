@@ -27,6 +27,8 @@
 									</thead>
 									<tbody>
 										<?php foreach ($provinces as $province) : ?>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 											<tr id="<?php echo $province['Province']['id'];?>" data-id="<?php echo $province['Province']['id'];?>">
 												<td class="td_first_block">
 													<?php echo $this->Form->input('province_jp', array(
@@ -71,6 +73,55 @@
 													));?>
 												</td>
 											</tr>
+<?php } else {;?>
+											<tr id="<?php echo $province['Province']['id'];?>" data-id="<?php echo $province['Province']['id'];?>">
+												<td class="td_first_block">
+													<?php echo $this->Form->input('province_jp', array(
+														'value' => $province['Province']['province_jp'],
+														'class' => "on_change_input form-control jp-".$province['Province']['id'],
+														'data-id' => $province['Province']['id'],
+														'data-type' => 'province',
+														'data-lang' => 'jp',
+														'data-alias-jp' => $province['Province']['province_jp'],
+														'data-alias-en' => $province['Province']['province_en'],
+														'data-alias-kh' => $province['Province']['province_kh'],
+														'label' => false,
+														'id' => 'province_jp_'. $province['Province']['id'],
+														'disabled' => true
+													));?>
+												</td>
+												<td>
+													<?php echo $this->Form->input('province_en', array(
+														'value' => $province['Province']['province_en'],
+														'class' => "on_change_input form-control en-".$province['Province']['id'],
+														'data-id' => $province['Province']['id'],
+														'data-type' => 'province',
+														'data-lang' => 'en',
+														'data-alias-jp' => $province['Province']['province_jp'],
+														'data-alias-en' => $province['Province']['province_en'],
+														'data-alias-kh' => $province['Province']['province_kh'],
+														'label' => false,
+														'id' => 'Province_en_'. $province['Province']['id'],
+														'disabled' => true
+													));?>
+												</td>
+												<td>
+													<?php echo $this->Form->input('province_kh', array(
+														'value' => $province['Province']['province_kh'],
+														'class' => "on_change_input form-control kh-".$province['Province']['id'],
+														'data-id' => $province['Province']['id'],
+														'data-type' => 'province',
+														'data-lang' => 'kh',
+														'data-alias-jp' => $province['Province']['province_jp'],
+														'data-alias-en' => $province['Province']['province_en'],
+														'data-alias-kh' => $province['Province']['province_kh'],
+														'label' => false,
+														'id' => 'Province_kh_'. $province['Province']['id'],
+														'disabled' => true
+													));?>
+												</td>
+											</tr>
+<?php };?>
 										<?php endforeach; ?>
 									</tbody>
 								</table>
@@ -106,6 +157,8 @@
 									</thead>
 									<tbody>
 										<?php foreach ($address as $add) : ?>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 											<tr id="<?php echo $add['CambodiaPlaceDictionary']['id'];?>" data-id="<?php echo $add['CambodiaPlaceDictionary']['id'];?>">
 												<td class="td_first_block">
 													<?php echo $this->Form->input('place_jp', array(
@@ -148,6 +201,53 @@
 													));?>
 												</td>
 											</tr>
+<?php } else {;?>
+											<tr id="<?php echo $add['CambodiaPlaceDictionary']['id'];?>" data-id="<?php echo $add['CambodiaPlaceDictionary']['id'];?>">
+												<td class="td_first_block">
+													<?php echo $this->Form->input('place_jp', array(
+														'value' => $add['CambodiaPlaceDictionary']['place_jp'],
+														'class' => "on_change_input form-control jp-".$add['CambodiaPlaceDictionary']['id'],
+														'data-id' => $add['CambodiaPlaceDictionary']['id'],
+														'data-type' => 'address',
+														'data-lang' => 'jp',
+														'data-alias-jp' => $add['CambodiaPlaceDictionary']['place_jp'],
+														'data-alias-en' => $add['CambodiaPlaceDictionary']['place_en'],
+														'data-alias-kh' => $add['CambodiaPlaceDictionary']['place_kh'],
+														'label' => false,
+														'data-value' => $add['CambodiaPlaceDictionary']['place_jp'],
+														'disabled' => true
+														));?>
+												</td>
+												<td>
+													<?php echo $this->Form->input('place_en', array(
+														'value' => $add['CambodiaPlaceDictionary']['place_en'],
+														'class' => "on_change_input form-control en-".$add['CambodiaPlaceDictionary']['id'],
+														'data-id' => $add['CambodiaPlaceDictionary']['id'],
+														'data-type' => 'address',
+														'data-lang' => 'en',
+														'data-alias-jp' => $add['CambodiaPlaceDictionary']['place_jp'],
+														'data-alias-en' => $add['CambodiaPlaceDictionary']['place_en'],
+														'data-alias-kh' => $add['CambodiaPlaceDictionary']['place_kh'],
+														'label' => false,
+														'disabled' => true
+													));?>
+												</td>
+												<td>
+													<?php echo $this->Form->input('place_kh', array(
+														'value' => $add['CambodiaPlaceDictionary']['place_kh'],
+														'class' => "on_change_input form-control en-".$add['CambodiaPlaceDictionary']['id'],
+														'data-id' => $add['CambodiaPlaceDictionary']['id'],
+														'data-type' => 'address',
+														'data-lang' => 'kh',
+														'data-alias-jp' => $add['CambodiaPlaceDictionary']['place_jp'],
+														'data-alias-en' => $add['CambodiaPlaceDictionary']['place_en'],
+														'data-alias-kh' => $add['CambodiaPlaceDictionary']['place_kh'],
+														'label' => false,
+														'disabled' => true
+													));?>
+												</td>
+											</tr>
+<?php };?>
 										<?php endforeach; ?>
 									</tbody>
 								</table>

@@ -12,10 +12,13 @@
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2><?= __('Documents List') ?>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 								<button type="button" id="" class="md-trigger btn btn-primary pull-right mL5" data-modal="modal-edit-folder">
 								<i class="fa fa-edit fa-lg"></i> <?= __('Edit/Delete Folder') ?></button>
 								<button type="button" id="" class="md-trigger btn btn-primary pull-right" data-modal="modal-new-folder">
 								<i class="fa fa-folder fa-lg"></i> <?= __('Add New Folder') ?></button>
+<?php };?>
 							</h2>
 						</header>
 
@@ -34,6 +37,8 @@
 										<div id="folder_id_<?php echo $folder['DocFolder']['id'] ?>" class="panel-collapse collapse">
 											<div class="panel-body">
 												<div class="row">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 													<button type="button" id="" class="md-trigger btn btn-default mrg-b-lg pull-right mL5" data-modal="modal-new-sub-folder" data-folder-id="<?php echo $folder['DocFolder']['id'] ?>">
 														<i class="fa fa-folder fa-lg"></i> <?= __('Add New Sub Folder') ?>
 													</button>
@@ -43,6 +48,7 @@
 													<button type="button" id="" class="md-trigger btn btn-success mrg-b-lg pull-left mL5 upload-file-btn" data-modal="modal-upload-file" data-folder-id="<?php echo $folder['DocFolder']['id'] ?>" data-sub-folder-id="0" data-url="<?php echo $this->Html->url(array('controller' => 'doc_names', 'action' => 'getDocOptionAjax')); ?>">
 														<i class="fa fa-cloud-upload fa-lg"></i> <?= __('Upload Document') ?>
 													</button>
+<?php };?>
 												</div>
 												<div class="table-responsive">
 													<table class="table table-bordered">
@@ -86,11 +92,14 @@
 																	</td>
 																	<td class="text-center">
 																		<div class="actions">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 																			<?php echo $this->Form->postlink(
 																				'<i class="fa fa-trash-o"></i>',
 																				array('controller' => 'doc_names', 'action' => 'update_delete_flag',$doc['DocName']['id']),
 																				array('confirm' => __('Are you sure you want to delete # %s?', $doc['DocName']['id']),'escape' => false, 'class' => 'table-link red' )
 																			);?>
+<?php };?>
 																		</div>
 																	</td>
 																</tr>
@@ -112,6 +121,8 @@
 															<div id="sub_folder_id_<?php echo $sub['SubFolder']['id'] ?>" class="panel-collapse collapse">
 																<div class="panel-body">
 																	<div class="row">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 																		<button type="button" id="" class="md-trigger btn btn-danger mrg-b-lg pull-left new-file-btn" data-modal="modal-new-file" data-folder-id="<?php echo $sub['DocFolder']['id'] ?>" data-sub-folder-id="<?php echo $sub['SubFolder']['id'] ?>">
 																			<i class="fa fa-file-text"></i> <?= __('Add New Document') ?>
 																		</button>
@@ -123,6 +134,7 @@
 																			'action' => 'getDocOptionAjax',
 																			'class' => 'get_doc_option hide'
 																		)) ?>
+<?php };?>
 																		<?php echo $this->Form->end(); ?>
 																	</div>
 																	<div class="table-responsive">
@@ -167,11 +179,14 @@
 																						</td>
 																						<td class="text-center">
 																							<div class="actions">
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 																								<?php echo $this->Form->postlink(
 																									'<i class="fa fa-trash-o"></i>',
 																									array('controller' => 'doc_names', 'action' => 'update_delete_flag',$sub['DocName'][0]['id']),
 																									array('confirm' => __('Are you sure you want to delete # %s?', $sub['DocName'][0]['id']),'escape' => false, 'class' => 'table-link red' )
 																								);?>
+<?php };?>
 																							</div>
 																						</td>
 																					</tr>
@@ -179,9 +194,12 @@
 																			</tbody>
 																		</table>
 																	</div>
+<?php if($user['role_id'] == 1 || $user['role_id'] == 2){ ;?>
+
 																	<button type="button" id="" class="md-trigger btn btn-default mrg-b-lg pull-right mL5 edit-sub-folder-btn" data-modal="modal-edit-sub-folder" data-folder-id="<?php echo $sub['DocFolder']['id'] ?>" data-sub-folder-id="<?php echo $sub['SubFolder']['id'] ?>">
 																		<i class="fa fa-edit fa-lg"></i> <?= __('Edit/Delete Sub Folder') ?>
 																	</button>
+<?php };?>
 																</div>
 															</div>
 														</div>

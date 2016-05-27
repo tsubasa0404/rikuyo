@@ -12,11 +12,13 @@
 						<header class="main-box-header clearfix">
 							<h2 class="pull-left"><?= __('Interview Schedule') ?></h2>
 							<div class="filter-block pull-right">
+								<?php if($user['role_id'] == 1 || $user['role_id'] == 2 ){ ;?>
 								<?php echo $this->Html->link(
 									'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Interview'),
 									array('controller' => 'interviews', 'action' => 'add'),
 									array('escape' => false, 'class' => 'btn btn-primary pull right')
 								) ?>
+								<?php };?>
 							</div>
 						</header>
 
@@ -67,11 +69,13 @@
 											</td>
 											<td>
 												<div class="actions">
+													<?php if($user['role_id'] == 1 || $user['role_id'] == 2 || $user['role_id'] == 3){ ;?>
 													<?php echo $this->Form->postlink(
 														'<i class="fa fa-trash-o"></i>',
 														array('controller' => 'interviews', 'action' => 'delete',$int['Interview']['id']),
 														array('confirm' => __('Are you sure you want to delete # %s?', $int['Interview']['id']),'escape' => false, 'class' => 'table-link red' )
 													);?>
+													<?php };?>
 												</div>
 											</td>
 										</tr>

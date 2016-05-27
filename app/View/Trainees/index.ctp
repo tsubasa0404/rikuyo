@@ -19,11 +19,7 @@
 									<input type="text" id="filter" class="form-control" placeholder="Search...">
 									<i class="fa fa-search search-icon"></i>
 								</div>
-								<?php echo $this->Html->link(
-									'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Trainee'),
-									array('controller' => 'trainees', 'action' => 'add'),
-									array('escape' => false, 'class' => 'btn btn-primary pull-right')
-								) ?>
+
 							</div>
 						</header>
 
@@ -55,9 +51,15 @@
 											<td>
 												<?php if($trainee['TraineeProfileImage']['img_file_name'] != null)
 													{
-														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage']['img_file_name'], array('style' => 'width:60px;height:60px;'));
+														echo $this->Html->link(
+															$this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage']['img_file_name'], array('style' => 'width:60px;height:60px;')),
+															'profile/'.$trainee['Trainee']['id'],
+															array('escape' => false));
 													} else {
-														echo $this->Html->image('trainee_profile_images/thumb/default.png', array('style' => 'width:60px;height:60px;'));
+														echo $this->Html->link(
+															$this->Html->image('trainee_profile_images/thumb/default.png', array('style' => 'width:60px;height:60px;')),
+															'profile/'.$trainee['Trainee']['id'],
+															array('escape' => false));
 													};?>
 													<br>
 												<?php echo $trainee['Trainee']['given_name_en']." ".$trainee['Trainee']['family_name_en'];?>
@@ -100,11 +102,13 @@
 											</td>
 											<td>
 												<div class="actions">
+												<?php if($user['role_id'] == 1 || $user['role_id'] == 2 || $user['role_id'] == 3){ ;?>
 													<?php echo $this->Form->postlink(
 														'<i class="fa fa-trash-o"></i>',
 														array('controller' => 'trainees', 'action' => 'update_delete_flag',$trainee['Trainee']['id']),
 														array('confirm' => __('Are you sure you want to delete # %s?', $trainee['Trainee']['id']),'escape' => false, 'class' => 'table-link red' )
 													);?>
+												<?php };?>
 												</div>
 											</td>
 										</tr>
