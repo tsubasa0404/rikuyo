@@ -95,10 +95,12 @@
 								<label class="control-label"><?= __('Sex') ?></label>
 								<div class="">
 									<div class="checkbox-nice pull-left mR5">
-										<input type="checkbox" class="filter_sex" id="filter_sex1" value="<?= __('male'); ?>"/><label for="filter_sex1"><?= __('Male') ?></label>
+										<input type="checkbox" class="filter_sex" id="filter_sex1" value="<?= __('male'); ?>"/>
+										<label for="filter_sex1"><?= __('Male') ?></label>
 									</div>
 									<div class="checkbox-nice pull-left mL5">
-										<input type="checkbox" class="filter_sex" id="filter_sex2" value="<?= __('female'); ?>"/><label for="filter_sex2"><?= __('Female') ?></label>
+										<input type="checkbox" class="filter_sex" id="filter_sex2" value="<?= __('female'); ?>"/>
+										<label for="filter_sex2"><?= __('Female') ?></label>
 									</div>
 								</div>
 							</div>
@@ -145,9 +147,7 @@
 														array('escape' => false, 'target' => '_blank')
 													);?>
 												</td>
-												<td>
-													<?php echo $trainee['Trainee']['sex']?>
-												</td>
+												<td><?php echo $trainee['Trainee']['sex']?></td>
 												<td class="num">
 													<?php echo $this->Btn->calcAge($trainee['Trainee']['birthday'])?>
 												</td>

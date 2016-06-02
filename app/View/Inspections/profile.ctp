@@ -31,8 +31,7 @@
 										'value' => $this->request->data['Inspection']['association_id'],
 										'options' => $option_associations,
 										'style' => 'max-width:300px;display:inline',
-										'empty' => true,
-										'required' => true
+										'empty' => __('--Select Association--')
 									)) ?>
 								</div>
 								<div class="form-group form-group-select2">
@@ -44,7 +43,7 @@
 										'value' => $this->request->data['Inspection']['company_id'],
 										'options' => $option_companies,
 										'style' => 'max-width:300px;display:inline',
-										'empty' => true
+										'empty' => __('--Select Company--')
 									)) ?>
 								</div>
 								<div class="form-group">
@@ -109,13 +108,9 @@
 		$(document).ready(function() {
 
 			$('.sel_company').select2({
-				placeholder: "<?= __('Select Company') ?>",
-				allowClear: false
 			});
 
 			$('.sel_association').select2({
-				placeholder: "<?= __('Select Association') ?>",
-				allowClear: false
 			});
 
 		});

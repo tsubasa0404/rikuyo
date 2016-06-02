@@ -31,8 +31,7 @@
 										'value' => '',
 										'options' => $option_associations,
 										'style' => 'max-width:300px;display:inline',
-										'empty' => true,
-										'required' => true
+										'empty' => __('--Select Association--')
 									)) ?>
 								</div>
 								<div class="form-group form-group-select2">
@@ -44,14 +43,14 @@
 										'value' => '',
 										'options' => $option_companies,
 										'style' => 'max-width:300px;display:inline',
-										'empty' => true
+										'empty' => __('--Select Company--')
 									)) ?>
 								</div>
 								<div class="form-group">
 									<div class="row">
 										<div class="col-lg-6 col-md-6 col-sm-6">
 											<label><?= __('From')?></label>
-											<input type="date" name="data[Inspection][inspection_from]" class="form-control maxW200" id="InspectionFromMonth" required="">
+											<input type="date" name="data[Inspection][inspection_from]" class="form-control maxW200" id="InspectionFromMonth" >
 										</div>
 										<div class="col-lg-6 col-md-6 col-sm-6">
 											<label for=""><?= __('To')?></label>
@@ -109,13 +108,9 @@
 		$(document).ready(function() {
 
 			$('.sel_company').select2({
-				placeholder: "<?= __('Select Company') ?>",
-				allowClear: false
 			});
 
 			$('.sel_association').select2({
-				placeholder: "<?= __('Select Association') ?>",
-				allowClear: false
 			});
 
 		});
