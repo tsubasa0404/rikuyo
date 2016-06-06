@@ -61,8 +61,8 @@ class AssociationsController extends AppController {
 			//folderと書類一覧取得
 			$folders = $this->DocFolder->folders();
 			$documents = $this->DocName->documents();
-
-			$this->set(compact('lang', 'folders', 'documents'));
+			$selected_association_documents = $this->AssociationDocument->selected_association_documents($id);
+			$this->set(compact('lang', 'folders', 'documents', 'selected_association_documents'));
 
 			$options = array('conditions' => array('Association.' . $this->Association->primaryKey => $id));
 			$this->request->data = $this->Association->find('first', $options);

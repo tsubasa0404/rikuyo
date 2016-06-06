@@ -6,12 +6,21 @@
 					</div>
 				</div>
 			</div>
-
+<?php echo $this->Session->flash(); ?>
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-6">
 					<div class="main-box">
 						<header class="main-box-header clearfix">
 							<h2><?= __('Province List') ?>
+								<?php if($user['role_id'] == 1 ||$user['role_id'] == 2 ){ ;?>
+									<div class="filter-block pull-right">
+										<?php echo $this->Html->link(
+											'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Province'),
+											array('controller' => 'provinces', 'action' => 'add'),
+											array('escape' => false, 'class' => 'btn btn-primary pull right')
+										) ?>
+									</div>
+								<?php };?>
 							</h2>
 						</header>
 						<div class="main-box-body clearfix">
@@ -140,14 +149,35 @@
 					<div class="main-box">
 						<header class="main-box-header clearfix">
 							<h2><?= __('District and Commune') ?>
-								<div class="filter-block pull-right">
-									<?php //echo $this->Html->link('<i class="fa fa-plus-circle fa-lg"></i> '.__('New Trainee'),array('controller' => 'trainees', 'action' => 'add'),array('escape' => false, 'class' => 'btn btn-primary pull right')) ?>
-								</div>
+							<?php if($user['role_id'] == 1 ||$user['role_id'] == 2 ){ ;?>
+									<div class="filter-block pull-right">
+										<?php echo $this->Html->link(
+											'<i class="fa fa-plus-circle fa-lg"></i> '.__('New District'),
+											array('controller' => 'districts', 'action' => 'add'),
+											array('escape' => false, 'class' => 'btn btn-primary pull right')
+										) ?>
+									</div>
+								<?php };?>
+								<?php if($user['role_id'] == 1 ||$user['role_id'] == 2 ){ ;?>
+									<div class="filter-block pull-right">
+										<?php echo $this->Html->link(
+											'<i class="fa fa-plus-circle fa-lg"></i> '.__('New Commune'),
+											array('controller' => 'communes', 'action' => 'add'),
+											array('escape' => false, 'class' => 'btn btn-primary pull right')
+										) ?>
+									</div>
+								<?php };?>
+								<!-- <div class="filter-block pull-right">
+									<div class="form-group pull-left">
+										<input type="text" id="filter_district" class="form-control" placeholder="Search...">
+										<i class="fa fa-search search-icon"></i>
+									</div>
+								</div> -->
 							</h2>
 						</header>
 						<div class="main-box-body clearfix">
 							<div class="table-responsive">
-								<table id="table-address-db" class="table table-bordered table-hover footable" data-page-size="25"  data-limit-navigation="5">
+								<table id="table-address-db" class="table table-bordered table-hover footable" data-page-size="40"  data-limit-navigation="5" data-filter="#filter_district" data-filter-text-only="false">
 									<thead>
 										<tr>
 											<th><?= __('Japanese') ?></th>
@@ -268,6 +298,7 @@
 			<?php
 				echo $this->Html->script('footable', array('inline' => false, 'block' => 'modal-js'));
 				echo $this->Html->script('footable.paginate', array('inline' => false, 'block' => 'modal-js'));
+				echo $this->Html->script('footable.filter', array('inline' => false, 'block' => 'modal-js'));
 				echo $this->Html->script('modernizr.custom', array('inline' => false, 'block' => 'modal-js'));
 				echo $this->Html->script('classie', array('inline' => false, 'block' => 'modal-js'));
 				echo $this->Html->script('modalEffects', array('inline' => false, 'block' => 'modal-js'));

@@ -1,13 +1,13 @@
-<?php $this->set('title_for_layout', 'Trainee Profile'); ?>
+<?php $this->set('title_for_layout', 'Student Profile'); ?>
 <?php $this->Html->css('libs/footable.core', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/select2', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/sweetalert', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/dropzone', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/magnific-popup', array('inline'=>false, 'block'=>'page-css'));?>
 <?php $this->Html->css('libs/validationEngine.jquery', array('inline'=>false, 'block'=>'page-css'));?>
-<?php $this->Html->addCrumb(__('Trainee List'), '/trainees'); ?>
-<?php $this->Html->addCrumb(__('Trainee Profile'), ''); ?>
-					<h1><?= __('Trainee Profile') ?></h1>
+<?php $this->Html->addCrumb(__('Student List'), '/trainees'); ?>
+<?php $this->Html->addCrumb(__('Student Profile'), ''); ?>
+					<h1><?= __('Student Profile') ?></h1>
 					</div>
 				</div>
 			</div>

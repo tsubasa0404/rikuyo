@@ -59,12 +59,13 @@ class AgentsController extends AppController {
 		$lang = $this->__setLang();
 		$option_sectors = $this->Sector->optionSectors($lang);
 
-		$districts = $this->Commune->formatPlacesToJson('district');
+		$provinces = $this->Province->find('list', array('fields' => array('id', 'province_en')));
+		$districts = $this->District->formatPlacesToJsonForAddCommune('district');
 		$communes = $this->Commune->formatPlacesToJson('commune');
 
 		$this->set('_serialize', 'districts');
 		$this->set('_serialize', 'communes');
-		$this->set(compact('option_sectors','districts', 'communes', 'lang'));
+		$this->set(compact('option_sectors','districts', 'communes', 'lang', 'provinces'));
 
 		if ($this->request->is('post')) {
 			if($this->request->data['Agent']['sector']){

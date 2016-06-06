@@ -47,21 +47,8 @@
 																<tr>
 																	<td>
 																		<div class="checkbox-nice">
-																			<input
-																				type="checkbox"
-																				id="doc_<?php echo $doc['DocName']['id']?>"
-																				name="data[AssociationDocument][id]"
-																				value="<?php if ( empty ( $doc['AssociationDocument'] ) ) {
-																												echo "" ;
-																										 } elseif ( isset($doc['AssociationDocument'] ) && $doc['AssociationDocument'][0]['association_id'] != $this->request->data['Association']['id']) {
-																												echo "";
-																										 } elseif ( $doc['AssociationDocument'][0]['association_id'] == $this->request->data['Association']['id']) {
-																										 		echo $doc['AssociationDocument'][0]['association_id'];
-																										 }
-																							?>"
-																				data-doc-id="<?php echo $doc['DocName']['id']?>"
-																				data-association-id="<?php echo $this->request->data['Association']['id'] ?>"
-																			>
+																			<input type="checkbox" id="doc_<?php echo $doc['DocName']['id']?>"
+																				name="data[AssociationDocument][id]" value='<?php foreach($selected_association_documents as $selected_doc) { if ($selected_doc['AssociationDocument']['doc_name_id'] == $doc['DocName']['id']) echo $selected_doc['AssociationDocument']['id']; }?>' data-doc-id="<?php echo $doc['DocName']['id']?>" data-association-id="<?php echo $this->request->data['Association']['id'] ?>">
 																			<label for="doc_<?php echo $doc['DocName']['id']?>" >
 																				<?php echo $doc['DocName']['name_jp']."<br>".$doc['DocName']['name_en']; ?>
 																			</label>

@@ -9,6 +9,19 @@ App::uses('AppModel', 'Model');
  */
 class AssociationDocument extends AppModel {
 
+  public function selected_association_documents($association_id){
+    $options = array();
+    $options['conditions'] = array(
+      'AssociationDocument.association_id'=> $association_id
+      );
+    $options['fields'] = array(
+      'AssociationDocument.id',
+      'AssociationDocument.association_id',
+      'AssociationDocument.doc_name_id'
+      );
+    $options['recursive'] = -1;
+    return $this->find('all', $options);
+  }
 
  	//組合の選択された書類のフォルダー取得 association profile/interview profile page
   public function selectedFolders($association_id){

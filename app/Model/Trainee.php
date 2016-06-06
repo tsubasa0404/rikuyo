@@ -12,7 +12,8 @@ class Trainee extends AppModel {
 		$options['conditions'] = array(
 			'Trainee.company_id'=> $company_id,
 			'Trainee.departure_status_id' => 1, //出国済み
-			'Trainee.return_status_id !=' => 1 //帰国状況、完了ではない
+			'Trainee.return_status_id !=' => 1, //帰国状況、完了ではない
+			'Trainee.flag' => 0
 			);
 		$options['fields'] = array(
 			'Trainee.id',
@@ -44,7 +45,8 @@ class Trainee extends AppModel {
 		$options['conditions'] = array(
 			'Trainee.company_id'=> $company_id,
 			'Trainee.departure_status_id' => 1, //出国済み
-			'Trainee.return_status_id ' => 1 //帰国状況、完了
+			'Trainee.return_status_id ' => 1, //帰国状況、完了
+			'Trainee.flag' => 0
 			);
 		$options['fields'] = array(
 			'Trainee.id',
@@ -77,7 +79,8 @@ class Trainee extends AppModel {
 		$options = array();
 		$options['conditions'] = array(
 			'Trainee.departure_status_id '=> 1, //出国状況が、完了である
-			'Trainee.return_status_id !='=> 1 //帰国状況が、完了ではない
+			'Trainee.return_status_id !='=> 1, //帰国状況が、完了ではない
+			'Trainee.flag' => 0
 			);
 		$options['fields'] = array(
 			'Trainee.id',

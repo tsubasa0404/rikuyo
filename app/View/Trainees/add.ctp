@@ -29,7 +29,7 @@
 										'class' => 'form-control maxW160',
 										'placeholder' => __('ex.T16030101'),
 										'required' => true,
-										'value' => $control_no
+										'value' => ""
 									)); ?>
 								</div>
 								<div class="row">
@@ -186,31 +186,9 @@
 											<label for="TraineeProvinceId"><?= __('Province') ?></label>
 											<select  id="TraineeProvinceId" name="data[Trainee][province_id]" class="form-control cam_province_id" required="">
 												<option value=""></option>
-												<option value="1">Banteay Meanchey</option>
-												<option value="2">Battambang</option>
-												<option value="3">Kampong Cham</option>
-												<option value="4">Kampong Chhnang</option>
-												<option value="5">Kampong Speu</option>
-												<option value="6">Kampong Thom</option>
-												<option value="7">Kampot</option>
-												<option value="8">Kandal</option>
-												<option value="9">Kep</option>
-												<option value="10">Koh Kong</option>
-												<option value="11">Kratie</option>
-												<option value="12">Mondol Kiri</option>
-												<option value="13">Otdar Meanchey</option>
-												<option value="14">Pailin</option>
-												<option value="15">Phnom Penh</option>
-												<option value="16">Preah Sihanouk</option>
-												<option value="17">Preah Vihear</option>
-												<option value="18">Prey Veng</option>
-												<option value="19">Pursat</option>
-												<option value="20">Ratanak Kiri</option>
-												<option value="21">Siem Reap</option>
-												<option value="22">Stung Treng</option>
-												<option value="23">Svay Rieng</option>
-												<option value="24">Takeo</option>
-												<option value="25">Tbong Khmum</option>
+												<?php foreach ($provinces as $key => $value): ?>
+													<option value="<?php echo $key ?>"><?php echo $value ?></option>
+												<?php endforeach ?>
 											</select>
 										</div>
 									</div>

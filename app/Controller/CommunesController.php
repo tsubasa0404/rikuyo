@@ -14,7 +14,7 @@ class CommunesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
-
+	public $uses = array('District', 'Province', 'Commune','CambodiaPlaceDictionary');
 /**
  * index method
  *
@@ -49,16 +49,23 @@ class CommunesController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			$commune_en = $this->request->data['Commune']['commune_en'];
 			$this->Commune->create();
 			if ($this->Commune->save($this->request->data)) {
-				$this->Session->setFlash(__('The commune has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->CambodiaPlaceDictionary->create();
+				$this->CambodiaPlaceDictionary->saveField('place_en', $commune_en);
+				$this->Session->setFlash(__('The commune has been saved.'), 'success_flash');
+				return $this->redirect(array('controller' => 'provinces', 'action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The commune could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The commune could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
-		$districts = $this->Commune->District->find('list');
-		$this->set(compact('districts'));
+
+		$districts = $this->District->formatPlacesToJsonForAddCommune('district');
+		$provinces = $this->Province->find('list', array('fields' => array(
+			'id', 'province_en')));
+		$this->set('_serialize', 'districts');
+		$this->set(compact('provinces', 'districts'));
 	}
 
 /**

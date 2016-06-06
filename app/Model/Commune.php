@@ -44,6 +44,8 @@ class Commune extends AppModel {
 		return $this->find('all', $options);
 	}
 
+
+
 	public function formatPlacesToJson($area_category){
 		$org_places = $this->optionCommuneDistrictProvinces($area_category);
 		foreach($org_places as $place){
@@ -67,6 +69,8 @@ class Commune extends AppModel {
 			return $communes;
 		}
 	}
+
+
 
 	public function optionCommune(){
 		$options = array(

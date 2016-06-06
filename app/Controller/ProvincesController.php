@@ -53,10 +53,10 @@ class ProvincesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Province->create();
 			if ($this->Province->save($this->request->data)) {
-				$this->Session->setFlash(__('The province has been saved.'));
+				$this->Session->setFlash(__('The province has been saved.'), 'success_flash');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The province could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The province could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
 	}

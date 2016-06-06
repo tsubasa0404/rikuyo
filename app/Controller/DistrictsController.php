@@ -14,6 +14,7 @@ class DistrictsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
+	public $uses = array('Province', 'District', 'Commune', 'CambodiaPlaceDictionary');
 
 /**
  * index method
@@ -47,15 +48,18 @@ class DistrictsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+			$district_en = $this->request->data['District']['district_en'];
 			$this->District->create();
 			if ($this->District->save($this->request->data)) {
-				$this->Session->setFlash(__('The district has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->CambodiaPlaceDictionary->create();
+				$this->CambodiaPlaceDictionary->saveField('place_en', $district_en);
+				$this->Session->setFlash(__('The district has been saved.'), 'success_flash');
+				return $this->redirect(array('controller' => 'provinces', 'action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The district could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('The district could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
-		$provinces = $this->District->Province->find('list');
+		$provinces = $this->District->Province->find('list', array('fields' => array('id', 'province_en')));
 		$this->set(compact('provinces'));
 	}
 

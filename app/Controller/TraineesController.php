@@ -77,6 +77,7 @@ class TraineesController extends AppController {
 	public function add() {
 		$this->Trainee->recursive = -1;
 		$this->Commune->recursive = -1;
+
 		$base_trainee_id = "T".date("ymd");
 		$trainee_idx = $this->Trainee->getTraineeId($base_trainee_id)+1;
 		$control_no = $base_trainee_id.sprintf('%02d', $trainee_idx);
@@ -94,12 +95,12 @@ class TraineesController extends AppController {
 				$this->Session->setFlash(__('The trainee could not be saved. Please, try again.'), 'error_flash');
 			}
 		}
-
-		$districts = $this->Commune->formatPlacesToJson('district');
+    $provinces = $this->Province->find('list', array('fields' => array('id', 'province_en')));
+		$districts = $this->District->formatPlacesToJsonForAddCommune('district');
 		$communes = $this->Commune->formatPlacesToJson('commune');
 		$this->set('_serialize', 'districts');
 		$this->set('_serialize', 'communes');
-		$this->set(compact('districts', 'communes'));
+		$this->set(compact('districts', 'communes', 'provinces'));
 
 	}
 

@@ -72,10 +72,6 @@ class TraineeProfileImagesController extends AppController {
       $new_img_file_name  = $trainee_control_no.$extension;
       $this->request->data['TraineeProfileImage']['img']['name']  = $new_img_file_name;
 
-      var_dump($extension);
-      var_dump($new_img_file_name);
-      var_dump($this->request->data['TraineeProfileImage']['img']['name']);
-      // die();
 
 			if ($this->TraineeProfileImage->save($this->request->data)) {
 				$this->Session->setFlash(__('The trainee profile image has been saved.'), 'success_flash');

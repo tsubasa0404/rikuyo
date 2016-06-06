@@ -10,6 +10,46 @@ App::uses('AppModel', 'Model');
  */
 class District extends AppModel {
 
+	public function formatPlacesToJsonForAddCommune($area_category){
+		$org_places = $this->optionCommuneDistrictProvincesForAddCommune($area_category);
+		// var_dump($org_places);die();
+		foreach($org_places as $place){
+			$districts[] = array(
+				'province_id' => $place['ProvinceForAddCommune']['id'],
+				'district_id' => $place['District']['id'],
+				'district' => $place['District']['district_en'],
+				);
+		}
+
+		if($area_category == 'district'){
+			return $districts;
+		} elseif($area_category == 'commune') {
+			return $communes;
+		}
+	}
+
+	public function optionCommuneDistrictProvincesForAddCommune($area_category){
+
+		$options = array();
+		$options['conditions'] = array(
+			);
+		$options['fields'] = array(
+			'ProvinceForAddCommune.id',
+			'ProvinceForAddCommune.province_en',
+			'District.id',
+			'District.district_en',
+			);
+		$options['joins'][] = array(
+			'table' => 'provinces',
+			'alias' => 'ProvinceForAddCommune',
+			'type' => 'LEFT',
+			'conditions' => 'District.province_id = ProvinceForAddCommune.id'
+			);
+
+		return $this->find('all', $options);
+	}
+
+
 
 	public function optionDistrict(){
 		$options = array(
