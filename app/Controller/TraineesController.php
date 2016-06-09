@@ -189,7 +189,8 @@ class TraineesController extends AppController {
       //Voice取得
       $voices = $this->TraineeVoice->find('all', array(
         'fields' => array('id', 'trainee_id', 'title_en', 'voice_en', 'created'),
-        'order' => array('created' => 'asc')
+        'order' => array('created' => 'asc'),
+        'conditions' => array('trainee_id' => $id)
         ));
 
       if($user['role_id'] == 1 || $user['role_id'] == 2 || $user['role_id'] == 3){

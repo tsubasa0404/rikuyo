@@ -6580,6 +6580,12 @@ msgstr "名前"
 msgid "Partner"
 msgstr "配偶者"
 
+msgid "Husband"
+msgstr "夫"
+
+msgid "Wife"
+msgstr "妻"
+
 #: View/Trainees/profile.ctp:1155;1923
 msgid "Father"
 msgstr "父"
@@ -6591,6 +6597,18 @@ msgstr "母"
 #: View/Trainees/profile.ctp:1157;1925
 msgid "Child"
 msgstr "子"
+
+msgid "Son"
+msgstr "息子"
+
+msgid "Daughter"
+msgstr "娘"
+
+msgid "Grandson"
+msgstr "孫息子"
+
+msgid "Granddaughter"
+msgstr "孫娘"
 
 #: View/Trainees/profile.ctp:1158;1926
 msgid "Brother"
