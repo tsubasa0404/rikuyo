@@ -194,7 +194,11 @@ class InterviewsController extends AppController {
 			$this->InterviewCandidate->recursive = -1;
 			$this->InterviewDocStatusList->recursive = -1;
 
-			$lang = $this->__setLang();
+			if($this->__setLang()) {
+				$lang = $this->__setLang();
+			} else {
+				$lang = "en";
+			};
 			$prof = $this->Interview->prof($id);
 			$this->set(compact('lang', 'prof'));
 

@@ -28,6 +28,10 @@ class ForeachHelper extends AppHelper
 
     $job_arr = array();
     foreach($job_ids as $job_id){
+      if($job_id == null){
+        $job = "";
+        continue;
+      }
       $job = $this->Job->find('first', array(
         'conditions' => array('id' => $job_id),
         'fields' => array('id', 'job_jp', 'job_en'),

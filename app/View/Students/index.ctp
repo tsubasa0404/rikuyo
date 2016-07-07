@@ -31,7 +31,7 @@
 						</header>
 
 						<div class="main-box-body clearfix">
-							<table class="table footable toggle-circle-filled table-bordered table-striped" data-page-size="100" data-filter="#filter" data-filter-text-only="false">
+							<table class="table footable toggle-circle-filled table-bordered table-striped" data-page-size="10" data-filter="#filter" data-filter-text-only="false">
 								<thead>
 									<tr>
 										<th><?= __('Student ID') ?></th>

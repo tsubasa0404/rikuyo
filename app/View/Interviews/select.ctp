@@ -76,32 +76,52 @@
 					</div>
 				</div>
 			<div class="row">
-				<div class="col-lg-12 maxW700">
+				<div class="col-lg-12">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2 class="pull-left"><?= __('Search Trainees') ?></h2>
 						</header>
 
 						<div class="main-box-body clearfix">
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<label class="control-label"><?= __('Trainee ID') ?></label>
-								<input type="text" class="filter_control_no form-control" value="">
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<label class="control-label"><?= __('Name') ?></label>
-								<input type="text" class="filter_name form-control" value="">
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<label class="control-label"><?= __('Sex') ?></label>
-								<div class="">
-									<div class="checkbox-nice pull-left mR5">
-										<input type="checkbox" class="filter_sex" id="filter_sex1" value="<?= __('male'); ?>"/>
-										<label for="filter_sex1"><?= __('Male') ?></label>
+							<div class="row mB10">
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label class="control-label"><?= __('Trainee ID') ?></label>
+									<input type="text" class="filter_control_no form-control" value="">
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label class="control-label"><?= __('Name') ?></label>
+									<input type="text" class="filter_name form-control" value="">
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label class="control-label"><?= __('Sex') ?></label>
+									<div class="">
+										<div class="checkbox-nice pull-left mR5">
+											<input type="checkbox" class="filter_sex" id="filter_sex1" value="<?= __('male'); ?>"/>
+											<label for="filter_sex1"><?= __('Male') ?></label>
+										</div>
+										<div class="checkbox-nice pull-left mL5">
+											<input type="checkbox" class="filter_sex" id="filter_sex2" value="<?= __('female'); ?>"/>
+											<label for="filter_sex2"><?= __('Female') ?></label>
+										</div>
 									</div>
-									<div class="checkbox-nice pull-left mL5">
-										<input type="checkbox" class="filter_sex" id="filter_sex2" value="<?= __('female'); ?>"/>
-										<label for="filter_sex2"><?= __('Female') ?></label>
-									</div>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label class="control-label"><?= __('Age') ?></label>
+									<input type="text" class="filter_age_min form-control" name="filter_age_min" value="20">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label class="control-label"><?= __('Language') ?></label>
+									<input type="text" class="filter_language form-control" value="">
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label class="control-label"><?= __('Skill') ?></label>
+									<input type="text" class="filter_skill form-control" value="">
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label class="control-label"><?= __('Hand') ?></label>
+									<input type="text" class="filter_hand form-control" value="">
 								</div>
 							</div>
 						</div>
@@ -109,7 +129,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-6 maxW500">
+				<div class="col-lg-12 col-md-12 col-sm-12">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2 class="pull-left"><?= __('Trainees List') ?></h2>
@@ -117,7 +137,7 @@
 						<div class="main-box-body clearfix">
 							<div class="table-responsive">
 
-								<table id="select_trainee_table" class="table data select_trainee table-hover" data-page-size="30">
+								<table id="select_trainee_table" class="table data select_trainee table-hover" data-page-size="10">
 									<thead>
 										<tr>
 											<th class="control_no"><?= __('Trainee ID') ?></th>
@@ -125,6 +145,9 @@
 											<th class="sex"><?= __('Sex') ?></th>
 											<th class="age"><?= __('Age') ?></th>
 											<th class="image"></th>
+											<th class="age"><?= __('language') ?></th>
+											<th class="age"><?= __('skills') ?></th>
+											<th class="age"><?= __('Hand') ?></th>
 										</tr>
 									</thead>
 									<tbody class="select_trainee_table_tbody">
@@ -152,12 +175,22 @@
 													<?php echo $this->Btn->calcAge($trainee['Trainee']['birthday'])?>
 												</td>
 												<td>
-													<?php if($trainee['TraineeProfileImage']['trainee_id']){
-														echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['TraineeProfileImage']['img_file_name'], array('width' => '60px', 'height' => '60px'));
-														} else {
-															echo $this->Html->image('trainee_profile_images/thumb/default.png', array('width' => '60px', 'height' => '60px'));
-														};?>
+													<?php //if($trainee['TraineeProfileImage']['trainee_id']){
+														//echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['//TraineeProfileImage']['img_file_name'], array('width' => '60px', '//height' => '60px'));
+														//} else {
+														//	echo $this->Html->image('trainee_profile_images/thumb/default.png', //array('width' => '60px', 'height' => '60px'));
+														//};?>
 												</td>
+												<td>
+													<?php if($trainee['Trainee']['english'] == 1){
+														echo __('English') . "<br>";
+													} ?>
+													<?php if($trainee['Trainee']['lang_others_en']){
+														echo $trainee['Trainee']['lang_others_en'];
+													} ?>
+												</td>
+												<td><?php echo $this->Foreach->trainees_job(array($trainee['Trainee']['job1_id'],$trainee['Trainee']['job2_id']),$lang) ;?></td>
+												<td><?php echo $trainee['Trainee']['handed'];?></td>
 											</tr>
 
 
@@ -172,7 +205,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-6 col-md-6 col-sm-6 maxW500">
+				<div class="col-lg-12 col-md-12 col-sm-12">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2 class="pull-left"><?= __('Candidates List') ?></h2>
@@ -208,11 +241,11 @@
 												<td><?php echo $can['CandidateTrainee']['sex'];?></td>
 												<td class="num"><?php echo $this->Btn->calcAge($can['CandidateTrainee']['birthday']);?></td>
 												<td>
-													<?php if($can['ProfImg']['trainee_id']){
-														echo $this->Html->image('trainee_profile_images/thumb/'.$can['ProfImg']['img_file_name'], array('width' => '60px', 'height' => '60px'));
-													} else {
-														echo $this->Html->image('trainee_profile_images/thumb/default.png', array('width' => '60px', 'height' => '60px'));
-													};?>
+													<?php //if($can['ProfImg']['trainee_id']){
+													//	echo $this->Html->image('trainee_profile_images/thumb/'.$can['ProfImg'][//'img_file_name'], array('width' => '60px', 'height' => '60px'));
+													//	} else {
+													//		echo $this->Html->image('trainee_profile_images/thumb/default.png', //array('width' => '60px', 'height' => '60px'));
+													//};?>
 												</td>
 											</tr>
 										<?php endforeach; ?>
@@ -266,6 +299,16 @@
 					0:'input.filter_control_no',
 					1:'input.filter_name',
 					2:'input.filter_sex',
+					3: {
+						element : 'input.filter_age_min',
+						onFiltering : function(api){
+							return api.getCurrentCellNum() >= api.getCurrentFilterNum();
+						}
+					},
+					4:'input.filter_image',
+					5:'input.filter_language',
+					6:'input.filter_skill',
+					7:'input.filter_hand',
 				}
 			});
 			$('table.data').footable();
