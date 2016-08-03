@@ -37,11 +37,10 @@ class AppController extends Controller {
 		'Session',
 		'DebugKit.Toolbar',
 		'Auth' => array(
-			'authorize' => array(
-				 'Actions' => array('actionPath' => 'controllers') //ACLまわりのやつくさい
-				)
-			),
-		'Acl'
+			//'authorize' => array(
+				 //'Actions' => array('actionPath' => 'controllers') //ACLまわりのやつくさい
+				//)
+			)
 		);
 
 	public $helpers = array('Session','Html','Form');
@@ -50,7 +49,7 @@ class AppController extends Controller {
 		// $this->Auth->allow();
 		$this->Auth->allow('login');
 		$this->Auth->allow('logout');
-		$this->Auth->allow('acl_add');
+		//$this->Auth->allow('acl_add');
     $this->Auth->loginAction 		= array('controller' => 'users', 'action' => 'login');
     $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
     $this->Auth->loginRedirect 	= array('controller' => 'pages', 'action' => 'display');
