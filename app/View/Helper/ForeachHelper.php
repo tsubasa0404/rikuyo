@@ -23,6 +23,19 @@ class ForeachHelper extends AppHelper
     }
   }
 
+
+  public function get_company_association_by_company_id($company_id, $lang=null){
+    $this->Company = ClassRegistry::init('Company');
+    $company = $this->Company->find('first', array(
+      'conditions' => array('id' => $company_id),
+      'fields' => array('company_jp', 'company_en'),
+      'recursive' => -1
+      ));
+
+    return var_dump($company);
+  }
+
+  //trainee一覧で使用。job idのカンマ区切り文字列をexplodeして配列に格納すること。
   public function trainees_job($job_ids, $lang){
     $this->Job = ClassRegistry::init('Job');
 
@@ -37,7 +50,7 @@ class ForeachHelper extends AppHelper
         'fields' => array('id', 'job_jp', 'job_en'),
         'recursive' => -1
         ));
-      if($lang=='jp'){
+      if($lang=='ja'){
         $job = $job['Job']['job_jp'];
       } else {
         $job = $job['Job']['job_en'];

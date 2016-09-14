@@ -241,6 +241,10 @@ class Trainee extends AppModel {
 				'Trainee.control_no',
 				'Trainee.family_name_en',
 				'Trainee.given_name_en',
+				'Trainee.interview_date',
+				'Trainee.note',
+				'Trainee.company_id',
+				'Trainee.trainee_job',
 				'Trainee.sex',
 				'Trainee.birthday',
 				'Trainee.phone',
@@ -258,9 +262,15 @@ class Trainee extends AppModel {
 				'Trainee.return_note',
 				'Trainee.return_date',
 				'Trainee.birthplace_province_id',
-				'TraineeProfileImage.img_file_name'
+				'TraineeProfileImage.img_file_name',
+				'TraineeListCompany.id',
+				'TraineeListCompany.company_jp',
+				'TraineeListCompany.company_en',
+				'TraineeListAssociation.id',
+				'TraineeListAssociation.association_jp',
+				'TraineeListAssociation.association_en'
 				),
-			'order' => array('Trainee.control_no' => 'asc'),
+			'order' => array('Trainee.interview_date' => 'desc','TraineeListAssociation.id' => 'asc'),
 			'recursive' => -1
 		);
 		$options['joins'][] = array(
@@ -269,6 +279,18 @@ class Trainee extends AppModel {
 		'type' => 'LEFT',
 		'conditions' => 'Trainee.id = TraineeProfileImage.trainee_id'
 		);
+		$options['joins'][] = array(
+			'table' => 'companies',
+			'alias' => 'TraineeListCompany',
+			'type' => 'LEFT',
+			'conditions' => 'Trainee.company_id = TraineeListCompany.id'
+			);
+		$options['joins'][] = array(
+			'table' => 'associations',
+			'alias' => 'TraineeListAssociation',
+			'type' => 'LEFT',
+			'conditions' => 'TraineeListCompany.association_id = TraineeListAssociation.id'
+			);
 		return $this->find('all', $options);
 	}
 

@@ -130,7 +130,6 @@ class TraineesController extends AppController {
 			}
 		} else {
 
-			//不明のSQLが発行されてたのでとりあえず書いてみた。
 			$this->Trainee->recursive = -1;
 			$this->Province->recursive = -1;
 			$this->District->recursive = -1;
@@ -216,7 +215,7 @@ class TraineesController extends AppController {
 
       } else if($user['role_id'] == 6){ //processor
 
-        $this->set(compact('lang', 'prof_img', 'doc_imgs', 'voices'));
+        $this->set(compact('lang', 'prof_img', 'doc_imgs', 'voices','option_companies','option_jobs'));
         $this->render('profile_processor');
 
       }
@@ -234,12 +233,17 @@ class TraineesController extends AppController {
 		   }
 		  if($this->request->is('ajax')){
         $this->request->data['Trainee']['id']                  = $id;
+        $this->request->data['Trainee']['company_id']          = $_POST['company_id'];
+        $this->request->data['Trainee']['interview_date']      = $_POST['interview_date'];
         $this->request->data['Trainee']['departure_date']      = $_POST['departure_date'];
         $this->request->data['Trainee']['departure_status_id'] = $_POST['departure_status_id'];
         $this->request->data['Trainee']['return_date']         = $_POST['return_date'];
         $this->request->data['Trainee']['return_status_id']    = $_POST['return_status_id'];
-        $this->request->data['Trainee']['student_status_id']   = $_POST['student_status_id'];
-        $this->request->data['Trainee']['company_id']          = $_POST['company_id'];
+        if(isset($_POST['student_status_id'])){
+          $this->request->data['Trainee']['student_status_id']   = $_POST['student_status_id'];
+        }
+        $job_array = implode(',', $_POST['trainee_job']);
+        $this->request->data['Trainee']['trainee_job'] = $job_array;
 		    if ($this->Trainee->save($this->request->data)) {
 		    	return true; //戻り値を空にするとエラーでる。
 		    } else {
@@ -247,6 +251,22 @@ class TraineesController extends AppController {
 		    }
 		  }
 	}
+
+  public function updateInterviewStatusAjax($id=null){
+      $this->autoRender = false;
+      if($this->RequestHandler->isAjax()){
+        Configure::write('debug', 0);
+       }
+      if($this->request->is('ajax')){
+        $this->request->data['Trainee']['id']                  = $id;
+        $this->request->data['Trainee']['student_status_id']   = $_POST['student_status_id'];
+        if ($this->Trainee->save($this->request->data)) {
+          return true; //戻り値を空にするとエラーでる。
+        } else {
+          return false;
+        }
+      }
+  }
 
 	public function updateDocChkAjax($id=null){
 		  $this->autoRender = false;
@@ -274,6 +294,7 @@ class TraineesController extends AppController {
         $this->request->data['Trainee']['bank_note']                = $_POST['bank_note'];
         $this->request->data['Trainee']['sign_status_id']           = $_POST['sign_status_id'];
         $this->request->data['Trainee']['sign_note']                = $_POST['sign_note'];
+        $this->request->data['Trainee']['note']                     = $_POST['remark'];
 
 		    if ($this->Trainee->save($this->request->data)) {
 		    	return true; //戻り値を空にするとエラーでる。
@@ -442,6 +463,11 @@ class TraineesController extends AppController {
         $this->request->data['Trainee']['employ5_from']     = $_POST['employ5_from'];
         $this->request->data['Trainee']['employ5_to']       = $_POST['employ5_to'];
         $this->request->data['Trainee']['employ5_en']       = $_POST['employ5_en'];
+        $this->request->data['Trainee']['latest_academic_history']       = $_POST['latest_academic_history'];
+
+        $job_array = implode(',', $_POST['job_expectation']);
+        $this->request->data['Trainee']['job_expectation'] = $job_array;
+
         $this->request->data['Trainee']['job1_id']          = $_POST['job1_id'];
         $this->request->data['Trainee']['job1_term']        = $_POST['job1_term'];
         $this->request->data['Trainee']['job2_id']          = $_POST['job2_id'];

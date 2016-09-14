@@ -31,7 +31,11 @@
 									    　下記の機関は、日本国向けに技能実習生の派遣を適正に行っていると認められる
 									</p>
 									<p style="margin-bottom: 0">
-									    ので、同機関が派遣する　　　<input type="text" style="text-align: center" value="<?php echo $trainees[0]['Trainee']['given_name_en']." ".$trainees[0]['Trainee']['family_name_en'] ?>" >他　　<strong><input type="text" name="" value="<?php if(isset($formated_trainees_array)){echo count($formated_trainees_array)-1;} ?>" style="width: 20px;text-align: center;"></strong>　名
+									    ので、同機関が派遣する　　　<input type="text" style="text-align: center" value="<?php echo $trainees[0]['Trainee']['given_name_en']." ".$trainees[0]['Trainee']['family_name_en'] ?>" >他　　<strong><input type="text" name="" value="<?php if(isset($formated_trainees_array)){
+									    	if(count($formated_trainees_array)-1 < 0){
+									    		echo "";
+									    	}
+									    ;} ?>" style="width: 20px;text-align: center;"></strong>　名
 									</p>
 									<p style="margin-top: 0">
 									    　　　　　　　　　　　　　（技能実習生名）　　　　　　　（人数）

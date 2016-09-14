@@ -9,7 +9,7 @@
 
 <?php echo $this->Session->flash() ?>
 			<div class="row">
-				<div class="col-lg-12 maxW700">
+				<div class="col-lg-12 maxW1200">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
 							<h2 class="pull-left"><?= __('Trainee List') ?></h2>
@@ -29,12 +29,16 @@
 									<tr>
 										<th><?= __('Trainee ID') ?></th>
 										<th><?= __('') ?></th>
-										<th data-hide="all" class=""><?= __('Birthday') ?></th>
-										<th data-hide="all" class=""><?= __('Phone') ?></th>
-										<th data-hide="all" class=""><?= __('Sex') ?></th>
 										<th><?= __('Personal Docs') ?></th>
 										<th><?= __('Docs Return') ?></th>
 										<th><?= __('Flight') ?></th>
+										<th><?= __('Interview Date') ?></th>
+										<th><?= __('Company(Association)') ?></th>
+										<th data-hide="all" class=""><?= __('Birthday') ?></th>
+										<th data-hide="all" class=""><?= __('Phone') ?></th>
+										<th data-hide="all" class=""><?= __('Sex') ?></th>
+										<th data-hide="all" class=""><?= __('Trainee Job') ?></th>
+										<th data-hide="all" class=""><?= __('Remark') ?></th>
 										<th></th>
 									</tr>
 								</thead>
@@ -65,15 +69,6 @@
 												<?php echo $trainee['Trainee']['given_name_en']." ".$trainee['Trainee']['family_name_en'];?>
 											</td>
 
-											<td>
-												<?php echo $trainee['Trainee']['birthday'];?>
-											</td>
-											<td>
-												<?php echo $trainee['Trainee']['phone'];?>
-											</td>
-											<td>
-												<?php echo $trainee['Trainee']['sex'];?>
-											</td>
 											<td class="">
 												<p class="mB5"><span><?= __('Medical Check') ?></span>
 													<?php echo $this->Btn->statusBtn($trainee['Trainee']['medicalchk_status_id'], 'right');?></p>
@@ -94,12 +89,52 @@
 											<td class="">
 												<p class="mB5"><span><?= __('Departure') ?></span>
 													<?php echo $this->Btn->statusBtn($trainee['Trainee']['departure_status_id'], 'right');?><br>
-													<?php if($trainee['Trainee']['departure_date']){echo date('m/d', strtotime($trainee['Trainee']['departure_date']));}else{echo $trainee['Trainee']['departure_note'];};?></p>
+													<?php if(isset($trainee['Trainee']['departure_date'])){
+														$this->HlpCalcDate->transform_date($trainee['Trainee']['departure_date'],$lang)
+														;} else {
+															echo $trainee['Trainee']['departure_note'];
+														};?></p>
 
 												<p class="mB5"><span><?= __('Return') ?></span>
 													<?php echo $this->Btn->statusBtn($trainee['Trainee']['return_status_id'], 'right');?><br>
-													<?php if($trainee['Trainee']['return_date']){echo date('m/d', strtotime($trainee['Trainee']['return_date']));}else{echo $trainee['Trainee']['return_note'];};?></p>
+													<?php if(isset($trainee['Trainee']['return_date'])){
+														$this->HlpCalcDate->transform_date($trainee['Trainee']['return_date'],$lang)
+														;} else {
+															echo $trainee['Trainee']['return_note'];
+														};?></p>
 											</td>
+											<td><?php if(isset($trainee['Trainee']['interview_date'])){
+														$this->HlpCalcDate->transform_date($trainee['Trainee']['interview_date'],$lang)
+													;} ?></td>
+											<td>
+												<?php echo $this->Html->link(
+													$this->Btn->switchLang($lang, $trainee['TraineeListAssociation']['association_jp'], $trainee['TraineeListAssociation']['association_en']),
+													array('controller' => 'associations', 'action' => 'profile', $trainee['TraineeListAssociation']['id']),
+													array('target' => '_blank')
+												);?>
+												(
+												<?php echo $this->Html->link(
+													$this->Btn->switchLang($lang, $trainee['TraineeListCompany']['company_jp'], $trainee['TraineeListCompany']['company_en']),
+													array('controller' => 'companies', 'action' => 'profile', $trainee['TraineeListCompany']['id']),
+													array('target' => '_blank')
+												);?>
+												)
+											</td>
+											<td>
+												<?php if(isset($trainee['Trainee']['birthday'])){
+													$this->HlpCalcDate->transform_date($trainee['Trainee']['birthday'],$lang);
+													};?>
+											</td>
+											<td>
+												<?php echo $trainee['Trainee']['phone'];?>
+											</td>
+											<td>
+												<?php echo __($trainee['Trainee']['sex']);?>
+											</td>
+											<td><?php if(isset($trainee['Trainee']['trainee_job'])){
+												echo $this->Foreach->trainees_job(explode(',',$trainee['Trainee']['trainee_job']),$lang);
+												} ?></td>
+											<td><?php echo $trainee['Trainee']['note'] ?></td>
 											<td>
 												<div class="actions">
 												<?php if($user['role_id'] == 1 || $user['role_id'] == 2 || $user['role_id'] == 3){ ;?>

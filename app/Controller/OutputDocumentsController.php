@@ -45,6 +45,14 @@ class OutputDocumentsController extends AppController {
 		$this->set(compact('interview_prof', 'documents_list'));
 	}
 
+	public function printout_cv($trainee_id, $cv_ctp_name){
+		$lang = $this->__setLang();
+
+		$trainee_profile_for_cv = $this->Trainee->getTraineeAjax($trainee_id);
+		$this->set(compact('trainee_id','trainee_profile_for_cv'));
+
+		$this->render($cv_ctp_name);
+	}
 	public function printout($interview_id, $ctp_name){
 		$lang = $this->__setLang();
 
