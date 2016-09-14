@@ -75,11 +75,84 @@
 						</div>
 					</div>
 				</div>
+
+			<!-- Advanced Search Trainees -->
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="main-box clearfix">
 						<header class="main-box-header clearfix">
-							<h2 class="pull-left"><?= __('Search Trainees') ?></h2>
+							<h2 class="pull-left"><?= __('Advanced Search Trainees') ?></h2>
+						</header>
+
+						<div class="main-box-body clearfix">
+							<?php echo $this->Form->create('Interview', array(
+								'action' => 'advanced_search',
+								'class' => 'form_advanced_search',
+								'inputDefaults' => array(
+									'div' => false,
+									)
+							)); ?>
+							<div class="row mB10">
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label><?= __('Age') ?></label>
+									<?php echo $this->Form->input('age1', array(
+										'label' => false,
+										'class' => 'form-control maxW100'
+									)) ?> To
+									<?php echo $this->Form->input('age2', array(
+										'label' => false,
+										'class' => 'form-control maxW50'
+									)) ?>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label class="control-label"><?= __('Age') ?></label>
+									<input type="text" class="filter_control_no form-control" value="">
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label class="control-label"><?= __('Name') ?></label>
+									<input type="text" class="filter_name form-control" value="">
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label class="control-label"><?= __('Sex') ?></label>
+									<div class="">
+										<div class="checkbox-nice pull-left mR5">
+											<input type="checkbox" class="filter_sex" id="filter_sex1" value="<?= __('male'); ?>"/>
+											<label for="filter_sex1"><?= __('Male') ?></label>
+										</div>
+										<div class="checkbox-nice pull-left mL5">
+											<input type="checkbox" class="filter_sex" id="filter_sex2" value="<?= __('female'); ?>"/>
+											<label for="filter_sex2"><?= __('Female') ?></label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label class="control-label"><?= __('Language') ?></label>
+									<input type="text" class="filter_language form-control" value="">
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label class="control-label"><?= __('Skill') ?></label>
+									<input type="text" class="filter_skill form-control" value="">
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-3">
+									<label class="control-label"><?= __('Hand') ?></label>
+									<input type="text" class="filter_hand form-control" value="">
+								</div>
+							</div>
+							<?php echo $this->Form->end(); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //Advanced Search Trainees -->
+
+			<!-- Easy Search Trainees -->
+			<!-- <div class="row">
+				<div class="col-lg-12">
+					<div class="main-box clearfix">
+						<header class="main-box-header clearfix">
+							<h2 class="pull-left"><?= __('Easy Search Trainees') ?></h2>
 						</header>
 
 						<div class="main-box-body clearfix">
@@ -128,6 +201,8 @@
 					</div>
 				</div>
 			</div>
+			-->
+			<!-- //Easy Search Trainees -->
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<div class="main-box clearfix">
