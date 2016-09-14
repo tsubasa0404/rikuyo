@@ -21,32 +21,131 @@
 
 						<div class="main-box-body clearfix">
 							<div class="row">
-								<div class="col-lg-5 col-md-5 col-sm-5 maxW500">
+								<div class="col-lg-6 col-md-6 col-sm-6 maxW600">
 									<div class="trainee-profile-img maxW300">
-									<?php echo $this->Form->error('TraineeProfileImage.img'); ?>
-										<?php if($prof_img)
-											{
-												echo $this->Html->image('trainee_profile_images/big/'.$prof_img[0]['TraineeProfileImage1']['img_file_name'], array(
-													'class' => 'profile-img img-responsive center-block',
-													'style' => 'border-radius:initial'
-													));
-											} else {
-												echo $this->Html->image('trainee_profile_images/big/default.png', array(
-													'class' => 'profile-img img-responsive center-block',
-													'style' => 'border-radius:initial'
-													));
-											}
-										?>
+										<?php echo $this->Form->error('TraineeProfileImage.img'); ?>
+											<?php if($prof_img)
+												{
+													echo $this->Html->image('trainee_profile_images/big/'.$prof_img[0]['TraineeProfileImage1']['img_file_name'], array(
+														'class' => 'profile-img img-responsive center-block',
+														'style' => 'border-radius:initial'
+														));
+												} else {
+													echo $this->Html->image('trainee_profile_images/big/default.png', array(
+														'class' => 'profile-img img-responsive center-block',
+														'style' => 'border-radius:initial'
+														));
+												}
+											?>
 									</div>
 
 									<div class="main-box-body clearfix center-block " style="padding-bottom: 10px !important;" >
-
 									</div>
+									<div class="main-box-body clearfix">
+										<div class="table-responsive flight-schedule maxW600">
+											<?php echo $this->Form->create('Trainee', array(
+												'class' => 'form_trainee_edit form_flight',
+												'action' => 'updateFlightAjax',
+												'inputDefaults' => array(
+													'div' => false,
+													)
+											)); ?>
+											<?php echo $this->Form->hidden('id'); ?>
+											<table class="table table-bordered table-hover">
+												<tbody>
 
+													<tr>
+														<td class="td_first_block"><?= __('Company') ?></td>
+														<td>
+															<div class="form-group form-group-select2">
+																<?php echo $this->Form->input('company_id', array(
+																	'label' => false,
+																	'type' => 'select',
+																	'div' => false,
+																	'class' => 'form-control sel_company company_id',
+																	'selected' => $this->request->data['Trainee']['company_id'],
+																	'options' => $option_companies,
+																	'style' => 'display:inline;width:100%',
+																	'empty' => '-- Select Company --'
+																)) ?>
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td class="td_first_block"><?= __('Interview Date') ?></td>
+														<td>
+															<?php echo $this->Form->date('interview_date',array(
+																'label' => false,
+																'class' => 'form-control maxW200 interview_date'
+															)) ?>
+														</td>
+													</tr>
+													<tr>
+														<td class="td_first_block"><?= __('Departure Date') ?></td>
+														<td>
+															<?php echo $this->Form->date('departure_date',array(
+																'label' => false,
+																'class' => 'form-control maxW200 departure_date'
+															)) ?>
+														</td>
+													</tr>
+													<tr>
+														<td class="td_first_block"><?= __('Departure Status') ?></td>
+														<td>
+															<?php echo $this->Form->input('departure_status_id',array(
+															'label' => false,
+															'type' => 'select',
+															'options' => array('0'=> __('Not Yet'),'1'=> __('Already')),
+															'class' => "form-control maxW200 departure_status",
+															'div' => false
+														)); ?>
+														</td>
 
+													</tr>
+													<tr>
+														<td class="td_first_block"><?= __('Return Date') ?></td>
+														<td><?php echo $this->Form->date('return_date',array(
+															'label' => false,
+															'class' => 'form-control maxW200 return_date'
+														)) ?></td>
+													</tr>
+													<tr>
+														<td class="td_first_block"><?= __('Return Status') ?></td>
+														<td>
+															<?php echo $this->Form->input('return_status_id',array(
+																'label' => false,
+																'type' => 'select',
+																'options' => array('0'=> __('Not Yet'),'1'=> __('Already'), '2'=>__('Run Away')),
+																'class' => "form-control maxW200 return_status",
+																'div' => false
+															)); ?>
+														</td>
+													</tr>
+													<tr>
+														<td class="td_first_block"><?= __('Trainee Job') ?></td>
+														<td>
+															<div class="form-group form-group-select2">
+																<?php echo $this->Form->input('trainee_job', array(
+																	'label' => false,
+								                  'options' => $option_jobs,
+								                  'multiple' => true,
+								                  'class' => "form-control sel_job trainee_job",
+								                  'selected' => explode(",", $this->request->data['Trainee']['trainee_job']),
+								                  'style' => array("width:100%"),
+								                  'div' => false
+																)) ?>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<button type="button" class="btn btn-default pull-right update_flight_btn" style="margin-top:-15px;"><span class=" fa fa-plane"></span> <?= __('Save') ?></button>
+											<?php echo $this->Form->end(); ?>
+										</div>
+									</div>
 								</div>
 
-								<div class="col-lg-7 col-md-7 col-sm-7 maxW560">
+								<div class="col-lg-6 col-md-6 col-sm-6 maxW560">
 									<div class="table-responsive">
 										<?php echo $this->Form->create('Trainee', array(
 											'class' => 'form_trainee_edit form_doc_chk',
@@ -293,6 +392,21 @@
 														</div>
 													</td>
 												</tr>
+												<tr>
+													<td class="td_first_block"><?= __('Remark') ?></td>
+													<td>
+														<div class="row">
+															<div class="form-group">
+																<div class="col-lg-12 col-md-12 col-sm-12">
+																	<?php echo $this->Form->textarea('note',array(
+																		'label' => false,
+																		'rows' => '4',
+																		'class' => 'form-control remark'
+																	)) ?>
+															</div>
+														</div>
+													</td>
+												</tr>
 											</tbody>
 										</table>
 										<button type="button" class="btn btn-default pull-right update_doc_chk_btn" style="margin-top:-15px;"><span class=" fa fa-file"></span> <?= __('Save') ?></button>
@@ -510,7 +624,36 @@
 	$(function(){
 			var id = '<?php echo $this->request->data['Trainee']['id']; ?>';
 
-
+			//Flight Ajax Update
+			$('.update_flight_btn').on('click', function(){
+        var url                 = $('.form_flight').attr('action');
+        var company_id = $('.company_id').val();
+        var interview_date = $('.interview_date').val();
+        var departure_date      = $('.departure_date').val();
+        var departure_status_id = $('.departure_status').val();
+        var return_date         = $('.return_date').val();
+        var return_status_id    = $('.return_status').val();
+        var trainee_job    = $('.trainee_job').val();
+				$.ajax({
+					url:url,
+					type:'POST',
+					dataType:'json',
+					data:{
+						id:id,
+						company_id:company_id,
+						interview_date:interview_date,
+						departure_date:departure_date,
+						departure_status_id:departure_status_id,
+						return_date:return_date,
+						return_status_id:return_status_id,
+						trainee_job:trainee_job
+					}, success:function(){
+						swal("<?= __('Saved!') ?>", "", "success")
+					}, error:function(){
+						swal("<?= __('Error!') ?>", "", "error")
+					}
+				});
+			});
 
 			//Doc Chk Ajax update
 			$('.update_doc_chk_btn').on('click', function(){
@@ -534,6 +677,7 @@
         var bank_note                 = $('.bank_note').val();
         var sign_status_id            = $('.sign_status_id').val();
         var sign_note                 = $('.sign_note').val();
+        var remark                 = $('.remark').val();
 
 
 				$.ajax({
@@ -561,6 +705,7 @@
 						bank_note:bank_note,
 						sign_status_id:sign_status_id,
 						sign_note:sign_note,
+						remark:remark,
 					}, success:function(){
 						swal("<?= __('Saved!') ?>", "", "success")
 					}, error:function(){

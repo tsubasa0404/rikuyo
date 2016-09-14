@@ -54,9 +54,9 @@
           var employ4_en = obj['Trainee']['employ4_en'];
           var employ5_en = obj['Trainee']['employ5_en'];
           var job1_en = obj['Job1']['job_en'];
-          var job1_term = obj['Trainee']['job1_term'];
+          var job1_term = obj['Trainee']['Job1_term'];
           var job2_en = obj['Job2']['job_en'];
-          var job2_term = obj['Trainee']['job2_term'];
+          var job2_term = obj['Trainee']['Job2_term'];
           var english = obj['Trainee']['english'];
           var lang_others_en = obj['Trainee']['lang_others_en'];
           var visit_jpn = obj['Trainee']['visit_jpn'];

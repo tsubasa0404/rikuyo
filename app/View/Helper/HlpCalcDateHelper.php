@@ -23,4 +23,16 @@ class HlpCalcDateHelper extends AppHelper
 	}
 
 
+    function transform_date($date, $lang=null){
+        $date_to_time = date('Y-m-d', strtotime($date));
+        list($y['y'], $m['m'], $d['d']) = explode('-', $date_to_time);
+
+        if($lang=='ja'){
+            echo $y['y']."年".$m['m']."月" . $d['d'] ."日";
+        } else {
+            echo $d['d']."/".$m['m']."/".$y['y'];
+        }
+
+    }
+
 }

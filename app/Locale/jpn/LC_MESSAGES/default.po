@@ -13,6 +13,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
+#: interviews/select
+mdgid "both"
+msgstr "どちらでもよい"
+
+mdgid "Easy Search Trainees"
+msgstr "簡易検索"
+
+mdgid "Advanced Search Option"
+msgstr "詳細条件条件検索"
+
+mdgid "Hand"
+msgstr "利き手"
+
+mdgid "LANGUAGE"
+msgstr "言語"
+
+mdgid "left"
+msgstr "左"
+
+mdgid "right"
+msgstr "右"
 
 #: View/output_documents/printout
 mdgid "Select interviews to merge info"
