@@ -13,7 +13,7 @@ class InterviewsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Sort','My');
+	public $components = array('Paginator', 'My');
 	public $uses = array(
 		'Agent',
 		'Association',
