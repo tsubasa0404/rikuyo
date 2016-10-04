@@ -9,11 +9,10 @@
 		{
 			"name": "CakePHP Community",
 			"homepage": "https://github.com/cakephp/cakephp/graphs/contributors"
-		}
+	}
 	],
 	"support": {
-		"issues": "https://github.com/cakephp/cakephp/issues",
-		"forum": "http://stackoverflow.com/tags/cakephp",
+		"issues": "https://github.com/cakephp/cakephp/issues",	"forum": "http://stackoverflow.com/tags/cakephp",
 		"irc": "irc://irc.freenode.org/cakephp",
 		"source": "https://github.com/cakephp/cakephp"
 	},

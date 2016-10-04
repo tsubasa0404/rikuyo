@@ -527,7 +527,9 @@
         var employ5_from    = $('.employ5_from').val();
         var employ5_to      = $('.employ5_to').val();
         var employ5_en      = $('.employ5_en').val();
-        var job_expectation = $('.job_expectation').val();
+        var job_expectation1 = $('.job_expectation1').val();
+        var job_expectation2 = $('.job_expectation2').val();
+        var job_expectation3 = $('.job_expectation3').val();
         var job1_id         = $('.job1_id').val();
         var job1_term       = $('.job1_term').val();
         var job2_id         = $('.job2_id').val();
@@ -589,7 +591,9 @@
             employ5_from:   employ5_from,
             employ5_to:     employ5_to,
             employ5_en:     employ5_en,
-            job_expectation: job_expectation,
+            job_expectation1: job_expectation1,
+            job_expectation2: job_expectation2,
+            job_expectation3: job_expectation3,
             job1_id:        job1_id,
             job1_term:      job1_term,
             job2_id:        job2_id,

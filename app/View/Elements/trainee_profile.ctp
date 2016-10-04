@@ -1138,10 +1138,10 @@
                         'label' => false,
                         'type' => 'select',
                         'options' => array(
-                          'elementary_school' => __('Elementary School'),
-                          'secondary_school'        =>  __('Secondary Shool'),
-                          'high_school'        =>  __('High School'),
-                          'university'         =>  __('University'),
+                          '1' => __('Elementary School'),
+                          '2'        =>  __('Secondary Shool'),
+                          '3'        =>  __('High School'),
+                          '4'         =>  __('University'),
                            ),
                         'class' => "form-control maxW160 latest_academic_history",
                         'empty' => true,
@@ -1464,14 +1464,32 @@
               </td>
               <td></td>
               <td>
-                <?php echo $this->Form->input('job_expectation',array(
+                <?php echo $this->Form->input('job_expectation1',array(
                   'label' => false,
                   'options' => $option_jobs,
-                  'multiple' => true,
-                  'class' => "form-control sel_job job_expectation",
-                  'selected' => explode(",", $this->request->data['Trainee']['job_expectation']),
+                  'class' => "form-control sel_job job_expectation1",
+                  'selected' => $this->request->data['Trainee']['job_expectation1'],
                   'style' => array("width:100%"),
-                  'div' => false
+                  'div' => false,
+                  'empty' => '--Select Job--'
+                )); ?>
+                <?php echo $this->Form->input('job_expectation2',array(
+                  'label' => false,
+                  'options' => $option_jobs,
+                  'class' => "form-control sel_job job_expectation2",
+                  'selected' => $this->request->data['Trainee']['job_expectation2'],
+                  'style' => array("width:100%"),
+                  'div' => false,
+                  'empty' => '--Select Job--'
+                )); ?>
+                <?php echo $this->Form->input('job_expectation3',array(
+                  'label' => false,
+                  'options' => $option_jobs,
+                  'class' => "form-control sel_job job_expectation3",
+                  'selected' => $this->request->data['Trainee']['job_expectation3'],
+                  'style' => array("width:100%"),
+                  'div' => false,
+                  'empty' => '--Select Job--'
                 )); ?>
               </td>
             </tr>

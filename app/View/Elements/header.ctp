@@ -68,7 +68,7 @@
 					</ul>
 				</li>
 
-				<li class="dropdown">
+				<li class="dropdown language_switch_btn">
 					<a class="btn dropdown-toggle" data-toggle="dropdown">
 						<?php echo $lang == 'ja' ? __('Japanese') : __('English'); ?>
 						<i class="fa fa-caret-down"></i>

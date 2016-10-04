@@ -465,8 +465,9 @@ class TraineesController extends AppController {
         $this->request->data['Trainee']['employ5_en']       = $_POST['employ5_en'];
         $this->request->data['Trainee']['latest_academic_history']       = $_POST['latest_academic_history'];
 
-        $job_array = implode(',', $_POST['job_expectation']);
-        $this->request->data['Trainee']['job_expectation'] = $job_array;
+        $this->request->data['Trainee']['job_expectation1'] = $_POST['job_expectation1'];
+        $this->request->data['Trainee']['job_expectation2'] = $_POST['job_expectation2'];
+        $this->request->data['Trainee']['job_expectation3'] = $_POST['job_expectation3'];
 
         $this->request->data['Trainee']['job1_id']          = $_POST['job1_id'];
         $this->request->data['Trainee']['job1_term']        = $_POST['job1_term'];

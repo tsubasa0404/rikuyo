@@ -13,27 +13,41 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: interviews/select
-mdgid "both"
-msgstr "どちらでもよい"
+#: interviews/advanced_search
+mdgid "Advanced Search Result"
+msgstr "詳細検索結果"
 
-mdgid "Easy Search Trainees"
-msgstr "簡易検索"
+mdgid "advanced search"
+msgstr "詳細検索"
 
-mdgid "Advanced Search Option"
-msgstr "詳細条件条件検索"
+mdgid "Advanced Search Trainees"
+msgstr "詳細検索"
 
-mdgid "Hand"
-msgstr "利き手"
+mdgid ""
+msgstr ""
 
-mdgid "LANGUAGE"
-msgstr "言語"
+mdgid ""
+msgstr ""
 
-mdgid "left"
-msgstr "左"
+mdgid ""
+msgstr ""
 
-mdgid "right"
-msgstr "右"
+mdgid ""
+msgstr ""
+
+mdgid ""
+msgstr ""
+
+mdgid ""
+msgstr ""
+
+mdgid ""
+msgstr ""
+
+mdgid ""
+msgstr ""
+
+
 
 #: View/output_documents/printout
 mdgid "Select interviews to merge info"
@@ -982,6 +996,56 @@ msgstr "男性"
 msgid "Female"
 msgstr "女性"
 
+#: View/Interviews/select.ctp
+#: interviews/select
+mdgid "both"
+msgstr "どちらでもよい"
+
+mdgid "Easy Search Trainees"
+msgstr "簡易検索"
+
+mdgid "Advanced Search Option"
+msgstr "詳細条件条件検索"
+
+mdgid "Hand"
+msgstr "利き手"
+
+mdgid "language"
+msgstr "言語"
+
+mdgid "left"
+msgstr "左"
+
+mdgid "right"
+msgstr "右"
+
+mdgid "Gender"
+msgstr "性別"
+
+mdgid "Latest Academic History"
+msgstr "最終学歴"
+
+mdgid "Elementary School"
+msgstr "小卒"
+
+mdgid "Secondary School"
+msgstr "中卒"
+
+mdgid "High School"
+msgstr "高卒"
+
+mdgid "University"
+msgstr "大卒"
+
+mdgid "Work Experiences"
+msgstr "職歴"
+
+mdgid "Job Expectation"
+msgstr "希望職"
+
+mdgid "Search"
+msgstr "検索"
+
 #: View/Agents/add.ctp:109
 #: View/Agents/profile.ctp:112
 #: View/Agents/view.ctp:54
@@ -1192,6 +1256,9 @@ msgstr "部門(業種)を追加"
 #: View/Trainees/profile.ctp:157;182;242;267;292;317;2243;2283;2360;2493;2531
 #: View/Trainees/view.ctp:619;834;908;949;1023;1062;1139
 msgid "Note"
+msgstr "備考"
+
+msgid "Remark"
 msgstr "備考"
 
 #: View/Agents/add.ctp:408
@@ -3091,42 +3158,42 @@ msgstr "誕生日"
 #: View/Provinces/view.ctp:188
 #: View/Trainees/view.ctp:54
 msgid "Height"
-msgstr ""
+msgstr "身長"
 
 #: View/Communes/view.ctp:159
 #: View/Districts/view.ctp:196
 #: View/Provinces/view.ctp:189
 #: View/Trainees/view.ctp:59
 msgid "Weight"
-msgstr ""
+msgstr "体重"
 
 #: View/Communes/view.ctp:160
 #: View/Districts/view.ctp:197
 #: View/Provinces/view.ctp:190
 #: View/Trainees/view.ctp:64
 msgid "Face Feature En"
-msgstr ""
+msgstr "顔の特徴 英語"
 
 #: View/Communes/view.ctp:161
 #: View/Districts/view.ctp:198
 #: View/Provinces/view.ctp:191
 #: View/Trainees/view.ctp:69
 msgid "Face Feature Jp"
-msgstr ""
+msgstr "顔の特徴 日本語"
 
 #: View/Communes/view.ctp:162
 #: View/Districts/view.ctp:199
 #: View/Provinces/view.ctp:192
 #: View/Trainees/view.ctp:74
 msgid "Face Feature Kh"
-msgstr ""
+msgstr "顔の特徴 クメール語"
 
 #: View/Communes/view.ctp:163
 #: View/Districts/view.ctp:200
 #: View/Provinces/view.ctp:193
 #: View/Trainees/view.ctp:79
 msgid "Shoe Size"
-msgstr ""
+msgstr "靴のサイズ"
 
 #: View/Communes/view.ctp:164
 #: View/Districts/view.ctp:201
@@ -5884,6 +5951,9 @@ msgstr ""
 #: View/Trainees/profile.ctp:8
 msgid "Trainee List"
 msgstr "実習生一覧"
+
+msgid "Trainee Job"
+msgstr "職種"
 
 #: View/TraineeExpenses/edit.ctp:8;9
 msgid "Trainee Expense Edit"

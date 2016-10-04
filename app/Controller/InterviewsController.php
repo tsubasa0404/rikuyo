@@ -13,7 +13,7 @@ class InterviewsController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Sort','My');
 	public $uses = array(
 		'Agent',
 		'Association',
@@ -206,13 +206,97 @@ class InterviewsController extends AppController {
 			$trainees = $this->Trainee->candidateTraineeList($id);
 			//面接予定者(面接予定)
 			$candidates = $this->InterviewCandidate->candidateList($id);
-			$this->set(compact('candidates', 'trainees'));
+
+			//検索用Jobリスト
+			$option_jobs = $this->Job->optionJobs($lang);
+
+			$this->set(compact('candidates', 'trainees', 'option_jobs'));
 
 			$options = array('conditions' => array('Interview.' . $this->Interview->primaryKey => $id));
 			$this->request->data = $this->Interview->find('first', $options);
 		}
 
 	}
+
+	public function advanced_search($interview_id){
+    $search_options     = array();
+
+    $age1               = $this->request->data['Interview']['age1'];
+    $age2               = $this->request->data['Interview']['age2'];
+    $height1            = $this->request->data['Interview']['height1'];
+    $height2            = $this->request->data['Interview']['height2'];
+    $weight1            = $this->request->data['Interview']['weight1'];
+    $weight2            = $this->request->data['Interview']['weight2'];
+    $marriage           = $this->request->data['Interview']['marriage'];
+    $english            = $this->request->data['Interview']['english'];
+    $academic_history   = $this->request->data['Interview']['academic_history'];
+    $work_experience    = $this->request->data['Interview']['trainee_job'];
+    $job_expectation    = $this->request->data['Interview']['job_expectation'];
+    $interview_status   = $this->request->data['Interview']['interview_status'];
+
+    if(empty($age1))    { $age1    = "10"  ;};
+    if(empty($age2))    { $age2    = "100" ;};
+    if(empty($height1)) { $height1 = "100" ;};
+    if(empty($height2)) { $height2 = "250" ;};
+    if(empty($weight1)) { $weight1 = "20"  ;};
+    if(empty($weight2)) { $weight2 = "200" ;};
+    if(empty($english)) { $english = "0,1" ;};
+
+    !empty($marriage) ? $marriage
+    	= implode(",",$marriage) : $marriage = "married,single";
+    !empty($academic_history) ? $academic_history
+    	= implode(",",$academic_history) : $academic_history = "1,2,3,4";
+    $work_experience  ? $work_experience
+    	= implode(",",$work_experience) : $work_experience = "";
+    $job_expectation  ? $job_expectation
+    	= implode(",",$job_expectation) : $job_expectation = "";
+    !empty($interview_status) ? $interview_status
+    	= implode(",",$interview_status) : $interview_status = "0,2"; //0:not yet, 2:cancel
+
+    $advanced_search_options['age1']              = $age1;
+    $advanced_search_options['age2']              = $age2;
+    $advanced_search_options['height1']           = $height1;
+    $advanced_search_options['height2']           = $height2;
+    $advanced_search_options['weight1']           = $weight1;
+    $advanced_search_options['weight2']           = $weight2;
+    $advanced_search_options['marriage']          = $marriage;
+    $advanced_search_options['english']           = $english;
+    $advanced_search_options['academic_history']  = $academic_history;
+    $advanced_search_options['work_experience']   = $work_experience;
+    $advanced_search_options['job_expectation']   = $job_expectation;
+    $advanced_search_options['interview_status']  = $interview_status;
+
+
+    $advanced_search_result = $this->Trainee->advanced_search($advanced_search_options, $interview_id);
+    $this->set(compact('advanced_search_options', 'advanced_search_result','interview_id'));
+
+    	if($this->__setLang()) {
+				$lang = $this->__setLang();
+			} else {
+				$lang = "en";
+			};
+
+			$prof = $this->Interview->prof($interview_id);
+			$this->set(compact('lang', 'prof'));
+
+			//面接候補者リスト(まだ面接に設定されていない)
+			// $trainees = $this->Trainee->candidateTraineeList($interview_id);
+			// //面接予定者(面接予定)
+			$candidates = $this->InterviewCandidate->candidateList($interview_id);
+
+			// //検索用Jobリスト
+			$option_jobs = $this->Job->optionJobs($lang);
+			$this->set(compact('option_jobs','candidates'));
+
+			//Jobの複数選択によるselectedエラーをここで回避
+			$selected_work_experience = $this->My->implode_variable($advanced_search_options['work_experience']);
+			$selected_job_expectation = $this->My->implode_variable($advanced_search_options['job_expectation']);
+
+
+
+			$this->set(compact('selected_work_experience', 'selected_job_expectation'));
+	}
+
 
 	public function success($id = null) {
 		if (!$this->Interview->exists($id)) {

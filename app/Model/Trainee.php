@@ -2,6 +2,241 @@
 App::uses('AppModel', 'Model');
 
 class Trainee extends AppModel {
+	var $name = 'Trainee';
+	var $virtualFields = array(
+		'age' => '(year(curdate()) - year(Trainee.birthday)) - (right(curdate(),5) < right(Trainee.birthday,5))'
+		);
+
+	public function advanced_search($advanced_search_options=null, $interview_id){
+		$options = array();
+
+		if(empty($advanced_search_options['work_experience']) && empty($advanced_search_options['job_expectation'])){
+			$options['conditions'] = array(
+				'age BETWEEN ? AND ?' => array($advanced_search_options['age1'],$advanced_search_options['age2']),
+				'Trainee.height BETWEEN ? AND ?' => array($advanced_search_options['height1'], $advanced_search_options['height2']),
+				'Trainee.weight BETWEEN ? AND ?' => array($advanced_search_options['weight1'], $advanced_search_options['weight2']),
+				'FIND_IN_SET(Trainee.married,"' . $advanced_search_options['marriage'] . '")',
+				'FIND_IN_SET(Trainee.english,"'.$advanced_search_options['english'].'")',
+				array('or' =>
+					array(
+						'FIND_IN_SET(Trainee.latest_academic_history,"'.$advanced_search_options['academic_history'].'")',
+						'Trainee.latest_academic_history IS NULL'
+					)
+				),
+				'FIND_IN_SET(Trainee.student_status_id,"'.$advanced_search_options['interview_status'].'")',
+			);
+
+		} elseif(empty($advanced_search_options['work_experience']) && isset($advanced_search_options['job_expectation'])){
+
+			$options['conditions'] = array(
+				'age BETWEEN ? AND ?' => array($advanced_search_options['age1'],$advanced_search_options['age2']),
+				'Trainee.height BETWEEN ? AND ?' => array($advanced_search_options['height1'], $advanced_search_options['height2']),
+				'Trainee.weight BETWEEN ? AND ?' => array($advanced_search_options['weight1'], $advanced_search_options['weight2']),
+				'FIND_IN_SET(Trainee.married,"' . $advanced_search_options['marriage'] . '")',
+				'FIND_IN_SET(Trainee.english,"'.$advanced_search_options['english'].'")',
+				array('or' =>
+					array(
+						'FIND_IN_SET(Trainee.latest_academic_history,"'.$advanced_search_options['academic_history'].'")',
+						'Trainee.latest_academic_history IS NULL'
+					)
+				),
+				'FIND_IN_SET(Trainee.student_status_id,"'.$advanced_search_options['interview_status'].'")',
+				'or' =>
+	          array(
+	            'FIND_IN_SET(Trainee.job_expectation1,"'.$advanced_search_options['job_expectation'].'")',
+	            'FIND_IN_SET(Trainee.job_expectation2,"'.$advanced_search_options['job_expectation'].'")',
+	            'FIND_IN_SET(Trainee.job_expectation3,"'.$advanced_search_options['job_expectation'].'")',
+	          )
+			);
+
+		} elseif(isset($advanced_search_options['work_experience']) && empty($advanced_search_options['job_expectation'])){
+			$options['conditions'] = array(
+				'age BETWEEN ? AND ?' => array($advanced_search_options['age1'],$advanced_search_options['age2']),
+				'Trainee.height BETWEEN ? AND ?' => array($advanced_search_options['height1'], $advanced_search_options['height2']),
+				'Trainee.weight BETWEEN ? AND ?' => array($advanced_search_options['weight1'], $advanced_search_options['weight2']),
+				'FIND_IN_SET(Trainee.married,"' . $advanced_search_options['marriage'] . '")',
+				'FIND_IN_SET(Trainee.english,"'.$advanced_search_options['english'].'")',
+				array('or' =>
+					array(
+						'FIND_IN_SET(Trainee.latest_academic_history,"'.$advanced_search_options['academic_history'].'")',
+						'Trainee.latest_academic_history IS NULL'
+					)
+				),
+				'FIND_IN_SET(Trainee.student_status_id,"'.$advanced_search_options['interview_status'].'")',
+				'or' =>
+	          array(
+	            'FIND_IN_SET(Trainee.employ1_job,"'.$advanced_search_options['work_experience'].'")',
+	            'FIND_IN_SET(Trainee.employ2_job,"'.$advanced_search_options['work_experience'].'")',
+	            'FIND_IN_SET(Trainee.employ3_job,"'.$advanced_search_options['work_experience'].'")',
+	            'FIND_IN_SET(Trainee.employ4_job,"'.$advanced_search_options['work_experience'].'")',
+	            'FIND_IN_SET(Trainee.employ5_job,"'.$advanced_search_options['work_experience'].'")'
+	          ),
+			);
+		} else {
+			$options['conditions'] = array(
+				'age BETWEEN ? AND ?' => array($advanced_search_options['age1'],$advanced_search_options['age2']),
+				'Trainee.height BETWEEN ? AND ?' => array($advanced_search_options['height1'], $advanced_search_options['height2']),
+				'Trainee.weight BETWEEN ? AND ?' => array($advanced_search_options['weight1'], $advanced_search_options['weight2']),
+				'FIND_IN_SET(Trainee.married,"' . $advanced_search_options['marriage'] . '")',
+				'FIND_IN_SET(Trainee.english,"'.$advanced_search_options['english'].'")',
+				array('or' =>
+					array(
+						'FIND_IN_SET(Trainee.latest_academic_history,"'.$advanced_search_options['academic_history'].'")',
+						'Trainee.latest_academic_history IS NULL'
+					)
+				),
+				'FIND_IN_SET(Trainee.student_status_id,"'.$advanced_search_options['interview_status'].'")',
+				'or' => array(
+					'or' =>
+		          array(
+		            'FIND_IN_SET(Trainee.employ1_job,"'.$advanced_search_options['work_experience'].'")',
+		            'FIND_IN_SET(Trainee.employ2_job,"'.$advanced_search_options['work_experience'].'")',
+		            'FIND_IN_SET(Trainee.employ3_job,"'.$advanced_search_options['work_experience'].'")',
+		            'FIND_IN_SET(Trainee.employ4_job,"'.$advanced_search_options['work_experience'].'")',
+		            'FIND_IN_SET(Trainee.employ5_job,"'.$advanced_search_options['work_experience'].'")'
+		          ),
+		      'or' =>
+		          array(
+		            'FIND_IN_SET(Trainee.job_expectation1,"'.$advanced_search_options['job_expectation'].'")',
+		            'FIND_IN_SET(Trainee.job_expectation2,"'.$advanced_search_options['job_expectation'].'")',
+		            'FIND_IN_SET(Trainee.job_expectation3,"'.$advanced_search_options['job_expectation'].'")',
+		          )
+		      )
+			);
+		}
+
+		$options['fields'] = array(
+			'Trainee.id',
+			'Trainee.control_no',
+			'Trainee.family_name_en',
+			'Trainee.given_name_en',
+			'Trainee.phone',
+			'Trainee.birthday',
+			'Trainee.sex',
+			'age',
+			'Trainee.height',
+			'Trainee.weight',
+			'Trainee.married',
+			'Trainee.english',
+			'Trainee.lang_others_en',
+			'Trainee.latest_academic_history',
+			'Trainee.job_expectation1',
+			'Trainee.job_expectation2',
+			'Trainee.job_expectation3',
+			'AdvancedSearchJobExpectation1.job_en',
+			'AdvancedSearchJobExpectation1.job_jp',
+			'AdvancedSearchJobExpectation2.job_en',
+			'AdvancedSearchJobExpectation2.job_jp',
+			'AdvancedSearchJobExpectation3.job_en',
+			'AdvancedSearchJobExpectation3.job_jp',
+			'Trainee.employ1_job',
+			'Trainee.employ2_job',
+			'Trainee.employ3_job',
+			'Trainee.employ4_job',
+			'Trainee.employ5_job',
+			'AdvancedSearchWorkExperience1.job_en',
+			'AdvancedSearchWorkExperience1.job_jp',
+			'AdvancedSearchWorkExperience2.job_en',
+			'AdvancedSearchWorkExperience2.job_jp',
+			'AdvancedSearchWorkExperience3.job_en',
+			'AdvancedSearchWorkExperience3.job_jp',
+			'AdvancedSearchWorkExperience4.job_en',
+			'AdvancedSearchWorkExperience4.job_jp',
+			'AdvancedSearchWorkExperience5.job_en',
+			'AdvancedSearchWorkExperience5.job_jp',
+			'Trainee.student_status_id',
+			'AdvancedSearchTraineeProfileImage.img_file_name',
+			'AdvancedSearchCandidate.id',
+			'AdvancedSearchCandidate.interview_id',
+			'AdvancedSearchCandidate.interview_result_id'
+		);
+		$options['joins'][] = array(
+			'table' => 'trainee_profile_images',
+			'alias' => 'AdvancedSearchTraineeProfileImage',
+			'type' => 'LEFT',
+			'conditions' => 'AdvancedSearchTraineeProfileImage.trainee_id = Trainee.id'
+			);
+		$options['joins'][] = array(
+			'table' => 'interview_candidates',
+			'alias' => 'AdvancedSearchCandidate',
+			'type' => 'LEFT',
+			'conditions' => array(
+				'AdvancedSearchCandidate.trainee_id = Trainee.id',
+				'AdvancedSearchCandidate.interview_id' => $interview_id
+				)
+			);
+		$options['joins'][] = array(
+			'table' => 'jobs',
+			'alias' => 'AdvancedSearchWorkExperience1',
+			'type' => 'LEFT',
+			'conditions' => array(
+				'Trainee.employ1_job = AdvancedSearchWorkExperience1.id',
+				)
+			);
+		$options['joins'][] = array(
+			'table' => 'jobs',
+			'alias' => 'AdvancedSearchWorkExperience2',
+			'type' => 'LEFT',
+			'conditions' => array(
+				'Trainee.employ2_job = AdvancedSearchWorkExperience2.id',
+				)
+			);
+		$options['joins'][] = array(
+			'table' => 'jobs',
+			'alias' => 'AdvancedSearchWorkExperience3',
+			'type' => 'LEFT',
+			'conditions' => array(
+				'Trainee.employ3_job = AdvancedSearchWorkExperience3.id',
+				)
+			);
+		$options['joins'][] = array(
+			'table' => 'jobs',
+			'alias' => 'AdvancedSearchWorkExperience4',
+			'type' => 'LEFT',
+			'conditions' => array(
+				'Trainee.employ4_job = AdvancedSearchWorkExperience4.id',
+				)
+			);
+		$options['joins'][] = array(
+			'table' => 'jobs',
+			'alias' => 'AdvancedSearchWorkExperience5',
+			'type' => 'LEFT',
+			'conditions' => array(
+				'Trainee.employ5_job = AdvancedSearchWorkExperience5.id',
+				)
+			);
+		$options['joins'][] = array(
+			'table' => 'jobs',
+			'alias' => 'AdvancedSearchJobExpectation1',
+			'type' => 'LEFT',
+			'conditions' => array(
+				'Trainee.job_expectation1 = AdvancedSearchJobExpectation1.id',
+				)
+			);
+		$options['joins'][] = array(
+			'table' => 'jobs',
+			'alias' => 'AdvancedSearchJobExpectation2',
+			'type' => 'LEFT',
+			'conditions' => array(
+				'Trainee.job_expectation2 = AdvancedSearchJobExpectation2.id',
+				)
+			);
+		$options['joins'][] = array(
+			'table' => 'jobs',
+			'alias' => 'AdvancedSearchJobExpectation3',
+			'type' => 'LEFT',
+			'conditions' => array(
+				'Trainee.job_expectation3 = AdvancedSearchJobExpectation3.id',
+				)
+			);
+		$options['group'] = array('Trainee.id');
+		$options['order'] = array('Trainee.id' => 'asc');
+		$options['recursive'] = -1;
+
+		return $this->find('all', $options);
+	}
+
+
 
 /**
  * Company Profileページ

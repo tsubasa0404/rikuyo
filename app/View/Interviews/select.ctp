@@ -56,7 +56,7 @@
 													<?php echo $prof['Interview']['adoption_num']; ?>
 												</td>
 												<td>
-													<?= $prof['Interview']['sex'] ?>
+													<?= __($prof['Interview']['sex']) ?>
 												</td>
 												<td>
 													<?= $prof['Interview']['age'] ?>
@@ -77,132 +77,10 @@
 				</div>
 
 			<!-- Advanced Search Trainees -->
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="main-box clearfix">
-						<header class="main-box-header clearfix">
-							<h2 class="pull-left"><?= __('Advanced Search Trainees') ?></h2>
-						</header>
-
-						<div class="main-box-body clearfix">
-							<?php echo $this->Form->create('Interview', array(
-								'action' => 'advanced_search',
-								'class' => 'form_advanced_search',
-								'inputDefaults' => array(
-									'div' => false,
-									)
-							)); ?>
-							<div class="row mB10">
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label><?= __('Age') ?></label>
-									<?php echo $this->Form->input('age1', array(
-										'label' => false,
-										'class' => 'form-control maxW100'
-									)) ?> To
-									<?php echo $this->Form->input('age2', array(
-										'label' => false,
-										'class' => 'form-control maxW50'
-									)) ?>
-								</div>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label class="control-label"><?= __('Age') ?></label>
-									<input type="text" class="filter_control_no form-control" value="">
-								</div>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label class="control-label"><?= __('Name') ?></label>
-									<input type="text" class="filter_name form-control" value="">
-								</div>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label class="control-label"><?= __('Sex') ?></label>
-									<div class="">
-										<div class="checkbox-nice pull-left mR5">
-											<input type="checkbox" class="filter_sex" id="filter_sex1" value="<?= __('male'); ?>"/>
-											<label for="filter_sex1"><?= __('Male') ?></label>
-										</div>
-										<div class="checkbox-nice pull-left mL5">
-											<input type="checkbox" class="filter_sex" id="filter_sex2" value="<?= __('female'); ?>"/>
-											<label for="filter_sex2"><?= __('Female') ?></label>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label class="control-label"><?= __('Language') ?></label>
-									<input type="text" class="filter_language form-control" value="">
-								</div>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label class="control-label"><?= __('Skill') ?></label>
-									<input type="text" class="filter_skill form-control" value="">
-								</div>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label class="control-label"><?= __('Hand') ?></label>
-									<input type="text" class="filter_hand form-control" value="">
-								</div>
-							</div>
-							<?php echo $this->Form->end(); ?>
-						</div>
-					</div>
-				</div>
-			</div>
+			<?php echo $this->Element('advanced_search'); ?>
 			<!-- //Advanced Search Trainees -->
 
-			<!-- Easy Search Trainees -->
-			<!-- <div class="row">
-				<div class="col-lg-12">
-					<div class="main-box clearfix">
-						<header class="main-box-header clearfix">
-							<h2 class="pull-left"><?= __('Easy Search Trainees') ?></h2>
-						</header>
 
-						<div class="main-box-body clearfix">
-							<div class="row mB10">
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label class="control-label"><?= __('Trainee ID') ?></label>
-									<input type="text" class="filter_control_no form-control" value="">
-								</div>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label class="control-label"><?= __('Name') ?></label>
-									<input type="text" class="filter_name form-control" value="">
-								</div>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label class="control-label"><?= __('Sex') ?></label>
-									<div class="">
-										<div class="checkbox-nice pull-left mR5">
-											<input type="checkbox" class="filter_sex" id="filter_sex1" value="<?= __('male'); ?>"/>
-											<label for="filter_sex1"><?= __('Male') ?></label>
-										</div>
-										<div class="checkbox-nice pull-left mL5">
-											<input type="checkbox" class="filter_sex" id="filter_sex2" value="<?= __('female'); ?>"/>
-											<label for="filter_sex2"><?= __('Female') ?></label>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label class="control-label"><?= __('Age') ?></label>
-									<input type="text" class="filter_age_min form-control" name="filter_age_min" value="20">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label class="control-label"><?= __('Language') ?></label>
-									<input type="text" class="filter_language form-control" value="">
-								</div>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label class="control-label"><?= __('Skill') ?></label>
-									<input type="text" class="filter_skill form-control" value="">
-								</div>
-								<div class="col-lg-3 col-md-3 col-sm-3">
-									<label class="control-label"><?= __('Hand') ?></label>
-									<input type="text" class="filter_hand form-control" value="">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			-->
-			<!-- //Easy Search Trainees -->
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<div class="main-box clearfix">
@@ -212,17 +90,13 @@
 						<div class="main-box-body clearfix">
 							<div class="table-responsive">
 
-								<table id="select_trainee_table" class="table data select_trainee table-hover" data-page-size="10">
+								<table id="select_trainee_table" class="table data select_trainee table-hover footable_trainees_list footable" data-page-size="10" data-filter="#filter1">
 									<thead>
 										<tr>
 											<th class="control_no"><?= __('Trainee ID') ?></th>
 											<th class="name"><?= __('Name') ?></th>
 											<th class="sex"><?= __('Sex') ?></th>
 											<th class="age"><?= __('Age') ?></th>
-											<th class="image"></th>
-											<th class="age"><?= __('language') ?></th>
-											<th class="age"><?= __('skills') ?></th>
-											<th class="age"><?= __('Hand') ?></th>
 										</tr>
 									</thead>
 									<tbody class="select_trainee_table_tbody">
@@ -245,27 +119,17 @@
 														array('escape' => false, 'target' => '_blank')
 													);?>
 												</td>
-												<td><?php echo $trainee['Trainee']['sex']?></td>
+												<td><?= __($trainee['Trainee']['sex']); ?></td>
 												<td class="num">
 													<?php echo $this->Btn->calcAge($trainee['Trainee']['birthday'])?>
 												</td>
-												<td>
+												<!-- <td> -->
 													<?php //if($trainee['TraineeProfileImage']['trainee_id']){
 														//echo $this->Html->image('trainee_profile_images/thumb/'.$trainee['//TraineeProfileImage']['img_file_name'], array('width' => '60px', '//height' => '60px'));
 														//} else {
 														//	echo $this->Html->image('trainee_profile_images/thumb/default.png', //array('width' => '60px', 'height' => '60px'));
 														//};?>
-												</td>
-												<td>
-													<?php if($trainee['Trainee']['english'] == 1){
-														echo __('English') . "<br>";
-													} ?>
-													<?php if($trainee['Trainee']['lang_others_en']){
-														echo $trainee['Trainee']['lang_others_en'];
-													} ?>
-												</td>
-												<td><?php echo $this->Foreach->trainees_job(array($trainee['Trainee']['job1_id'],$trainee['Trainee']['job2_id']),$lang) ;?></td>
-												<td><?php echo $trainee['Trainee']['handed'];?></td>
+												<!-- </td> -->
 											</tr>
 
 
@@ -274,8 +138,15 @@
 
 										<?php endforeach; ?>
 									</tbody>
+									<tfoot class="hide-if-no-paging">
+										<tr>
+											<td colspan="5" class="text-center">
+												<ul class="pagination">
+												</ul>
+											</td>
+										</tr>
+									</tfoot>
 								</table>
-								<ul class="pagination pull-right hide-if-no-paging"></ul>
 							</div>
 						</div>
 					</div>
@@ -287,7 +158,7 @@
 						</header>
 						<div class="main-box-body clearfix">
 							<div class="table-responsive">
-								<table id="selected_trainee_table" class="table table-hover">
+								<table id="selected_trainee_table" class="table table-hover footable_candidates_list footable" data-filter="#filter2">
 									<thead>
 										<tr>
 											<th class=""><?= __('Trainee ID') ?></th>
@@ -313,7 +184,7 @@
 														array('controller' => 'trainees', 'action' => 'profile', $can['CandidateTrainee']['id']),
 														array('escape' => false, 'target' => '_blank'));?>
 												</td>
-												<td><?php echo $can['CandidateTrainee']['sex'];?></td>
+												<td><?= __($can['CandidateTrainee']['sex']);?></td>
 												<td class="num"><?php echo $this->Btn->calcAge($can['CandidateTrainee']['birthday']);?></td>
 												<td>
 													<?php //if($can['ProfImg']['trainee_id']){
@@ -325,6 +196,14 @@
 											</tr>
 										<?php endforeach; ?>
 									</tbody>
+									<tfoot class="hide-if-no-paging">
+										<tr>
+											<td colspan="5" class="text-center">
+												<ul class="pagination">
+												</ul>
+											</td>
+										</tr>
+									</tfoot>
 								</table>
 								<ul class="pagination pull-right hide-if-no-paging"></ul>
 							</div>
@@ -364,31 +243,42 @@
 			$('.md-modal').each(function(){
 				$(this).remove();
 			});
+			$('.sel_job').select2();
 
 		});
 
-		//学生検索
-		$(function(){
-			$('table.data').exTableFilter({
-				filters : {
-					0:'input.filter_control_no',
-					1:'input.filter_name',
-					2:'input.filter_sex',
-					3: {
-						element : 'input.filter_age_min',
-						onFiltering : function(api){
-							return api.getCurrentCellNum() >= api.getCurrentFilterNum();
-						}
-					},
-					4:'input.filter_image',
-					5:'input.filter_language',
-					6:'input.filter_skill',
-					7:'input.filter_hand',
-				}
-			});
-			$('table.data').footable();
-			$('.footable').footable();
-		});
+		//footable
+		$(function () {
+	    $('table.footable').footable().bind('footable_filtering', function(e){
+	      var selected = $(this).prev('p').find('.filter-status').find(':selected').text();
+	      if (selected && selected.length > 0){
+	        e.filter += (e.filter && e.filter.length > 0) ? ' ' + selected : selected;
+	        e.clear = !e.filter;
+	      }
+	    });
+
+	    $('.clear-filter').click(function (e) {
+	      e.preventDefault();
+	      var $parent = $(this).closest('p');
+	      $parent.find('.filter-status').val('');
+	      if ($parent.find('#filter1').length > 0) {
+	        $('table.footable_trainees_list').trigger('footable_clear_filter');
+	      } else {
+	        $('table.footable_candidates_list').trigger('footable_clear_filter');
+	      }
+	    });
+
+	    $('.filter-status').change(function (e) {
+	      e.preventDefault();
+	      var $parent = $(this).closest('p');
+	      if ($parent.find('#filter1').length > 0) {
+	        $('table.footable_trainees_list').trigger('footable_filter', {filter: $parent.find('#filter1').val()});
+	      } else {
+	        $('table.footable_candidates_list').trigger('footable_filter', {filter: $parent.find('#filter2').val()});
+	      }
+	    });
+		  });
+
 
 		$(document).ready(function($) {
 			//もしTrainee Listのchk_select_traineeがクリックされたら、
@@ -531,173 +421,6 @@
 		});
 
 
-// $(function(){
-		// 	$('#select_trainee_table').on('click', '.chk_select_trainee', function(){
-		//       var trainee_id              = $(this).data('trainee-id');
-  	//       var $trainee_tr             = $('#select_trainee_table_'+trainee_id);
-  	//       var trainee_control_no      = $(this).data('trainee-control-no');
-  	//       var interview_candidate_id  = $(this).data('interview-candidate-id');
-  	//       var interview_id            = <?php //echo $this->request->data['Interview']['id'] ?>;
-		// 		var url= $('.select_candidate_form').attr('action');
-		// 		var id;
-
-		// 		swal({
-		// 			title: "<?= __('Do you register this trainee as Candidate?') ?>",
-		// 			text: "",
-		// 			type: "info",
-		// 			showCancelButton: true,
-		// 			cancelButtonText: "<?= __('Cancel') ?>",
-		// 			confirmButtonColor: "#03a9f4",
-		// 			confirmButtonText: "<?= __('Yes') ?>",
-		// 			closeOnConfirm: false
-		// 			},
-		// 			function(isConfirm){
-		// 				if(isConfirm){
-		// 					$.ajax({
-		// 						url: url,
-		// 						type: 'POST',
-		// 						dataType: 'json',
-		// 						data: {
-		// 							id:id,
-		// 							interview_id: interview_id,
-		// 							trainee_id: trainee_id,
-		// 							interview_result_id: 0,
-		// 							note: ""
-		// 						},
-		// 						success: function(rs){
-		// 							$trainee_tr.attr('id', 'selected_trainee_table_'+trainee_id);
-		// 							$trainee_tr.find('.chk_selected_trainee').attr('data-interview-candidate-id', rs);
-		// 							$trainee_tr.find('.chk_selected_trainee').attr('id', "selected_trainee_" + trainee_id);
-		// 							$trainee_tr.find('.chk_selected_trainee').attr('value', trainee_id);
-		// 							$trainee_tr.find('.chk_selected_trainee').attr('checked', "");
-		// 							$('#selected_trainee_table').prepend($trainee_tr.fadeIn());
-		// 							swal("<?= __('OK') ?>", "", "success");
-
-		// 							trainee_id = "";
-		// 							$trainee_tr = "";
-		// 							trainee_control_no = "";
-		// 							interview_candidate_id = "";
-		// 							interview_id = "";
-		// 							url = "";
-		// 							url_delete = "";
-		// 							id = "";
-
-		// 						},
-		// 						error: function(exception){
-		// 							alert('Exception:'+exception);
-		// 							swal({
-		// 								title: "Oops...",
-		// 								text: "Please try it again.",
-		// 								type:"error",
-		// 								confirmButtonText:"OK"
-		// 							});
-
-		// 							trainee_id = "";
-		// 							$trainee_tr = "";
-		// 							trainee_control_no = "";
-		// 							interview_candidate_id = "";
-		// 							interview_id = "";
-		// 							url = "";
-		// 							url_delete = "";
-		// 							id = "";
-		// 						}
-		// 					});
-		// 				} else {
-		// 					$('.'+trainee_control_no).prop('checked', false);
-		// 						trainee_id = "";
-		// 						$trainee_tr = "";
-		// 						trainee_control_no = "";
-		// 						interview_candidate_id = "";
-		// 						interview_id = "";
-		// 						url = "";
-		// 						url_delete = "";
-		// 						id = "";
-		// 				}
-		// 			}
-		// 		);//swal
-		// 	});
-// });
-
-// $(function(){
-		// 	$('#selected_trainee_table').on('click', '.chk_selected_trainee', function(){
-	 //      var selected_trainee_id              = $(this).data('trainee-id');
-	 //      var $selected_trainee_tr             = $('#selected_trainee_table_'+selected_trainee_id);
-	 //      var selected_trainee_control_no      = $(this).data('trainee-control-no');
-	 //      var selected_interview_candidate_id  = $(this).data('interview-candidate-id');
-	 //      var selected_interview_id            = <?php //echo $this->request->data['Interview']['id'] ?>;
-	 //      var selected_url_delete              = $('.delete_candidate_form').attr('action');
-
-		// 		var what_is_this						= $(this);
-
-
-		// 			console.log(what_is_this);
-		// 			console.log("selected_trainee_id: "+selected_trainee_id);
-		// 			console.log( $selected_trainee_tr);
-		// 			console.log("selected_trainee_control_no: " + selected_trainee_control_no);
-		// 			console.log("selected_interview_candidate_id: " + selected_interview_candidate_id);
-		// 			console.log("selected_interview_id: " + selected_interview_id);
-		// 			console.log("selected_url_delete: " + selected_url_delete);
-
-		// 		swal({
-		// 						title: "<?= __('Do you remove this trainee from Candidate List?') ?>",
-		// 						text: "",
-		// 						type: "info",
-		// 						showCancelButton: true,
-		// 						cancelButtonText: "<?= __('Cancel') ?>",
-		// 						confirmButtonColor: "#DD6B55",
-		// 						confirmButtonText: "<?= __('Yes') ?>",
-		// 						closeOnConfirm: false
-		// 					},
-		// 					function(isConfirm){
-		// 						if(isConfirm){
-		// 							$.ajax({
-		// 								url: selected_url_delete,
-		// 								type: 'POST',
-		// 								dataType: 'json',
-		// 								data: {
-		// 									selected_interview_candidate_id : selected_interview_candidate_id
-		// 								},
-
-		// 								success:function(){
-		// 									$selected_trainee_tr.attr('id', 'select_trainee_table_'+selected_trainee_id);
-		// 									$selected_trainee_tr.find('.chk_selected_trainee').attr('data-interview-candidate-id', "");
-		// 									$('#select_trainee_table.select_trainee').prepend($selected_trainee_tr.fadeIn());
-
-		// 								swal("<?= __('Removed') ?>", "", "success");
-
-		// 								selected_trainee_id = "";
-		// 								$selected_trainee_tr = "";
-		// 								selected_trainee_control_no = "";
-		// 								selected_interview_candidate_id = "";
-		// 								selected_interview_id = "";
-		// 								selected_url_delete = "";
-		// 								what_is_this = ""
-
-		// 								}, error: function(exception){
-		// 									selected_trainee_id = "";
-		// 									$selected_trainee_tr = "";
-		// 									selected_trainee_control_no = "";
-		// 									selected_interview_candidate_id = "";
-		// 									selected_interview_id = "";
-		// 									selected_url_delete = "";
-		// 									what_is_this = ""
-		// 								}
-		// 							});
-
-
-		// 						} else {
-		// 							$selected_trainee_tr.find('.chk_selected_trainee').prop('checked', true);
-		// 							selected_trainee_id = "";
-		// 									$selected_trainee_tr = "";
-		// 									selected_trainee_control_no = "";
-		// 									selected_interview_candidate_id = "";
-		// 									selected_interview_id = "";
-		// 									selected_url_delete = "";
-		// 									what_is_this = ""
-		// 						}
-		// 					});
-		// 		});//swal
-// });
 
 
 	<?php $this->Html->scriptEnd(); ?>
