@@ -36,7 +36,7 @@
 </head>
 
 
-<body class="theme-white fixed-header">
+<body class="theme-whbl fixed-header">
 	<div class="md-modal md-effect-8" id="modal-sector">
 		<div class="md-content">
 			<div class="modal-header">
